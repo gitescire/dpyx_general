@@ -27,7 +27,7 @@ class StoreUserController extends Controller
 
         $user->assignRole($request->role);
 
-        Alert::success('Success Title', 'Success Message');
+        Alert::success('¡Usuario agregado!', 'El usuario ha sido añadido a la base de datos.');
         return redirect()->route('users.index');
     }
 }
