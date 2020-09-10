@@ -522,8 +522,8 @@
                 </div>
             </div>
             <div class="app-sidebar-overlay d-none animated fadeIn"></div>
-            <div class="app-main__outer">
-                <div class="app-main__inner">
+            <div class="app-main__outer container">
+                <div class="app-main__inner container">
                     <div class="header-mobile-wrapper">
                         <div class="app-header__logo">
                             <a href="#" data-toggle="tooltip" data-placement="bottom" title="KeroUI Admin Template"
@@ -1290,9 +1290,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="app-inner-layout__content">
+                            <div class="app-inner-layout__content container">
                                 <div class="tab-content">
-                                    <div class="container-fluid">
+                                    <div class="container">
                                         {{ $slot }}
                                     </div>
                                 </div>
@@ -2536,6 +2536,8 @@
     </div>
     <div class="app-drawer-overlay d-none animated fadeIn"></div>
     <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+
+    @include('sweetalert::alert')
 
     @stack('modals')
     @livewireScripts

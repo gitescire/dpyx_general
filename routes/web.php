@@ -20,3 +20,9 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('users', \App\Http\Livewire\Users\Index::class)->name('users.index');
+Route::get('users/create', \App\Http\Livewire\Users\Create::class)->name('users.create');
+Route::post('users', \App\Http\Controllers\Users\StoreUserController::class)->name('users.store');
+
+Route::get('evaluations/{evaluation}/categories/{category}/answers', \App\Http\Livewire\Evaluations\Answer::class)->name('evaluations.categories.answers');

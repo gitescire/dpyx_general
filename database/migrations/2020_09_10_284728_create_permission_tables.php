@@ -22,9 +22,12 @@ class CreatePermissionTables extends Migration
 
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('section_id');
             $table->string('name');
             $table->string('guard_name');
             $table->timestamps();
+
+            $table->foreign('section_id')->references('id')->on('sections');
         });
 
         Schema::create($tableNames['roles'], function (Blueprint $table) {
