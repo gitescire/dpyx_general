@@ -1,4 +1,4 @@
-<div>
+<div class="mb-4">
 
     <div class="d-flex justify-content-end mb-3">
         <a href="{{route('users.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0">
@@ -6,12 +6,14 @@
         </a>
     </div>
 
-    <div class="table-responsive shadow">
+    <div class="table-responsive shadow mb-3">
         <table class="table table-bordered m-0">
             <thead>
                 <tr>
                     <th>#</th>
                     <th class="text-uppercase">Nombre</th>
+                    <th class="text-uppercase">Correo</th>
+                    <th class="text-uppercase">Teléfono</th>
                     <th class="text-uppercase">Rol</th>
                     <th class="text-uppercase">Acciones</th>
                 </tr>
@@ -21,21 +23,33 @@
                 <tr>
                     <td>{{$user->id}}</td>
                     <td>{{$user->name}}</td>
-                    <td>Admin</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->phone}}</td>
+                    <td>{{$user->roles()->first()->name}}</td>
                     <td>
-                        <form action="" class="d-inline">
+                        <form action="{{route('users.destroy',[$user])}}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
                             <button class="btn btn-danger rounded-0 btn-shadow">
-                                <i class="fas fa-trash"></i>
+                                <span data-toggle="tooltip" title="Eliminar" wire:ignore.self>
+                                    <i class="fas fa-trash"></i>
+                                </span>
                             </button>
                         </form>
-                        <a href="#" class="btn btn-warning rounded-0 btn-shadow">
-                            <i class="fas fa-pencil-alt"></i>
+                        <a href="{{route('users.edit',[$user])}}" class="btn btn-warning rounded-0 btn-shadow">
+                            <span data-toggle="tooltip" title="Editar" wire:ignore.self>
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
                         </a>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
+
+    <div class="">
+        {{$users->links()}}
     </div>
 
 
