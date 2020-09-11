@@ -35,6 +35,13 @@ Route::post('categories', \App\Http\Controllers\Categories\StoreCategoryControll
 Route::put('categories/{category}', \App\Http\Controllers\Categories\UpdateCategoryController::class)->name('categories.update');
 Route::delete('categories/{category}', \App\Http\Controllers\Categories\DestroyCategoryController::class)->name('categories.destroy');
 
+Route::get('subcategories', \App\Http\Livewire\Subcategories\Index::class)->name('subcategories.index');
+Route::get('subcategories/create', \App\Http\Livewire\Subcategories\Create::class)->name('subcategories.create');
+Route::get('subcategories/{subcategory}/edit', \App\Http\Livewire\Subcategories\Edit::class)->name('subcategories.edit');
+Route::post('subcategories', \App\Http\Controllers\Subcategories\StoreSubcategoryController::class)->name('subcategories.store');
+Route::put('subcategories/{subcategory}', \App\Http\Controllers\Subcategories\UpdateSubcategoryController::class)->name('subcategories.update');
+Route::delete('subcategories/{subcategory}', \App\Http\Controllers\Subcategories\DestroySubcategoryController::class)->name('subcategories.destroy');
+
 Route::get('questions', \App\Http\Livewire\Questions\Index::class)->name('questions.index');
 Route::get('questions/create', \App\Http\Livewire\Questions\Create::class)->name('questions.create');
 Route::get('questions/{question}/edit', \App\Http\Livewire\Questions\Edit::class)->name('questions.edit');

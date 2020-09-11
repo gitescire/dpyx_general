@@ -61,7 +61,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="widgets-chart-boxes-3.html">
+                                    <a href="{{route('subcategories.index')}}">
                                         <i class="metismenu-icon pe-7s-ball">
                                         </i>Subcategorias
                                     </a>
