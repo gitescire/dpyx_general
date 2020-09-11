@@ -91,7 +91,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="widgets-profile-boxes.html">
+                                    <a href="{{route('announcements.index')}}">
                                         <i class="metismenu-icon pe-7s-id">
                                         </i>Convocatorias
                                     </a>

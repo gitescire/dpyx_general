@@ -49,4 +49,11 @@ Route::post('questions', \App\Http\Controllers\Questions\StoreQuestionController
 Route::put('questions/{question}', \App\Http\Controllers\Questions\UpdateQuestionController::class)->name('questions.update');
 Route::delete('questions/{question}', \App\Http\Controllers\Questions\DestroyQuestionController::class)->name('questions.destroy');
 
+Route::get('announcements', \App\Http\Livewire\Announcements\Index::class)->name('announcements.index');
+Route::get('announcements/create', \App\Http\Livewire\Announcements\Create::class)->name('announcements.create');
+Route::get('announcements/{announcement}/edit', \App\Http\Livewire\Announcements\Edit::class)->name('announcements.edit');
+Route::post('announcements', \App\Http\Controllers\Announcements\StoreAnnouncementController::class)->name('announcements.store');
+Route::put('announcements/{announcement}', \App\Http\Controllers\Announcements\UpdateAnnouncementController::class)->name('announcements.update');
+Route::delete('announcements/{announcement}', \App\Http\Controllers\Announcements\DestroyAnnouncementController::class)->name('announcements.destroy');
+
 Route::get('evaluations/{evaluation}/categories/{category}/answers', \App\Http\Livewire\Evaluations\Answer::class)->name('evaluations.categories.answers');
