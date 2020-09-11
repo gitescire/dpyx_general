@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesAndPermissionsSeeder::class);
         $this->call(UsersSeeder::class);
         $this->call(CategoriesSeeder::class);
+        $this->call(SubcategoriesSeeder::class);
 
         $users = User::factory()
             ->count(20)->create();

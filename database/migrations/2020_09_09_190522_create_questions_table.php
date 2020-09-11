@@ -17,11 +17,13 @@ class CreateQuestionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subcategory_id');
+            $table->string('description');
+            $table->unsignedInteger('order');
             $table->string('max_punctuation');
             $table->text('help_text');
             $table->boolean('is_optional');
             $table->boolean('has_description_field');
-            $table->boolean('description_label');
+            $table->string('description_label');
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');

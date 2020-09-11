@@ -73,7 +73,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="widgets-profile-boxes.html">
+                                    <a href="{{route('questions.index')}}">
                                         <i class="metismenu-icon pe-7s-id">
                                         </i>Preguntas
                                     </a>

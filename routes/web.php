@@ -31,8 +31,15 @@ Route::delete('users/{user}', \App\Http\Controllers\Users\DestroyUserController:
 Route::get('categories', \App\Http\Livewire\Categories\Index::class)->name('categories.index');
 Route::get('categories/create', \App\Http\Livewire\Categories\Create::class)->name('categories.create');
 Route::get('categories/{category}/edit', \App\Http\Livewire\Categories\Edit::class)->name('categories.edit');
-Route::delete('categories/{category}', \App\Http\Controllers\Categories\DestroyCategoryController::class)->name('categories.destroy');
 Route::post('categories', \App\Http\Controllers\Categories\StoreCategoryController::class)->name('categories.store');
 Route::put('categories/{category}', \App\Http\Controllers\Categories\UpdateCategoryController::class)->name('categories.update');
+Route::delete('categories/{category}', \App\Http\Controllers\Categories\DestroyCategoryController::class)->name('categories.destroy');
+
+Route::get('questions', \App\Http\Livewire\Questions\Index::class)->name('questions.index');
+Route::get('questions/create', \App\Http\Livewire\Questions\Create::class)->name('questions.create');
+Route::get('questions/{question}/edit', \App\Http\Livewire\Questions\Edit::class)->name('questions.edit');
+Route::post('questions', \App\Http\Controllers\Questions\StoreQuestionController::class)->name('questions.store');
+Route::put('questions/{question}', \App\Http\Controllers\Questions\UpdateQuestionController::class)->name('questions.update');
+Route::delete('questions/{question}', \App\Http\Controllers\Questions\DestroyQuestionController::class)->name('questions.destroy');
 
 Route::get('evaluations/{evaluation}/categories/{category}/answers', \App\Http\Livewire\Evaluations\Answer::class)->name('evaluations.categories.answers');

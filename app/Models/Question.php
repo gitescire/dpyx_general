@@ -18,4 +18,24 @@ class Question extends Model
         'has_description_field',
         'description_label',
     ];
+
+    /**
+     * ==========
+     * RELATIONSHIPS
+     * ==========
+     */
+
+    /**
+     * 
+     *
+     */
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
+
+    public function Subcategory()
+    {
+        return $this->belongsTo('App\Models\Subcategory');
+    }
 }
