@@ -11,4 +11,26 @@ class Subcategory extends Model
 
     protected $table = 'subcategories';
     protected $fillable = ['name'];
+
+    /**
+     * ==========
+     * RELATIONSHIPS
+     * ==========
+     */
+
+    public function questions()
+    {
+        return $this->hasMany('App\Models\Question', 'subcategory_id');
+    }
+
+    /**
+     * =======
+     * BOOLEANS
+     * =======
+     */
+
+    public function getHasQuestionsAttribute()
+    {
+        return $this->questions->count() ? true : false;
+    }
 }

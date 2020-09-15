@@ -26,12 +26,20 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'create users', 'section_id' => $section->id]);
         Permission::create(['name' => 'edit users', 'section_id' => $section->id]);
         Permission::create(['name' => 'delete users', 'section_id' => $section->id]);
+        
+        // create repositories
+        $section = Section::create(['name' => 'repositories', 'translation' => 'repositorios']);
+        Permission::create(['name' => 'index repositories', 'section_id' => $section->id]);
+        Permission::create(['name' => 'create repositories', 'section_id' => $section->id]);
+        Permission::create(['name' => 'edit repositories', 'section_id' => $section->id]);
+        Permission::create(['name' => 'delete repositories', 'section_id' => $section->id]);
 
          // create admin role
          $role = Role::create(['name' => 'admin']);
          $role->givePermissionTo(Permission::all());
          
          $role = Role::create(['name' => 'usuario']);
+
          $role = Role::create(['name' => 'evaluador']);
     }
 }

@@ -62,4 +62,44 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * ==========
+     * RELATIONSHIPS
+     * ==========
+     */
+
+    public function repositories()
+    {
+        return $this->hasMany('App\Models\Repository', 'responsible_id');
+    }
+
+    /**
+     * ============
+     * SCOPE METHODS
+     * ============
+     */
+
+    public function scopeEvaluators($query)
+    {
+        return $query->whereHas('roles', function ($query) {
+            return $query->where('name', 'evaluador');
+        });
+    }
+
+    /**
+     * =======
+     * BOOLEANS
+     * =======
+     */
+
+    public function getHasRepositoriesAtttribute()
+    {
+        return $this->repositories->count() > 0;
+    }
+
+    public function getIsEvaluatorAttribute()
+    {
+        return $this->hasRole('evaluador');
+    }
 }

@@ -27,6 +27,16 @@ class StoreUserController extends Controller
 
         $user->assignRole($request->role);
 
+        if($user->hasRole('usuario')){
+            $repository = $user->repositories()->create([
+                'name' => $request->repository_name,
+                'responsible_id' => $user->id
+            ]);
+            $repository->evaluation()->create([
+                'repository_id' => $repository->id,
+            ]);
+        }
+
         Alert::success('¡Usuario agregado!', 'El usuario ha sido añadido a la base de datos.');
         return redirect()->route('users.index');
     }

@@ -14,6 +14,7 @@ class Question extends Model
         'subcategory_id',
         'max_punctuation',
         'help_text',
+        'order',
         'is_optional',
         'has_description_field',
         'description_label',
@@ -37,5 +38,10 @@ class Question extends Model
     public function Subcategory()
     {
         return $this->belongsTo('App\Models\Subcategory');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('App\Models\Answer');
     }
 }

@@ -18,6 +18,17 @@ class UpdateUserController extends Controller
 
         $user->syncRoles($request->role);
 
+        if ($user->hasRole('usuario') && !$user->has_repositories) {
+            $repository = $user->repositories()->create([
+                'name' => $request->repository_name,
+                'responsible_id' => $user->id
+            ]);
+            
+            $repository->evaluation()->create([
+                'repository_id' => $repository->id,
+            ]);
+        }
+
         Alert::success('¡Usuario modificado!');
         return redirect()->route('users.index');
     }
