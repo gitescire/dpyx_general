@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cac530d0e994b369528c2807cab75bda",
+    "content-hash": "03839b8a8a9d2eee84c1a16918425929",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2115,6 +2115,42 @@
                 "type"
             ],
             "time": "2020-07-20T17:29:33+00:00"
+        },
+        {
+            "name": "plotly/plotly.js",
+            "version": "v1.55.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/plotly/plotly.js.git",
+                "reference": "b08c0e80f1ded8383c1f71a39e3da67e7f362dcb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/plotly/plotly.js/zipball/b08c0e80f1ded8383c1f71a39e3da67e7f362dcb",
+                "reference": "b08c0e80f1ded8383c1f71a39e3da67e7f362dcb",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Plotly, Inc.",
+                    "email": "sales@plotly.com"
+                }
+            ],
+            "description": "The open source javascript graphing library that powers plotly",
+            "homepage": "https://plotly.com/javascript/",
+            "keywords": [
+                "data",
+                "graphing",
+                "plotly",
+                "plotting",
+                "visualization"
+            ],
+            "time": "2020-09-08T14:39:29+00:00"
         },
         {
             "name": "pragmarx/google2fa",

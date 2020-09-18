@@ -78,3 +78,7 @@ Route::prefix('repositories')->group(function () {
 Route::get('evaluations/{evaluation}/categories/{category}/questions', \App\Http\Livewire\Evaluations\Categories\Questions\Index::class)->name('evaluations.categories.questions.index');
 Route::get('evaluations/{evaluationEncoded}/user/{evaluatorEncoded}/assign', \App\Http\Livewire\Evaluations\Assign::class)->name('evaluations.assign');
 Route::post('evaluations/{evaluation}/categories/{category}/questions', \App\Http\Controllers\Evaluations\Categories\Questions\StoreQuestionController::class)->name('evaluations.categories.questions.store');
+
+//Route::prefix('statistics')->group(function () {
+//    Route::get('/', \App\Http\Livewire\Statistics\Index::class)->name('statistics.index');
+// });

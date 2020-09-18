@@ -13,10 +13,10 @@
         @endforeach
     </ul>
 
-    <form action="{{route('evaluations.categories.questions.store',[$evaluation,$categoryChoosed])}}" method="POST">
+    <div x-data="data()" x-init="mounted()">
+        <form action="{{route('evaluations.categories.questions.store',[$evaluation,$categoryChoosed])}}" method="POST">
         @csrf
         @method('POST')
-        <div x-data="data()" x-init="mounted()">
             <template x-for="subcategory in subcategories" :key="subcategory">
                 <div>
                     <template x-if="subcategory.has_questions">
@@ -95,7 +95,7 @@
                                                     </td>
                                                     <td>
                                                         <select :name="'questions['+question.id+']'"
-                                                            class="form-control" x-model="question.current_value">
+                                                            class="form-control" x-model="question.current_value" :disabled="!evaluation.is_answerable">
                                                             <option value="0">seleccionar</option>
                                                             <option x-bind:value="parseFloat(question.max_punctuation)"
                                                                 x-bind:selected="question.answers[0] && parseFloat(question.answers[0].punctuation) == parseFloat(question.max_punctuation) ? true : false">
@@ -115,18 +115,22 @@
                     </template>
                 </div>
             </template>
-        </div>
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-success btn-shadow btn-wide rounded-0">
-                <i class="fas fa-save"></i> Continuar
-            </button>
-        </div>
+        <template x-if="evaluation.is_answerable">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-success btn-shadow btn-wide rounded-0">
+                    <i class="fas fa-save"></i> Continuar
+                </button>
+            </div>
+        </template>
     </form>
+</div>
+
 
 
     <script>
         function data(){
             return {
+                evaluation: @json($evaluation),
                 subcategories: @json($subcategories),
 
                 mounted() {

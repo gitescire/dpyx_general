@@ -690,9 +690,12 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="widget-content-right mr-2">
-                                                                            <button
-                                                                                class="btn-pill btn-shadow btn-shine btn btn-focus">Logout
-                                                                            </button>
+                                                                            <form method="POST" action="{{ route('logout') }}">
+                                                                                @csrf
+                                                                                <button
+                                                                                    class="btn-pill btn-shadow btn-shine btn btn-focus">Logout
+                                                                                </button>
+                                                                            </form>
                                                                         </div>
                                                                     </div>
                                                                 </div>

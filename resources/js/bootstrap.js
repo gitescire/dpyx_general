@@ -33,3 +33,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * 
  */
 // require("sweetalert");
+
+/**
+ * 
+ * 
+ * 
+ */
+window.Plotly = require('plotly.js-dist')
