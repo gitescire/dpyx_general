@@ -23,7 +23,7 @@ class Index extends Component
         $categoryChoosed = $this->categoryChoosed;
         $this->categories = Category::get();
         $this->subcategories = Subcategory::with(['questions'=> function($query) use($categoryChoosed){
-            $query->where('category_id',$categoryChoosed->id)->with('answers');
+            $query->where('category_id',$categoryChoosed->id)->with('answers.observation');
         }])
         ->get()
         ->append('has_questions');

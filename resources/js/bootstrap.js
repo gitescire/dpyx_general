@@ -28,8 +28,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 
 /**
- * 
+ * Alpinejs
  * 
  * 
  */
-// require("sweetalert");
+import 'alpinejs'

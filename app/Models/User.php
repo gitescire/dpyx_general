@@ -87,6 +87,12 @@ class User extends Authenticatable
         });
     }
 
+    public function scopeUsers($query){
+        return $query->whereHas('roles', function ($query) {
+            return $query->where('name', 'usuario');
+        });
+    }
+
     /**
      * =======
      * BOOLEANS

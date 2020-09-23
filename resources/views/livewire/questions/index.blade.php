@@ -6,7 +6,7 @@
         </a>
     </div>
 
-    <div class="table-responsive shadow">
+    <div class="table-responsive shadow bg-white">
         <table class="table m-0">
             <thead>
                 <tr>
@@ -26,7 +26,7 @@
                     <td>{{$question->order}}</td>
                     <td>{{$question->category->name}}</td>
                     <td>{{$question->subcategory->name}}</td>
-                    <td>
+                    <td class="d-flex justify-content-between">
                         <form action="{{route('questions.destroy',[$question])}}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
@@ -34,7 +34,7 @@
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
-                        <a href="{{route('questions.edit',[$question])}}" class="btn btn-warning btn-shadow rounded-0">
+                        <a href="{{route('questions.edit',[$question])}}" class="btn btn-warning btn-shadow rounded-0 ml-1">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                     </td>

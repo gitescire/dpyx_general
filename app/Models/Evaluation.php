@@ -27,6 +27,11 @@ class Evaluation extends Model
         return $this->hasMany('App\Models\Answer');
     }
 
+    public function repository()
+    {
+        return $this->belongsTo('App\Models\Repository');
+    }
+
     /**
      * ========
      * BOOLEANS
@@ -35,10 +40,10 @@ class Evaluation extends Model
 
     public function getIsAnswerableAttribute()
     {
-        if(Auth::user()->id != $this->repository->responsible->id){
+        if (Auth::user()->id != $this->repository->responsible->id) {
             return false;
         }
-        if($this->is_answered){
+        if ($this->is_answered) {
             return false;
         }
         return true;

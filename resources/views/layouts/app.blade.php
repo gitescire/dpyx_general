@@ -26,8 +26,6 @@
 
     @livewireStyles
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
 </head>
 
 <body>
@@ -36,8 +34,10 @@
             <div class="app-sidebar-wrapper">
                 <div class="app-sidebar bg-dark sidebar-text-light">
                     <div class="app-header__logo">
-                        <a href="{{route('dashboard')}}" data-toggle="tooltip" data-placement="bottom" title="dPyx Concytec"
-                            class="logo-src"></a>
+                        <a href="{{route('dashboard')}}" data-toggle="tooltip" data-placement="bottom"
+                            title="dPyx Concytec" class="">
+                        <img src="{{url('images/logo.png')}}" width="120px" class="img-responsive" alt="">
+                        </a>
                         <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
@@ -50,49 +50,48 @@
                                 <li class="app-sidebar__heading">Opciones</li>
                                 <li>
                                     <a href="widgets-chart-boxes.html">
-                                        <i class="metismenu-icon pe-7s-graph">
+                                        <i class="metismenu-icon fas fa-scroll">
                                         </i>Cuestionario
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{route('categories.index')}}">
-                                        <i class="metismenu-icon pe-7s-way">
+                                        <i class="metismenu-icon fas fa-layer-group">
                                         </i>Categorias
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{route('subcategories.index')}}">
-                                        <i class="metismenu-icon pe-7s-ball">
+                                        <i class="metismenu-icon fas fa-cubes">
                                         </i>Subcategorias
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{route('users.index')}}">
-                                        <i class="metismenu-icon pe-7s-id">
+                                        <i class="metismenu-icon fas fa-users">
                                         </i>Usuarios
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{route('questions.index')}}">
-                                        <i class="metismenu-icon pe-7s-id">
+                                        <i class="metismenu-icon fas fa-question-circle">
                                         </i>Preguntas
                                     </a>
                                 </li>
                                 <li>
                                     <a href="widgets-profile-boxes.html">
-                                        <i class="metismenu-icon pe-7s-graph">
+                                        <i class="metismenu-icon fas fa-chart-pie">
                                         </i>Estadísticas
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{route('repositories.index')}}">
-                                        <i class="metismenu-icon pe-7s-id">
-                                        </i>Repositorios
+                                            <i class="metismenu-icon fas fa-box-open"></i> Repositorios
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{route('announcements.index')}}">
-                                        <i class="metismenu-icon pe-7s-id">
+                                        <i class="metismenu-icon fas fa-calendar-check">
                                         </i>Convocatorias
                                     </a>
                                 </li>
@@ -125,19 +124,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="app-header">
+                    <div class="app-header bg-white shadow-sm">
                         <div class="page-title-heading">
-                            Analytics
+                            Preguntas
                             <div class="page-title-subheading">
-                                This is an example dashboard created using build-in elements and components.
+                                Este módulo lista todas las preguntas que aparecerán en el cuestionario.
                             </div>
                         </div>
                         <div class="app-header-right">
-                            <div class="search-wrapper">
+                            {{-- <div class="search-wrapper">
                                 <i class="search-icon-wrapper typcn typcn-zoom-outline"></i>
                                 <input type="text" placeholder="Search...">
-                            </div>
-                            <div class="header-btn-lg pr-0">
+                            </div> --}}
+                            {{-- <div class="header-btn-lg pr-0">
                                 <div class="header-dots">
                                     <div class="dropdown">
                                         <button type="button" aria-haspopup="true" aria-expanded="false"
@@ -655,7 +654,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="header-btn-lg pr-0">
                                 <div class="widget-content p-0">
                                     <div class="widget-content-wrapper">
@@ -663,8 +662,8 @@
                                             <div class="btn-group">
                                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                                     class="p-0 btn">
-                                                    <img width="42" class="rounded" src="/images/avatars/3.jpg"
-                                                        alt="" style="display: inline-block;">
+                                                    <img width="42" class="rounded" src="/images/avatars/3.jpg" alt=""
+                                                        style="display: inline-block;">
                                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                                 </a>
                                                 <div tabindex="-1" role="menu" aria-hidden="true"
@@ -679,15 +678,15 @@
                                                                     <div class="widget-content-wrapper">
                                                                         <div class="widget-content-left mr-3">
                                                                             <img width="42" class="rounded-circle"
-                                                                                src="/images/avatars/3.jpg"
-                                                                                alt="">
+                                                                                src="/images/avatars/3.jpg" alt="">
                                                                         </div>
                                                                         <div class="widget-content-left">
-                                                                            <div class="widget-heading">Minnie Betts
+                                                                            <div class="widget-heading">
+                                                                                {{ Auth::user()->name }}
                                                                             </div>
-                                                                            <div class="widget-subheading opacity-8">A
-                                                                                short profile description
-                                                                            </div>
+                                                                            {{-- <div class="widget-subheading opacity-8">
+                                                                                A short profile description
+                                                                            </div> --}}
                                                                         </div>
                                                                         <div class="widget-content-right mr-2">
                                                                             <button
@@ -702,45 +701,46 @@
                                                     <div class="scroll-area-xs" style="height: 150px;">
                                                         <div class="scrollbar-container ps">
                                                             <ul class="nav flex-column">
-                                                                <li class="nav-item-header nav-item">Activity
+                                                                <li class="nav-item-header nav-item">
+                                                                    Correo
                                                                 </li>
                                                                 <li class="nav-item">
-                                                                    <a href="javascript:void(0);" class="nav-link">Chat
-                                                                        <div
+                                                                    <a href="javascript:void(0);" class="nav-link">{{Auth::user()->email}}
+                                                                        {{-- <div
                                                                             class="ml-auto badge badge-pill badge-info">
                                                                             8
-                                                                        </div>
+                                                                        </div> --}}
                                                                     </a>
                                                                 </li>
-                                                                <li class="nav-item">
+                                                                {{-- <li class="nav-item">
                                                                     <a href="javascript:void(0);"
                                                                         class="nav-link">Recover Password
                                                                     </a>
-                                                                </li>
-                                                                <li class="nav-item-header nav-item">My Account
+                                                                </li> --}}
+                                                                <li class="nav-item-header nav-item">Mi cuenta
                                                                 </li>
                                                                 <li class="nav-item">
-                                                                    <a href="javascript:void(0);"
-                                                                        class="nav-link">Settings
-                                                                        <div class="ml-auto badge badge-success">New
-                                                                        </div>
+                                                                    <a href="{{route('users.account',[Auth::user()])}}"
+                                                                        class="nav-link">Configuración
+                                                                        {{-- <div class="ml-auto badge badge-success">New
+                                                                        </div> --}}
                                                                     </a>
                                                                 </li>
-                                                                <li class="nav-item">
+                                                                {{-- <li class="nav-item">
                                                                     <a href="javascript:void(0);"
-                                                                        class="nav-link">Messages
+                                                                        class="nav-link">Mensajes
                                                                         <div class="ml-auto badge badge-warning">512
                                                                         </div>
                                                                     </a>
-                                                                </li>
-                                                                <li class="nav-item">
+                                                                </li> --}}
+                                                                {{-- <li class="nav-item">
                                                                     <a href="javascript:void(0);" class="nav-link">Logs
                                                                     </a>
-                                                                </li>
+                                                                </li> --}}
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <ul class="nav flex-column">
+                                                    {{-- <ul class="nav flex-column">
                                                         <li class="nav-item-divider mb-0 nav-item"></li>
                                                     </ul>
                                                     <div class="grid-menu grid-menu-2col">
@@ -771,7 +771,7 @@
                                                                 Open Messages
                                                             </button>
                                                         </li>
-                                                    </ul>
+                                                    </ul> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -811,7 +811,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="app-wrapper-footer">
+                {{-- <div class="app-wrapper-footer">
                     <div class="app-footer">
                         <div class="">
                             <div class="app-footer__inner">
@@ -1411,10 +1411,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
-        <div class="ui-theme-settings">
+        {{-- <div class="ui-theme-settings">
             <button type="button" id="TooltipDemo" class="btn-open-options btn btn-outline-2x btn-outline-focus">
                 <i class="fa fa-sync-alt icon-anim-pulse fa-2x"></i>
             </button>
@@ -1628,7 +1628,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="app-drawer-wrapper">
         <div class="drawer-nav-btn">
@@ -2051,6 +2051,7 @@
     @include('sweetalert::alert')
 
     @stack('modals')
+    @stack('scripts')
     @livewireScripts
 </body>
 

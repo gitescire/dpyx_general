@@ -15,4 +15,20 @@ class Answer extends Model
         'punctuation',
         'description',
     ];
+
+    /**
+     * ==========
+     * RELATIONSHIPS
+     * ==========
+     */
+
+    public function question()
+    {
+        return $this->belongsTo('App\Models\Question');
+    }
+
+    public function observation()
+    {
+        return $this->hasOne('App\Models\Observation');
+    }
 }

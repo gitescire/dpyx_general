@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\JsonCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,4 +15,9 @@ class Observation extends Model
         'description',
         'files_paths',
     ];
+
+    protected $casts = [
+        'files_paths' => JsonCast::class,
+    ];
+
 }

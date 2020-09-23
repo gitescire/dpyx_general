@@ -29,4 +29,15 @@ class Repository extends Model
     public function evaluation(){
         return $this->hasOne('App\Models\Evaluation');
     }
+
+    /**
+     * ========
+     * ATTRIBUTES
+     * ========
+     */
+
+    public function getQualificationAttribute(){
+        return $this->evaluation->answers->pluck('punctuation')->flatten()->sum() / $this->evaluation->answers->pluck('question.max_punctuation')->flatten()->sum() * 100;
+    }
+
 }

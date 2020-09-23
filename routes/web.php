@@ -29,6 +29,7 @@ Route::prefix('users')->group(function () {
     Route::get('/', \App\Http\Livewire\Users\Index::class)->name('users.index');
     Route::get('create', \App\Http\Livewire\Users\Create::class)->name('users.create');
     Route::get('{user}/edit', \App\Http\Livewire\Users\Edit::class)->name('users.edit');
+    Route::get('{user}/account', \App\Http\Livewire\Users\Account::class)->name('users.account');
     Route::post('/', \App\Http\Controllers\Users\StoreUserController::class)->name('users.store');
     Route::put('{user}', \App\Http\Controllers\Users\UpdateUserController::class)->name('users.update');
     Route::delete('{user}', \App\Http\Controllers\Users\DestroyUserController::class)->name('users.destroy');
@@ -61,6 +62,14 @@ Route::prefix('questions')->group(function () {
     Route::delete('{question}', \App\Http\Controllers\Questions\DestroyQuestionController::class)->name('questions.destroy');
 });
 
+Route::prefix('answers')->group(function () {
+    Route::get('{answer}/show', \App\Http\Livewire\Answers\Show::class)->name('answers.show');
+});
+
+Route::prefix('observations')->group(function(){
+    Route::post('store', \App\Http\Controllers\Observations\StoreObservationController::class)->name('observations.store');
+});
+
 Route::prefix('announcements')->group(function () {
     Route::get('/', \App\Http\Livewire\Announcements\Index::class)->name('announcements.index');
     Route::get('create', \App\Http\Livewire\Announcements\Create::class)->name('announcements.create');
@@ -72,9 +81,12 @@ Route::prefix('announcements')->group(function () {
 
 Route::prefix('repositories')->group(function () {
     Route::get('/', \App\Http\Livewire\Repositories\Index::class)->name('repositories.index');
+    Route::get('{repository}/statistics', \App\Http\Livewire\Repositories\Statistics\Show::class)->name('repositories.statistics.show');
+    Route::get('{repository}/send', \App\Http\Controllers\Repositories\SendRepositoryController::class)->name('repositories.send');
 });
 
-
-Route::get('evaluations/{evaluation}/categories/{category}/questions', \App\Http\Livewire\Evaluations\Categories\Questions\Index::class)->name('evaluations.categories.questions.index');
-Route::get('evaluations/{evaluationEncoded}/user/{evaluatorEncoded}/assign', \App\Http\Livewire\Evaluations\Assign::class)->name('evaluations.assign');
-Route::post('evaluations/{evaluation}/categories/{category}/questions', \App\Http\Controllers\Evaluations\Categories\Questions\StoreQuestionController::class)->name('evaluations.categories.questions.store');
+Route::prefix('evaluations')->group(function(){
+    Route::get('{evaluation}/categories/{category}/questions', \App\Http\Livewire\Evaluations\Categories\Questions\Index::class)->name('evaluations.categories.questions.index');
+    Route::get('{evaluationEncoded}/user/{evaluatorEncoded}/assign', \App\Http\Livewire\Evaluations\Assign::class)->name('evaluations.assign');
+    Route::post('{evaluation}/categories/{category}/questions', \App\Http\Controllers\Evaluations\Categories\Questions\StoreQuestionController::class)->name('evaluations.categories.questions.store');
+});
