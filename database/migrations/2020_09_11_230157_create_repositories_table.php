@@ -17,7 +17,7 @@ class CreateRepositoriesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('responsible_id');
             $table->string('name');
-            $table->enum('status',['aproved', 'rejected','observations'])->nullable();
+            $table->enum('status',['new','aproved', 'rejected','observations'])->nullable();
             $table->timestamps();
 
             $table->foreign('responsible_id')->references('id')->on('users')->onDelete('cascade');

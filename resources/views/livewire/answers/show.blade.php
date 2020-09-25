@@ -1,5 +1,10 @@
 <div class="mb-4">
 
+    @section('header')
+    <x-page-title title="Mostrar respuesta"
+        description="Este módulo permite desplegar la información y observaciones de la respuesta seleccionada."></x-page-title>
+    @endsection
+
     <form action="{{route('observations.store')}}" method="POST" enctype="multipart/form-data">
         
         @csrf

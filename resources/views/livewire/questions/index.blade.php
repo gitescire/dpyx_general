@@ -1,5 +1,10 @@
 <div class="mb-4">
 
+    @section('header')
+    <x-page-title title="Lista de usuarios"
+        description="Este módulo permite listar las preguntas que aparecerán en las evaluaciones."></x-page-title>
+    @endsection
+
     <div class="d-flex justify-content-end mb-3">
         <a href="{{route('questions.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0">
             <i class="fas fa-plus"></i> Agregar
@@ -34,7 +39,8 @@
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
-                        <a href="{{route('questions.edit',[$question])}}" class="btn btn-warning btn-shadow rounded-0 ml-1">
+                        <a href="{{route('questions.edit',[$question])}}"
+                            class="btn btn-warning btn-shadow rounded-0 ml-1">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                     </td>

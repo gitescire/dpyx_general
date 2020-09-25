@@ -1,12 +1,16 @@
 <div class="mb-4">
 
+    @section('header')
+        <x-page-title title="Lista de usuarios" description="Este módulo permite ver la información de los usuarios actualmente registrados."></x-page-title>
+    @endsection
+
     <div class="d-flex justify-content-end mb-3">
         <a href="{{route('users.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0">
             <i class="fas fa-plus"></i> Añadir
         </a>
     </div>
 
-    <div class="table-responsive shadow mb-3">
+    <div class="table-responsive shadow mb-3 bg-white">
         <table class="table table-bordered m-0">
             <thead>
                 <tr>

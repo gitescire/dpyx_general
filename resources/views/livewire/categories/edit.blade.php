@@ -1,5 +1,10 @@
 <div class="mb-4">
 
+    @section('header')
+    <x-page-title title="Editar categoria"
+        description="Este módulo permite modificar la informción de la categoria seleccionada."></x-page-title>
+    @endsection
+
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-lg-4">
             <form action="{{route('categories.update', [$category])}}" method="POST">
@@ -10,7 +15,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <label for="" class="text-muted text-uppercase">Nombre</label>
-                                <input type="text" name="name" value="{{$category->name}}" class="form-control" required>
+                                <input type="text" name="name" value="{{$category->name}}" class="form-control"
+                                    required>
                             </div>
                         </div>
                     </div>

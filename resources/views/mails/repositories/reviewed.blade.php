@@ -1,7 +1,7 @@
 @component('mail::message')
 # {{$repository->name}}
 
-El repositorio ha sido enviado con el status: {{$repository->status}}
+{{$comments}}
 
 @component('mail::button', ['url' => route('repositories.index')])
 Ver repositorio

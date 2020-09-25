@@ -18,7 +18,7 @@ class Index extends Component
 
     public function mount(Evaluation $evaluation, Category $category)
     {
-        $this->evaluation = $evaluation;
+        $this->evaluation = $evaluation->append('is_answerable');
         $this->categoryChoosed = $category;
         $categoryChoosed = $this->categoryChoosed;
         $this->categories = Category::get();

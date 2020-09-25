@@ -35,13 +35,14 @@ class StoreQuestionController extends Controller
         $nextCategory = Category::where('id', '>', $category->id)->first() ?? $category;
 
         if($nextCategory == $category && $evaluation->is_answered){
+            // dd('se enviara');
             event( new EvaluationFinishedEvent($evaluation) );
             Alert::success('¡Tus respuestas han sido enviadas para su evaluación!');
         }else{
             Alert::success('¡Preguntas enviadas, continúa contestando!');
         }
 
-        dd('ok');
+        dd('fin');
 
         return redirect()->route('evaluations.categories.questions.index', [$evaluation, $nextCategory]);
     }

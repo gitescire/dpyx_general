@@ -13,7 +13,13 @@ class SendRepositoryController extends Controller
 {
     public function __invoke(Repository $repository, Request $request)
     {
-        Mail::to($repository->responsible->email)->send(new ReviewedRepositoryMail($repository));
+
+        $repository->status = $request->status;
+        $repository->save();
+
+        $comments = $request->comments;
+
+        Mail::to($repository->responsible->email)->send(new ReviewedRepositoryMail($repository, $comments));
 
         Alert::success('¡El repositorio ha sido enviado exitosamente!');
         return redirect()->route('dashboard');

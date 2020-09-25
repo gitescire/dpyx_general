@@ -1,5 +1,10 @@
 <div class="mb-4" x-data="data()" x-init="mounted()">
 
+    @section('header')
+    <x-page-title title="Contestar cuestionario"
+        description="Este módulo permite responder las preguntas para evaluar el repositorio."></x-page-title>
+    @endsection
+
     <ul class="nav nav-justified mb-3">
         @foreach ($categories as $category)
         <li
@@ -97,6 +102,7 @@
                                                     </td>
                                                     <td>
                                                         <select :name="'questions['+question.id+']'"
+                                                            {{-- class="form-control" :disabled="'false'" x-model="question.current_value"> --}}
                                                             class="form-control" x-model="question.current_value">
                                                             <option value="0">seleccionar</option>
                                                             <option x-bind:value="parseFloat(question.max_punctuation)"
@@ -128,13 +134,18 @@
                 </div>
             </template>
         </div>
-        <div class="d-flex justify-content-end mb-3">
-            <button class="btn btn-success btn-shadow btn-wide rounded-0">
-                <i class="fas fa-save"></i> Continuar
-            </button>
-        </div>
+
+        <template x-if="evaluation.is_answerable">
+            <div class="d-flex justify-content-end mb-3">
+                <button class="btn btn-success btn-shadow btn-wide rounded-0">
+                    <i class="fas fa-save"></i> Continuar
+                </button>
+            </div>
+        </template>
     </form>
 
+    @can('edit repositories')
+    @if ($evaluation->status == 'finished')
     <div class="row">
         <div class="col-12">
             <form action="{{route('repositories.send',[$evaluation->repository])}}" method="POST">
@@ -183,6 +194,9 @@
             </form>
         </div>
     </div>
+    @endif
+    @endcan
+
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -240,7 +254,8 @@
                  * 
                  * 
                  * 
-                 **/                
+                 **/
+                evaluation: @json($evaluation),
                 subcategories: @json($subcategories),
                 observation: undefined,
 
@@ -250,6 +265,7 @@
                  * 
                  **/   
                 mounted() {
+                    console.log(this.evaluation)
                     this.setCurrentPunctuations();
                 },
 

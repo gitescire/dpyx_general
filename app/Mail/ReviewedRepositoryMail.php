@@ -15,6 +15,7 @@ class ReviewedRepositoryMail extends Mailable
     use Queueable, SerializesModels;
 
     public $repository;
+    public $comments;
     public $certificationPDF;
     public $evaluationPDF;
 
@@ -23,9 +24,10 @@ class ReviewedRepositoryMail extends Mailable
      *
      * @return void
      */
-    public function __construct(Repository $repository)
+    public function __construct(Repository $repository, string $comments)
     {
         $this->repository = $repository;
+        $this->comments = $comments;
 
         $evaluation = $repository->evaluation;
         $categories = Category::get();

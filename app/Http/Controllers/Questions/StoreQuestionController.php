@@ -11,6 +11,7 @@ class StoreQuestionController extends Controller
 {
     public function __invoke(Request $request)
     {
+
         $question = new Question;
         $question->max_punctuation = $request->max_punctuation;
         $question->description = $request->description;

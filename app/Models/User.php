@@ -87,7 +87,8 @@ class User extends Authenticatable
         });
     }
 
-    public function scopeUsers($query){
+    public function scopeUsers($query)
+    {
         return $query->whereHas('roles', function ($query) {
             return $query->where('name', 'usuario');
         });
@@ -107,5 +108,10 @@ class User extends Authenticatable
     public function getIsEvaluatorAttribute()
     {
         return $this->hasRole('evaluador');
+    }
+
+    public function getIsAdminAttribute()
+    {
+        return $this->hasRole('admin');
     }
 }

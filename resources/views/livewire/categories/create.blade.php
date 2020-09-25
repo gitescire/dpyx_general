@@ -1,5 +1,10 @@
 <div class="mb-4">
 
+    @section('header')
+    <x-page-title title="Crear categoría"
+        description="Este módulo permite generar nuevas categorías para las evaluaciones."></x-page-title>
+    @endsection
+
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-lg-4">
             <form action="{{route('categories.store')}}" method="POST">

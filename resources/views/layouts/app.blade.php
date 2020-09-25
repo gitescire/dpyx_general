@@ -48,12 +48,12 @@
                         <div class="app-sidebar__inner">
                             <ul class="vertical-nav-menu">
                                 <li class="app-sidebar__heading">Opciones</li>
-                                <li>
+                                {{-- <li>
                                     <a href="widgets-chart-boxes.html">
                                         <i class="metismenu-icon fas fa-scroll">
                                         </i>Cuestionario
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <a href="{{route('categories.index')}}">
                                         <i class="metismenu-icon fas fa-layer-group">
@@ -78,12 +78,12 @@
                                         </i>Preguntas
                                     </a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="widgets-profile-boxes.html">
                                         <i class="metismenu-icon fas fa-chart-pie">
                                         </i>Estadísticas
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <a href="{{route('repositories.index')}}">
                                             <i class="metismenu-icon fas fa-box-open"></i> Repositorios
@@ -125,12 +125,7 @@
                         </div>
                     </div>
                     <div class="app-header bg-white shadow-sm">
-                        <div class="page-title-heading">
-                            Preguntas
-                            <div class="page-title-subheading">
-                                Este módulo lista todas las preguntas que aparecerán en el cuestionario.
-                            </div>
-                        </div>
+                        @yield('header')
                         <div class="app-header-right">
                             {{-- <div class="search-wrapper">
                                 <i class="search-icon-wrapper typcn typcn-zoom-outline"></i>

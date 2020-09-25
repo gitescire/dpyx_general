@@ -26,7 +26,8 @@ class Repository extends Model
         return $this->belongsTo('App\Models\User', 'responsible_id');
     }
 
-    public function evaluation(){
+    public function evaluation()
+    {
         return $this->hasOne('App\Models\Evaluation');
     }
 
@@ -36,8 +37,12 @@ class Repository extends Model
      * ========
      */
 
-    public function getQualificationAttribute(){
-        return $this->evaluation->answers->pluck('punctuation')->flatten()->sum() / $this->evaluation->answers->pluck('question.max_punctuation')->flatten()->sum() * 100;
-    }
+    public function getQualificationAttribute()
+    {
+        if(!$this->evaluation->answers->count()){
+            return 0;
+        }
 
+        return round($this->evaluation->answers->pluck('punctuation')->flatten()->sum() / $this->evaluation->answers->pluck('question.max_punctuation')->flatten()->sum() * 100, 2);
+    }
 }

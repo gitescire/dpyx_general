@@ -1,12 +1,16 @@
 <div class="mb-4">
 
+   @section('header')
+       <x-page-title title="Convocatorias" description="Este módulo permite adminsitrar las fechas permitidas para contestar las evaluaciones."></x-page-title>
+   @endsection
+
     <div class="d-flex justify-content-end mb-3">
         <a href="{{route('announcements.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0">
             <i class="fas fa-plus"></i> Agregar
         </a>
     </div>
 
-    <div class="table-responsive shadow">
+    <div class="table-responsive shadow bg-white">
         <table class="table table-bordered m-0">
             <thead>
                 <tr>

@@ -1,5 +1,10 @@
 <div class="mb-4">
 
+    @section('header')
+    <x-page-title title="Cuenta de usuario"
+        description="Este módulo permite ver tu información de usuario."></x-page-title>
+    @endsection
+
     <div class="row">
         <div class="col12 col-lg-6">
             <div class="card shadow border-0">

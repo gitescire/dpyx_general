@@ -1,12 +1,17 @@
 <div class="mb-4">
 
+    @section('header')
+    <x-page-title title="Lista de subcategorias"
+        description="Este módulo permite listar las subcategorías que aparecerán en las evaluaciones."></x-page-title>
+    @endsection
+
     <div class="d-flex justify-content-end mb-3">
         <a href="{{route('subcategories.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0">
             <i class="fas fa-plus"></i> Agregar
         </a>
     </div>
 
-    <div class="table-responsive shadow">
+    <div class="table-responsive shadow bg-white">
         <table class="table m-0">
             <thead>
                 <tr>

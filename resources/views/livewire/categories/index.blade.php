@@ -1,5 +1,10 @@
 <div class="mb-4">
 
+    @section('header')
+    <x-page-title title="Lista de categorias"
+        description="Este módulo permite ver las categorias registradas para las evaluaciones."></x-page-title>
+    @endsection
+
     <div class="d-flex justify-content-end mb-3">
         <a href="{{route('categories.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0">
             <i class="fas fa-plus"></i> Agregar
@@ -7,7 +12,7 @@
     </div>
 
     <div class="table-responsive shadow">
-        <table class="table table-bordered m-0">
+        <table class="table table-bordered m-0 bg-white">
             <thead>
                 <tr>
                     <th class="text-uppercase">#</th>
