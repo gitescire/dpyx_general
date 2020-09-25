@@ -22,10 +22,7 @@
         <form action="{{route('evaluations.categories.questions.store',[$evaluation,$categoryChoosed])}}" method="POST">
         @csrf
         @method('POST')
-<<<<<<< HEAD
         <div>
-=======
->>>>>>> c085b9ae065468aaa8f1a32879511120cf80e448
             <template x-for="subcategory in subcategories" :key="subcategory">
                 <div>
                     <template x-if="subcategory.has_questions">
@@ -106,12 +103,8 @@
                                                     </td>
                                                     <td>
                                                         <select :name="'questions['+question.id+']'"
-<<<<<<< HEAD
                                                             {{-- class="form-control" :disabled="'false'" x-model="question.current_value"> --}}
                                                             class="form-control" x-model="question.current_value">
-=======
-                                                            class="form-control" x-model="question.current_value" :disabled="!evaluation.is_answerable">
->>>>>>> c085b9ae065468aaa8f1a32879511120cf80e448
                                                             <option value="0">seleccionar</option>
                                                             <option x-bind:value="parseFloat(question.max_punctuation)"
                                                                 x-bind:selected="question.answers[0] && parseFloat(question.answers[0].punctuation) == parseFloat(question.max_punctuation) ? true : false">
@@ -259,15 +252,12 @@
     <script>
         function data(){
             return {
-<<<<<<< HEAD
 
                 /**
                  * 
                  * 
                  * 
                  **/
-=======
->>>>>>> c085b9ae065468aaa8f1a32879511120cf80e448
                 evaluation: @json($evaluation),
                 subcategories: @json($subcategories),
                 observation: undefined,
