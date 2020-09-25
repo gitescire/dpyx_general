@@ -17,9 +17,9 @@ class Evaluation extends Model
     ];
 
     /**
-     * ===========
+     * ==============
      *  RELATIONSHIPS
-     * ===========
+     * ==============
      */
 
     public function answers()
@@ -44,6 +44,16 @@ class Evaluation extends Model
             return false;
         }
         if ($this->is_answered) {
+            return false;
+        }
+        return true;
+    }
+
+    public function getIsEvaluableAttribute(){
+        if(Auth::user()->id != $this->evaluator_id){
+            return false;
+        }
+        if(!$this->is_answered){
             return false;
         }
         return true;
