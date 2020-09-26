@@ -1,22 +1,18 @@
 <div class="mb-4">
 
     @section('header')
-    <x-page-title title="Cuenta de usuario"
-        description="Este módulo permite ver tu información de usuario."></x-page-title>
+    <x-page-title title="Cuenta de usuario" description="Este módulo permite ver tu información de usuario.">
+    </x-page-title>
     @endsection
 
-    <div class="row">
-        <div class="col12 col-lg-6">
-            <div class="card shadow border-0">
-                <div class="card-body">
-                    <img src="{{asset('images/avatars/3.jpg')}}">
-                </div>
-            </div>
-        </div>
+    <div class="row d-flex justify-content-center">
         <div class="col12 col-lg-6">
             <div class="card shadow border-0">
                 <div class="card-body">
                     <div class="row">
+                        <div class="col-12 mb-3">
+                            <img src="{{asset('images/avatars/3.jpg')}}">
+                        </div>
                         <div class="col-12 mb-3">
                             <label for="" class="text-uppercase text-muted">
                                 Nombre

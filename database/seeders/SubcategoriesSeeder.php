@@ -17,7 +17,6 @@ class SubcategoriesSeeder extends Seeder
         DB::table('subcategories')->insert([
             ['name' => 'Accesibilidad'],
             ['name' => 'Preservación'],
-            ['name' => 'Otros'],
         ]);
     }
 }

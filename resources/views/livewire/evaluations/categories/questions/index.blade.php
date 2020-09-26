@@ -103,8 +103,7 @@
                                                     </td>
                                                     <td>
                                                         <select :name="'questions['+question.id+']'"
-                                                            {{-- class="form-control" :disabled="'false'" x-model="question.current_value"> --}}
-                                                            class="form-control" x-model="question.current_value">
+                                                            class="form-control" x-model="question.current_value" {{Auth::user()->id == $evaluation->repository->responsible->id ? '' : 'disabled'}}>
                                                             <option value="0">seleccionar</option>
                                                             <option x-bind:value="parseFloat(question.max_punctuation)"
                                                                 x-bind:selected="question.answers[0] && parseFloat(question.answers[0].punctuation) == parseFloat(question.max_punctuation) ? true : false">

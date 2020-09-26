@@ -42,8 +42,6 @@ class StoreQuestionController extends Controller
             Alert::success('¡Preguntas enviadas, continúa contestando!');
         }
 
-        dd('fin');
-
         return redirect()->route('evaluations.categories.questions.index', [$evaluation, $nextCategory]);
     }
 }

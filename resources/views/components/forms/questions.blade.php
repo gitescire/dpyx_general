@@ -25,7 +25,7 @@
                                 <label for="" class="text-uppercase text-muted">Valor</label>
                                 <input type="number" class="form-control" x-model="newOption.value">
                                 <button class="btn btn-info btn-shadow rounded-0 mt-3" type="button"
-                                    x-on:click="addOption()">
+                                    x-on:click="addOption()" x-ref="addButton">
                                     <i class="fas fa-plus"></i>
                                 </button>
                                 <hr>
@@ -37,7 +37,7 @@
                                         </div>
                                         <input type="text" class="form-control" :name="`options[${option.position}][value]`" x-model="option.value">
                                         <div class="input-group-append">
-                                                <button class="btn btn-danger" x-on:click="deleteOption(option)">
+                                                <button type="button" class="btn btn-danger" x-on:click="deleteOption(option)">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
@@ -147,20 +147,31 @@
         lastPosition: 0,
 
         addOption(){
-            this.lastPosition += 1
-
+            
             this.options.push({
                 position: this.lastPosition,
                 text: this.newOption.text,
                 value: this.newOption.value
             })
 
+            this.lastPosition += 1
+
             this.newOption.text = ''
             this.newOption.value = ''
+
+            if(this.options.length >= 5){
+                this.$refs.addButton.disabled = true;
+            }
         },
 
-        deleteOption(option){
-            
+        deleteOption(optionToTrash){
+            deleted = _.remove(this.options, function(option){
+                return option.position == optionToTrash.position
+            })
+
+            if(this.options.length < 5){
+                this.$refs.addButton.disabled = false;
+            }
         },
 
         mounted(){

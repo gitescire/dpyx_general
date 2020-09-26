@@ -17,6 +17,9 @@ class UpdateQuestionController extends Controller
      */
     public function __invoke(Request $request, Question $question)
     {
+
+        dd($request->options);
+
         $question->max_punctuation = $request->max_punctuation;
         $question->help_text = $request->help_text;
         $question->is_optional = $request->is_optional ? 1 : 0;

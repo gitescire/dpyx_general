@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire\Evaluations\Categories\Questions;
 
+use App\Models\Announcement;
 use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Evaluation;
 use App\Models\Question;
 use App\Models\Subcategory;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Index extends Component
 {
@@ -22,11 +25,11 @@ class Index extends Component
         $this->categoryChoosed = $category;
         $categoryChoosed = $this->categoryChoosed;
         $this->categories = Category::get();
-        $this->subcategories = Subcategory::with(['questions'=> function($query) use($categoryChoosed){
-            $query->where('category_id',$categoryChoosed->id)->with('answers.observation');
+        $this->subcategories = Subcategory::with(['questions' => function ($query) use ($categoryChoosed) {
+            $query->where('category_id', $categoryChoosed->id)->with('answers.observation');
         }])
-        ->get()
-        ->append('has_questions');
+            ->get()
+            ->append('has_questions');
     }
 
     public function render()
