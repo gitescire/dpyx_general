@@ -10,9 +10,9 @@ class Answer extends Model
     use HasFactory;
 
     protected $fillable = [
+        'choice_id',
         'question_id',
         'evaluation_id',
-        'punctuation',
         'description',
     ];
 
@@ -22,13 +22,23 @@ class Answer extends Model
      * ==========
      */
 
-    public function question()
-    {
-        return $this->belongsTo('App\Models\Question');
-    }
-
     public function observation()
     {
         return $this->hasOne('App\Models\Observation');
+    }
+
+    public function choice()
+    {
+        return $this->belongsTo('App\Models\Choice');
+    }
+
+    public function evaluation()
+    {
+        return $this->belongsTo('App\Models\Evaluation');
+    }
+
+    public function question()
+    {
+        return $this->belongsTo('App\Models\Question');
     }
 }

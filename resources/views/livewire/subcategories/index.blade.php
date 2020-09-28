@@ -26,13 +26,13 @@
                     <td>{{$subcategory->id}}</td>
                     <td>{{$subcategory->name}}</td>
                     <td>
-                        <form action="{{route('subcategories.destroy',[$subcategory])}}" method="POST" class="d-inline">
+                        {{-- <form action="{{route('subcategories.destroy',[$subcategory])}}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger btn-shadow rounded-0">
                                 <i class="fas fa-trash"></i>
                             </button>
-                        </form>
+                        </form> --}}
                         <a href="{{route('subcategories.edit',[$subcategory])}}"
                             class="btn btn-warning btn-shadow rounded-0">
                             <i class="fas fa-edit"></i>

@@ -11,16 +11,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class Assign extends Component
 {
-    public function mount($evaluationEncoded, $evaluatorEncoded)
+    public function mount(Evaluation $evaluation, User $user)
     {
-        $evaluation_id = base64_decode($evaluationEncoded);
-        $evaluator_id = base64_decode($evaluatorEncoded);
 
-        // dd($evaluationEncoded);
-        // dd($evaluatorEncoded);
-
-        $evaluation = Evaluation::find($evaluation_id);
-        $user = User::find($evaluator_id);
+        if(Auth::user()->id != $user->id){
+            abort(403);
+        }
 
         if ($evaluation->evaluator_id) {
             \RealRashid\SweetAlert\Facades\Alert::error('¡La evaluación solicitada ya cuenta con un evaluador!');
@@ -32,7 +28,7 @@ class Assign extends Component
             return redirect()->route('welcome');
         }
 
-        $evaluation->evaluator_id = $evaluator_id;
+        $evaluation->evaluator_id = $user->id;
         $evaluation->save();
 
         if(!Auth::check()){
@@ -48,7 +44,7 @@ class Assign extends Component
         $firstCategory = Category::first();
 
         \RealRashid\SweetAlert\Facades\Alert::success('¡La evaluación ha sido asignada!', 'Puedes comenzar a evaluar el repositorio.');
-        return redirect()->route('evaluations.categories.evaluate', [$evaluation, $firstCategory]);
+        return redirect()->route('evaluations.categories.questions', [$evaluation, $firstCategory]);
     }
 
     public function render()

@@ -2,11 +2,12 @@
 
     @section('header')
     <x-page-title title="Mostrar respuesta"
-        description="Este módulo permite desplegar la información y observaciones de la respuesta seleccionada."></x-page-title>
+        description="Este módulo permite desplegar la información y observaciones de la respuesta seleccionada.">
+    </x-page-title>
     @endsection
 
     <form action="{{route('observations.store')}}" method="POST" enctype="multipart/form-data">
-        
+
         @csrf
 
         <input type="hidden" name="answer_id" value="{{$answer->id}}">
@@ -27,20 +28,13 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{$answer->question->description}}</td>
-                                <td>{{$answer->question->max_punctuation}}</td>
+                                <td>{{$answer->choice->question->description}}</td>
+                                <td>{{$answer->choice->question->max_punctuation}}</td>
                                 <td>
-                                    @if ($answer->punctuation == 0)
-                                    <input type="text" class="form-control" value="Sin respuesta" readonly>
-                                    @endif
+                                    <input type="text" class="form-control" value="{{$answer->choice->description}}" readonly>
                                     @if ($answer->punctuation > 0)
-                                    <input type="text" value="Sí" readonly>
                                     <textarea class="form-control" readonly rows="5">{{$answer->description}}</textarea>
-
                                     @endif
-                                    @if ($answer->punctuation < 0) <input type="text" class="form-control" value="No"
-                                        readonly>
-                                        @endif
                                 </td>
                             </tr>
                         </tbody>
@@ -53,7 +47,29 @@
             <div class="col-12 col-lg-6 mb-3">
                 <div class="card shadow border-0">
                     <div class="card-body">
-                        <input type="file" name="files[]" multiple>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                @can('edit evaluations')
+                                <input type="file" name="files[]" multiple>
+                                @endcan
+                            </div>
+                        </div>
+                        @if ($answer->observation && $answer->observation->files_paths)
+                        <div class="row">
+                            @foreach ($answer->observation->files_paths as $file)
+                            <div class="col-12 col-lg-4">
+                                {{-- <form action=> --}}
+                                    {{-- @csrf --}}
+                                    <small><a href="{{route('observations.files.download',[$answer->observation,$file['file_name']])}}">{{$file['file_name']}}</a></small>
+                                    <img src="https://img.icons8.com/cotton/2x/file.png" :alt="file" class="img-thumbnail mb-3">
+                                    <a href="{{route('observations.files.download',[$answer->observation,$file['file_name']])}}" class="btn btn-primary btn-shadow rounded-0 mr-auto">
+                                        <i class="fas fa-download"></i>
+                                    </a>
+                                {{-- </form> --}}
+                            </div>
+                            @endforeach
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -64,18 +80,22 @@
                 <div class="card shadow border-0">
                     <div class="card-body">
                         <label for="" class="text-muted text-uppercase">Observaciones</label>
-                        <textarea name="description" id="" cols="30" rows="5" class="form-control" required>{{$answer->observation ? $answer->observation->description : ''}}</textarea>
+                        <textarea name="description" id="" cols="30" rows="5" class="form-control"
+                            {{Auth::user()->can('edit evaluations') ? '' : 'disabled'}}
+                            required>{{$answer->observation ? $answer->observation->description : ''}}</textarea>
                     </div>
                 </div>
             </div>
 
             {{--  --}}
 
+            @can('edit evaluations')
             <div class="col-12 mb-3 d-flex justify-content-end">
                 <button class="btn btn-success btn-wide btn-shadow rounded-0">
                     <i class="fas fa-save"></i> Guardar
                 </button>
             </div>
+            @endcan
         </div>
     </form>
 

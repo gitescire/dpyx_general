@@ -138,9 +138,9 @@
                 <tr>
                     <td>{{$question->description}}</td>
                     <td>
-                        @if ($question->answers[0]->punctuation > 0)
-                        Sí
-                        @elseif($question->answers[0]->punctuation < 0) No @else 0 @endif </td> <td>
+                        {{$question->answers[0]->choice->description}}}
+                    </td>
+                        <td>
                             {{$question->answers[0]->observation ? $question->answers[0]->observation->description : ''}}
                     </td>
                 </tr>
@@ -154,10 +154,10 @@
 
     <br /><br />
     3.5. DIRECTORIOS INTERNACIONALES<br />
-    El repositorio ha sido registrado en los siguientes directorios:<br />
-    <br /><br />
-    <table width="100%">' . '$tabla_dir' . '</table>
-    <br />
+    {{-- El repositorio ha sido registrado en los siguientes directorios:<br /> --}}
+    {{-- <br /><br /> --}}
+    {{-- <table width="100%">' . '$tabla_dir' . '</table> --}}
+    {{-- <br /> --}}
     Sin otro particular, expreso a usted mi especial consideración.<br /><br />
     Atentamente,
     </div>

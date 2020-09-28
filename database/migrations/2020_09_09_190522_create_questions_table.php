@@ -19,7 +19,6 @@ class CreateQuestionsTable extends Migration
             $table->unsignedBigInteger('subcategory_id');
             $table->text('description');
             $table->unsignedInteger('order');
-            $table->string('max_punctuation');
             $table->text('help_text')->nullable();
             $table->boolean('is_optional');
             $table->boolean('has_description_field');

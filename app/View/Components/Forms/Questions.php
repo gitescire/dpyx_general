@@ -10,6 +10,7 @@ use Illuminate\View\Component;
 class Questions extends Component
 {
     public $question;
+    public $choices;
     public $categories;
     public $subcategories;
 
@@ -23,6 +24,7 @@ class Questions extends Component
         $this->question = $question;
         $this->categories = Category::get();
         $this->subcategories = Subcategory::get();
+        $this->choices = $this->question ? $this->question->choices()->orderBy('punctuation','desc')->get() : collect();
     }
 
     /**

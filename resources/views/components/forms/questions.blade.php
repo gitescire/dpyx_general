@@ -10,7 +10,7 @@
                         <label for="" class="text-muted text-uppercase">
                             Pregunta
                         </label>
-                        <textarea name="description" cols="30" rows="2"
+                        <textarea name="description" cols="30" rows="2" required
                             class="form-control">{{$question ? $question->description : ''}}</textarea>
                     </div>
                     {{--  --}}
@@ -21,9 +21,9 @@
                         <div class="card" x-data="data()" x-init="mounted()">
                             <div class="card-body">
                                 <label for="" class="text-uppercase text-muted">Texto</label>
-                                <input type="text" class="form-control" x-model="newOption.text">
+                                <input type="text" class="form-control" x-model="newOption.description">
                                 <label for="" class="text-uppercase text-muted">Valor</label>
-                                <input type="number" class="form-control" x-model="newOption.value">
+                                <input type="number" class="form-control" x-model="newOption.punctuation">
                                 <button class="btn btn-info btn-shadow rounded-0 mt-3" type="button"
                                     x-on:click="addOption()" x-ref="addButton">
                                     <i class="fas fa-plus"></i>
@@ -31,16 +31,24 @@
                                 <hr>
 
                                 <template x-for="option in options">
+                                    {{-- <span x-text="option.id"></span> --}}
                                     <div class="input-group mb-3">
+                                        <input type="hidden" :name="`options[${option.punctuation}][id]`"
+                                            x-model="option.id" required>
                                         <div class="input-group-prepend">
-                                                <input type="text" :name="`options[${option.position}][text]`" class="form-control" x-model="option.text">
+                                            <input type="text" :name="`options[${option.punctuation}][description]`"
+                                                class="form-control" x-model="option.description" required>
                                         </div>
-                                        <input type="text" class="form-control" :name="`options[${option.position}][value]`" x-model="option.value">
-                                        <div class="input-group-append">
-                                                <button type="button" class="btn btn-danger" x-on:click="deleteOption(option)">
+                                        <input type="text" class="form-control"
+                                            :name="`options[${option.punctuation}][punctuation]`" x-model="option.punctuation">
+                                        <template x-if="!option.id">
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-danger"
+                                                    x-on:click="deleteOption(option)">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
+                                        </template>
                                     </div>
                                 </template>
 
@@ -53,14 +61,14 @@
                             Órden
                         </label>
                         <input type="number" value="{{$question ? $question->order : ''}}" name="order" min="0"
-                            class="form-control">
+                            class="form-control" required>
                     </div>
                     {{--  --}}
                     <div class="col-12 mb-3">
                         <label for="" class="text-muted text-uppercase">
                             Categoría
                         </label>
-                        <select name="category_id" class="form-control">
+                        <select name="category_id" class="form-control" required>
                             <option value="">seleccionar</option>
                             @foreach ($categories as $category)
                             <option value="{{$category->id}}"
@@ -74,7 +82,7 @@
                         <label for="" class="text-muted text-uppercase">
                             Subcategoría
                         </label>
-                        <select name="subcategory_id" class="form-control">
+                        <select name="subcategory_id" class="form-control" required>
                             <option value="">seleccionar</option>
                             @foreach ($subcategories as $subcategory)
                             <option value="{{$subcategory->id}}"
@@ -84,13 +92,13 @@
                         </select>
                     </div>
                     {{--  --}}
-                    <div class="col-12 mb-3">
+                    {{-- <div class="col-12 mb-3">
                         <label for="" class="text-muted text-uppercase">
                             Puntuación máxima
                         </label>
                         <input type="number" value="{{$question ? $question->max_punctuation : ''}}"
                             name="max_punctuation" min="0" class="form-control">
-                    </div>
+                    </div> --}}
                     {{--  --}}
                     <div class="col-12 mb-3">
                         <label for="" class="text-muted text-uppercase">
@@ -126,7 +134,7 @@
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-end">
-                <button class="btn btn-success btn-wide btn-shadow rounded-0">
+                <button class="btn btn-success btn-wide btn-shadow rounded-0" x-ref="saveButton">
                     <i class="fas fa-save"></i> Guardar
                 </button>
             </div>
@@ -137,45 +145,51 @@
         function data(){
     return {
 
-        options: [],
+        options: @json($choices),
 
         newOption: {
-            text: '',
-            value: ''
+            description: '',
+            punctuation: ''
         },
-
-        lastPosition: 0,
 
         addOption(){
             
             this.options.push({
-                position: this.lastPosition,
-                text: this.newOption.text,
-                value: this.newOption.value
+                id: '',
+                description: this.newOption.description,
+                punctuation: this.newOption.punctuation
             })
 
-            this.lastPosition += 1
-
-            this.newOption.text = ''
-            this.newOption.value = ''
+            this.newOption.description = ''
+            this.newOption.punctuation = ''
 
             if(this.options.length >= 5){
                 this.$refs.addButton.disabled = true;
             }
+
+            this.sortOptions()
         },
 
         deleteOption(optionToTrash){
             deleted = _.remove(this.options, function(option){
-                return option.position == optionToTrash.position
+                return option.punctuation == optionToTrash.punctuation
             })
 
             if(this.options.length < 5){
                 this.$refs.addButton.disabled = false;
             }
+
+            this.sortOptions()
+
+        },
+
+        sortOptions(){
+            this.options = _.sortBy(this.options, function(option){
+                return option.punctuation
+            }).reverse()
         },
 
         mounted(){
-
         }
 
     }

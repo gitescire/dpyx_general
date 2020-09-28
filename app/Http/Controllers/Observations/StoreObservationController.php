@@ -13,9 +13,6 @@ class StoreObservationController extends Controller
 {
     public function __invoke(Request $request)
     {
-
-        // dd($answer->id);
-
         $observation = Observation::updateOrCreate([
             'answer_id' => $request->answer_id
         ], [
@@ -45,7 +42,7 @@ class StoreObservationController extends Controller
         $observation->save();
 
         Alert::success('¡Observación creada!');
-        return redirect()->back();
+        return redirect()->route('evaluations.categories.questions.index',[$observation->answer->evaluation, $observation->answer->question->category]);
 
 
     }

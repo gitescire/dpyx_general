@@ -12,8 +12,7 @@ class EvaluationFinishedNotification extends Notification
 {
     use Queueable;
 
-    private $evaluationIdEncoded;
-    private $evaluatorIdEncoded;
+    private $evaluation;
 
     /**
      * Create a new notification instance.
@@ -22,7 +21,7 @@ class EvaluationFinishedNotification extends Notification
      */
     public function __construct(Evaluation $evaluation)
     {
-        $this->evaluationIdEncoded = base64_encode($evaluation->id);
+        $this->evaluation = $evaluation;
     }
 
     /**
@@ -44,11 +43,19 @@ class EvaluationFinishedNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $this->evaluatorIdEncoded = base64_encode($notifiable->id);
+
+        if($this->evaluation->repository->has_observations){
+            return (new MailMessage)
+                ->line('¡Una evaluación ha sido reenviada!')
+                ->subject('Nueva solicitud de revisión')
+                ->action('Volver a revisar', route('evaluations.categories.questions.index', [$this->evaluation, 1]))
+                ->line('¡Gracias!');
+        }
 
         return (new MailMessage)
             ->line('¡Una nueva evaluación ha sido completada y requiere un evaluador!')
-            ->action('Asignarme la evaluación', route('evaluations.assign', [$this->evaluationIdEncoded, $this->evaluatorIdEncoded]))
+            ->subject('Nueva solicitud de revisión')
+            ->action('Asignarme la evaluación', route('evaluations.assign', [$this->evaluation->id, $notifiable->id]))
             ->line('¡Gracias!');
     }
 

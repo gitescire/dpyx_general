@@ -17,6 +17,11 @@ class SendRepositoryController extends Controller
         $repository->status = $request->status;
         $repository->save();
 
+        if($repository->has_observations){
+            $repository->evaluation->status = 'answered';
+            $repository->evaluation->save();
+        }
+
         $comments = $request->comments;
 
         Mail::to($repository->responsible->email)->send(new ReviewedRepositoryMail($repository, $comments));

@@ -3,15 +3,16 @@
 namespace App\Http\Livewire\Users;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Account extends Component
 {
     public $user;
 
-    public function mount(User $user)
+    public function mount()
     {
-        $this->user = $user;
+        $this->user = Auth::user();
     }
 
     public function render()

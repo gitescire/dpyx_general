@@ -45,10 +45,19 @@ class Question extends Model
         return $this->hasMany('App\Models\Answer');
     }
 
+    public function choices()
+    {
+        return $this->hasMany('App\Models\Choice');
+    }
+
     /**
-     * ==========
-     * RELATIONSHIPS
-     * ==========
+     * ========
+     * ATTRIBUTES
+     * ========
      */
 
+    public function getMaxPunctuationAttribute()
+    {
+        return $this->choices()->orderBy('punctuation', 'desc')->first()->punctuation;
+    }
 }

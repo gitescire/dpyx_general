@@ -10,6 +10,7 @@
             <thead>
                 <tr>
                     <th class="text-uppercase">Nombre</th>
+                    <th class="text-uppercase">Status</th>
                     <th class="text-uppercase">Encargado</th>
                     <th class="text-uppercase">Evaluador</th>
                     <th class="text-uppercase">Evaluación</th>
@@ -20,6 +21,7 @@
                 @foreach ($repositories as $repository)
                 <tr>
                     <td>{{$repository->name}}</td>
+                    <td>{{$repository->status}}</td>
                     <td>{{$repository->responsible->name}}</td>
                     <td>{{$repository->evaluator ? $repository->evaluator->name : 'N/A'}}</td>
                     <td>

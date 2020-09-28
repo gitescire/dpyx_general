@@ -61,7 +61,7 @@
 
                         // Set real punctuation to the category
                         punctuations = _.map(category.questions, function(question){
-                            return question.answers ? parseFloat(question.answers[0].punctuation) : 0
+                            return question.answer ? parseFloat(question.answer.choice.punctuation) : 0
                         })
                         category.punctuation = _.sum(punctuations)
 
@@ -71,8 +71,14 @@
                         })
                         category.max_punctuation = _.sum(max_punctuations)
 
+                        // console.log(category.punctuation + " " + category.max_punctuation)
+
+                        console.log(category.punctuation)
+                        console.log(category.max_punctuation)
 
                         category.percentage = category.punctuation / category.max_punctuation * 100
+
+                        console.log(category.percentage)
 
                         percentageSpan = document.querySelector(`span[percentage-id="${category.id}"]`);
                         percentageSpan.innerText = `${category.percentage.toFixed(2)}%`
@@ -152,7 +158,7 @@
                         }) 
 
                         punctuations = _.map( questions, function(question){
-                            return parseFloat(question.answers[0].punctuation)
+                            return question.answer ? parseFloat(question.answer.choice.punctuation) : 0
                         } )
 
                         accesibilityPunctuation = _.sum(punctuations)
@@ -162,7 +168,7 @@
                         }) 
 
                         punctuations = _.map( questions, function(question){
-                            return parseFloat(question.answers[0].punctuation)
+                            return question.answer ? parseFloat(question.answer.choice.punctuation) : 0
                         } )
 
                         preservationPunctuation = _.sum(punctuations)

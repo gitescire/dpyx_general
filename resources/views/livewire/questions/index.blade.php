@@ -11,7 +11,7 @@
         </a>
     </div>
 
-    <div class="table-responsive shadow bg-white">
+    <div class="table-responsive shadow bg-white mb-3">
         <table class="table m-0">
             <thead>
                 <tr>
@@ -49,5 +49,6 @@
             </tbody>
         </table>
     </div>
+    {{$questions->links()}}
 
 </div>

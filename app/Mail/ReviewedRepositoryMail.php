@@ -50,12 +50,12 @@ class ReviewedRepositoryMail extends Mailable
     public function build()
     {
         $message = $this->markdown('mails.repositories.reviewed')
-        ->subject('Repositorio Revisado')
+        ->subject('Repositorio revisado')
             ->attachData($this->evaluationPDF->output(), 'evaluacion.pdf', [
                 'mime' => 'application/pdf',
             ]);
 
-        if (!is_null($this->certificationPDF)) {
+        if ($this->repository->is_aproved) {
             $message->attachData($this->certificationPDF->output(), 'certificacion.pdf', [
                 'mime' => 'application/pdf',
             ]);

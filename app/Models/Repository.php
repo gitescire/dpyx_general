@@ -39,10 +39,31 @@ class Repository extends Model
 
     public function getQualificationAttribute()
     {
-        if(!$this->evaluation->answers->count()){
+        if (!$this->evaluation->answers->count()) {
             return 0;
         }
 
-        return round($this->evaluation->answers->pluck('punctuation')->flatten()->sum() / $this->evaluation->answers->pluck('question.max_punctuation')->flatten()->sum() * 100, 2);
+        return round($this->evaluation->answers->pluck('choice.punctuation')->flatten()->sum() / $this->evaluation->answers->pluck('choice.question.max_punctuation')->flatten()->sum() * 100, 2);
+    }
+
+    /**
+     * =======
+     * BOOLEANS
+     * =======
+     */
+
+    public function getHasObservationsAttribute()
+    {
+        return $this->status == 'observations';
+    }
+
+    public function getIsAprovedAttribute()
+    {
+        return $this->status == 'aproved';
+    }
+
+    public function getIsRejectedAttribute()
+    {
+        return $this->status = 'rejected';
     }
 }

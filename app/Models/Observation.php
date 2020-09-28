@@ -20,4 +20,14 @@ class Observation extends Model
         'files_paths' => JsonCast::class,
     ];
 
+    /**
+     * ==========
+     * RELATIONSHIPS
+     * ==========
+     */
+
+    public function answer()
+    {
+        return $this->belongsTo('App\Models\Answer');
+    }
 }

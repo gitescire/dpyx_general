@@ -94,6 +94,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $role = Role::create(['name' => 'usuario']);
         
         $role = Role::create(['name' => 'evaluador']);
+        $role->givePermissionTo(['create announcements', 'edit announcements']);
         $role->givePermissionTo(['create observations']);
         $role->givePermissionTo(['edit evaluations']);
         $role->givePermissionTo(['index users']);

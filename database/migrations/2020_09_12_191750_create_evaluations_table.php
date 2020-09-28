@@ -17,8 +17,7 @@ class CreateEvaluationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('repository_id');
             $table->unsignedBigInteger('evaluator_id')->nullable();
-            $table->enum('status',['pending','finished'])->default('pending');
-            $table->boolean('is_answered')->default(0);
+            $table->enum('status',['pending','answered','in review','reviewed'])->default('pending');
             $table->timestamps();
 
             $table->foreign('repository_id')->references('id')->on('repositories');

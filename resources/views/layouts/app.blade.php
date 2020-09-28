@@ -54,30 +54,38 @@
                                         </i>Cuestionario
                                     </a>
                                 </li> --}}
+                                @can('index categories')
                                 <li>
                                     <a href="{{route('categories.index')}}">
                                         <i class="metismenu-icon fas fa-layer-group">
                                         </i>Categorias
                                     </a>
                                 </li>
+                                @endcan
+                                @can('index subcategories')
                                 <li>
                                     <a href="{{route('subcategories.index')}}">
                                         <i class="metismenu-icon fas fa-cubes">
                                         </i>Subcategorias
                                     </a>
                                 </li>
+                                @endcan
+                                @can('index users')
                                 <li>
                                     <a href="{{route('users.index')}}">
                                         <i class="metismenu-icon fas fa-users">
                                         </i>Usuarios
                                     </a>
                                 </li>
+                                @endcan
+                                @can('index questions')
                                 <li>
                                     <a href="{{route('questions.index')}}">
                                         <i class="metismenu-icon fas fa-question-circle">
                                         </i>Preguntas
                                     </a>
                                 </li>
+                                @endcan
                                 {{-- <li>
                                     <a href="widgets-profile-boxes.html">
                                         <i class="metismenu-icon fas fa-chart-pie">

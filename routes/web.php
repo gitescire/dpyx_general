@@ -29,7 +29,7 @@ Route::prefix('users')->middleware('auth')->group(function () {
     Route::get('/', \App\Http\Livewire\Users\Index::class)->middleware('can:index users')->name('users.index');
     Route::get('create', \App\Http\Livewire\Users\Create::class)->middleware('can:create users')->name('users.create');
     Route::get('{user}/edit', \App\Http\Livewire\Users\Edit::class)->middleware('can:edit users')->name('users.edit');
-    Route::get('{user}/account', \App\Http\Livewire\Users\Account::class)->name('users.account');
+    Route::get('account', \App\Http\Livewire\Users\Account::class)->name('users.account');
     Route::post('/', \App\Http\Controllers\Users\StoreUserController::class)->middleware('can:create users')->name('users.store');
     Route::put('{user}', \App\Http\Controllers\Users\UpdateUserController::class)->middleware('can:edit users')->name('users.update');
     Route::delete('{user}', \App\Http\Controllers\Users\DestroyUserController::class)->middleware('can:delete users')->name('users.destroy');
@@ -68,10 +68,11 @@ Route::prefix('answers')->middleware('auth')->group(function () {
 
 Route::prefix('observations')->middleware('auth')->group(function () {
     Route::post('store', \App\Http\Controllers\Observations\StoreObservationController::class)->middleware('can:create observations')->name('observations.store');
+    Route::get('{observation}/files/{file}/download', \App\Http\Controllers\Observations\Files\DownloadFileController::class)->name('observations.files.download');
 });
 
 Route::prefix('announcements')->middleware('auth')->group(function () {
-    Route::get('/', \App\Http\Livewire\Announcements\Index::class)->middleware('can:index announcements')->name('announcements.index');
+    Route::get('/', \App\Http\Livewire\Announcements\Index::class)->name('announcements.index');
     Route::get('create', \App\Http\Livewire\Announcements\Create::class)->middleware('can:create announcements')->name('announcements.create');
     Route::get('{announcement}/edit', \App\Http\Livewire\Announcements\Edit::class)->middleware('can:edit announcements')->name('announcements.edit');
     Route::post('/', \App\Http\Controllers\Announcements\StoreAnnouncementController::class)->middleware('can:create announcements')->name('announcements.store');
@@ -80,13 +81,14 @@ Route::prefix('announcements')->middleware('auth')->group(function () {
 });
 
 Route::prefix('repositories')->middleware('auth')->group(function () {
-    Route::get('/', \App\Http\Livewire\Repositories\Index::class)->middleware('can:index repositories')->name('repositories.index');
-    Route::get('{repository}/statistics', \App\Http\Livewire\Repositories\Statistics\Show::class)->middleware('can:show repositories')->name('repositories.statistics.show');
-    Route::post('{repository}/send', \App\Http\Controllers\Repositories\SendRepositoryController::class)->middleware('can:edit repositories')->name('repositories.send');
+    Route::get('/', \App\Http\Livewire\Repositories\Index::class)->name('repositories.index');
+    Route::get('{repository}/statistics', \App\Http\Livewire\Repositories\Statistics\Show::class)->name('repositories.statistics.show');
+    Route::post('{repository}/send', \App\Http\Controllers\Repositories\SendRepositoryController::class)->middleware('can:edit evaluations')->name('repositories.send');
 });
 
 Route::prefix('evaluations')->middleware('auth')->group(function () {
     Route::get('{evaluation}/categories/{category}/questions', \App\Http\Livewire\Evaluations\Categories\Questions\Index::class)->name('evaluations.categories.questions.index')->middleware('evaluations.categories.questions.index');
-    Route::get('{evaluationEncoded}/user/{evaluatorEncoded}/assign', \App\Http\Livewire\Evaluations\Assign::class)->middleware('can:edit evaluations')->name('evaluations.assign');
+    Route::get('{evaluation}/user/{user}/assign', \App\Http\Livewire\Evaluations\Assign::class)->middleware('can:edit evaluations')->name('evaluations.assign');
     Route::post('{evaluation}/categories/{category}/questions', \App\Http\Controllers\Evaluations\Categories\Questions\StoreQuestionController::class)->name('evaluations.categories.questions.store');
+    Route::post('{evaluation}/send', \App\Http\Controllers\Evaluations\SendEvaluationController::class)->name('evaluations.send');
 });

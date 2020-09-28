@@ -15,21 +15,38 @@ use RealRashid\SweetAlert\Facades\Alert;
 class Index extends Component
 {
     public $evaluation;
+    public $repository;
     public $categoryChoosed;
     public $categories;
     public $subcategories;
+    public $answers;
 
     public function mount(Evaluation $evaluation, Category $category)
     {
         $this->evaluation = $evaluation->append('is_answerable');
+        $this->repository = $this->evaluation->repository;
         $this->categoryChoosed = $category;
-        $categoryChoosed = $this->categoryChoosed;
         $this->categories = Category::get();
-        $this->subcategories = Subcategory::with(['questions' => function ($query) use ($categoryChoosed) {
-            $query->where('category_id', $categoryChoosed->id)->with('answers.observation');
+
+        $this->subcategories = Subcategory::with(['questions' => function ($query) {
+            $query->where('category_id', $this->categoryChoosed->id)->with(['choices' => function ($query) {
+                $query->orderBy('punctuation', 'desc');
+            }]);
         }])
             ->get()
             ->append('has_questions');
+
+        $this->subcategories->map(function ($subcategory) {
+            return $subcategory->questions->map(function ($question) {
+                $question->answer = Answer::where('evaluation_id', $this->evaluation->id)->where('question_id', $question->id)->with('choice')->first();
+                $question->answer->route = route('answers.show',[$question->answer]);
+                $question->is_answerable = $question->answer && $question->answer->observation && $this->evaluation->repository->has_observations;
+                return $question
+                    ->append('max_punctuation');
+            });
+        });
+
+        // $this->answers = Answer::where('evaluation_id', $evaluation->id)->get();
     }
 
     public function render()
