@@ -106,11 +106,18 @@
                                                                     <br>
                                                                     <span class="text-muted"
                                                                         x-text="question.description_label"></span>
-                                                                    <textarea :name="`descriptions[${question.id}]`"
-                                                                        {{$evaluation->is_answerable ? '' : 'disabled'}}
-                                                                        x-text="question.answer ? question.answer.description : ''"
-                                                                        rows="2" class="form-control"
-                                                                        required></textarea>
+                                                                    <template x-if="question.is_answerable">
+                                                                        <textarea :name="`descriptions[${question.id}]`"
+                                                                            x-text="question.answer ? question.answer.description : ''"
+                                                                            rows="2" class="form-control"
+                                                                            required></textarea>
+                                                                    </template>
+                                                                    <template x-if="!question.is_answerable">
+                                                                        <textarea :name="`descriptions[${question.id}]`"
+                                                                            x-text="question.answer ? question.answer.description : ''"
+                                                                            rows="2" class="form-control"
+                                                                            required disabled readonly></textarea>
+                                                                    </template>
                                                                 </div>
                                                             </template>
                                                         </td>
