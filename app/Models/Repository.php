@@ -64,6 +64,6 @@ class Repository extends Model
 
     public function getIsRejectedAttribute()
     {
-        return $this->status = 'rejected';
+        return $this->status == 'rejected';
     }
 }

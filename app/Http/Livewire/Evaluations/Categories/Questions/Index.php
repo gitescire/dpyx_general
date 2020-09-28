@@ -43,7 +43,10 @@ class Index extends Component
                 if($question->answer){
                     $question->answer->route = route('answers.show',[$question->answer]);
                 }
-                $question->is_answerable = Auth::user()->id == $this->evaluation->repository->responsible->id && (!$this->evaluation || $question->answer && $question->answer->observation && $this->evaluation->repository->has_observations);
+                $question->is_answerable = Auth::user()->id == $this->evaluation->repository->responsible->id
+                    && !$this->evaluation->repository->is_rejected
+                    && !$this->evaluation->repository->aproved 
+                    && (!$this->evaluation->in_review || ($question->answer && $question->answer->observation && $this->evaluation->repository->has_observations));
                 return $question
                     ->append('max_punctuation');
             });
