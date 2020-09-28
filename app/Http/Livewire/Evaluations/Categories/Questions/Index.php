@@ -46,7 +46,7 @@ class Index extends Component
                 $question->is_answerable = Auth::user()->id == $this->evaluation->repository->responsible->id
                     && !$this->evaluation->repository->is_rejected
                     && !$this->evaluation->repository->aproved 
-                    && (!$this->evaluation->in_review || ($question->answer && $question->answer->observation && $this->evaluation->repository->has_observations));
+                    && ( (!$this->evaluation->in_review && !$question->answer) || ($question->answer && $question->answer->observation && $this->evaluation->repository->has_observations));
                 return $question
                     ->append('max_punctuation');
             });
