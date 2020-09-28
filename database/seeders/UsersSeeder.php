@@ -22,5 +22,14 @@ class UsersSeeder extends Seeder
         ]);
 
         $user->assignRole('admin');
+
+        $user = User::create([
+            'name' => 'Nydia Lopez',
+            'phone' => null,
+            'email' => 'nlopez@escire.mx',
+            'password' => bcrypt('1Aprender3948.')
+        ]);
+
+        $user->assignRole('admin');
     }
 }
