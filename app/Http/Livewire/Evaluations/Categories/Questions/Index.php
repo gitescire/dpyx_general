@@ -39,7 +39,7 @@ class Index extends Component
         $this->subcategories->map(function ($subcategory) {
             return $subcategory->questions->map(function ($question) {
                 $question->answer = Answer::where('evaluation_id', $this->evaluation->id)->where('question_id', $question->id)->with('choice')->first();
-                $question->answer->route = route('answers.show',[$question->answer]);
+                $question->answer->route = $question->answer ? route('answers.show',[$question->answer]) : '';
                 $question->is_answerable = $question->answer && $question->answer->observation && $this->evaluation->repository->has_observations;
                 return $question
                     ->append('max_punctuation');
