@@ -5,7 +5,7 @@
         description="Este módulo permite responder las preguntas para evaluar el repositorio."></x-page-title>
     @endsection
 
-    @if ($evaluation->is_answered)
+    @if ($evaluation->is_answered && Auth::user()->hasRole('usuario'))
     <div class="row mb-3">
         <div class="col-12">
             <form action="{{route('evaluations.send',[$evaluation])}}" method="POST">

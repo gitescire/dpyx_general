@@ -3,14 +3,11 @@
 namespace App\Notifications;
 
 use App\Models\Evaluation;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class EvaluationFinishedNotification extends Notification
 {
-    use Queueable;
 
     private $evaluation;
 

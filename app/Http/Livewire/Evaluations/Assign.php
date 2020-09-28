@@ -44,7 +44,7 @@ class Assign extends Component
         $firstCategory = Category::first();
 
         \RealRashid\SweetAlert\Facades\Alert::success('¡La evaluación ha sido asignada!', 'Puedes comenzar a evaluar el repositorio.');
-        return redirect()->route('evaluations.categories.questions', [$evaluation, $firstCategory]);
+        return redirect()->route('evaluations.categories.questions.index', [$evaluation, $firstCategory]);
     }
 
     public function render()
