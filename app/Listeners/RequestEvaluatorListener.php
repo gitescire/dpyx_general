@@ -27,10 +27,13 @@ class RequestEvaluatorListener
      */
     public function handle($event)
     {
-        $evaluators = User::evaluators()->get();
+        // $evaluators = User::evaluators()->get();
 
-        foreach ($evaluators as $evaluator) {
-            $evaluator->notify(new EvaluationFinishedNotification($event->evaluation));
-        }
+        // foreach ($evaluators as $evaluator) {
+        //     $evaluator->notify(new EvaluationFinishedNotification($event->evaluation));
+        // }
+
+        $evaluator = $event->evaluation->evaluator;
+        $evaluator->notify(new EvaluationFinishedNotification($event->evaluation));
     }
 }

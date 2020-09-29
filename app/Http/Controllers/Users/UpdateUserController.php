@@ -18,6 +18,18 @@ class UpdateUserController extends Controller
 
         $user->syncRoles($request->role);
 
+        if ($user->hasRole('usuario') && $user->has_repositories) {
+            $user->repositories()->first()->update([
+                'name' => $request->repository_name,
+                'responsible_id' => $user->id
+            ]);
+            
+
+            $user->repositories()->first()->evaluation()->update([
+                'evaluator_id' => $request->evaluator_id
+            ]);
+        }
+
         if ($user->hasRole('usuario') && !$user->has_repositories) {
             $repository = $user->repositories()->create([
                 'name' => $request->repository_name,
@@ -26,6 +38,7 @@ class UpdateUserController extends Controller
             
             $repository->evaluation()->create([
                 'repository_id' => $repository->id,
+                'evaluator_id' => $request->evaluator_id
             ]);
         }
 

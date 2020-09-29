@@ -26,6 +26,8 @@ class DestroyUserController extends Controller
         }
         
         Repository::where('responsible_id',$user->id)->delete();
+        $user->email = null;
+        $user->save();
         $user->delete();
 
         Alert::success('¡Usuario eliminado!');

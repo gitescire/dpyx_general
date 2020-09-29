@@ -42,7 +42,19 @@
                 <template x-if="isUser">
                     <div class="col-12 mb-3">
                         <label for="" class="text-muted text-uppercase">Nombre del repositorio</label>
-                        <input type="text" name="repository_name" class="form-control" value="{{$user ? 'usuario' : ''}}" required>
+                        <input type="text" name="repository_name" class="form-control" value="{{$user && $user->hasRole('usuario') && $user->has_repositories ? $user->repositories()->first()->name : ''}}" required>
+                    </div>
+                </template>
+                <template x-if="isUser">
+                    <div class="col-12 mb-3">
+                        <label for="" class="text-muted text-uppercase">Evaluador</label>
+                        <select name="evaluator_id" id="" class="form-control" required>
+                            <option value="">seleccionar</option>
+                            @foreach ($evaluators as $evaluator)
+                                <option value="{{$evaluator->id}}" {{$user && $user->hasRole('usuario') && $user->repositories()->first()->evaluation->evaluator->id == $evaluator->id ? 'selected' : '' }}>{{$evaluator->name}}</option>
+                            @endforeach
+                        </select>
+                        {{-- <input type="text" name="repository_name" class="form-control" value="{{$user ? 'usuario' : ''}}" required> --}}
                     </div>
                 </template>
             </div>

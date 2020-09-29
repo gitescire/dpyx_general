@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Category;
 use App\Models\Evaluation;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -10,6 +11,7 @@ class EvaluationFinishedNotification extends Notification
 {
 
     private $evaluation;
+    private $firstCategory;
 
     /**
      * Create a new notification instance.
@@ -19,6 +21,7 @@ class EvaluationFinishedNotification extends Notification
     public function __construct(Evaluation $evaluation)
     {
         $this->evaluation = $evaluation;
+        $this->firstCategory = Category::first();
     }
 
     /**
@@ -41,18 +44,24 @@ class EvaluationFinishedNotification extends Notification
     public function toMail($notifiable)
     {
 
-        if($this->evaluation->repository->has_observations){
-            return (new MailMessage)
-                ->line('¡Una evaluación ha sido reenviada!')
-                ->subject('Nueva solicitud de revisión')
-                ->action('Volver a revisar', route('evaluations.categories.questions.index', [$this->evaluation, 1]))
-                ->line('¡Gracias!');
-        }
+        // if($this->evaluation->repository->has_observations){
+        //     return (new MailMessage)
+        //         ->line('¡Una evaluación ha sido reenviada!')
+        //         ->subject('Nueva solicitud de revisión')
+        //         ->action('Volver a revisar', route('evaluations.categories.questions.index', [$this->evaluation, 1]))
+        //         ->line('¡Gracias!');
+        // }
+
+        // return (new MailMessage)
+        //     ->line('¡Una nueva evaluación ha sido completada y requiere un evaluador!')
+        //     ->subject('Nueva solicitud de revisión')
+        //     ->action('Asignarme la evaluación', route('evaluations.assign', [$this->evaluation->id, $notifiable->id]))
+        //     ->line('¡Gracias!');
 
         return (new MailMessage)
-            ->line('¡Una nueva evaluación ha sido completada y requiere un evaluador!')
+            ->line('¡Una evaluación ha sido enviada!')
             ->subject('Nueva solicitud de revisión')
-            ->action('Asignarme la evaluación', route('evaluations.assign', [$this->evaluation->id, $notifiable->id]))
+            ->action('revisar evaluación', route('evaluations.categories.questions.index', [$this->evaluation, $this->firstCategory]))
             ->line('¡Gracias!');
     }
 

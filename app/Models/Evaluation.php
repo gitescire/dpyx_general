@@ -34,7 +34,7 @@ class Evaluation extends Model
 
     public function evaluator()
     {
-        return $this->belongsTo('App\Models\Evaluator');
+        return $this->belongsTo('App\Models\User','evaluator_id','id');
     }
 
     /**

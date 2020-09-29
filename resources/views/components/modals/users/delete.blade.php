@@ -22,7 +22,7 @@
                     @method('DELETE')
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 mb-3">
                                 <div class="card">
                                     <div class="card-body">
                                         <h6 class="text-uppercase">
@@ -31,17 +31,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            @if ($repositories->count())
+                            <div class="col-12 mb-3">
                                 <div class="card">
                                     <div class="card-body">
                                         El usuario cuenta con <b>{{$repositories->count()}}</b> repositorios que serán eliminados.
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            @endif
+                            @if ($evaluations->count())
+                            <div class="col-12 mb-3">
                                 <div class="card">
                                     <div class="card-body">
-                                        El usuario tiene <b>{{$evaluations->count()}}</b> evaluaciones que deben cambiar de responsable.
+                                        El usuario tiene <b>{{$evaluations->count()}}</b> evaluaciones a su cargo que deben cambiar de responsable.
                                         <br>
                                         <select name="newEvaluatorId" id="" class="form-control">
                                             <option value="">seleccionar</option>
@@ -52,6 +55,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                     <div class="modal-footer">

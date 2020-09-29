@@ -3,11 +3,13 @@
 namespace App\View\Components\Forms;
 
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\View\Component;
 
 class Users extends Component
 {
     public $user;
+    public $evaluators;
     public $roles;
 
     /**
@@ -19,6 +21,7 @@ class Users extends Component
     {
         $this->roles = Role::get();
         $this->user = $user;
+        $this->evaluators = User::evaluators()->get();
     }
 
     /**

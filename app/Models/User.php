@@ -100,7 +100,7 @@ class User extends Authenticatable
      * =======
      */
 
-    public function getHasRepositoriesAtttribute()
+    public function getHasRepositoriesAttribute()
     {
         return $this->repositories->count() > 0;
     }

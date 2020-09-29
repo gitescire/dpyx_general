@@ -34,6 +34,7 @@ class StoreUserController extends Controller
             ]);
             $repository->evaluation()->create([
                 'repository_id' => $repository->id,
+                'evaluator_id' => $request->evaluator_id,
             ]);
         }
 

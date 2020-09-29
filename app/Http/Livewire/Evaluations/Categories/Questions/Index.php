@@ -40,7 +40,8 @@ class Index extends Component
 
         $this->subcategories->map(function ($subcategory) {
             return $subcategory->questions->map(function ($question) {
-                $question->answer = Answer::where('evaluation_id', $this->evaluation->id)->where('question_id', $question->id)->with('choice','observation')->first();
+                $answer = Answer::where('evaluation_id', $this->evaluation->id)->where('question_id', $question->id)->with('choice','observation')->first();
+                $question->answer = $answer;
                 
                 if($question->answer){
                     $question->answer->route = route('answers.show',[$question->answer]);
