@@ -17,11 +17,11 @@ class CreateEvaluationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('repository_id');
             $table->unsignedBigInteger('evaluator_id')->nullable();
-            $table->enum('status',['pending','answered','in review','reviewed'])->default('pending');
+            $table->enum('status',['answered','in review','reviewed','in progress'])->default('in progress');
             $table->timestamps();
 
-            $table->foreign('repository_id')->references('id')->on('repositories');
-            $table->foreign('evaluator_id')->references('id')->on('users');
+            $table->foreign('repository_id')->references('id')->on('repositories')->onDelete('cascade');
+            $table->foreign('evaluator_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 

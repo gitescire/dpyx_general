@@ -20,6 +20,7 @@ class Index extends Component
     public $categories;
     public $subcategories;
     public $answers;
+    public $announcement;
 
     public function mount(Evaluation $evaluation, Category $category)
     {
@@ -27,6 +28,7 @@ class Index extends Component
         $this->repository = $this->evaluation->repository;
         $this->categoryChoosed = $category;
         $this->categories = Category::get();
+        $this->announcement = Announcement::active()->first();
 
         $this->subcategories = Subcategory::with(['questions' => function ($query) {
             $query->where('category_id', $this->categoryChoosed->id)->with(['choices' => function ($query) {
@@ -43,10 +45,21 @@ class Index extends Component
                 if($question->answer){
                     $question->answer->route = route('answers.show',[$question->answer]);
                 }
-                $question->is_answerable = Auth::user()->id == $this->evaluation->repository->responsible->id
-                    && !$this->evaluation->repository->is_rejected
-                    && !$this->evaluation->repository->aproved 
-                    && ( (!$this->evaluation->in_review && !$question->answer) || ($question->answer && $question->answer->observation && $this->evaluation->repository->has_observations));
+
+                $question->is_answerable = $this->evaluation->is_answerable;
+
+                if($this->evaluation->is_answerable && $this->evaluation->repository->has_observations && $question->answer && $question->answer->observation){
+                    $question->is_answerable = true;
+                }
+
+                if($this->evaluation->is_answerable && $this->evaluation->repository->has_observations && $question->answer && !$question->answer->observation){
+                    $question->is_answerable = false;
+                }
+
+                // $question->is_answerable = Auth::user()->id == $this->evaluation->repository->responsible->id
+                //     && !$this->evaluation->repository->is_rejected
+                //     && !$this->evaluation->repository->aproved 
+                //     && ( (!$this->evaluation->in_review && !$question->answer) || ($question->answer && $question->answer->observation && $this->evaluation->repository->has_observations));
                 return $question
                     ->append('max_punctuation');
             });

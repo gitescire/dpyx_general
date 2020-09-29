@@ -19,6 +19,7 @@ class StoreCategoryController extends Controller
     {
         $category = new Category;
         $category->name = $request->name;
+        $category->short_name = $request->short_name;
         $category->save();
 
         Alert::success('Nueva categoría creada!');

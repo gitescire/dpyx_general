@@ -17,12 +17,13 @@ class CreateAnswersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('evaluation_id');
             $table->unsignedBigInteger('question_id');
-            $table->unsignedBigInteger('choice_id');
+            $table->unsignedBigInteger('choice_id')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
 
-            $table->foreign('question_id')->references('id')->on('questions');
-            $table->foreign('choice_id')->references('id')->on('choices');
+            $table->foreign('evaluation_id')->references('id')->on('evaluations')->onDelete('cascade');
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->foreign('choice_id')->references('id')->on('choices')->onDelete('set null');
         });
     }
 

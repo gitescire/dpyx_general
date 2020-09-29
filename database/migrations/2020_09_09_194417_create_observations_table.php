@@ -19,6 +19,8 @@ class CreateObservationsTable extends Migration
             $table->text('description');
             $table->text('files_paths')->nullable();
             $table->timestamps();
+
+            $table->foreign('answer_id')->references('id')->on('answers')->onDelete('cascade');
         });
     }
 

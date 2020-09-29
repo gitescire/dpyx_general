@@ -30,7 +30,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="{{route('evaluations.categories.questions.index',[$repository->evaluation, 1])}}" class="btn btn-primary btn-shadow rounded-0">
+                        <a href="{{route('evaluations.categories.questions.index',[$repository->evaluation, $firstCategory])}}" class="btn btn-primary btn-shadow rounded-0">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>

@@ -10,7 +10,7 @@
         <div class="col-12">
             <form action="{{route('evaluations.send',[$evaluation])}}" method="POST">
                 @csrf
-                <button class="btn btn-success btn-wide shadow rounded-0">
+                <button class="btn btn-success btn-wide shadow rounded-0" {{$announcement ? '' : 'disabled'}}>
                     <i class="fas fa-paper-plane"></i> ENVIAR A CONCYTEC
                 </button>
             </form>
@@ -128,11 +128,9 @@
                                                             <template x-if="question.is_answerable">
                                                                 <input type="hidden" name="choices[]"
                                                                     x-model="question.current_choice_id">
-                                                                <select :question-id="question.id"
-                                                                    x-on:change="setCurrentChoice(question)" required
-                                                                    class="form-control">
+                                                                <select :question-id="question.id" x-on:change="setCurrentChoice(question)" class="form-control" required>
     
-                                                                    <option>seleccionar</option>
+                                                                    <option value="">seleccionar</option>
     
                                                                     <template x-for="choice in question.choices">
                                                                         <option x-bind:value="choice.id"
@@ -142,7 +140,7 @@
                                                                     </template>
                                                             </template>
                                                             <template x-if="!question.is_answerable">
-                                                                <input type="text" :value="question.answer ? question.answer.choice.description : ''" class="form-control" readonly disabled>
+                                                                <input type="text" :value="question.answer ? question.answer.choice.description : 'sin respuesta'" class="form-control" readonly disabled>
                                                             </template>
 
                                                             </select>

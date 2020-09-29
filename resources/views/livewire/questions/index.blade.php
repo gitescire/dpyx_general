@@ -17,6 +17,7 @@
                 <tr>
                     <th class="text-uppercase">ID</th>
                     <th class="text-uppercase">Descripción</th>
+                    <th class="text-uppercase">Puntuación</th>
                     <th class="text-uppercase">Órden</th>
                     <th class="text-uppercase">Categoría</th>
                     <th class="text-uppercase">Subcategoría</th>
@@ -28,6 +29,7 @@
                 <tr>
                     <td>{{$question->id}}</td>
                     <td>{{$question->description}}</td>
+                    <td>Max. {{$question->max_punctuation}}%</td>
                     <td>{{$question->order}}</td>
                     <td>{{$question->category->name}}</td>
                     <td>{{$question->subcategory->name}}</td>

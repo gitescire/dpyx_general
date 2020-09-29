@@ -17,6 +17,7 @@
                 <tr>
                     <th class="text-uppercase">#</th>
                     <th class="text-uppercase">Nombre</th>
+                    <th class="text-uppercase">Nombre corto</th>
                     <th class="text-uppercase">Acción</th>
                 </tr>
             </thead>
@@ -25,14 +26,13 @@
                 <tr>
                     <td>{{$category->id}}</td>
                     <td>{{$category->name}}</td>
+                    <td>{{$category->short_name}}</td>
                     <td>
-                        <form action="{{route('categories.destroy',[$category])}}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger btn-shadow rounded-0">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
+                        <button type="button" class="btn btn-danger btn-shadow rounded-0" data-toggle="modal"
+                            data-target="#deleteCategory{{$category->id}}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <x-modals.categories.delete :category="$category"/>
                         <a href="{{route('categories.edit',[$category])}}" class="btn btn-warning btn-shadow rounded-0">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
@@ -42,5 +42,4 @@
             </tbody>
         </table>
     </div>
-
 </div>

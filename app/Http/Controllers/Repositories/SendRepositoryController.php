@@ -18,7 +18,7 @@ class SendRepositoryController extends Controller
         $repository->save();
 
         if($repository->has_observations){
-            $repository->evaluation->status = 'answered';
+            $repository->evaluation->status = 'in progress';
             $repository->evaluation->save();
         }
 

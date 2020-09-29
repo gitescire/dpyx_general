@@ -18,6 +18,7 @@ class UpdateCategoryController extends Controller
     public function __invoke(Request $request, Category $category)
     {
         $category->name = $request->name;
+        $category->short_name = $request->short_name;
         $category->save();
 
         Alert::success('¡Categoría creada!');

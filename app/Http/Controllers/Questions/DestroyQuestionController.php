@@ -17,6 +17,9 @@ class DestroyQuestionController extends Controller
      */
     public function __invoke(Request $request, Question $question)
     {
+        $question->answers()->delete();
+        $question->choices()->delete();
+
         $question->delete();
         Alert::success('¡Pregunta eliminada!');
         return redirect()->back();

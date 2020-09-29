@@ -18,9 +18,9 @@ class Index
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->hasRole('usuario') && !Announcement::active()->first()) {
-            return redirect()->route('welcome')->with('warning', '¡No hay convocatorias para el día de hoy!');
-        }
+        // if (Auth::user()->hasRole('usuario') && !Announcement::active()->first()) {
+        //     return redirect()->route('welcome')->with('warning', '¡No hay convocatorias para el día de hoy!');
+        // }
 
         return $next($request);
     }

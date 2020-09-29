@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Repository extends Model
 {
+    use SoftDeletes;
     use HasFactory;
 
     protected $table = "repositories";
@@ -51,6 +53,11 @@ class Repository extends Model
      * BOOLEANS
      * =======
      */
+
+    public function getIsInProgressAttribute()
+    {
+        return $this->status == 'in progress';
+    }
 
     public function getHasObservationsAttribute()
     {

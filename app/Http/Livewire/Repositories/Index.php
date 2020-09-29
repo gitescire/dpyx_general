@@ -2,13 +2,19 @@
 
 namespace App\Http\Livewire\Repositories;
 
+use App\Models\Category;
 use App\Models\Repository;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Index extends Component
 {
+    public $firstCategory;
     private $repositories;
+
+    public function mount(){
+        $this->firstCategory = Category::first();
+    }
 
     public function render()
     {

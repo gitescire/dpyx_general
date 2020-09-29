@@ -13,9 +13,14 @@
                 <div class="card shadow border-0">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 mb-3">
                                 <label for="" class="text-muted text-uppercase">Nombre</label>
                                 <input type="text" name="name" value="{{$category->name}}" class="form-control"
+                                    required>
+                            </div>
+                            <div class="col-12">
+                                <label for="" class="text-muted text-uppercase">Nombre corto</label>
+                                <input type="text" name="short_name" value="{{$category->short_name}}" class="form-control"
                                     required>
                             </div>
                         </div>

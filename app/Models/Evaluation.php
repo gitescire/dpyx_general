@@ -43,6 +43,10 @@ class Evaluation extends Model
      * ========
      */
 
+    public function getIsInProgressAttribute(){
+        return $this->status == 'in progress';
+    }
+
     public function getInReviewAttribute()
     {
         return $this->status == 'in review';
@@ -58,9 +62,15 @@ class Evaluation extends Model
         if (Auth::user()->id != $this->repository->responsible->id) {
             return false;
         }
-        if ($this->in_review) {
+        if (!$this->is_in_progress && !$this->is_answered) {
+            // dd('2 no');
             return false;
         }
+        if(!$this->repository->is_in_progress && !$this->repository->has_observations){
+            // dd('3 no');
+            return false;
+        }
+
         return true;
     }
 
