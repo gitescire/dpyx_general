@@ -1,48 +1,97 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+<!doctype html>
+<html lang="es">
 
-        <x-jet-validation-errors class="mb-4" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Login</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="description" content="dPyx - CONCYTEC">
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    {{-- Styles --}}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{asset('css/kero.css')}}">
+</head>
+
+<body>
+    <div class="app-container app-theme-white body-tabs-shadow">
+        <div class="app-container">
+            <div class="h-100 bg-plum-plate bg-animation">
+                <div class="d-flex h-100 justify-content-center align-items-center">
+                    <div class="mx-auto app-login-box col-md-8">
+                        {{-- <div class="app-logo-inverse mx-auto mb-3"></div> --}}
+                        <div class="modal-dialog w-100 mx-auto">
+                            <div class="modal-content">
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="h5 modal-title text-center">
+                                            <h4 class="mt-2">
+                                                    <x-jet-validation-errors class="mb-4" />
+
+                                                <div class="d-flex justify-content-center">
+                                                    <img src="{{url('images/logo.png')}}" width="120px"
+                                                        class="img-fluid" alt="">
+                                                </div>
+                                                <div>Bienvenido de regreso,</div>
+                                                <span>Por favor inicia sesión con tu cuenta.</span>
+                                                @if (session('status'))
+                                                <div class="mb-4 font-medium text-sm text-green-600">
+                                                    {{ session('status') }}
+                                                </div>
+                                                @endif
+                                            </h4>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-12">
+                                                <div class="position-relative form-group"><input name="email" required
+                                                        autofocus id="exampleEmail" placeholder="Correo electrónico"
+                                                        type="email" class="form-control"></div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="position-relative form-group">
+                                                    <input name="password" id="examplePassword" placeholder="Contraseña"
+                                                        type="password" class="form-control" required
+                                                        autocomplete="current-password">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="position-relative form-check"><input name="remember"
+                                                id="exampleCheck" type="checkbox" class="form-check-input"><label
+                                                for="exampleCheck" class="form-check-label">Recordarme
+                                                contraseña</label></div>
+                                        {{-- <div class="divider"></div>
+                                    <h6 class="mb-0">No account? <a href="javascript:void(0);" class="text-primary">Sign
+                                            up now</a></h6> --}}
+                                    </div>
+                                    <div class="modal-footer clearfix">
+                                        @if (Route::has('password.request'))
+                                        <div class="float-left">
+                                            <a href="{{ route('password.request') }}"
+                                                class="btn-lg btn btn-link">Recuperar
+                                                contraseña</a>
+                                        </div>
+                                        @endif
+                                        <div class="float-right">
+                                            <button class="btn btn-primary btn-lg">Iniciar sesión</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="text-center text-white opacity-8 mt-3">dPyx - CONCYTEC</div>
+                    </div>
+                </div>
             </div>
-        @endif
+        </div>
+    </div>
+    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+</body>
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <div>
-                <x-jet-label value="Email" />
-                <x-jet-input class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label value="Password" />
-                <x-jet-input class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-jet-button class="ml-4">
-                    {{ __('Login') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+</html>
