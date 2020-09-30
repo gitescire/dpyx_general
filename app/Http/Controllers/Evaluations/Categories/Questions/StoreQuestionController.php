@@ -17,27 +17,29 @@ class StoreQuestionController extends Controller
     public function __invoke(Request $request, Evaluation $evaluation, Category $category)
     {
 
-        foreach ($request->choices as $choice_id) {
-            $choice = Choice::find($choice_id);
-
-            Answer::updateOrCreate([
-                'evaluation_id' => $evaluation->id,
-                'question_id' => $choice->question_id
-            ], [
-                'choice_id' => $choice->id,
-                'question_id' => $choice->question_id,
-                'evaluation_id' => $evaluation->id,
-                'description' => isset($request->descriptions[$choice->question_id]) ? $request->descriptions[$choice->question_id] : null,
-            ]);
+        if($request->choices){
+            foreach ($request->choices as $choice_id) {
+                $choice = Choice::find($choice_id);
+                Answer::updateOrCreate([
+                    'evaluation_id' => $evaluation->id,
+                    'question_id' => $choice->question_id
+                ], [
+                    'choice_id' => $choice->id,
+                    'question_id' => $choice->question_id,
+                    'evaluation_id' => $evaluation->id,
+                    'description' => isset($request->descriptions[$choice->question_id]) ? $request->descriptions[$choice->question_id] : null,
+                ]);
+            }
         }
 
-        if ($evaluation->answers->count() == Question::get()->count()) {
+        $requiredQuestionsIds = Question::required()->get()->pluck('id')->flatten();
+        $requiredQuestionsAnswered = $evaluation->answers()->whereIn('question_id',$requiredQuestionsIds)->get();
+        if ($requiredQuestionsIds->count() == $requiredQuestionsAnswered->count()) {
             $evaluation->status = 'answered';
             $evaluation->save();
         }
 
         $nextCategory = Category::where('id', '>', $category->id)->first() ?? $category;
-
         if ($nextCategory == $category && $evaluation->is_answered) {
             Alert::success('¡Has finalizado la evaluación!','Ya puedes enviarla a concytec para su revisión');
         } else {

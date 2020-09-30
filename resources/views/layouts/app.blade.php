@@ -353,7 +353,7 @@
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="/images/avatars/3.jpg"
+                                                                                                    <img src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/avatars/3.jpg'}}"
                                                                                                         alt=""></div>
                                                                                             </div>
                                                                                             <div
@@ -674,7 +674,7 @@
                                             <div class="btn-group">
                                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                                     class="p-0 btn">
-                                                    <img width="42" class="rounded" src="/images/avatars/3.jpg" alt=""
+                                                    <img width="42" class="rounded" src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/avatars/3.jpg'}}" alt=""
                                                         style="display: inline-block;">
                                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                                 </a>
@@ -690,11 +690,11 @@
                                                                     <div class="widget-content-wrapper">
                                                                         <div class="widget-content-left mr-3">
                                                                             <img width="42" class="rounded-circle"
-                                                                                src="/images/avatars/3.jpg" alt="">
+                                                                                src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/avatars/3.jpg'}}" alt="">
                                                                         </div>
                                                                         <div class="widget-content-left">
                                                                             <div class="widget-heading">
-                                                                                {{ Auth::user()->name }}
+                                                                                {{ auth()->user()->name }}
                                                                             </div>
                                                                             {{-- <div class="widget-subheading opacity-8">
                                                                                 A short profile description
@@ -722,7 +722,7 @@
                                                                 </li>
                                                                 <li class="nav-item">
                                                                     <a href="javascript:void(0);"
-                                                                        class="nav-link">{{Auth::user()->email}}
+                                                                        class="nav-link">{{auth()->user()->email}}
                                                                         {{-- <div
                                                                             class="ml-auto badge badge-pill badge-info">
                                                                             8
@@ -737,7 +737,7 @@
                                                                 <li class="nav-item-header nav-item">Mi cuenta
                                                                 </li>
                                                                 <li class="nav-item">
-                                                                    <a href="{{route('users.account',[Auth::user()])}}"
+                                                                    <a href="{{route('users.account',[auth()->user()])}}"
                                                                         class="nav-link">Configuración
                                                                         {{-- <div class="ml-auto badge badge-success">New
                                                                         </div> --}}

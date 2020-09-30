@@ -33,3 +33,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * 
  */
 import 'alpinejs'
+
+/**
+ * Sweet alert
+ * 
+ * 
+ */
+window.Swal = require('sweetalert2');

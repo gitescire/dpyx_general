@@ -21,7 +21,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 1,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -46,7 +46,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 1,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -69,7 +69,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 1,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -92,7 +92,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 1,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -115,7 +115,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 1,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -138,7 +138,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 1,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -161,7 +161,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 1,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -184,7 +184,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 1,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -207,7 +207,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 1,
             'subcategory_id' => 2,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -230,7 +230,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 1,
             'subcategory_id' => 2,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -253,7 +253,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 3,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -276,7 +276,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 3,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -299,7 +299,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 3,
             'subcategory_id' => 1,
             'help_text' => 'En caso afirmativo, añadir url.',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Añadir URL del documento'
         ]);
@@ -322,7 +322,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 3,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -345,7 +345,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 3,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -368,7 +368,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 3,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -391,7 +391,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 3,
             'subcategory_id' => 2,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -414,7 +414,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 3,
             'subcategory_id' => 2,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -437,7 +437,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 3,
             'subcategory_id' => 2,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -460,7 +460,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 3,
             'subcategory_id' => 2,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -483,7 +483,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 4,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -506,7 +506,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 4,
             'subcategory_id' => 2,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -529,7 +529,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 4,
             'subcategory_id' => 2,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -552,7 +552,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 4,
             'subcategory_id' => 2,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -575,7 +575,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 4,
             'subcategory_id' => 2,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -598,7 +598,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 5,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -621,7 +621,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 5,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -644,7 +644,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 5,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -667,7 +667,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 5,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -690,7 +690,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 5,
             'subcategory_id' => 2,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -713,7 +713,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 5,
             'subcategory_id' => 2,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -736,7 +736,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 5,
             'subcategory_id' => 2,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -759,7 +759,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 6,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -782,7 +782,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 6,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -805,7 +805,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 6,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -828,7 +828,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 6,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -851,7 +851,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 6,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -874,7 +874,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 6,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -897,7 +897,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 6,
             'subcategory_id' => 2,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -920,7 +920,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 6,
             'subcategory_id' => 2,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -943,7 +943,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 7,
             'subcategory_id' => 1,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -966,7 +966,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 7,
             'subcategory_id' => 1,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -989,7 +989,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 7,
             'subcategory_id' => 1,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -1012,7 +1012,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 7,
             'subcategory_id' => 1,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -1035,7 +1035,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 7,
             'subcategory_id' => 2,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -1058,7 +1058,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 7,
             'subcategory_id' => 2,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -1081,7 +1081,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 7,
             'subcategory_id' => 2,
             'help_text' => NULL,
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => NULL
         ]);
@@ -1104,7 +1104,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 8,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1141,7 +1141,7 @@ class QuestionsSeeder extends Seeder
             Especificar la URL.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Especificar'
         ]);
@@ -1165,7 +1165,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 8,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1192,7 +1192,7 @@ class QuestionsSeeder extends Seeder
             En caso afirmativo, incluir el enlace.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Incluir el enlace'
         ]);
@@ -1216,7 +1216,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 8,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1269,7 +1269,7 @@ class QuestionsSeeder extends Seeder
             \r\n
             \r\n
              \r\n\r\n\r\n',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Incluir el enlace'
         ]);
@@ -1293,7 +1293,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 8,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1316,7 +1316,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 8,
             'subcategory_id' => 2,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1339,7 +1339,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 8,
             'subcategory_id' => 2,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1362,7 +1362,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 9,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1385,7 +1385,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 9,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1408,7 +1408,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 9,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1431,7 +1431,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 9,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1454,7 +1454,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 9,
             'subcategory_id' => 1,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1477,7 +1477,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 9,
             'subcategory_id' => 2,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1500,7 +1500,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 9,
             'subcategory_id' => 2,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1523,7 +1523,7 @@ class QuestionsSeeder extends Seeder
             'category_id' => 9,
             'subcategory_id' => 2,
             'help_text' => '.',
-            'is_optional' => 0,
+            'is_optional' => 1,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1570,7 +1570,7 @@ class QuestionsSeeder extends Seeder
             
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1599,7 +1599,7 @@ class QuestionsSeeder extends Seeder
             \r\n
             \r\n
              \r\n',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1626,7 +1626,7 @@ class QuestionsSeeder extends Seeder
             
             Especificar la URL
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Añadir URL del documento'
         ]);
@@ -1652,7 +1652,7 @@ class QuestionsSeeder extends Seeder
             'help_text' => '
             Actualización del protocolo OAI-PMH.
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1681,7 +1681,7 @@ class QuestionsSeeder extends Seeder
             Ejemplo: http://repositorio.concytec.gob.pe/oai/request?verb=ListSets 
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1711,7 +1711,7 @@ class QuestionsSeeder extends Seeder
             Se puede ver el contacto en el identificador del protocolo oai-pmh (http://repositorio.concytec.gob.pe/oai/request?verb=Identify). En DSpace la configuración se realiza mediante el campo mail.admin del archivo build.properties. (Requiere actualizar la instalación con ant update).
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1740,7 +1740,7 @@ class QuestionsSeeder extends Seeder
             P.ej., una consulta a /oai/request?verb=ListRecords&metadataPrefix=oai_dc no debería devolver todos los registros sino sólo un número limitado de ellos, tales como los primeros 100.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1770,7 +1770,7 @@ class QuestionsSeeder extends Seeder
             Está comprobado en la práctica que un número de elementos entre este rango agiliza los procesos de recolección y evita sobrecargas en los repositorios.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1797,7 +1797,7 @@ class QuestionsSeeder extends Seeder
             El objetivo principal de utilizar un formato de metadatos común es facilitar la interoperabilidad.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1824,7 +1824,7 @@ class QuestionsSeeder extends Seeder
             El objetivo principal de utilizar el formato XOAI es facilitar la interoperabilidad a nivel de esquema, elementos y también calificadores.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1851,7 +1851,7 @@ class QuestionsSeeder extends Seeder
             Entidad principal responsable del contenido del recurso, ya sea personal o institucional.  
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1878,7 +1878,7 @@ class QuestionsSeeder extends Seeder
             Tipo de documento de identidad asociado al elemento autor. 
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1905,7 +1905,7 @@ class QuestionsSeeder extends Seeder
             Nombre que se da al recurso. Normalmente, el título es un nombre por el cual el recurso es conocido formalmente.  
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1932,7 +1932,7 @@ class QuestionsSeeder extends Seeder
             Entidad responsable de hacer que el recurso esté disponible. Una persona, una organización o un servicio pueden ser un editor.  
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1959,7 +1959,7 @@ class QuestionsSeeder extends Seeder
             País de publicación del recurso. 
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -1986,7 +1986,7 @@ class QuestionsSeeder extends Seeder
             Fecha de publicación del recurso.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2013,7 +2013,7 @@ class QuestionsSeeder extends Seeder
             Tipo de resultado científico del cual el recurso es una manifestación.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2040,7 +2040,7 @@ class QuestionsSeeder extends Seeder
             Un código que identifica el idioma del contenido intelectual del recurso. Para este elemento se establece como vocabulario: ISO 639-2. Ver codificación https://www.loc.gov/standards/iso639-2/php/code_list.php
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2067,7 +2067,7 @@ class QuestionsSeeder extends Seeder
             Información sobre los derechos o modo de acceso al contenido del recurso.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2094,7 +2094,7 @@ class QuestionsSeeder extends Seeder
             Información sobre los derechos de licencia mantenidos en y sobre el recurso. 
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2121,7 +2121,7 @@ class QuestionsSeeder extends Seeder
             Fecha en que el recurso será (o fue) puesto disponible en acceso abierto.  
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2148,7 +2148,7 @@ class QuestionsSeeder extends Seeder
             Extracto o síntesis del recurso. Se debe incluir un resumen (abstract) de la publicación, aunque se puede ofrecer más información siempre y cuando no se utilice para indicar información que corresponda a otros campos.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2175,7 +2175,7 @@ class QuestionsSeeder extends Seeder
             Palabras clave, descriptores y/o códigos de clasificación que describen el contenido intelectual del recurso. Obligatorio para trabajos de investigación conducentes a grados o títulos.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2202,7 +2202,7 @@ class QuestionsSeeder extends Seeder
             Código(s) asignado(s) según la clasificación de Campos de Investigación y Desarrollo (FORD, por sus siglas en inglés) establecida en el Manual de Frascati de la OCDE, según las URIs del vocabulario disponible en: http://purl.org/pe-repo/ocde/ford
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2229,7 +2229,7 @@ class QuestionsSeeder extends Seeder
             El identificador Handle, cuando es ingresado en un navegador web, debe redirigir automáticamente a la ubicación del recurso identificado. Obligatorio para repositorios institucionales, de tesis y de datos. En el caso de portales de revistas aplica el uso de DOI.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2256,7 +2256,7 @@ class QuestionsSeeder extends Seeder
             ¿Todos los registros contienen el elemento DOI (dc.identifier.doi)?
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2283,7 +2283,7 @@ class QuestionsSeeder extends Seeder
             Identificador ISBN (International Standard Book Number) del recurso. Obligatorio si es aplicable.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2310,7 +2310,7 @@ class QuestionsSeeder extends Seeder
             Identificador de un recurso relacionado en el que el recurso descrito se incluye física o lógicamente. Obligatorio para relacionar artículos y/o similares en revistas, con el prefijo urn:issn: seguido del código ISSN, incluyendo el guión intermedio. Usar preferentemente el ISSN-L, el cual puede verificarse en: https://portal.issn.org
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2337,7 +2337,7 @@ class QuestionsSeeder extends Seeder
             Persona responsable de la asesoría de la investigación.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2364,7 +2364,7 @@ class QuestionsSeeder extends Seeder
             ORCID del asesor de la investigación. Es un identificador persistente del autor de alcance global.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2391,7 +2391,7 @@ class QuestionsSeeder extends Seeder
             Documento de identidad del asesor de la investigación. Es un dato que debe registrarse asociado al campo asesor. 
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2418,7 +2418,7 @@ class QuestionsSeeder extends Seeder
             Tipo de trabajo de investigación conducente a la obtención de un grado académico y/o título profesional en el Perú, según el Reglamento RENATI. 
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2447,7 +2447,7 @@ class QuestionsSeeder extends Seeder
             Especificar URL
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Añadir URL'
         ]);
@@ -2476,7 +2476,7 @@ class QuestionsSeeder extends Seeder
             Especificar URL.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Ejemplificar. Añadir URL.'
         ]);
@@ -2505,7 +2505,7 @@ class QuestionsSeeder extends Seeder
             Especificar URL.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Ejemplificar. Añadir URL.'
         ]);
@@ -2534,7 +2534,7 @@ class QuestionsSeeder extends Seeder
             Especificar URL.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Ejemplificar. Añadir URL.'
         ]);
@@ -2563,7 +2563,7 @@ class QuestionsSeeder extends Seeder
             Especificar URL.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Ejemplificar. Añadir URL.'
         ]);
@@ -2592,7 +2592,7 @@ class QuestionsSeeder extends Seeder
             Especificar URL.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Ejemplificar. Añadir URL.'
         ]);
@@ -2619,7 +2619,7 @@ class QuestionsSeeder extends Seeder
             El repositorio facilitará al autor el cumplimiento con la normativa vigente. En la ingesta de materiales se debe obtener la declaración del autor de que ha respetado los derechos de propiedad intelectual a terceros. Sería, por ejemplo, el caso de las tesis doctorales, etc.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2646,7 +2646,7 @@ class QuestionsSeeder extends Seeder
             Se valora en este punto que los metadatos en Dublin Core exportados por el repositorio deben incluir definido y completado el campo rights con todas las declaraciones de administración de derechos para acceder o utilizar el objeto, o una referencia a un servicio que proporcione esta información. (Ver directrices de ALICIA)
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2673,7 +2673,7 @@ class QuestionsSeeder extends Seeder
             En caso afirmativo, añadir la URL.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Añadir URL del documento'
         ]);
@@ -2702,7 +2702,7 @@ class QuestionsSeeder extends Seeder
             Incluir la URL.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Añadir URL del documento'
         ]);
@@ -2731,7 +2731,7 @@ class QuestionsSeeder extends Seeder
             Especificar.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Especificar'
         ]);
@@ -2758,7 +2758,7 @@ class QuestionsSeeder extends Seeder
             En caso de que la institución cuente con una política sobre acceso abierto aparecerá enlazada desde el repositorio.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Añadir URL.'
         ]);
@@ -2783,7 +2783,7 @@ class QuestionsSeeder extends Seeder
             'subcategory_id' => 1,
             'help_text' => '
             Especificar el enlace en caso afirmativo.',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Especificar'
         ]);
@@ -2812,7 +2812,7 @@ class QuestionsSeeder extends Seeder
             Escribir el nombre en el campo indicado.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => '¿Cuál es ese nombre?'
         ]);
@@ -2837,7 +2837,7 @@ class QuestionsSeeder extends Seeder
             'subcategory_id' => 1,
             'help_text' => '
             .',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2870,7 +2870,7 @@ class QuestionsSeeder extends Seeder
             Declaración de Bethesda
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Indicar en cuál(es)'
         ]);
@@ -2895,7 +2895,7 @@ class QuestionsSeeder extends Seeder
             'subcategory_id' => 2,
             'help_text' => '
             .',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2924,7 +2924,7 @@ class QuestionsSeeder extends Seeder
             Especificar la URL.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Especificar URL.'
         ]);
@@ -2949,7 +2949,7 @@ class QuestionsSeeder extends Seeder
             'subcategory_id' => 1,
             'help_text' => '
             .',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -2974,7 +2974,7 @@ class QuestionsSeeder extends Seeder
             'subcategory_id' => 1,
             'help_text' => '
             Especificar URL.',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Especificar URL.'
         ]);
@@ -3001,7 +3001,7 @@ class QuestionsSeeder extends Seeder
             Entre estas, se valora la existencia de: una oferta de sesiones de formación e información sobre el depósito de los documentos en el repositorio; acciones de fomento del acceso abierto mediante organización de eventos, presentaciones, campañas en facultades y departamentos, semanas de acceso abierto, seminarios, pósters y afiches; utilización de los medios de comunicación; utilización de redes sociales, así como guías y materiales de soporte y asesoramiento disponibles para los autores, etc.
             
             Especificar cuáles.',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Especificar cuáles'
         ]);
@@ -3026,7 +3026,7 @@ class QuestionsSeeder extends Seeder
             'subcategory_id' => 1,
             'help_text' => '
             Añadir la URL del documento.',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Añadir URL del documento'
         ]);
@@ -3053,7 +3053,7 @@ class QuestionsSeeder extends Seeder
             El repositorio facilitará al autor el cumplimiento con la normativa vigente. En la ingesta de materiales se debe obtener la declaración del autor de que ha respetado los derechos de propiedad intelectual a terceros. Sería, por ejemplo, el caso de las tesis doctorales, etc.
             
             ',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Especificar cómo y para qué tipo de materiales'
         ]);
@@ -3078,7 +3078,7 @@ class QuestionsSeeder extends Seeder
             'subcategory_id' => 2,
             'help_text' => '
             .',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 0,
             'description_label' => ''
         ]);
@@ -3103,7 +3103,7 @@ class QuestionsSeeder extends Seeder
             'subcategory_id' => 1,
             'help_text' => '
             .',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Incluir el enlace'
         ]);
@@ -3128,7 +3128,7 @@ class QuestionsSeeder extends Seeder
             'subcategory_id' => 1,
             'help_text' => '
             .',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Incluir el enlace'
         ]);
@@ -3153,7 +3153,7 @@ class QuestionsSeeder extends Seeder
             'subcategory_id' => 1,
             'help_text' => '
             .',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Incluir el enlace'
         ]);
@@ -3178,7 +3178,7 @@ class QuestionsSeeder extends Seeder
             'subcategory_id' => 1,
             'help_text' => '
             .',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Incluir el enlace'
         ]);
@@ -3203,7 +3203,7 @@ class QuestionsSeeder extends Seeder
             'subcategory_id' => 1,
             'help_text' => '
             .',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Incluir el enlace'
         ]);
@@ -3228,7 +3228,7 @@ class QuestionsSeeder extends Seeder
             'subcategory_id' => 1,
             'help_text' => '
             .',
-            'is_optional' => 1,
+            'is_optional' => 0,
             'has_description_field' => 1,
             'description_label' => 'Incluir el enlace'
         ]);

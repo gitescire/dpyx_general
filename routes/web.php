@@ -28,8 +28,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::prefix('users')->middleware('auth')->group(function () {
     Route::get('/', \App\Http\Livewire\Users\Index::class)->middleware('can:index users')->name('users.index');
     Route::get('create', \App\Http\Livewire\Users\Create::class)->middleware('can:create users')->name('users.create');
+    Route::get('account/edit', \App\Http\Livewire\Users\Account\Edit::class)->name('users.account.edit');
     Route::get('{user}/edit', \App\Http\Livewire\Users\Edit::class)->middleware('can:edit users')->name('users.edit');
     Route::get('account', \App\Http\Livewire\Users\Account::class)->name('users.account');
+    Route::post('{user}/account', \App\Http\Controllers\Users\StoreAccountController::class)->name('users.account.store');
     Route::post('/', \App\Http\Controllers\Users\StoreUserController::class)->middleware('can:create users')->name('users.store');
     Route::put('{user}', \App\Http\Controllers\Users\UpdateUserController::class)->middleware('can:edit users')->name('users.update');
     Route::delete('{user}', \App\Http\Controllers\Users\DestroyUserController::class)->middleware('can:delete users')->name('users.destroy');

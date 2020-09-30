@@ -51,6 +51,17 @@ class Question extends Model
     }
 
     /**
+     * ===========
+     * SCOPE METHODS
+     * ===========
+     */
+
+    public function scopeRequired($query)
+    {
+        return $query->where('is_optional', 0);
+    }
+
+    /**
      * ========
      * ATTRIBUTES
      * ========

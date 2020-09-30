@@ -20,7 +20,7 @@ class CreateQuestionsTable extends Migration
             $table->text('description');
             $table->unsignedInteger('order');
             $table->text('help_text')->nullable();
-            $table->boolean('is_optional');
+            $table->boolean('is_optional')->default(0);
             $table->boolean('has_description_field');
             $table->string('description_label')->nullable();
             $table->timestamps();
