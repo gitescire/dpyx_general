@@ -5,10 +5,15 @@
         description="Este módulo permite ver las categorias registradas para las evaluaciones."></x-page-title>
     @endsection
 
-    <div class="d-flex justify-content-end mb-3">
-        <a href="{{route('categories.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0">
-            <i class="fas fa-plus"></i> Agregar
-        </a>
+    <div class="row d-flext justify-content-between mb-3">
+        <div class="col-12 col-lg-4">
+            <x-input-search/>
+        </div>
+        <div class="col-12 col-lg-3">
+            <a href="{{route('categories.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0 float-right">
+                <i class="fas fa-plus"></i> Agregar
+            </a>
+        </div>
     </div>
 
     <div class="table-responsive shadow">
@@ -32,7 +37,7 @@
                             data-target="#deleteCategory{{$category->id}}">
                             <i class="fas fa-trash"></i>
                         </button>
-                        <x-modals.categories.delete :category="$category"/>
+                        <x-modals.categories.delete :category="$category" />
                         <a href="{{route('categories.edit',[$category])}}" class="btn btn-warning btn-shadow rounded-0">
                             <i class="fas fa-pencil-alt"></i>
                         </a>

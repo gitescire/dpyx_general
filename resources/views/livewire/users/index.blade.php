@@ -1,16 +1,22 @@
 <div class="mb-4">
 
     @section('header')
-        <x-page-title title="Lista de usuarios" description="Este módulo permite ver la información de los usuarios actualmente registrados."></x-page-title>
+    <x-page-title title="Lista de usuarios"
+        description="Este módulo permite ver la información de los usuarios actualmente registrados."></x-page-title>
     @endsection
 
-    @can('create users')
-    <div class="d-flex justify-content-end mb-3">
-        <a href="{{route('users.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0">
-            <i class="fas fa-plus"></i> Añadir
-        </a>
+    <div class="row d-flext justify-content-between mb-3">
+        <div class="col-12 col-lg-4">
+            <x-input-search />
+        </div>
+        <div class="col-12 col-lg-4">
+            @can('create users')
+            <a href="{{route('users.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0 float-right">
+                <i class="fas fa-plus"></i> Añadir
+            </a>
+            @endcan
+        </div>
     </div>
-    @endcan
 
     <div class="table-responsive shadow mb-3 bg-white">
         <table class="table table-bordered m-0">
@@ -37,16 +43,16 @@
                     @canany(['delete users','edit users'])
                     <td>
                         @can('delete users')
-                        <x-modals.users.delete :user="$user"/>
-                        
+                        <x-modals.users.delete :user="$user" />
+
                         {{-- <form action="{{route('users.destroy',[$user])}}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger rounded-0 btn-shadow">
-                                <span data-toggle="tooltip" title="Eliminar" wire:ignore.self>
-                                    <i class="fas fa-trash"></i>
-                                </span>
-                            </button>
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger rounded-0 btn-shadow">
+                            <span data-toggle="tooltip" title="Eliminar" wire:ignore.self>
+                                <i class="fas fa-trash"></i>
+                            </span>
+                        </button>
                         </form> --}}
                         @endcan
                         @can('edit users')

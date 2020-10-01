@@ -14,17 +14,16 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12 mb-3">
-                            <h6 class="text-center text-uppercase">
-                                <small>
-                                    {{$categoryChoosed->name}}
-                                </small>
-                            </h6>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <div class="card">
-                                <span class="p-1">
-                                    La categoría cuenta con preguntas que deben ser reasignadas a otra categoría
-                                </span>
+                            <div class="alert alert-info fade show" role="alert">
+                                <h4 class="alert-heading">¡Espera!</h4>
+                                <p>
+                                    La categoría <b>{{$categoryChoosed->name}}</b> cuenta con preguntas que deben ser
+                                    reasignadas a otra categoría.
+                                </p>
+                                <hr>
+                                <p class="mb-0">
+                                    Selecciona la categoría a donde deseas mover las preguntas antes de eliminarlas.
+                                </p>
                             </div>
                         </div>
                         <div class="col-12">

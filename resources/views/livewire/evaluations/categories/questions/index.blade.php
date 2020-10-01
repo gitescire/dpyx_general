@@ -5,6 +5,10 @@
         description="Este módulo permite responder las preguntas para evaluar el repositorio."></x-page-title>
     @endsection
 
+    {{-- {{dd(auth()->user())}} --}}
+    {{-- {{dd($evaluation->evaluator)}} --}}
+
+
     @if ($evaluation->is_answered && Auth::user()->hasRole('usuario'))
     <div class="row mb-3">
         <div class="col-12">
@@ -166,14 +170,16 @@
                                                             </select>
                                                         </td>
                                                         <td>
-                                                            @can('edit evaluations')
+                                                            {{-- @can('edit evaluations') --}}
+                                                            @if (auth()->user()->id == $evaluation->evaluator->id)
                                                             <template x-if="question.answer">
                                                                 <a :href="question.answer.route"
                                                                     class="btn btn-info btn-shadow rounded-0">
                                                                     <i class="fas fa-plus"></i>
                                                                 </a>
                                                             </template>
-                                                            @endcan
+                                                            @endif
+                                                            {{-- @endcan --}}
                                                             <template
                                                                 x-if="question.answer && question.answer.observation">
                                                                 <a :href="question.answer.route"
