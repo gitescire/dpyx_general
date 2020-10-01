@@ -13,6 +13,7 @@ class Questions extends Component
     public $choices;
     public $categories;
     public $subcategories;
+    public $allQuestions;
 
     /**
      * Create a new component instance.
@@ -24,6 +25,7 @@ class Questions extends Component
         $this->question = $question;
         $this->categories = Category::get();
         $this->subcategories = Subcategory::get();
+        $this->allQuestions = Question::get()->each(function($question){$question->append('max_punctuation');});
         $this->choices = $this->question ? $this->question->choices()->orderBy('punctuation','desc')->get() : collect();
     }
 

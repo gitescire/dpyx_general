@@ -12,7 +12,6 @@ class Question extends Model
     protected $fillable = [
         'category_id',
         'subcategory_id',
-        'max_punctuation',
         'help_text',
         'order',
         'is_optional',

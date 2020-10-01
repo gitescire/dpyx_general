@@ -13,7 +13,6 @@ class StoreQuestionController extends Controller
     {
 
         $question = new Question;
-        $question->max_punctuation = $request->max_punctuation;
         $question->description = $request->description;
         $question->order = $request->order;
         $question->help_text = $request->help_text;
