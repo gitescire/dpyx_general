@@ -85,7 +85,7 @@
                         <label for="" class="text-muted text-uppercase">
                             Categoría
                         </label>
-                        <select name="category_id" x-model="categoryChoosedId" class="form-control" required>
+                        <select name="category_id" class="form-control" required>
                             <option value="">seleccionar</option>
                             @foreach ($categories as $category)
                             <option value="{{$category->id}}"
@@ -99,11 +99,12 @@
                         <label for="" class="text-muted text-uppercase">
                             Subcategoría
                         </label>
-                        <select name="subcategory_id" x-model="subcategoryChoosedId" class="form-control" required>
+                        <select name="subcategory_id" class="form-control" required>
                             <option value="">seleccionar</option>
                             @foreach ($subcategories as $subcategory)
                             <option value="{{$subcategory->id}}"
                                 {{$question && $question->subcategory->id == $subcategory->id ? 'selected' : ''}}>
+                                {{-- {{$question->subcategory->id}} {{$subcategory->id}} </option> --}}
                                 {{$subcategory->name}}</option>
                             @endforeach
                         </select>

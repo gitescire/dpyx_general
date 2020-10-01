@@ -23,6 +23,15 @@ class StoreQuestionController extends Controller
         $question->subcategory_id = $request->subcategory_id;
         $question->save();
 
+        if($request->options){
+            foreach ($request->options as $option) {
+                $question->choices()->create([
+                    'description' => $option['description'],
+                    'punctuation' => $option['punctuation']
+                ]);                
+            }
+        }
+
         Alert::success('¡Pregunta creada!');
         return redirect()->route('questions.index');
     }
