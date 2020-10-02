@@ -82,7 +82,7 @@
             @foreach ($questions as $question)
             <tr>
                 <td>{{$question->id}}</td>
-                <td>{{$question->description}}</td>
+                <td>{!! str_replace(['\n\r','\n','\r'], '<br/>', $question->description) !!}</td>
                 <td>Max. {{$question->max_punctuation}}%</td>
                 <td>{{$question->order}}</td>
                 <td>{{$question->category->name}}</td>

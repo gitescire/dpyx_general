@@ -71,14 +71,7 @@
                         })
                         category.max_punctuation = _.sum(max_punctuations)
 
-                        // console.log(category.punctuation + " " + category.max_punctuation)
-
-                        console.log(category.punctuation)
-                        console.log(category.max_punctuation)
-
                         category.percentage = category.punctuation / category.max_punctuation * 100
-
-                        console.log(category.percentage)
 
                         percentageSpan = document.querySelector(`span[percentage-id="${category.id}"]`);
                         percentageSpan.innerText = `${category.percentage.toFixed(2)}%`
@@ -173,10 +166,14 @@
 
                         preservationPunctuation = _.sum(punctuations)
 
+                        red = Math.floor(Math.random() * 255 + 1);
+                        green = Math.floor(Math.random() * 255 + 1);
+                        blue = Math.floor(Math.random() * 255 + 1);
+
                         return {
                             label: [category.short_name],
-                            backgroundColor: "rgba(255,221,50,0.2)",
-                            borderColor: "rgba(255,221,50,1)",
+                            backgroundColor: `rgba(${red},${green},${blue},0.2)`,
+                            borderColor: `rgba(${red},${green},${blue},1)`,
                             data: [{
                                 x: accesibilityPunctuation,
                                 y: preservationPunctuation,

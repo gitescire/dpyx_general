@@ -14,7 +14,7 @@
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
     {{-- <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}"> --}}
-    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type='image/png' />
+    <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" type='image/png' />
 
     {{-- Title --}}
     <title>{{ config('app.name', 'Laravel') }}</title>

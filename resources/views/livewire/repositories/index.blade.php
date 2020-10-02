@@ -13,8 +13,8 @@
                     <th class="text-uppercase">Status</th>
                     <th class="text-uppercase">Encargado</th>
                     <th class="text-uppercase">Evaluador</th>
-                    <th class="text-uppercase">Evaluación</th>
-                    <th class="text-uppercase">Acciones</th>
+                    <th class="text-uppercase">Gráfica de resultados</th>
+                    <th class="text-uppercase">Cuestionario</th>
                 </tr>
             </thead>
             <tbody>

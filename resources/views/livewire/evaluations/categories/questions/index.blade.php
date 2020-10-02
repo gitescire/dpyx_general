@@ -70,14 +70,14 @@
                                                 <div class="widget-chat-wrapper-outer">
                                                     <div class="widget-chart-content">
                                                         <h6 class="widget-subheading">
-                                                            concytec
+                                                            Puntuación CONCYTEC
                                                         </h6>
                                                         <div class="widget-chart-flex">
                                                             <div class="widget-numbers mb-0 w-100">
                                                                 <div class="widget-chart-flex">
                                                                     <div class="fsize-4 text-danger">
                                                                         <span
-                                                                            x-text="getTotalPunctuation(subcategory) + '%'"></span>
+                                                                            x-text="getTotalPunctuationOfConcytec(subcategory) + '%'"></span>
                                                                     </div>
                                                                     <div class="ml-auto">
                                                                         <div
@@ -87,7 +87,41 @@
                                                                                     de
                                                                                 </span>
                                                                                 <span
-                                                                                    x-text="getTotalMaxPunctuation(subcategory) + '%'"></span>
+                                                                                    x-text="getTotalMaxPunctuationOfConcytec(subcategory) + '%'"></span>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-3">
+                                            <div
+                                                class="card-shadow-primary mb-3 widget-chart widget-chart2 text-left card">
+                                                <div class="widget-chat-wrapper-outer">
+                                                    <div class="widget-chart-content">
+                                                        <h6 class="widget-subheading">
+                                                            Puntuación complementaria
+                                                        </h6>
+                                                        <div class="widget-chart-flex">
+                                                            <div class="widget-numbers mb-0 w-100">
+                                                                <div class="widget-chart-flex">
+                                                                    <div class="fsize-4 text-danger">
+                                                                        <span
+                                                                            x-text="getTotalPunctuationOfComplementaries(subcategory) + '%'"></span>
+                                                                    </div>
+                                                                    <div class="ml-auto">
+                                                                        <div
+                                                                            class="widget-title ml-auto font-size-lg font-weight-normal text-muted">
+                                                                            <span class="text-danger pl-2">
+                                                                                <span class="pr-1">
+                                                                                    de
+                                                                                </span>
+                                                                                <span
+                                                                                    x-text="getTotalMaxPunctuationOfComplementaries(subcategory) + '%'"></span>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -376,15 +410,16 @@
                 },
 
                 /**
-                 * 
-                 * 
-                 * 
-                 **/   
-                getTotalPunctuation(subcategory){
+                *
+                *
+                *
+                */
+
+                getTotalPunctuationOfComplementaries(subcategory){
                     total = 0;
                     requiredQuestions = this.requiredQuestions(subcategory)
                     requiredQuestions.forEach(question => {
-                        total += question.choice ? parseFloat(question.current_value) : 0
+                        total += question.choice && question.is_optional ? parseFloat(question.current_value) : 0
                     });
                     return total
                 },
@@ -394,10 +429,38 @@
                  * 
                  * 
                  **/   
-                getTotalMaxPunctuation(subcategory){
+                getTotalPunctuationOfConcytec(subcategory){
+                    total = 0;
+                    requiredQuestions = this.requiredQuestions(subcategory)
+                    requiredQuestions.forEach(question => {
+                        total += question.choice && !question.is_optional ? parseFloat(question.current_value) : 0
+                    });
+                    return total
+                },
+
+                /**
+                 * 
+                 * 
+                 * 
+                 **/   
+
+                getTotalMaxPunctuationOfComplementaries(subcategory){
                     total = 0;
                     subcategory.questions.forEach(question => {
-                        total += parseFloat(question.max_punctuation)
+                        total += question.is_optional ? parseFloat(question.max_punctuation) : 0
+                    });
+                    return total
+                },
+
+                /**
+                 * 
+                 * 
+                 * 
+                 **/   
+                getTotalMaxPunctuationOfConcytec(subcategory){
+                    total = 0;
+                    subcategory.questions.forEach(question => {
+                        total += question.is_optional ? 0 : parseFloat(question.max_punctuation)
                     });
                     return total
                 },
