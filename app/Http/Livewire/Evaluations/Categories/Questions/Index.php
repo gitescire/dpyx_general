@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Evaluations\Categories\Questions;
 use App\Models\Announcement;
 use App\Models\Answer;
 use App\Models\Category;
+use App\Models\Choice;
 use App\Models\Evaluation;
 use App\Models\Question;
 use App\Models\Subcategory;
@@ -21,9 +22,11 @@ class Index extends Component
     public $subcategories;
     public $answers;
     public $announcement;
+    public $nextCategory;
 
     public function mount(Evaluation $evaluation, Category $category)
     {
+        $this->nextCategory = Category::where('id', '>', $category->id)->first() ?? $category;
         $this->evaluation = $evaluation->append('is_answerable');
         $this->repository = $this->evaluation->repository;
         $this->categoryChoosed = $category;
@@ -67,6 +70,48 @@ class Index extends Component
         });
 
         // $this->answers = Answer::where('evaluation_id', $evaluation->id)->get();
+    }
+
+    public function storeAnswer(Question $question, $choice= null){
+        if($choice == null){
+            Answer::where('question_id',$question->id)->where('evaluation_id',$this->evaluation->id)->delete();
+        }else{
+            $choice = Choice::find($choice['id']);
+            Answer::updateOrCreate([
+                'evaluation_id' => $this->evaluation->id,
+                'question_id' => $choice->question->id
+            ], [
+                'choice_id' => $choice->id,
+                'question_id' => $choice->question->id,
+                'evaluation_id' => $this->evaluation->id,
+            ]);
+    
+        }
+        
+        $requiredQuestionsIds = Question::required()->get()->pluck('id')->flatten();
+        $requiredQuestionsAnswered = $this->evaluation->answers()->whereIn('question_id',$requiredQuestionsIds)->get();
+
+        if ($requiredQuestionsIds->count() == $requiredQuestionsAnswered->count()) {
+            $this->evaluation->status = 'answered';
+            $this->evaluation->save();
+        }else{
+            $this->evaluation->status = 'in progress';
+            $this->evaluation->save();
+        }
+
+
+
+        // $requiredQuestionsIds = Question::required()->get()->pluck('id')->flatten();
+        // $requiredQuestionsAnswered = $this->evaluation->answers()->whereIn('question_id',$requiredQuestionsIds)->get();
+        // if ($requiredQuestionsIds->count() == $requiredQuestionsAnswered->count()) {
+        //     $this->evaluation->status = 'answered';
+        //     $this->evaluation->save();
+        // }
+    }
+
+    public function updateDescription(Answer $answer, $description){
+        $answer->description = $description;
+        $answer->save();
     }
 
     public function render()

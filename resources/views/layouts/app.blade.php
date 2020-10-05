@@ -1955,13 +1955,13 @@
         </div>
     </div>
     <div class="app-drawer-overlay d-none animated fadeIn"></div>
+    @livewireScripts
     <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 
     @include('sweetalert::alert')
 
     @stack('modals')
     @stack('scripts')
-    @livewireScripts
 </body>
 
 </html>

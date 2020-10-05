@@ -49,9 +49,9 @@
     </ul>
 
     <div>
-        <form action="{{route('evaluations.categories.questions.store',[$evaluation,$categoryChoosed])}}" method="POST">
-            @csrf
-            @method('POST')
+        {{-- <form action="{{route('evaluations.categories.questions.store',[$evaluation,$categoryChoosed])}}" method="POST"> --}}
+            {{-- @csrf --}}
+            {{-- @method('POST') --}}
             <div>
                 <template x-for="subcategory in subcategories" :key="subcategory">
                     <div>
@@ -158,13 +158,14 @@
                                                                     <span class="text-muted"
                                                                         x-text="question.description_label"></span>
                                                                     <template x-if="question.is_answerable">
-                                                                        <textarea :name="`descriptions[${question.id}]`"
+                                                                        <textarea x-on:change="$wire.updateDescription(question.answer, question.answer.description)"
+                                                                            x-model="question.answer.description"
                                                                             x-text="question.answer ? question.answer.description : ''"
                                                                             rows="2" class="form-control"
                                                                             required></textarea>
                                                                     </template>
                                                                     <template x-if="!question.is_answerable">
-                                                                        <textarea :name="`descriptions[${question.id}]`"
+                                                                        <textarea
                                                                             x-text="question.answer ? question.answer.description : ''"
                                                                             rows="2" class="form-control" required
                                                                             disabled readonly></textarea>
@@ -181,7 +182,7 @@
                                                                     <input type="hidden" name="choices[]"
                                                                         x-model="question.current_choice_id">
                                                                     <select :question-id="question.id"
-                                                                        x-on:change="setCurrentChoice(question)"
+                                                                        x-on:change="setCurrentChoice(question); $wire.storeAnswer(question, question.choice)"
                                                                         class="form-control" required>
 
                                                                         <option value="">seleccionar</option>
@@ -236,12 +237,12 @@
 
             <template x-if="evaluation.is_answerable">
                 <div class="d-flex justify-content-end mb-3">
-                    <button class="btn btn-success btn-shadow btn-wide rounded-0">
+                    <a href="{{route('evaluations.categories.questions.index',[$evaluation, $nextCategory])}}" class="btn btn-success btn-shadow btn-wide rounded-0">
                         <i class="fas fa-save"></i> Continuar
-                    </button>
+                    </a>
                 </div>
             </template>
-        </form>
+        {{-- </form> --}}
     </div>
 
 
