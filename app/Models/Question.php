@@ -60,6 +60,11 @@ class Question extends Model
         return $query->where('is_optional', 0);
     }
 
+    public function scopeSupplementaries($query)
+    {
+        return $query->where('is_optional', 1);
+    }
+
     /**
      * ========
      * ATTRIBUTES

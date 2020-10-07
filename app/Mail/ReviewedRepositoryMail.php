@@ -35,6 +35,8 @@ class ReviewedRepositoryMail extends Mailable
             $query->where('evaluation_id', $evaluation->id);
         }])->get();
 
+
+
         $this->evaluationPDF = PDF::loadView('pdfs.evaluation', compact('repository', 'categories', 'subcategories'));
         $this->evaluationPDF->setPaper('Letter');
         $this->certificationPDF = PDF::loadView('pdfs.certification', compact('repository'));

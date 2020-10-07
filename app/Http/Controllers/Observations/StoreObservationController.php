@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Observations;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreObservationRequest;
 use App\Models\Answer;
 use App\Models\Observation;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class StoreObservationController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(StoreObservationRequest $request)
     {
         $observation = Observation::updateOrCreate([
             'answer_id' => $request->answer_id

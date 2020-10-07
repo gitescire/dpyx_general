@@ -76,7 +76,7 @@ class Evaluation extends Model
 
     public function getIsReviewableAttribute()
     {
-        if (Auth::user()->id != $this->evaluator_id) {
+        if (Auth::user()->id != $this->evaluator->id) {
             return false;
         }
         if (!$this->in_review) {

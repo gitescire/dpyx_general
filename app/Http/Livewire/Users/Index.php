@@ -42,7 +42,8 @@ class Index extends Component
         if (Auth::user()->is_admin) {
             $this->users = $this->users->paginate(10);
         } else {
-            $this->users = $this->users->whereIn('id', Evaluation::where('evaluator_id', Auth::user()->id)->get()->pluck('evaluation.responsible.id')->flatten()->unique())->paginate(10);
+            $repositoryResponsiblesIds = Evaluation::where('evaluator_id', Auth::user()->id)->get()->pluck('repository.responsible.id')->flatten()->unique();
+            $this->users = $this->users->whereIn('id', $repositoryResponsiblesIds)->paginate(10);
         }
     }
 

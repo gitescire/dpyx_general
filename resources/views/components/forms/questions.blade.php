@@ -18,16 +18,18 @@
                         <label for="" class="text-muted text-uppercase">
                             Opciones
                         </label>
-                        <div class="card" >
+                        <div class="card">
                             <div class="card-body">
 
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         {{-- <label for="" class="text-uppercase text-muted">Texto</label><br> --}}
-                                        <input type="text" placeholder="texto" class="form-control" x-model="newOption.description">
+                                        <input type="text" placeholder="texto" class="form-control"
+                                            x-model="newOption.description">
                                     </div>
                                     {{-- <label for="" class="text-uppercase text-muted">Valor</label><br> --}}
-                                    <input type="number" placeholder="valor" class="form-control ml-1" x-model="newOption.punctuation">
+                                    <input type="number" placeholder="valor" class="form-control ml-1"
+                                        x-model="newOption.punctuation">
                                     <div class="input-group-append ml-1">
                                         <button class="btn btn-info btn-shadow rounded-0" type="button"
                                             x-on:click="addOption()" x-ref="addButton">
@@ -105,7 +107,7 @@
                             <option value="{{$subcategory->id}}"
                                 {{$question && $question->subcategory->id == $subcategory->id ? 'selected' : ''}}>
                                 {{-- {{$question->subcategory->id}} {{$subcategory->id}} </option> --}}
-                                {{$subcategory->name}}</option>
+                            {{$subcategory->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -119,19 +121,30 @@
                 </div> --}}
                 {{--  --}}
                 <div class="col-12 mb-3">
-                    <label for="" class="text-muted text-uppercase">
-                        ¿Definida por concytec?
-                    </label>
-                    <input type="checkbox" {{$question && $question->is_optional ? 'checked' : ''}} name="is_optional">
+
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <label for="" class="m-0 text-muted text-uppercase">
+                                    ¿La pregunta es complementaria?
+                                </label>
+                                <input class="float-right" type="checkbox" {{$question && $question->is_optional ? 'checked' : ''}}
+                                    name="is_optional">
+                            </li>
+                            <li class="list-group-item">
+                                <label for="" class="m-0 text-muted text-uppercase">
+                                    ¿Incluir campo para capturar texto?
+                                </label>
+                                <input class="float-right" type="checkbox"
+                                    {{$question && $question->has_description_field ? 'checked' : ''}}
+                                    name="has_description_field">
+                            </li>
+                        </ul>
+                    </div>
+
+
                 </div>
-                {{--  --}}
-                <div class="col-12 mb-3">
-                    <label for="" class="text-muted text-uppercase">
-                        ¿Incluir campo para capturar texto?
-                    </label>
-                    <input type="checkbox" {{$question && $question->has_description_field ? 'checked' : ''}}
-                        name="has_description_field">
-                </div>
+
                 {{--  --}}
                 <div class="col-12 mb-3">
                     <label for="" class="text-muted text-uppercase">

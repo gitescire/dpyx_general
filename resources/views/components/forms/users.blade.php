@@ -45,7 +45,7 @@
                         <input type="text" name="repository_name" class="form-control" value="{{$user && $user->hasRole('usuario') && $user->has_repositories ? $user->repositories()->first()->name : ''}}" required>
                     </div>
                 </template>
-                @if ( getenv('IS_EVALUABLE') )
+                @if ( config('app.is_evaluable') )
                 <template x-if="isUser">
                     <div class="col-12 mb-3">
                         <label for="" class="text-muted text-uppercase">Evaluador</label>

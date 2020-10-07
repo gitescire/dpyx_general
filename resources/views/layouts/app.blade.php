@@ -101,12 +101,14 @@
                                         <i class="metismenu-icon fas fa-box-open"></i> Repositorios
                                     </a>
                                 </li>
+                                @if ( config('app.is_evaluable') )
                                 <li>
                                     <a href="{{route('announcements.index')}}">
                                         <i class="metismenu-icon fas fa-calendar-check">
                                         </i>Convocatorias
                                     </a>
                                 </li>
+                                @endif
                                 <li class="text-center mt-5" style="border: 1px solid #c3c6d4 !important;">
                                     <a href="https://www.dpyx.net" target="_blank">
                                     Más información

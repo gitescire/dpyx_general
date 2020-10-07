@@ -93,7 +93,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         $role = Role::create(['name' => 'usuario']);
         
-        if( getenv('IS_EVALUABLE') ){
+        if( config('app.is_evaluable') ){
             $role = Role::create(['name' => 'evaluador']);
             $role->givePermissionTo(['create announcements', 'edit announcements']);
             $role->givePermissionTo(['create observations']);

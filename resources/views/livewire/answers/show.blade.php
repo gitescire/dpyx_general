@@ -6,6 +6,12 @@
     </x-page-title>
     @endsection
 
+    @if ($errors->first())
+        <div class="alert alert-danger">
+                {{$errors->first()}}
+        </div>
+    @endif
+
     <form action="{{route('observations.store')}}" method="POST" enctype="multipart/form-data">
 
         @csrf

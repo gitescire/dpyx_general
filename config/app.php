@@ -236,4 +236,12 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
+    /**
+     * 
+     * 
+     * 
+     */
+
+    'is_evaluable' => env('IS_EVALUABLE', false),
+
 ];

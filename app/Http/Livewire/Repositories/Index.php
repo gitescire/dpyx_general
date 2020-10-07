@@ -26,7 +26,7 @@ class Index extends Component
 
     protected function handleRepositories(){
         if(Auth::user()->is_admin){
-            $this->repositories = Repository::paginate(10);
+            $this->repositories = Repository::whereHas()->paginate(10);
         }else if(Auth::user()->is_evaluator){
             $this->repositories = Repository::whereHas('evaluation', function($query){
                 return $query->where('evaluator_id',Auth::user()->id);
