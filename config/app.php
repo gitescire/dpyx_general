@@ -243,5 +243,7 @@ return [
      */
 
     'is_evaluable' => env('IS_EVALUABLE', false),
+    'answers_are_necessary' => env('ANSWERS_ARE_NECESSARY', true),
+    'has_supplementary_questions' => env('HAS_SUPPLEMENTARY_QUESTIONS', true),
 
 ];

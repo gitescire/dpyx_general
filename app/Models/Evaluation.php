@@ -34,7 +34,7 @@ class Evaluation extends Model
 
     public function evaluator()
     {
-        return $this->belongsTo('App\Models\User','evaluator_id','id');
+        return $this->belongsTo('App\Models\User', 'evaluator_id', 'id');
     }
 
     /**
@@ -43,7 +43,8 @@ class Evaluation extends Model
      * ========
      */
 
-    public function getIsInProgressAttribute(){
+    public function getIsInProgressAttribute()
+    {
         return $this->status == 'in progress';
     }
 
@@ -57,6 +58,23 @@ class Evaluation extends Model
         return $this->status == 'answered';
     }
 
+    public function getIsViewableAttribute()
+    {
+        if (Auth::user()->is_admin && $this->is_in_progress) {
+            return false;
+        }
+        if (Auth::user()->is_evaluator && $this->is_in_progress) {
+            return false;
+        }
+        if (Auth::user()->is_admin && $this->is_answered) {
+            return false;
+        }
+        if (Auth::user()->is_evaluator && $this->is_answered) {
+            return false;
+        }
+        return true;
+    }
+
     public function getIsAnswerableAttribute()
     {
         if (Auth::user()->id != $this->repository->responsible->id) {
@@ -66,7 +84,7 @@ class Evaluation extends Model
             // dd('2 no');
             return false;
         }
-        if(!$this->repository->is_in_progress && !$this->repository->has_observations){
+        if (!$this->repository->is_in_progress && !$this->repository->has_observations) {
             // dd('3 no');
             return false;
         }
@@ -76,6 +94,10 @@ class Evaluation extends Model
 
     public function getIsReviewableAttribute()
     {
+        if (!config('app.is_evaluable')) {
+            return false;
+        }
+
         if (Auth::user()->id != $this->evaluator->id) {
             return false;
         }

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Evaluation;
+use App\Models\Repository;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -24,12 +26,46 @@ class UsersSeeder extends Seeder
         $user->assignRole('admin');
 
         $user = User::create([
+            'name' => 'Omar',
+            'phone' => null,
+            'email' => 'ovilla@ibsaweb.com',
+            'password' => bcrypt('Pruebas123')
+        ])->assignRole('admin');
+
+        $user = User::create([
             'name' => 'Nydia Lopez',
             'phone' => null,
             'email' => 'nlopez@escire.mx',
             'password' => bcrypt('1Aprender3948.')
+        ])->assignRole('admin');
+        
+        $userEvaluator = User::create([
+            'name' => 'Nydia Repositorio',
+            'phone' => null,
+            'email' => 'valni.info@gmail.com',
+            'password' => bcrypt('1Aprender3948.')
+        ])->assignRole('evaluador');
+
+        $user = User::create([
+            'name' => 'Nydia Repositorio',
+            'phone' => null,
+            'email' => 'vallei__oswal@hotmail.com',
+            'password' => bcrypt('1Aprender3948.')
+        ])->assignRole('usuario');
+
+        $repository = Repository::create([
+            'responsible_id' => $user->id,
+            'name' =>'escire',
+            'status' => 'in progress',
         ]);
 
-        $user->assignRole('admin');
+        $evaluation = Evaluation::create([
+            'repository_id' => $repository->id,
+            'evaluator_id' => $userEvaluator->id,
+            'status' => 'in progress',
+        ]);
+
+        
+
     }
 }

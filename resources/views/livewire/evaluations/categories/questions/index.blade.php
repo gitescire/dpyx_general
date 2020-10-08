@@ -6,7 +6,7 @@
     @endsection
 
     @if ( config('app.is_evaluable') )
-    @if ($evaluation->is_answered && Auth::user()->hasRole('usuario'))
+    @if (Auth::user()->hasRole('usuario') && ( $evaluation->is_answered || !config('app.answers_are_necessary') ) )
     <div class="row mb-3">
         <div class="col-12">
             <form action="{{route('evaluations.send',[$evaluation])}}" method="POST" x-ref="formSendToConcytec">
@@ -28,11 +28,6 @@
                     wire:click="toggleSupplementaryQuestions()">
                 <label class="custom-control-label text-uppercase text-danger" for="customCheck1">
                     ¿Mostrar preguntas complementarias?
-                    @if ($showComplementaryQuestions)
-                    si
-                    @else
-                    no
-                    @endif
                 </label>
             </div>
         </div>
@@ -97,6 +92,7 @@
                     </div>
                 </div>
 
+                @if ( config('app.has_supplementary_questions') )
                 @if ($subcategory->questions()->supplementaries()->get()->count())
                 <div class="col-12 col-lg-3">
                     <div class="card-shadow-primary mb-3 widget-chart widget-chart2 text-left card">
@@ -133,6 +129,7 @@
                     </div>
                 </div>
                 @endif
+                @endif
 
 
             </div>
@@ -159,7 +156,8 @@
                                 $question->has_description_field)
                                 <br><br>
                                 <span class="text-info">{{$question->description_label}}</span>
-                                <textarea rows="2" class="form-control border-info" required wire:change="updateDescription({{$question->answer}}, $event.target.value)"
+                                <textarea rows="2" class="form-control border-info" required
+                                    wire:change="updateDescription({{$question->answer}}, $event.target.value)"
                                     {{$question->is_answerable ? '' : 'disabled readonly'}}>{{$question->answer->description}}</textarea>
                                 @endif
                             </td>
@@ -168,7 +166,8 @@
                             </td>
                             <td>
                                 {{-- sel.options[sel.selectedIndex] --}}
-                                <select class="form-control" x-ref="{{$question->id}}" wire:loading.attr="disabled" wire:target="storeAnswer" {{$question->is_answerable ? '' : 'readonly disabled'}}
+                                <select class="form-control" x-ref="{{$question->id}}" wire:loading.attr="disabled"
+                                    wire:target="storeAnswer" {{$question->is_answerable ? '' : 'readonly disabled'}}
                                     x-on:change="$wire.storeAnswer({{$question->id}}, $refs[{{$question->id}}].options[$refs[{{$question->id}}].selectedIndex].value )">
                                     <option value="" {{$question->answer ? '' : 'selected'}}>seleccionar</option>
                                     @foreach ($question->choices as $choice)
@@ -292,7 +291,7 @@
                         </div>
                         <div class="col-12">
                             <label for="" class="text-muted text-uppercase">Comentarios</label>
-                            <textarea name="comments" id="" cols="30" rows="5" 
+                            <textarea name="comments" id="" cols="30" rows="5"
                                 class="form-control">Su repositorio ha sido enviado.</textarea>
                         </div>
                     </div>

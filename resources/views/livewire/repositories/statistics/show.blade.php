@@ -6,11 +6,12 @@
     @endsection
 
     <div class="row">
-        <div class="col-12 mb-3">
+        <div class="col-12 col-lg-12 mb-3">
             <div class="card shadow border-0">
-                <div class="card-body">
-                    <canvas id="bubble-chart" width="800" height="800"></canvas>
+                <div class="card-body" id="bubbleChartContainer">
+                    <canvas id="bubble-chart"></canvas>
                 </div>
+                {{-- <div class="card-footer"></div> --}}
             </div>
         </div>
     </div>
@@ -23,7 +24,6 @@
                 </div>
                 <div class="card-footer d-flex justify-content-center">
                     <div class="widget-numbers mt-0 fsize-3">
-                        {{-- <span>{{number_format((float)$repository->qualification, 2, '.', '');}}%</span> --}}
                         <span>{{$repository->qualification}}%</span>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                         var myChart = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: [category.name],
+                                labels: [category.short_name],
                                 datasets: [{
                                     label: '# of Votes',
                                     data: [category.percentage + 100, 100 - category.percentage],
@@ -120,6 +120,10 @@
                     }
 
                     ctx = document.getElementById('repositoryQualification');
+
+                    // ctx.width = document.getElementById('repositoryQualificationContainer').offsetWidth
+                    // ctx.height = document.getElementById('repositoryQualificationContainer').offsetHeight
+
                     var myChart = new Chart(ctx, {
                         type: 'doughnut',
                         data: {
@@ -183,7 +187,10 @@
                     })
 
                     // 
+                    
                     new Chart(document.getElementById("bubble-chart"), {
+                        responsive: true,
+                        // maintainAspectRatio: false,
     type: 'bubble',
     data: {
       labels: "Africa",

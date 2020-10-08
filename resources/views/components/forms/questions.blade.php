@@ -124,6 +124,7 @@
 
                     <div class="card">
                         <ul class="list-group list-group-flush">
+                            @if ( config('app.has_supplementary_questions') )
                             <li class="list-group-item">
                                 <label for="" class="m-0 text-muted text-uppercase">
                                     ¿La pregunta es complementaria?
@@ -131,6 +132,7 @@
                                 <input class="float-right" type="checkbox" {{$question && $question->is_optional ? 'checked' : ''}}
                                     name="is_optional">
                             </li>
+                            @endif
                             <li class="list-group-item">
                                 <label for="" class="m-0 text-muted text-uppercase">
                                     ¿Incluir campo para capturar texto?

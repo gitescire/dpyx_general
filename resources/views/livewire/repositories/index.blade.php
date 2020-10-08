@@ -12,7 +12,9 @@
                     <th class="text-uppercase">Nombre</th>
                     <th class="text-uppercase">Status</th>
                     <th class="text-uppercase">Encargado</th>
+                    @if (config('app.is_evaluable'))
                     <th class="text-uppercase">Evaluador</th>
+                    @endif
                     <th class="text-uppercase">Gráfica de resultados</th>
                     <th class="text-uppercase">Cuestionario</th>
                 </tr>
@@ -23,14 +25,16 @@
                     <td>{{$repository->name}}</td>
                     <td>{{$repository->status}}</td>
                     <td>{{$repository->responsible->name}}</td>
-                    <td>{{$repository->evaluator ? $repository->evaluator->name : 'N/A'}}</td>
+                    @if (config('app.is_evaluable'))
+                    <td>{{$repository->evaluation ? $repository->evaluation->evaluator->name : 'N/A'}}</td>
+                    @endif
                     <td>
                         <a href="{{route('repositories.statistics.show',[$repository])}}" class="btn btn-info btn-shadow rounded-0 {{$repository->evaluation->answers->count() ? '' : 'disabled'}}">
                             <i class="fas fa-chart-pie"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="{{route('evaluations.categories.questions.index',[$repository->evaluation, $firstCategory])}}" class="btn btn-primary btn-shadow rounded-0">
+                        <a href="{{route('evaluations.categories.questions.index',[$repository->evaluation, $firstCategory])}}" class="btn btn-primary btn-shadow rounded-0 {{$repository->evaluation->is_viewable ? '' : 'disabled'}}">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>
