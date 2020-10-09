@@ -123,11 +123,8 @@
                 role = rolesInput.options[rolesInput.selectedIndex].text
                 this.isUser = role == 'usuario' ? 1 : 0
             },
-
-
         }
     }
-
     </script>
 
 </form>
