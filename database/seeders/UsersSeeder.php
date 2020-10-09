@@ -56,13 +56,13 @@ class UsersSeeder extends Seeder
         $repository = Repository::create([
             'responsible_id' => $user->id,
             'name' =>'escire',
-            'status' => 'in progress',
+            'status' => 'en progreso',
         ]);
 
         $evaluation = Evaluation::create([
             'repository_id' => $repository->id,
             'evaluator_id' => $userEvaluator->id,
-            'status' => 'in progress',
+            'status' => 'en progreso',
         ]);
 
         

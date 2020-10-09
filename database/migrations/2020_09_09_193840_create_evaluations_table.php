@@ -17,7 +17,7 @@ class CreateEvaluationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('repository_id');
             $table->unsignedBigInteger('evaluator_id')->nullable();
-            $table->enum('status',['answered','in review','reviewed','in progress'])->default('in progress');
+            $table->enum('status',['contestada','en revisión','revisado','en progreso'])->default('en progreso');
             $table->timestamps();
 
             $table->foreign('repository_id')->references('id')->on('repositories')->onDelete('cascade');

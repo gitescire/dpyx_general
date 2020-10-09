@@ -20,10 +20,10 @@ class SendEvaluationController extends Controller
     {
         event(new EvaluationFinishedEvent($evaluation));
 
-        $evaluation->status = "in review";
+        $evaluation->status = "en revisión";
         $evaluation->save();
 
-        $evaluation->repository->status = 'in progress';
+        $evaluation->repository->status = 'en progreso';
         $evaluation->repository->save();
 
         Alert::success('¡La evaluación ha sido enviada para su revisión!');

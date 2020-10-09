@@ -39,6 +39,13 @@ class Repository extends Model
      * ========
      */
 
+    public function getStatusColorAttribute(){
+        if($this->is_in_progress) return 'info';
+        if($this->is_aproved) return 'success';
+        if($this->is_rejected) return 'danger';
+        if($this->has_observations) return 'warning';
+    }
+
     public function getQualificationAttribute()
     {
         if (!$this->evaluation->answers->count()) {
@@ -56,21 +63,21 @@ class Repository extends Model
 
     public function getIsInProgressAttribute()
     {
-        return $this->status == 'in progress';
+        return $this->status == 'en progreso';
     }
 
     public function getHasObservationsAttribute()
     {
-        return $this->status == 'observations';
+        return $this->status == 'observaciones';
     }
 
     public function getIsAprovedAttribute()
     {
-        return $this->status == 'aproved';
+        return $this->status == 'aprobado';
     }
 
     public function getIsRejectedAttribute()
     {
-        return $this->status == 'rejected';
+        return $this->status == 'rechazado';
     }
 }

@@ -39,23 +39,43 @@ class Evaluation extends Model
 
     /**
      * ========
+     * ATTRIBUTES
+     * ========
+     */
+
+    public function getStatusColorAttribute()
+    {
+        if ($this->is_in_progress) return 'info';
+        if ($this->in_review) return 'warning';
+        if ($this->is_reviewed) return 'success';
+        if ($this->is_answered) return 'dark';
+        return '';
+    }
+
+    /**
+     * ========
      * BOOLEANS
      * ========
      */
 
     public function getIsInProgressAttribute()
     {
-        return $this->status == 'in progress';
+        return $this->status == 'en progreso';
+    }
+
+    public function getIsReviewedAttribute()
+    {
+        return $this->status == 'revisado';
     }
 
     public function getInReviewAttribute()
     {
-        return $this->status == 'in review';
+        return $this->status == 'en revisión';
     }
 
     public function getIsAnsweredAttribute()
     {
-        return $this->status == 'answered';
+        return $this->status == 'contestada';
     }
 
     public function getIsViewableAttribute()

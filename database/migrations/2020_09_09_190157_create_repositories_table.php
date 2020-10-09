@@ -17,7 +17,7 @@ class CreateRepositoriesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('responsible_id');
             $table->string('name');
-            $table->enum('status',['in progress','aproved', 'rejected','observations'])->default('in progress');
+            $table->enum('status',['en progreso','aprobado', 'rechazado','observaciones'])->default('en progreso');
             $table->timestamps();
             $table->softDeletes();
 

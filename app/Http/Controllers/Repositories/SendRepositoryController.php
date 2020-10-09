@@ -17,16 +17,21 @@ class SendRepositoryController extends Controller
         $repository->status = $request->status;
         $repository->save();
 
-        if($repository->has_observations){
-            $repository->evaluation->status = 'in progress';
-            $repository->evaluation->save();
-        }
+        $this->handleEvaluationStatus($repository);
 
-        $comments = $request->comments;
-
-        Mail::to($repository->responsible->email)->send(new ReviewedRepositoryMail($repository, $comments));
+        Mail::to($repository->responsible->email)->send(new ReviewedRepositoryMail($repository, $request->comments));
 
         Alert::success('¡El repositorio ha sido enviado exitosamente!');
         return redirect()->route('dashboard');
+    }
+
+    private function handleEvaluationStatus($repository)
+    {
+        if ($repository->has_observations) {
+            $repository->evaluation->status = 'en progreso';
+        } else {
+            $repository->evaluation->status = 'revisado';
+        }
+        $repository->evaluation->save();
     }
 }

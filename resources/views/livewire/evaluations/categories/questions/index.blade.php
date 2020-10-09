@@ -267,23 +267,23 @@
                             <label for="" class="text-muted text-uppercase">Status</label><br>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="evaluationAcceptedInput" name="status"
-                                    class="custom-control-input" value="aproved"
-                                    {{$repository->status == 'aproved' ? 'checked' : ''}}>
+                                    class="custom-control-input" value="aprobado"
+                                    {{$repository->is_aproved ? 'checked' : ''}}>
                                 <label class="custom-control-label" for="evaluationAcceptedInput">
                                     <div class="mb-2 mr-2 badge badge-success">Aceptado</div>
                                 </label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="evaluationWithObservations" name="status"
-                                    class="custom-control-input" value="observations"
-                                    {{$repository->status == 'observations' ? 'checked' : ''}}>
+                                    class="custom-control-input" value="observaciones"
+                                    {{$repository->has_observations ? 'checked' : ''}}>
                                 <label class="custom-control-label" for="evaluationWithObservations">
                                     <div class="mb-2 mr-2 badge badge-warning">Evaluado con observaciones</div>
                                 </label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="evaluationRejected" name="status" class="custom-control-input"
-                                    value="rejected" {{$repository->status == 'rejected' ? 'checked' : ''}}>
+                                    value="rechazado" {{$repository->is_rejected ? 'checked' : ''}}>
                                 <label class="custom-control-label" for="evaluationRejected">
                                     <div class="mb-2 mr-2 badge badge-danger">Rechazado</div>
                                 </label>

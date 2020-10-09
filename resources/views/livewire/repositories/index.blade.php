@@ -10,7 +10,8 @@
             <thead>
                 <tr>
                     <th class="text-uppercase">Nombre</th>
-                    <th class="text-uppercase">Status</th>
+                    <th class="text-uppercase">Repositorio</th>
+                    <th class="text-uppercase">Evaluación</th>
                     <th class="text-uppercase">Encargado</th>
                     @if (config('app.is_evaluable'))
                     <th class="text-uppercase">Evaluador</th>
@@ -23,22 +24,33 @@
                 @foreach ($repositories as $repository)
                 <tr>
                     <td>{{$repository->name}}</td>
-                    <td>{{$repository->status}}</td>
+                    <td>
+                        <span class="badge badge-{{$repository->status_color}}">
+                            {{$repository->status}}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge badge-{{$repository->evaluation->status_color}}">
+                            {{$repository->evaluation->status}}
+                        </span>
+                    </td>
                     <td>{{$repository->responsible->name}}</td>
                     @if (config('app.is_evaluable'))
                     <td>{{$repository->evaluation ? $repository->evaluation->evaluator->name : 'N/A'}}</td>
                     @endif
                     <td>
-                        <a href="{{route('repositories.statistics.show',[$repository])}}" class="btn btn-info btn-shadow rounded-0 {{$repository->evaluation->answers->count() ? '' : 'disabled'}}">
+                        <a href="{{route('repositories.statistics.show',[$repository])}}"
+                            class="btn btn-info btn-shadow rounded-0 {{$repository->evaluation->answers->count() ? '' : 'disabled'}}">
                             <i class="fas fa-chart-pie"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="{{route('evaluations.categories.questions.index',[$repository->evaluation, $firstCategory])}}" class="btn btn-primary btn-shadow rounded-0 {{$repository->evaluation->is_viewable ? '' : 'disabled'}}">
+                        <a href="{{route('evaluations.categories.questions.index',[$repository->evaluation, $firstCategory])}}"
+                            class="btn btn-primary btn-shadow rounded-0 {{$repository->evaluation->is_viewable ? '' : 'disabled'}}">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>
-                </tr>   
+                </tr>
                 @endforeach
             </tbody>
         </table>

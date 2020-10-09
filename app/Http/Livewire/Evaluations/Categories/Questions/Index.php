@@ -57,21 +57,13 @@ class Index extends Component
         $requiredQuestionsAnswered = $this->evaluation->answers()->whereIn('question_id', $requiredQuestionsIds)->get();
 
         if ($requiredQuestionsIds->count() == $requiredQuestionsAnswered->count()) {
-            $this->evaluation->status = 'answered';
+            $this->evaluation->status = 'contestada';
             $this->evaluation->save();
         } else {
-            $this->evaluation->status = 'in progress';
+            $this->evaluation->status = 'en progreso';
             $this->evaluation->save();
         }
 
-
-
-        // $requiredQuestionsIds = Question::required()->get()->pluck('id')->flatten();
-        // $requiredQuestionsAnswered = $this->evaluation->answers()->whereIn('question_id',$requiredQuestionsIds)->get();
-        // if ($requiredQuestionsIds->count() == $requiredQuestionsAnswered->count()) {
-        //     $this->evaluation->status = 'answered';
-        //     $this->evaluation->save();
-        // }
     }
 
     public function updateDescription(Answer $answer, $description)
@@ -110,10 +102,6 @@ class Index extends Component
                     $question->is_answerable = false;
                 }
 
-                // $question->is_answerable = Auth::user()->id == $this->evaluation->repository->responsible->id
-                //     && !$this->evaluation->repository->is_rejected
-                //     && !$this->evaluation->repository->aproved 
-                //     && ( (!$this->evaluation->in_review && !$question->answer) || ($question->answer && $question->answer->observation && $this->evaluation->repository->has_observations));
                 return $question
                     ->append('max_punctuation');
             });
