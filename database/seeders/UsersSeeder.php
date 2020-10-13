@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Answer;
 use App\Models\Evaluation;
+use App\Models\Question;
 use App\Models\Repository;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -40,7 +42,7 @@ class UsersSeeder extends Seeder
         ])->assignRole('admin');
         
         $userEvaluator = User::create([
-            'name' => 'Nydia Repositorio',
+            'name' => 'Nydia Evaluador',
             'phone' => null,
             'email' => 'valni.info@gmail.com',
             'password' => bcrypt('1Aprender3948.')
@@ -65,6 +67,13 @@ class UsersSeeder extends Seeder
             'status' => 'en progreso',
         ]);
 
+        // Create empty answers for each question
+        Question::get()->each(function ($question) use ($evaluation) {
+            Answer::create([
+                'evaluation_id' => $evaluation->id,
+                'question_id' => $question->id
+            ]);
+        });
         
 
     }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\Answer;
+use App\Models\Question;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -27,15 +29,23 @@ class StoreUserController extends Controller
 
         $user->assignRole($request->role);
 
-        if($user->hasRole('usuario')){
+        if ($user->hasRole('usuario')) {
             $repository = $user->repositories()->create([
                 'name' => $request->repository_name,
                 'responsible_id' => $user->id
             ]);
-            $repository->evaluation()->create([
+            $evaluation = $repository->evaluation()->create([
                 'repository_id' => $repository->id,
                 'evaluator_id' => $request->evaluator_id,
             ]);
+
+            // Create empty answers for each question
+            Question::get()->each(function ($question) use ($evaluation) {
+                Answer::create([
+                    'evaluation_id' => $evaluation->id,
+                    'question_id' => $question->id
+                ]);
+            });
         }
 
         Alert::success('¡Usuario agregado!', 'El usuario ha sido añadido a la base de datos.');

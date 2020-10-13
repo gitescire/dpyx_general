@@ -138,11 +138,11 @@
                 <tr>
                     <td>{{$question->description}}</td>
                     <td>
-                        {{$question->answers->first() ? $question->answers->first()->choice->description : ''}}
+                        {{$question->answers->first()->choice ? $question->answers->first()->choice->description : ''}}
                         {{-- {{$question->answers[0]->choice->description}}} --}}
                     </td>
                         <td>
-                            {{$question->answers->first() && $question->answers->first()->observation ? $question->answers->first()->observation->description : ''}}
+                            {{$question->answers->first()->choice && $question->answers->first()->observation ? $question->answers->first()->observation->description : ''}}
                             {{-- {{$question->answers[0]->observation ? $question->answers[0]->observation->description : ''}} --}}
                     </td>
                 </tr>

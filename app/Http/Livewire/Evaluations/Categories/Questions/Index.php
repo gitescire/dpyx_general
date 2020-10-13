@@ -32,7 +32,6 @@ class Index extends Component
         $this->repository = $this->evaluation->repository;
         $this->categoryChoosed = $category;
         $this->categories = Category::has('questions')->get();
-        $this->announcement = Announcement::active()->first();
     }
 
     public function storeAnswer($question, $choice = null)
@@ -41,22 +40,22 @@ class Index extends Component
         $question = Question::find($question);
 
         // Delete answer if not choice
-        if ($choice == null) {
-            Answer::where('question_id', $question->id)->where('evaluation_id', $this->evaluation->id)->delete();
-        } else {
+        // if ($choice == null) {
+            // Answer::where('question_id', $question->id)->where('evaluation_id', $this->evaluation->id)->delete();
+        // } else {
             $answer = Answer::updateOrCreate([
                 'evaluation_id' => $this->evaluation->id,
                 'question_id' => $question->id,
             ], [
-                'choice_id' => $choice->id,
+                'choice_id' => $choice ? $choice->id : null,
                 'question_id' => $question->id,
                 'evaluation_id' => $this->evaluation->id,
             ]);
-        }
+        // }
 
 
         $requiredQuestionsIds = Question::required()->get()->pluck('id')->flatten();
-        $requiredQuestionsAnswered = $this->evaluation->answers()->whereIn('question_id', $requiredQuestionsIds)->get();
+        $requiredQuestionsAnswered = $this->evaluation->answers()->whereIn('question_id', $requiredQuestionsIds)->has('choice')->get();
 
         if ($requiredQuestionsIds->count() == $requiredQuestionsAnswered->count()) {
             $this->evaluation->status = 'contestada';
@@ -75,6 +74,7 @@ class Index extends Component
 
     public function render()
     {
+        $this->announcement = Announcement::active()->first();
         $this->checkIfCategoriesAreAnswered();
         $this->subcategories = Subcategory::with(['questions' => function ($query) {
             $query->where('category_id', $this->categoryChoosed->id)->with(['choices' => function ($query) {
@@ -124,8 +124,9 @@ class Index extends Component
     protected function checkIfCategoriesAreAnswered()
     {
         $this->categories->each(function ($category) {
-            $answers = Answer::where('evaluation_id', $this->evaluation->id)->whereIn('question_id', $category->questions->pluck('id')->flatten())->get();
+            // dd($answer->count());
             $questions = $category->questions()->required()->get();
+            $answers = $this->evaluation->answers()->has('choice')->whereIn('question_id',$questions->pluck('id'))->get();
 
             $category->is_answered = $answers->count() == $questions->count();
         });

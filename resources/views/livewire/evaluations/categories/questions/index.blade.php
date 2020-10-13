@@ -36,7 +36,8 @@
     <ul class="nav nav-justified mb-3">
         @foreach ($categories as $category)
         <li
-            {{-- class="nav-item border-bottom mr-1 {{$categoryChoosed->id == $category->id ? 'border-danger bg-red-light' : ''}}"> --}}
+            {{-- class="nav-item border-bottom mr-1 {{$categoryChoosed->id == $category->id ? 'border-danger bg-red-light' : ''}}">
+            --}}
             class="nav-item border-bottom mr-1 {{$categoryChoosed->id == $category->id ? 'border-danger' : ''}}">
             <a href="{{route('evaluations.categories.questions.index',[$evaluation,$category])}}"
                 class="nav-link active">
@@ -166,11 +167,8 @@
                                     data-content="{{$question->help_text}}">
                                     <i class="fas fa-question-circle text-info float-right"></i>
                                 </span>
-                                {{-- <span> --}}
-                                {{-- <i class="fas fa-question-circle text-info float-right"></i> --}}
-                                {{-- </span> --}}
                                 @endif
-                                @if ($question->answer && $question->answer->choice->punctuation > 0 &&
+                                @if ($question->answer->choice && $question->answer->choice->punctuation > 0 &&
                                 $question->has_description_field)
                                 <br><br>
                                 <span class="text-info">{{$question->description_label}}</span>
@@ -183,151 +181,123 @@
                                 <span>{{$question->max_punctuation}}</span>
                             </td>
                             <td>
-                                {{-- sel.options[sel.selectedIndex] --}}
                                 <select class="form-control" x-ref="{{$question->id}}" wire:loading.attr="disabled"
                                     wire:target="storeAnswer" {{$question->is_answerable ? '' : 'readonly disabled'}}
                                     x-on:change="$wire.storeAnswer({{$question->id}}, $refs[{{$question->id}}].options[$refs[{{$question->id}}].selectedIndex].value )">
-                                    <option value="" {{$question->answer ? '' : 'selected'}}>seleccionar</option>
+                                    <option value="" {{$question->answer->choice ? '' : 'selected'}}>seleccionar
+                                    </option>
                                     @foreach ($question->choices as $choice)
                                     <option value="{{$choice->id}}"
-                                        {{$question->answer && $question->answer->choice->id == $choice->id ? 'selected' : ''}}>
+                                        {{$question->answer->choice && $question->answer->choice->id == $choice->id ? 'selected' : ''}}>
                                         {{$choice->description}}</option>
                                     @endforeach
                                 </select>
-                                {{-- <div class="dropdown" wire:ignore.self>
-                                    <button class="w-100" type="button" id="dropdown-question-{{$question->id}}"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                wire:ignore.self>
-                                <span class="form-control {{$question->answer ? 'btn-info' : 'btn-warning'}}">
-                                    {{$question->answer ? $question->answer->choice->description : 'seleccionar'}}
-                                </span>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown-question-{{$question->id}}">
-                                    <a class="dropdown-item" href="javascript:void(0)"
-                                        wire:click="storeAnswer({{$question->id}}, {{null}})">seleccionar</a>
-                                    @foreach ($question->choices as $choice)
-                                    <a class="dropdown-item" href="javascript:void(0)"
-                                        wire:click="storeAnswer({{$question->id}}, {{$choice->id}})">{{$choice->description}}</a>
-                                    @endforeach
+                            </td>
+                            <td class="text-center">
+                                <div wire:loading wire:target="storeAnswer">
+                                    <div class="spinner-border text-secondary" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
                                 </div>
-            </div> --}}
-
-            {{-- <select class="form-control" required
-                                    {{$question->is_answerable ? '' : 'readonly disabled'}}>
-
-            <option value="" wire:click="sta">seleccionar</option>
-
-            @foreach ($question->choices as $choice)
-            <option value="{{$choice->id}}" wire:click="sta"
-                {{$question->answer && $question->answer->choice->id == $choice->id ? 'selected' : ''}}>
-                <span>{{$choice->description}}</span>
-            </option>
-            @endforeach
-
-            </select> --}}
-            </td>
-            <td class="text-center">
-                <div wire:loading wire:target="storeAnswer">
-                    <div class="spinner-border text-secondary" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
-                <div wire:loading.remove wire:target="storeAnswer">
-                    <span
-                        class="badge badge-pill {{$question->answer ? 'badge-success' : 'badge-warning'}}">{{$question->answer ? 'contestada' : 'pendiente'}}</span>
-                </div>
-            </td>
-            <td>
-                {{-- @can('edit evaluations') --}}
-                @if ($evaluation->is_reviewable)
-                @if ($question->answer)
-                <a href="{{route('answers.show', [$question->answer])}}" class="btn btn-info btn-shadow rounded-0">
-                    <i class="fas fa-plus"></i>
-                </a>
-                @endif
-                @endif
-                {{-- @endcan --}}
-                @if ($question->answer && $question->answer->observation)
-                <a href="{{route('answers.show', [$question->answer])}}" class="btn btn-secondary btn-shadow rounded-0">
-                    <i class="fas fa-eye"></i>
-                </a>
-                @endif
-            </td>
-            </tr>
-            @endif
-            @endforeach
-            </tbody>
-            </table>
+                                <div wire:loading.remove wire:target="storeAnswer">
+                                    <span
+                                        class="badge badge-pill {{$question->answer->choice ? 'badge-success' : 'badge-warning'}}">{{$question->answer->choice ? 'contestada' : 'pendiente'}}</span>
+                                </div>
+                            </td>
+                            <td>
+                                {{-- @can('edit evaluations') --}}
+                                @if ($evaluation->is_reviewable)
+                                @if ($question->answer)
+                                <a href="{{route('answers.show', [$question->answer])}}"
+                                    class="btn btn-info btn-shadow rounded-0">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                                @endif
+                                @endif
+                                {{-- @endcan --}}
+                                @if ($question->answer->observation)
+                                <a href="{{route('answers.show', [$question->answer])}}"
+                                    class="btn btn-secondary btn-shadow rounded-0">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                @endif
+                            </td>
+                        </tr>
+                        @endif
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
-@endif
-@endforeach
+    @endif
+    @endforeach
 
-<div class="d-flex justify-content-end mb-3">
-    <a href="{{route('evaluations.categories.questions.index',[$evaluation, $nextCategory])}}"
-        class="btn btn-success btn-shadow btn-wide rounded-0">
-        <i class="fas fa-save"></i> Continuar
-    </a>
-</div>
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{route('evaluations.categories.questions.index',[$evaluation, $nextCategory])}}"
+            class="btn btn-success btn-shadow btn-wide rounded-0">
+            <i class="fas fa-save"></i> Continuar
+        </a>
+    </div>
 
-@can('create observations')
-@if ($evaluation->is_reviewable)
-<div class="row">
-    <div class="col-12">
-        <form action="{{route('repositories.send',[$evaluation->repository])}}" method="POST">
-            @csrf
-            @method('POST')
-            <div class="card shadow border-0 mb-3">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 mb-3">
-                            <label for="" class="text-muted text-uppercase">Status</label><br>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="evaluationAcceptedInput" name="status"
-                                    class="custom-control-input" value="aprobado"
-                                    {{$repository->is_aproved ? 'checked' : ''}}>
-                                <label class="custom-control-label" for="evaluationAcceptedInput">
-                                    <div class="mb-2 mr-2 badge badge-success">Aceptado</div>
-                                </label>
+    @can('create observations')
+    @if ($evaluation->is_reviewable)
+    <div class="row">
+        <div class="col-12">
+            <form action="{{route('repositories.send',[$evaluation->repository])}}" method="POST">
+                @csrf
+                @method('POST')
+                <div class="card shadow border-0 mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <label for="" class="text-muted text-uppercase">Status</label><br>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="evaluationAcceptedInput" name="status"
+                                        class="custom-control-input" value="aprobado"
+                                        {{$repository->is_aproved ? 'checked' : ''}}>
+                                    <label class="custom-control-label" for="evaluationAcceptedInput">
+                                        <div class="mb-2 mr-2 badge badge-success">Aceptado</div>
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="evaluationWithObservations" name="status"
+                                        class="custom-control-input" value="observaciones"
+                                        {{$repository->has_observations ? 'checked' : ''}}>
+                                    <label class="custom-control-label" for="evaluationWithObservations">
+                                        <div class="mb-2 mr-2 badge badge-warning">Evaluado con observaciones</div>
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="evaluationRejected" name="status"
+                                        class="custom-control-input" value="rechazado"
+                                        {{$repository->is_rejected ? 'checked' : ''}}>
+                                    <label class="custom-control-label" for="evaluationRejected">
+                                        <div class="mb-2 mr-2 badge badge-danger">Rechazado</div>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="evaluationWithObservations" name="status"
-                                    class="custom-control-input" value="observaciones"
-                                    {{$repository->has_observations ? 'checked' : ''}}>
-                                <label class="custom-control-label" for="evaluationWithObservations">
-                                    <div class="mb-2 mr-2 badge badge-warning">Evaluado con observaciones</div>
-                                </label>
+                            <div class="col-12">
+                                <label for="" class="text-muted text-uppercase">Comentarios</label>
+                                <textarea name="comments" id="" cols="30" rows="5"
+                                    class="form-control">Su repositorio ha sido enviado.</textarea>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="evaluationRejected" name="status" class="custom-control-input"
-                                    value="rechazado" {{$repository->is_rejected ? 'checked' : ''}}>
-                                <label class="custom-control-label" for="evaluationRejected">
-                                    <div class="mb-2 mr-2 badge badge-danger">Rechazado</div>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <label for="" class="text-muted text-uppercase">Comentarios</label>
-                            <textarea name="comments" id="" cols="30" rows="5"
-                                class="form-control">Su repositorio ha sido enviado.</textarea>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="d-flex justify-content-end">
-                <button class="btn btn-success btn-wide btn-shadow rounded-0">
-                    <i class="fas fa-paper-plane"></i> Enviar
-                </button>
-            </div>
-        </form>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-success btn-wide btn-shadow rounded-0">
+                        <i class="fas fa-paper-plane"></i> Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-@endif
-@endcan
+    @endif
+    @endcan
 
-<script>
-    function data(){
+    <script>
+        function data(){
         return {
             showComplementaryQuestions: false,
 
@@ -364,6 +334,6 @@
         }
     }
 
-</script>
+    </script>
 
 </div>
