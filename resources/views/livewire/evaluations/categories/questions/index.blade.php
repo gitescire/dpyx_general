@@ -36,10 +36,19 @@
     <ul class="nav nav-justified mb-3">
         @foreach ($categories as $category)
         <li
-            class="nav-item border-bottom mr-1 {{$categoryChoosed->id == $category->id ? 'border-danger bg-red-light' : ''}}">
+            {{-- class="nav-item border-bottom mr-1 {{$categoryChoosed->id == $category->id ? 'border-danger bg-red-light' : ''}}"> --}}
+            class="nav-item border-bottom mr-1 {{$categoryChoosed->id == $category->id ? 'border-danger' : ''}}">
             <a href="{{route('evaluations.categories.questions.index',[$evaluation,$category])}}"
                 class="nav-link active">
-                <i class="nav-link-icon pe-7s-settings"></i>
+                @if ($category->is_answered)
+                {{-- <i class="fas fa-trash"></i> --}}
+                <b>
+                    <i class="nav-link-icon fas fa-check-circle text-success"></i>
+                </b>
+                @else
+                <i class="nav-link-icon fas fa-circle text-warning"></i>
+                {{-- <i class="nav-link-icon pe-7s-settings"></i> --}}
+                @endif
                 <span>{{$category->short_name ?? $category->name}}</span>
             </a>
         </li>
@@ -151,7 +160,16 @@
                         @if ( ($showComplementaryQuestions && $question->is_optional) || !$question->is_optional)
                         <tr wire:key="{{ $loop->index }}">
                             <td>
-                                <span>{{$question->description}}</span>
+                                {{$question->description}}
+                                @if ($question->help_text)
+                                <span tabindex="0" data-toggle="popover" data-trigger="focus" title="Ayuda"
+                                    data-content="{{$question->help_text}}">
+                                    <i class="fas fa-question-circle text-info float-right"></i>
+                                </span>
+                                {{-- <span> --}}
+                                {{-- <i class="fas fa-question-circle text-info float-right"></i> --}}
+                                {{-- </span> --}}
+                                @endif
                                 @if ($question->answer && $question->answer->choice->punctuation > 0 &&
                                 $question->has_description_field)
                                 <br><br>

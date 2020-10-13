@@ -31,7 +31,8 @@
 </head>
 
 <body>
-    <div class="app-container app-theme-gray app-sidebar-full {{ Cookie::get('expandNavbar') == 'false' ? 'header-mobile-open' : ''}}" id="app-container">
+    <div class="app-container app-theme-gray app-sidebar-full {{ Cookie::get('expandNavbar') == 'false' ? 'header-mobile-open' : ''}}"
+        id="app-container">
         <div class="app-main">
             <div class="app-sidebar-wrapper">
                 <div class="app-sidebar sidebar-text-dark" style="background: #e1e6ff !important;">
@@ -627,7 +628,8 @@
                                                     <form method="POST" action="{{ route('logout') }}">
                                                         @csrf
                                                         <button
-                                                            class="btn-pill btn-shadow btn-shine btn btn-focus">Logout
+                                                            class="btn-pill btn-shadow btn-shine btn btn-focus">Cerrar
+                                                            sesión
                                                         </button>
                                                     </form>
                                                 </div>
@@ -639,11 +641,14 @@
                             <div class="scroll-area-xs" style="height: 150px;">
                                 <div class="scrollbar-container ps">
                                     <ul class="nav flex-column">
-                                        <li class="nav-item-header nav-item">
+                                        {{-- <li class="nav-item-header nav-item">
                                             Correo
-                                        </li>
+                                        </li> --}}
                                         <li class="nav-item">
-                                            <a href="javascript:void(0);" class="nav-link">{{auth()->user()->email}}
+                                            <a href="javascript:void(0);" class="nav-link float"><span class="text-muted">
+                                                <i class="fas fa-envelope"></i>
+                                                {{auth()->user()->email}}
+                                            </span>
                                                 {{-- <div
                                                                             class="ml-auto badge badge-pill badge-info">
                                                                             8
@@ -658,8 +663,9 @@
                                         <li class="nav-item-header nav-item">Mi cuenta
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{route('users.account',[auth()->user()])}}"
-                                                class="nav-link">Configuración
+                                            <a href="{{route('users.account',[auth()->user()])}}" class="nav-link">
+                                                <i class="fas fa-tools mr-1"></i>
+                                                Configuración
                                                 {{-- <div class="ml-auto badge badge-success">New
                                                                         </div> --}}
                                             </a>

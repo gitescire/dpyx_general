@@ -95,6 +95,19 @@ class User extends Authenticatable
     }
 
     /**
+     * ========
+     * ATTRIBUTES
+     * ========
+     */
+
+    public function getRoleColorAttribute(){
+        if($this->is_evaluator) return 'warning';
+        if($this->is_admin) return 'danger';
+        if($this->hasRole('usuario')) return 'info';
+        return '';
+    }
+
+    /**
      * =======
      * BOOLEANS
      * =======

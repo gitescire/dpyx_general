@@ -31,7 +31,7 @@ class Index extends Component
         $this->evaluation = $evaluation->append('is_answerable');
         $this->repository = $this->evaluation->repository;
         $this->categoryChoosed = $category;
-        $this->categories = Category::get();
+        $this->categories = Category::has('questions')->get();
         $this->announcement = Announcement::active()->first();
     }
 
@@ -39,6 +39,8 @@ class Index extends Component
     {
         $choice = Choice::find($choice);
         $question = Question::find($question);
+
+        // Delete answer if not choice
         if ($choice == null) {
             Answer::where('question_id', $question->id)->where('evaluation_id', $this->evaluation->id)->delete();
         } else {
@@ -63,7 +65,6 @@ class Index extends Component
             $this->evaluation->status = 'en progreso';
             $this->evaluation->save();
         }
-
     }
 
     public function updateDescription(Answer $answer, $description)
@@ -74,6 +75,7 @@ class Index extends Component
 
     public function render()
     {
+        $this->checkIfCategoriesAreAnswered();
         $this->subcategories = Subcategory::with(['questions' => function ($query) {
             $query->where('category_id', $this->categoryChoosed->id)->with(['choices' => function ($query) {
                 $query->orderBy('punctuation', 'desc');
@@ -107,11 +109,11 @@ class Index extends Component
             });
         });
 
-        $this->subcategories->each(function($subcategory){
-            $subcategory->total_required_punctuation = $subcategory->questions->where('is_optional',0)->pluck('answer.choice.punctuation')->flatten()->sum();
-            $subcategory->total_supplementary_punctuation = $subcategory->questions->where('is_optional',1)->pluck('answer.choice.punctuation')->flatten()->sum();
-            $subcategory->max_required_punctuation = $subcategory->questions->where('is_optional',0)->pluck('max_punctuation')->flatten()->sum();
-            $subcategory->max_supplementary_punctuation = $subcategory->questions->where('is_optional',1)->pluck('max_punctuation')->flatten()->sum();
+        $this->subcategories->each(function ($subcategory) {
+            $subcategory->total_required_punctuation = $subcategory->questions->where('is_optional', 0)->pluck('answer.choice.punctuation')->flatten()->sum();
+            $subcategory->total_supplementary_punctuation = $subcategory->questions->where('is_optional', 1)->pluck('answer.choice.punctuation')->flatten()->sum();
+            $subcategory->max_required_punctuation = $subcategory->questions->where('is_optional', 0)->pluck('max_punctuation')->flatten()->sum();
+            $subcategory->max_supplementary_punctuation = $subcategory->questions->where('is_optional', 1)->pluck('max_punctuation')->flatten()->sum();
             // dd($subcategory->questions->where('is_optional',0)->pluck('answer.choice.punctuation')->sum()  );
         });
 
@@ -119,7 +121,18 @@ class Index extends Component
         return view('livewire.evaluations.categories.questions.index');
     }
 
-    public function toggleSupplementaryQuestions(){
+    protected function checkIfCategoriesAreAnswered()
+    {
+        $this->categories->each(function ($category) {
+            $answers = Answer::where('evaluation_id', $this->evaluation->id)->whereIn('question_id', $category->questions->pluck('id')->flatten())->get();
+            $questions = $category->questions()->required()->get();
+
+            $category->is_answered = $answers->count() == $questions->count();
+        });
+    }
+
+    public function toggleSupplementaryQuestions()
+    {
         $this->showComplementaryQuestions = !$this->showComplementaryQuestions;
     }
 }

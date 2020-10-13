@@ -2,7 +2,8 @@
 
     @section('header')
     <x-page-title title="Estadisticas de repositorio"
-        description="Este módulo permite ver la evaluación final del repositorio con base en las respuestas del usuario."></x-page-title>
+        description="Este módulo permite ver la evaluación final del repositorio con base en las respuestas del usuario.">
+    </x-page-title>
     @endsection
 
     <div class="row">
@@ -27,6 +28,25 @@
                         <span>{{$repository->qualification}}%</span>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-3 mb-3">
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex align-items-center">
+                        <div class="mb-2 mr-2 badge badge-danger my-auto">&nbsp;</div>
+                        <div>-100% a 0%</div>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <div class="mb-2 mr-2 badge badge-warning my-auto">&nbsp;</div>
+                        <div>0% a 50%</div>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <div class="mb-2 mr-2 badge badge-success my-auto">&nbsp;</div>
+                        <div>50% a 100%</div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -201,24 +221,6 @@
         display: true,
         text: 'Análisis de riesgos y fortalezas del RI'
       }, scales: {
-
-        // xAxes: [{
-        //                     display: true,
-        //                     scaleLabel: {
-        //                         display: true,
-        //                         labelString: 'Month'
-        //                     }
-        //                 }],
-        //             yAxes: [{
-        //                     display: true,
-        //                     ticks: {
-        //                         beginAtZero: true,
-        //                         steps: 10,
-        //                         stepValue: 5,
-        //                         max: 100
-        //                     }
-        //                 }]
-
         yAxes: [{ 
           scaleLabel: {
             display: true,
@@ -230,7 +232,11 @@
                 // steps: 10,
                 // stepValue: 5,
                 max: 110
-            }
+            },
+            gridLines: {
+                zeroLineWidth: 1,
+                zeroLineColor: '#424234'
+            },
         }],
         xAxes: [{ 
           scaleLabel: {
@@ -242,7 +248,11 @@
                 // steps: 10,
                 // stepValue: 5,
                 max: 110
-            }
+            },
+            gridLines: {
+                zeroLineWidth: 1,
+                zeroLineColor: '#424234'
+            },
         }]
       }
     }

@@ -39,7 +39,11 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->phone}}</td>
-                    <td>{{$user->roles()->first()->name}}</td>
+                    <td>
+                        {{-- <div class="mb-2 mr-2 badge badge-{{$user->role_color}}">{{$user->roles()->first()->name}}</div> --}}
+                        <div class="mb-2 mr-2 badge badge-dot badge-dot-xl badge-{{$user->role_color}}">{{$user->role_color}}</div>
+                        <span>{{$user->roles()->first()->name}}</span>
+                    </td>
                     @canany(['delete users','edit users'])
                     <td>
                         @can('delete users')

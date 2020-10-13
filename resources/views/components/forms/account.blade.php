@@ -8,6 +8,9 @@
                         <img src="{{$user->profile_photo_path ? asset('storage/'.$user->profile_photo_path) : asset('images/avatars/3.jpg')}}"
                             class="mb-3 p-1 border">
                         @if ($edit)
+                        <label for="" class="text-uppercase text-muted">
+                            Foto
+                        </label>
                         <div class="custom-file">
                             <input name="file" type="file" class="custom-file-input" id="customFile">
                             <label class="custom-file-label" for="customFile">seleccionar</label>
@@ -19,14 +22,14 @@
                             Nombre
                         </label>
                         <input name="name" type="text" value="{{$user->name}}" class="form-control"
-                            {{$edit ? '' : 'disabled'}}>
+                            {{$edit ? '' : 'disabled'}} required>
                     </div>
                     <div class="col-12 mb-3">
                         <label for="" class="text-uppercase text-muted">
                             E-mail
                         </label>
                         <input name="email" type="email" value="{{$user->email}}" class="form-control"
-                            {{$edit ? '' : 'disabled'}}>
+                            {{$edit ? '' : 'disabled'}} required>
                     </div>
                     <div class="col-12 mb-3">
                         <label for="" class="text-uppercase text-muted">
@@ -54,20 +57,20 @@
                                                 <label for="" class="text-uppercase text-muted">
                                                     Contraseña actual
                                                 </label>
-                                                <input type="password" class="form-control" name="current_password">
+                                                <input type="password" class="form-control" name="current_password" required>
                                             </div>
                                             <div class="col-12 mb-3">
                                                 <label for="" class="text-uppercase text-muted">
                                                     Nueva contraseña
                                                 </label>
-                                                <input type="password" class="form-control" name="new_password">
+                                                <input type="password" class="form-control" name="new_password" required>
                                             </div>
                                             <div class="col-12 mb-3">
                                                 <label for="" class="text-uppercase text-muted">
                                                     Repetir contraseña
                                                 </label>
                                                 <input type="password" class="form-control"
-                                                    name="new_password_repeated">
+                                                    name="new_password_repeated" required>
                                             </div>
                                         </div>
                                     </template>

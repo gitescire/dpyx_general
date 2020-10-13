@@ -28,7 +28,7 @@ class SendRepositoryController extends Controller
     private function handleEvaluationStatus($repository)
     {
         if ($repository->has_observations) {
-            $repository->evaluation->status = 'en progreso';
+            $repository->evaluation->status = 'contestada';
         } else {
             $repository->evaluation->status = 'revisado';
         }

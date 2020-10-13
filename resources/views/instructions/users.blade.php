@@ -16,7 +16,7 @@
                                     Entra en la sección <b><i class="metismenu-icon fas fa-box-open"></i>
                                         Repositorios</b>
                                     y da click en el boton <a
-                                        class="btn btn-sm btn-primary rounded-0 text-white"
+                                        class="btn btn-sm btn-primary rounded-0 text-white" style="cursor: auto;"
                                         href="javascript:void(0)"> <i class="fas fa-edit"></i></a>
                                     del repositorio que desees.
                                     {{-- Lorem ipsum dolor sic amet, today at <a href="javascript:void(0);">12:00 PM</a> --}}
@@ -34,7 +34,7 @@
                                 <p>
                                     Las preguntas están seccionadas por categorias. Por cada pregunta que respondas se 
                                     guardará en tiempo real. Para acceder a la siguiente categoría deberás presionar el botón 
-                                    <a href="javascript:void(0)"
+                                    <a href="javascript:void(0)" style="cursor: auto;"
                                         class="btn btn-sm btn-success btn-wide rounded-0">
                                         <i class="fas fa-save"></i> Continuar
                                     </a>
@@ -54,7 +54,7 @@
                                     Cuando has finalizado las preguntas, <b>si hay alguna convocatoria activa en el
                                         momento</b>, podrás enviar tus respuestas a CONCYTEC.
                                     dentro de tu evaluación aparecerá el botón
-                                    <a href="javascript:void(0)"
+                                    <a href="javascript:void(0)" style="cursor: auto;"
                                         class="btn btn-success btn-sm btn-wide rounded-0">
                                         <i class="fas fa-paper-plane"></i> ENVIAR A CONCYTEC
                                     </a>

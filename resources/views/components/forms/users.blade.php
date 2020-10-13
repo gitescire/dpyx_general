@@ -29,7 +29,7 @@
                 </div>
                 @endif
                 <div class="col-12 mb-3">
-                    <label for="" class="text-muted text-uppercase">Teléfono</label>
+                    <label for="" class="text-muted text-uppercase">Teléfono <small>(opcional)</small></label>
                     <input type="number" value="{{$user ? $user->phone : ''}}" name="phone" minlength="10"
                         class="form-control" placeholder="Teléfono">
                 </div>

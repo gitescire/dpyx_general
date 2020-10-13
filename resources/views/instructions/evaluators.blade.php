@@ -18,7 +18,7 @@
                                         <i class="metismenu-icon fas fa-box-open">
                                         </i> Repositorios</b>, en donde serán listados los repositorios que te
                                     pertenecen. Con el botón
-                                    <a href="javascript:void(0)" class="btn btn-primary rounded-0 btn-sm">
+                                    <a href="javascript:void(0)" class="btn btn-primary rounded-0 btn-sm" style="cursor: auto;">
                                         <i class="fas fa-edit"></i>
                                     </a> podrás acceder a la información respondida de cada repositorio. 
                                     Toma en cuenta que si el usuario aun no envía su información, el botón estará deshabilitado, y por lo tanto no podrás evaluarlo.
@@ -37,12 +37,12 @@
                                 <p>
                                     cuando desees realizar una observación a una pregunta especifica, podrás hacerlo con
                                     el botón
-                                    <a href="javascript:void(0)" class="btn btn-info btn-sm rounded-0">
+                                    <a href="javascript:void(0)" class="btn btn-info btn-sm rounded-0" style="cursor: auto;">
                                         <i class="fas fa-plus"></i></a> Tienes la posibilidad de subir archivos y
                                     escribir
                                     tus observaciones. Para que los cambios se vean reflejados deberás apretar el
                                     botón
-                                    <button class="btn btn-success btn-wide btn-sm rounded-0">
+                                    <button class="btn btn-success btn-wide btn-sm rounded-0" style="cursor: auto;">
                                         <i class="fas fa-save"></i> Guardar
                                     </button>.
                                     </a>
@@ -67,7 +67,7 @@
                                     además, podrás añadir un comentario final. Una vez que has realizado este paso
                                     deberás
                                     presionar el botón
-                                    <button class="btn btn-success btn-wide btn-sm rounded-0">
+                                    <button class="btn btn-success btn-wide btn-sm rounded-0" style="cursor: auto;">
                                         <i class="fas fa-paper-plane"></i> Enviar
                                     </button>
                                 </p>
