@@ -21,6 +21,7 @@
                     <th class="text-uppercase">ID</th>
                     <th class="text-uppercase">Fecha inicial</th>
                     <th class="text-uppercase">Fecha final</th>
+                    <th class="text-uppercase">Status</th>
                     @canany(['edit announcements','delete announcements'])
                     <th class="text-uppercase">Acciones</th>
                     @endcanany
@@ -32,6 +33,11 @@
                     <td>{{$announcement->id}}</td>
                     <td>{{$announcement->initial_date}}</td>
                     <td>{{$announcement->final_date}}</td>
+                    <td>
+                        <span class="badge badge-{{$announcement->status_color}}">
+                            {{$announcement->status}}
+                        </span>
+                    </td>
                     @canany(['edit announcements','delete announcements'])
                     <td>
                         @can('delete announcements')
