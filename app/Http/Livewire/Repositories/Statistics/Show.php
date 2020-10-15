@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Repositories\Statistics;
 use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Repository;
+use App\Models\Subcategory;
 use Livewire\Component;
 
 class Show extends Component
@@ -12,6 +13,7 @@ class Show extends Component
     public $repository;
     public $answers;
     public $categories;
+    public $subcategories;
 
     public function mount(Repository $repository)
     {
@@ -19,6 +21,8 @@ class Show extends Component
         $evaluation = $repository->evaluation;
         $this->answers = $repository->evaluation->answers;
         $this->categories = Category::with('questions')->get();
+        $this->subcategories = Subcategory::get();
+        // dd($this->subcategories);
 
         foreach ($this->categories as $category) {
             foreach ($category->questions as $question) {

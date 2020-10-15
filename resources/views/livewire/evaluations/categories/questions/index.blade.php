@@ -14,7 +14,9 @@
             </form>
             <button class="btn btn-success btn-wide shadow rounded-0" {{$announcement ? '' : 'disabled'}}
                 x-ref="buttonSendToConcytec" x-on:click="showWarning()">
-                <i class="fas fa-paper-plane"></i> ENVIAR A {{getenv('APP_NAME')}}
+                {{-- <i class="fas fa-paper-plane"></i> ENVIAR A {{getenv('APP_NAME')}} --}}
+                {{-- <i class="fas fa-paper-plane"></i> {{ __('Edit product') }} --}}
+                <i class="fas fa-paper-plane"></i> {{ __('enviar cuestionario') }}
             </button>
         </div>
     </div>

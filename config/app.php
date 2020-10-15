@@ -80,7 +80,9 @@ return [
     |
     */
 
-    'locale' => 'es',
+    // for example es.concyec => lang/es/concytec
+    // 'locale' => 'es.concytec',
+    'locale' => 'es.' . strtolower(getenv('APP_NAME')),
 
     /*
     |--------------------------------------------------------------------------

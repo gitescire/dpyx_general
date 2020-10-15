@@ -10,7 +10,32 @@
         <div class="col-12 col-lg-12 mb-3">
             <div class="card shadow border-0">
                 <div class="card-body" id="bubbleChartContainer">
-                    <canvas id="bubble-chart"></canvas>
+                    <div class="row d-flex justify-content-center mb-3">
+                        <div class="col-4">
+                            <label for="" class="text-uppercase text-muted">Eje Y</label>
+                            <select name="" id="" class="form-control" x-model="subcategoryIdOnYAxis"
+                                x-on:change="setBubbleChart()">
+                                @foreach ($subcategories as $subcategory)
+                                <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-1 d-flex justify-content-center align-items-center">
+                            VS
+                        </div>
+                        <div class="col-4">
+                            <label for="" class="text-uppercase text-muted">Eje X</label>
+                            <select name="" id="" class="form-control" x-model="subcategoryIdOnXAxis"
+                                x-on:change="setBubbleChart()">
+                                @foreach ($subcategories as $subcategory)
+                                <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div id="bubble-chart-container">
+                        <canvas id="bubble-chart"></canvas>
+                    </div>
                 </div>
                 {{-- <div class="card-footer"></div> --}}
             </div>
@@ -32,19 +57,19 @@
         </div>
 
         <div class="col-12 col-lg-3 mb-3">
-            <div class="card">
+            <div class="card shadow border-0">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex align-items-center">
                         <div class="mb-2 mr-2 badge badge-danger my-auto">&nbsp;</div>
-                        <div>-100% a 0%</div>
+                        <div>-100% a 0% (deficiente)</div>
                     </li>
                     <li class="list-group-item d-flex align-items-center">
                         <div class="mb-2 mr-2 badge badge-warning my-auto">&nbsp;</div>
-                        <div>0% a 50%</div>
+                        <div>0% a 50% (regular)</div>
                     </li>
                     <li class="list-group-item d-flex align-items-center">
                         <div class="mb-2 mr-2 badge badge-success my-auto">&nbsp;</div>
-                        <div>50% a 100%</div>
+                        <div>50% a 100% (excelente)</div>
                     </li>
                 </ul>
             </div>
@@ -74,14 +99,20 @@
 
                 repository: @json($repository),
                 categories: @json($categories),
+                subcategories: @json($subcategories),
+                subcategoryIdOnXAxis: null,
+                subcategoryIdOnYAxis: null,
 
                 mounted() {
+
+                    this.subcategoryIdOnYAxis = this.subcategories[0].id
+                    this.subcategoryIdOnXAxis = this.subcategories.slice(-1)[0].id
 
                     this.categories.forEach(category => {
 
                         // Set real punctuation to the category
                         punctuations = _.map(category.questions, function(question){
-                            return question.answer ? parseFloat(question.answer.choice.punctuation) : 0
+                            return question.answer.choice ? parseFloat(question.answer.choice.punctuation) : 0
                         })
                         category.punctuation = _.sum(punctuations)
 
@@ -168,24 +199,44 @@
                         }
                     });
 
-                    datasets = _.map(this.categories, function(category){
+                    this.setBubbleChart()
 
+                    // 
+                    
+                   
+
+                },
+
+                setBubbleChart(){
+
+                    document.getElementById('bubble-chart-container').innerHTML = `<canvas id="bubble-chart"><canvas>`;
+
+                    // $('#results-graph').remove(); // this is my <canvas> element
+                    // $('#graph-container').append('<canvas id="results-graph"><canvas>');
+
+                    console.log('set bubble chrt')
+                    subcategoryIdOnXAxis = this.subcategoryIdOnXAxis
+                    subcategoryIdOnYAxis = this.subcategoryIdOnYAxis
+                    subcategories = this.subcategories
+
+                    datasets = _.map(this.categories, function(category){
+                        
                         questions = _.filter(category.questions, function(question){
-                            return question.subcategory_id == 1
+                            return question.subcategory_id == this.subcategoryIdOnXAxis
                         }) 
 
                         punctuations = _.map( questions, function(question){
-                            return question.answer ? parseFloat(question.answer.choice.punctuation) : 0
+                            return question.answer.choice ? parseFloat(question.answer.choice.punctuation) : 0
                         } )
 
                         accesibilityPunctuation = _.sum(punctuations)
 
                         questions = _.filter(category.questions, function(question){
-                            return question.subcategory_id == 2
+                            return question.subcategory_id == subcategoryIdOnYAxis
                         }) 
 
                         punctuations = _.map( questions, function(question){
-                            return question.answer ? parseFloat(question.answer.choice.punctuation) : 0
+                            return question.answer.choice ? parseFloat(question.answer.choice.punctuation) : 0
                         } )
 
                         preservationPunctuation = _.sum(punctuations)
@@ -206,59 +257,60 @@
                         }
                     })
 
-                    // 
-                    
                     new Chart(document.getElementById("bubble-chart"), {
                         responsive: true,
                         // maintainAspectRatio: false,
-    type: 'bubble',
-    data: {
-      labels: "Africa",
-      datasets
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'Análisis de riesgos y fortalezas del RI'
-      }, scales: {
-        yAxes: [{ 
-          scaleLabel: {
-            display: true,
-            labelString: "Preservación",
-            max: 110
-          },
-          ticks: {
-                beginAtZero: true,
-                // steps: 10,
-                // stepValue: 5,
-                max: 110
-            },
-            gridLines: {
-                zeroLineWidth: 1,
-                zeroLineColor: '#424234'
-            },
-        }],
-        xAxes: [{ 
-          scaleLabel: {
-            display: true,
-            labelString: "Accesibilidad",
-          },
-          ticks: {
-                beginAtZero: true,
-                // steps: 10,
-                // stepValue: 5,
-                max: 110
-            },
-            gridLines: {
-                zeroLineWidth: 1,
-                zeroLineColor: '#424234'
-            },
-        }]
-      }
-    }
-});
-
-                },
+                        type: 'bubble',
+                        data: {
+                        labels: "Africa",
+                        datasets
+                        },
+                        options: {
+                        title: {
+                            display: true,
+                            text: 'Análisis de riesgos y fortalezas del RI'
+                        }, scales: {
+                            yAxes: [{ 
+                            scaleLabel: {
+                                display: true,
+                                labelString: _.find(subcategories, function(subcategory){
+                                    return subcategory.id == subcategoryIdOnYAxis
+                                }).name,
+                                max: 110
+                            },
+                            ticks: {
+                                    beginAtZero: true,
+                                    // steps: 10,
+                                    // stepValue: 5,
+                                    max: 110
+                                },
+                                gridLines: {
+                                    zeroLineWidth: 1,
+                                    zeroLineColor: '#424234'
+                                },
+                            }],
+                            xAxes: [{ 
+                            scaleLabel: {
+                                display: true,
+                                labelString: _.find(subcategories, function(subcategory){
+                                    return subcategory.id == subcategoryIdOnXAxis
+                                }).name,
+                            },
+                            ticks: {
+                                    beginAtZero: true,
+                                    // steps: 10,
+                                    // stepValue: 5,
+                                    max: 110
+                                },
+                                gridLines: {
+                                    zeroLineWidth: 1,
+                                    zeroLineColor: '#424234'
+                                },
+                            }]
+                        }
+                        }
+                    });
+                }
 
                 
             }
