@@ -44,3 +44,7 @@ https://git-codecommit.us-east-1.amazonaws.com/v1/repos/dpyx-concytec-laravel
 
 3. You need to create a storage link to make public the folder that users will save their files:
 `php artisan storage:link`
+
+4. You must go to the path where you have your php.ini file, and change the next variables like are shown below:
+`upload_max_filesize = 20M`
+`post_max_size = 20M`
