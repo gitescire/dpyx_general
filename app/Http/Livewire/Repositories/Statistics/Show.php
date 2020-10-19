@@ -20,7 +20,7 @@ class Show extends Component
         $this->repository = $repository->append('qualification');
         $evaluation = $repository->evaluation;
         $this->answers = $repository->evaluation->answers;
-        $this->categories = Category::with('questions')->get();
+        $this->categories = Category::has('questions')->with('questions')->get();
         $this->subcategories = Subcategory::get();
         // dd($this->subcategories);
 

@@ -201,7 +201,7 @@
 
                     this.setBubbleChart()
 
-                    // 
+                    // LINEAR CHART FOR ALL TACOMETERS
                     
                    
 

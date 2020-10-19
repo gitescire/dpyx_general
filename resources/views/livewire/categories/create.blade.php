@@ -14,11 +14,11 @@
                         <div class="row">
                             <div class="col-12 mb-3">
                                 <label for="" class="text-muted text-uppercase">Nombre</label>
-                                <input type="text" name="name" class="form-control" required>
+                                <input type="text" name="name" maxlength="80" class="form-control" required>
                             </div>
                             <div class="col-12">
                                 <label for="" class="text-muted text-uppercase">Nombre corto</label>
-                                <input type="text" name="short_name" class="form-control" maxlength="20" required>
+                                <input type="text" name="short_name" maxlength="20" class="form-control" maxlength="20" required>
                             </div>
                         </div>
                     </div>
