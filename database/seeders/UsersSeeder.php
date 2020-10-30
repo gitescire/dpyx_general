@@ -34,7 +34,7 @@ class UsersSeeder extends Seeder
             'password' => bcrypt('Pruebas123')
         ])->assignRole('admin');
 
-        $user = User::create([
+        $userAdmin = User::create([
             'name' => 'Nydia Lopez',
             'phone' => null,
             'email' => 'nlopez@escire.mx',
@@ -67,14 +67,70 @@ class UsersSeeder extends Seeder
             'status' => 'en progreso',
         ]);
 
-        // Create empty answers for each question
+        /**
+         * Create empty answers for each question
+         */
+
         Question::get()->each(function ($question) use ($evaluation) {
             Answer::create([
                 'evaluation_id' => $evaluation->id,
                 'question_id' => $question->id
             ]);
         });
+
+        /**
+         * ===============
+         * USERS FOR CONCYTEC
+         * ===============
+         */
         
+        // ADMINISTRADOR
+        // usuario: concytec
+        // contraseña: G6&6$usTop*T
+
+        $userAdmin = User::create([
+            'name' => 'concytec',
+            'phone' => null,
+            'email' => 'dangeles@concytec.gob.pe',
+            'password' => bcrypt('G6&6$usTop*T')
+        ])->assignRole('admin');
+        
+        $userEvaluator = User::create([
+            'name' => 'evaluador',
+            'phone' => null,
+            'email' => 'dianasaq12@gmail.com',
+            'password' => bcrypt('31evaluador.e')
+        ])->assignRole('evaluador');
+
+        $user = User::create([
+            'name' => 'repositorio',
+            'phone' => null,
+            'email' => 'alicia@concytec.gob.pe',
+            'password' => bcrypt('blp!utuPhu1A')
+        ])->assignRole('usuario');
+
+        $repository = Repository::create([
+            'responsible_id' => $user->id,
+            'name' =>'repositorio',
+            'status' => 'en progreso',
+        ]);
+
+        $evaluation = Evaluation::create([
+            'repository_id' => $repository->id,
+            'evaluator_id' => $userEvaluator->id,
+            'status' => 'en progreso',
+        ]);
+
+        /**
+         * Create empty answers for each question
+         */
+
+        Question::get()->each(function ($question) use ($evaluation) {
+            Answer::create([
+                'evaluation_id' => $evaluation->id,
+                'question_id' => $question->id
+            ]);
+        });
 
     }
 }

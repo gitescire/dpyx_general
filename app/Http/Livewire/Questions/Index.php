@@ -10,21 +10,19 @@ use Livewire\WithPagination;
 
 class Index extends Component
 {
+
     use WithPagination;
 
     private $questions;
     public $categories;
     public $search = "";
-
-    public function mount()
-    {
-    }
+    public $sortBy = "id";
+    public $sortDirection = "asc";
 
     public function render()
     {
         $this->categories = Category::get();
 
-        // dd($this->categories);
         $this->categories->each(function ($category) {
             $category->subcategories = Subcategory::get();
             $category->subcategories->each(function ($subcategory) use ($category) {
@@ -44,17 +42,29 @@ class Index extends Component
 
     private function setQuestions()
     {
+        $this->questions = Question::with('category')->with('subcategory');
+
         if ($this->search) {
-            $this->questions = Question::orWhere('description', 'like', '%' . $this->search . '%')
+            $this->questions = $this->questions->where('description', 'like', '%' . $this->search . '%')
                 ->orWhereHas('category', function ($query) {
                     $query->where('name', 'like', '%' . $this->search . '%');
                 })
                 ->orWhereHas('subcategory', function ($query) {
                     $query->where('name', 'like', '%' . $this->search . '%');
-                })
-                ->paginate(10);
-        } else {
-            $this->questions = Question::paginate(10);
+                });
         }
+
+
+        if ($this->sortDirection == 'desc') {
+            $this->questions = $this->questions->get()->sortByDesc($this->sortBy)->paginate(10);
+        } else {
+            $this->questions = $this->questions->get()->sortBy($this->sortBy)->paginate(10);
+        }
+    }
+
+    public function sortBy($field)
+    {
+        $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
+        $this->sortBy = $field;
     }
 }

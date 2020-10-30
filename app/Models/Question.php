@@ -9,6 +9,8 @@ class Question extends Model
 {
     use HasFactory;
 
+    protected $appends = ['max_punctuation'];
+
     protected $fillable = [
         'category_id',
         'subcategory_id',

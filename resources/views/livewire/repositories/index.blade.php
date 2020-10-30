@@ -40,7 +40,7 @@
                     @endif
                     <td>
                         <a href="{{route('repositories.statistics.show',[$repository])}}"
-                            class="btn btn-info btn-shadow rounded-0 {{$repository->evaluation->answers->count() ? '' : 'disabled'}}">
+                            class="btn btn-info btn-shadow rounded-0 {{$repository->evaluation->answers->whereNotNull('choice_id')->count() ? '' : 'disabled'}}">
                             <i class="fas fa-chart-pie"></i>
                         </a>
                     </td>
