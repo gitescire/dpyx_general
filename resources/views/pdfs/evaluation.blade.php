@@ -138,12 +138,10 @@
                 <tr>
                     <td>{{$question->description}}</td>
                     <td>
-                        {{$question->answers->first()->choice ? $question->answers->first()->choice->description : ''}}
-                        {{-- {{$question->answers[0]->choice->description}}} --}}
+                        {{$question->answers()->where('evaluation_id',$repository->evaluation->id)->first()->choice ? $question->answers->first()->choice->description : ''}}
                     </td>
                         <td>
-                            {{$question->answers->first()->choice && $question->answers->first()->observation ? $question->answers->first()->observation->description : ''}}
-                            {{-- {{$question->answers[0]->observation ? $question->answers[0]->observation->description : ''}} --}}
+                            {{$question->answers->first()->choice && $question->answers()->where('evaluation_id',$repository->evaluation->id)->first()->observation ? $question->answers->first()->observation->description : ''}}
                     </td>
                 </tr>
                 @endforeach

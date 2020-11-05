@@ -15,6 +15,7 @@ class Repository extends Model
     protected $fillable = [
         "responsible_id",
         "name",
+        "status",
     ];
 
     /**
