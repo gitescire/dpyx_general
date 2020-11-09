@@ -41,12 +41,14 @@ class UsersSeeder extends Seeder
             'password' => bcrypt('1Aprender3948.')
         ])->assignRole('admin');
         
-        $userEvaluator = User::create([
-            'name' => 'Nydia Evaluador',
-            'phone' => null,
-            'email' => 'valni.info@gmail.com',
-            'password' => bcrypt('1Aprender3948.')
-        ])->assignRole('evaluador');
+        if(config('app.is_evaluable')){
+            $userEvaluator = User::create([
+                'name' => 'Nydia Evaluador',
+                'phone' => null,
+                'email' => 'valni.info@gmail.com',
+                'password' => bcrypt('1Aprender3948.')
+            ])->assignRole('evaluador');
+        }
 
         $user = User::create([
             'name' => 'Nydia Repositorio',
@@ -61,11 +63,19 @@ class UsersSeeder extends Seeder
             'status' => 'en progreso',
         ]);
 
-        $evaluation = Evaluation::create([
-            'repository_id' => $repository->id,
-            'evaluator_id' => $userEvaluator->id,
-            'status' => 'en progreso',
-        ]);
+        if(config('app.is_evaluable')){
+            $evaluation = Evaluation::create([
+                'repository_id' => $repository->id,
+                'evaluator_id' => $userEvaluator->id,
+                'status' => 'en progreso',
+            ]);
+        }else{
+            $evaluation = Evaluation::create([
+                'repository_id' => $repository->id,
+                'status' => 'en progreso',
+            ]);
+        }
+
 
         /**
          * Create empty answers for each question
@@ -89,18 +99,27 @@ class UsersSeeder extends Seeder
         // contraseña: G6&6$usTop*T
 
         $userAdmin = User::create([
+            'name' => 'Cristian Calabrano Torres',
+            'phone' => null,
+            'email' => 'ccalabrano@uchile.cl',
+            'password' => bcrypt('Santiago.2020')
+        ])->assignRole('admin');
+
+        $userAdmin = User::create([
             'name' => 'concytec',
             'phone' => null,
             'email' => 'dangeles@concytec.gob.pe',
             'password' => bcrypt('G6&6$usTop*T')
         ])->assignRole('admin');
-        
-        $userEvaluator = User::create([
-            'name' => 'evaluador',
-            'phone' => null,
-            'email' => 'dianasaq12@gmail.com',
-            'password' => bcrypt('31evaluador.e')
-        ])->assignRole('evaluador');
+
+        if(config('app.is_evaluable')){
+            $userEvaluator = User::create([
+                'name' => 'evaluador',
+                'phone' => null,
+                'email' => 'dianasaq12@gmail.com',
+                'password' => bcrypt('31evaluador.e')
+            ])->assignRole('evaluador');
+        }
 
         $user = User::create([
             'name' => 'repositorio',
@@ -115,11 +134,18 @@ class UsersSeeder extends Seeder
             'status' => 'en progreso',
         ]);
 
-        $evaluation = Evaluation::create([
-            'repository_id' => $repository->id,
-            'evaluator_id' => $userEvaluator->id,
-            'status' => 'en progreso',
-        ]);
+        if(config('app.is_evaluable')){
+            $evaluation = Evaluation::create([
+                'repository_id' => $repository->id,
+                'evaluator_id' => $userEvaluator->id,
+                'status' => 'en progreso',
+            ]);
+        }else{
+            $evaluation = Evaluation::create([
+                'repository_id' => $repository->id,
+                'status' => 'en progreso',
+            ]);
+        }
 
         /**
          * Create empty answers for each question
