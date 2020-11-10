@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Categories;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -15,7 +16,7 @@ class StoreCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(StoreCategoryRequest $request)
     {
         $category = new Category;
         $category->name = $request->name;

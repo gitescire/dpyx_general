@@ -64,7 +64,7 @@
                                 <li>
                                     <a href="{{route('categories.index')}}">
                                         <i class="metismenu-icon fas fa-layer-group">
-                                        </i>Categorias
+                                        </i>Categorías
                                     </a>
                                 </li>
                                 @endcan
@@ -72,7 +72,7 @@
                                 <li>
                                     <a href="{{route('subcategories.index')}}">
                                         <i class="metismenu-icon fas fa-cubes">
-                                        </i>Subcategorias
+                                        </i>Subcategorías
                                     </a>
                                 </li>
                                 @endcan
