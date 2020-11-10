@@ -124,10 +124,11 @@
             <div class="app-sidebar-overlay d-none animated fadeIn"></div>
             <div class="app-main__outer container">
                 <div class="app-main__inner container">
-                    <div class="header-mobile-wrapper">
+                    <div class="header-mobile-wrapper" style="background-color: #e1e6ff;">
                         <div class="app-header__logo">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="KeroUI Admin Template"
-                                class="logo-src"></a>
+                            <img src="{{url('images/logo.png')}}" width="120px" class="img-responsive" alt="">
+                            {{-- <a href="#" data-toggle="tooltip" data-placement="bottom" title="KeroUI Admin Template"
+                                class="logo-src"></a> --}}
                             <button type="button" class="hamburger hamburger--elastic mobile-toggle-sidebar-nav">
                                 <span class="hamburger-box">
                                     <span class="hamburger-inner"></span>
@@ -136,7 +137,8 @@
                             <div class="app-header__menu">
                                 <span>
                                     <button type="button"
-                                        class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                                        class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav"
+                                        style="background: #b6bad2; border: 1px solid #9da4ca;">
                                         <span class="btn-icon-wrapper">
                                             <i class="fa fa-ellipsis-v fa-w-6"></i>
                                         </span>
@@ -645,10 +647,11 @@
                                             Correo
                                         </li> --}}
                                         <li class="nav-item">
-                                            <a href="javascript:void(0);" class="nav-link float"><span class="text-muted">
-                                                <i class="fas fa-envelope"></i>
-                                                {{auth()->user()->email}}
-                                            </span>
+                                            <a href="javascript:void(0);" class="nav-link float"><span
+                                                    class="text-muted">
+                                                    <i class="fas fa-envelope"></i>
+                                                    {{auth()->user()->email}}
+                                                </span>
                                                 {{-- <div
                                                                             class="ml-auto badge badge-pill badge-info">
                                                                             8
@@ -1891,19 +1894,47 @@
     <script>
         function navbar(){
                 return {
+                    errors: @json($errors->all()),
                     expandNavbar: JSON.parse(localStorage.getItem('expandNavbar')) ? true : false,
                     appContainer: document.getElementById('app-container'),
                     navbarButton: document.getElementById('navbarButton'),
     
+                    /**
+                    *
+                    *
+                    *
+                    */
+
                     mounted() {
                         document.cookie = `expandNavbar=${this.expandNavbar}`;
+                        
+                        if(this.errors.length > 0){
+                            this.showErrors();
+                        }
                     },
     
+                    /**
+                    *
+                    *
+                    *
+                    */
+
                     changeState(){
                         this.expandNavbar = !this.expandNavbar;
                         localStorage.setItem('expandNavbar', this.expandNavbar);
                         document.cookie = `expandNavbar=${this.expandNavbar}`;
-                    }
+                    },
+
+
+                    showErrors(){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: this.errors[0],
+                            // footer: '<a href>Why do I have this issue?</a>'
+                        })
+                    },
+
                 }
             }
             

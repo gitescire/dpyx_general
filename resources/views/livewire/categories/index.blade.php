@@ -1,13 +1,13 @@
 <div class="mb-4">
 
     @section('header')
-    <x-page-title title="Lista de categorias"
-        description="Este módulo permite ver las categorias registradas para las evaluaciones."></x-page-title>
+    <x-page-title title="Lista de categorías"
+        description="Este módulo permite ver las categorías registradas para las evaluaciones."></x-page-title>
     @endsection
 
     <div class="row d-flext justify-content-between mb-3">
         <div class="col-12 col-lg-4">
-            <x-input-search/>
+            <x-input-search />
         </div>
         <div class="col-12 col-lg-3">
             <a href="{{route('categories.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0 float-right">
@@ -33,11 +33,21 @@
                     <td>{{$category->name}}</td>
                     <td>{{$category->short_name}}</td>
                     <td>
+                        @if ($category->questions->count())
                         <button type="button" class="btn btn-danger btn-shadow rounded-0" data-toggle="modal"
                             data-target="#deleteCategory{{$category->id}}">
                             <i class="fas fa-trash"></i>
                         </button>
                         <x-modals.categories.delete :category="$category" />
+                        @else
+                        <form action="{{route('categories.destroy',[$category])}}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-shadow rounded-0">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                        @endif
                         <a href="{{route('categories.edit',[$category])}}" class="btn btn-warning btn-shadow rounded-0">
                             <i class="fas fa-pencil-alt"></i>
                         </a>

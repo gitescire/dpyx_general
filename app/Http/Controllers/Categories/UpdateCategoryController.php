@@ -21,7 +21,7 @@ class UpdateCategoryController extends Controller
         $category->short_name = $request->short_name;
         $category->save();
 
-        Alert::success('¡Categoría creada!');
+        Alert::success('¡Categoría editada!');
         return redirect()->route('categories.index');
     }
 }

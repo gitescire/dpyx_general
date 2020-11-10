@@ -32,12 +32,18 @@
                                         x-model="newOption.punctuation">
                                     <div class="input-group-append ml-1">
                                         <button class="btn btn-info btn-shadow rounded-0" type="button"
-                                            x-on:click="addOption()" x-ref="addButton">
+                                            x-on:click="addOption()" x-ref="addButton" :disabled="newOption.description == '' || newOption.punctuation == '' || optionExists()">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
 
                                 </div>
+
+                                <template x-if="optionExists()">
+                                <div class="alert alert-info">
+                                    El valor introducido ya existe en las opciones
+                                </div>
+                                </template>
 
 
                                 {{-- <label for="" class="text-uppercase text-muted">Valor</label>
@@ -47,6 +53,12 @@
                                     <i class="fas fa-plus"></i>
                                 </button> --}}
                                 <hr>
+
+                                <template x-if="options.length == 0">
+                                        <div class="alert alert-info">
+                                            Debes añadir por lo menos una opción de respuesta
+                                        </div>
+                                </template>
 
                                 <template x-for="option in options">
                                     {{-- <span x-text="option.id"></span> --}}
@@ -166,7 +178,7 @@
             </div>
         </div>
         <div class="card-footer d-flex justify-content-end">
-            <button class="btn btn-success btn-wide btn-shadow rounded-0">
+            <button class="btn btn-success btn-wide btn-shadow rounded-0" :disabled="!isStorable()">
                 <i class="fas fa-save"></i> Guardar
             </button>
         </div>
@@ -183,24 +195,27 @@
         subcategories: @json($subcategories),
         allQuestions: @json($allQuestions),
 
-        categoryChoosedId: null,
-        subcategoryChoosedId: null,
-
         newOption: {
             description: '',
             punctuation: ''
         },
 
-        // isTheMaximumPercentageExceeded(){
+        optionExists(){
+            if(this.options.find(option => option.punctuation == this.newOption.punctuation)){
+                return true
+            }
+            return false
+        },
 
-        //     questions = _.filter(this.allQuestions, (question) => question.category_id == this.categoryChoosedId);
-        //     questions = _.filter(questions, (question) => question.subcategory_id == this.subcategoryChoosedId);
-        //     questions = _.filter(questions, (question) => this.question ? question.id != this.question.id : question);
+        isStorable(){
+            if(this.options.length == 0){
+                return false;
+            }
+            
+            return true;
+        },
 
-        //     console.log(questions);
-        //     return true;
 
-        // },
 
         addOption(){
             

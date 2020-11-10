@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class UpdateUserController extends Controller
 {
-    public function __invoke(Request $request, User $user)
+    public function __invoke(UpdateUserRequest $request, User $user)
     {
 
         if ($request->change_password == 'on') {

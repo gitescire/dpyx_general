@@ -57,20 +57,22 @@
                                                 <label for="" class="text-uppercase text-muted">
                                                     Contraseña actual
                                                 </label>
-                                                <input type="password" class="form-control" name="current_password" required>
+                                                <input type="password" class="form-control" name="current_password"
+                                                    required>
                                             </div>
                                             <div class="col-12 mb-3">
                                                 <label for="" class="text-uppercase text-muted">
                                                     Nueva contraseña
                                                 </label>
-                                                <input type="password" class="form-control" name="new_password" required>
+                                                <input type="password" class="form-control" name="new_password" id="newPassword"
+                                                    required x-on:keyup="validatePassword()">
                                             </div>
                                             <div class="col-12 mb-3">
                                                 <label for="" class="text-uppercase text-muted">
                                                     Repetir contraseña
                                                 </label>
-                                                <input type="password" class="form-control"
-                                                    name="new_password_repeated" required>
+                                                <input type="password" class="form-control" name="new_password_repeated" id="confirmPassword"
+                                                    required x-on:keyup="validatePassword()">
                                             </div>
                                         </div>
                                     </template>
@@ -94,8 +96,41 @@
         function data(){
             return {
                 changePassword: false,
+
+                /**
+                *
+                *
+                *
+                */
+
+                validatePassword(){
+                    newPassword = document.getElementById('newPassword');
+                    confirmPassword = document.getElementById('confirmPassword');
+                    console.log({
+                        newPassword: newPassword.value,
+                        confirmPassword: confirmPassword.value,
+                    })
+
+                    if(newPassword.value != confirmPassword.value) {
+                        confirmPassword.setCustomValidity("No coincide con la nueva contraseña.");
+                      } else {
+                        confirmPassword.setCustomValidity('');
+                      }
+                },
+
             }
+        }
+/*
+        var password = document.getElementById("password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  
 }
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+*/
     </script>
 
 </div>

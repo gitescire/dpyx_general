@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\User;
@@ -17,7 +18,7 @@ class StoreUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(StoreUserRequest $request)
     {
         $user = new User;
         $user->name = $request->name;

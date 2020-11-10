@@ -20,12 +20,12 @@
                 <div class="col-12 mb-3">
                     <label for="" class="text-muted text-uppercase">Contraseña</label>
                     <input type="password" name="password" minlength="8" class="form-control" placeholder="********"
-                        required>
+                        required x-on:keyup="validateNewPassword()" id="newPassword">
                 </div>
                 <div class="col-12 mb-3">
                     <label for="" class="text-muted text-uppercase">Confirmar contraseña</label>
                     <input type="password" name="confirm_password" minlength="8" class="form-control"
-                        placeholder="********" required>
+                        placeholder="********" required x-on:keyup="validateNewPassword()" id="confirmPassword">
                 </div>
                 @endif
                 <div class="col-12 mb-3">
@@ -74,7 +74,8 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="change_password" class="custom-control-input" id="changePassword" x-model="changePassword">
+                                <input type="checkbox" name="change_password" class="custom-control-input"
+                                    id="changePassword" x-model="changePassword">
                                 <label class="custom-control-label text-uppercase text-muted" for="changePassword">
                                     ¿Cambiar contraseña?
                                 </label>
@@ -84,19 +85,24 @@
                                             <label for="" class="text-uppercase text-muted">
                                                 Contraseña actual
                                             </label>
-                                            <input type="password" class="form-control" name="current_password">
+                                            <input type="password" class="form-control" name="current_password"
+                                                required>
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="" class="text-uppercase text-muted">
                                                 Nueva contraseña
                                             </label>
-                                            <input type="password" class="form-control" name="new_password">
+                                            <input type="password" class="form-control" name="new_password"
+                                                id="newEditedPassword" x-on:keyup="validateEditedPassword()" required
+                                                minlength="8">
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="" class="text-uppercase text-muted">
                                                 Repetir contraseña
                                             </label>
-                                            <input type="password" class="form-control" name="new_password_repeated">
+                                            <input type="password" class="form-control" name="new_password_repeated"
+                                                id="confirmEditedPassword" x-on:keyup="validateEditedPassword()"
+                                                required minlength="8">
                                         </div>
                                     </div>
                                 </template>
@@ -122,6 +128,36 @@
             checkIfIsUser(rolesInput){
                 role = rolesInput.options[rolesInput.selectedIndex].text
                 this.isUser = role == 'usuario' ? 1 : 0
+            },
+
+            validateEditedPassword(){
+                newEditedPassword = document.getElementById('newEditedPassword');
+                confirmEditedPassword = document.getElementById('confirmEditedPassword');
+                console.log({
+                    newEditedPassword: newEditedPassword.value,
+                    confirmEditedPassword: confirmEditedPassword.value,
+                })
+
+                if(newEditedPassword.value != confirmEditedPassword.value) {
+                    confirmEditedPassword.setCustomValidity("No coincide con la nueva contraseña.");
+                  } else {
+                    confirmEditedPassword.setCustomValidity('');
+                  }
+            },
+
+            validateNewPassword(){
+                newPassword = document.getElementById('newPassword');
+                confirmPassword = document.getElementById('confirmPassword');
+                console.log({
+                    newPassword: newPassword.value,
+                    confirmPassword: confirmPassword.value,
+                })
+
+                if(newPassword.value != confirmPassword.value) {
+                    confirmPassword.setCustomValidity("No coincide con la nueva contraseña.");
+                  } else {
+                    confirmPassword.setCustomValidity('');
+                  }
             },
         }
     }
