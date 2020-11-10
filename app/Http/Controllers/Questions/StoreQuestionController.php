@@ -13,7 +13,6 @@ class StoreQuestionController extends Controller
 {
     public function __invoke(Request $request)
     {
-
         $question = new Question;
         $question->description = $request->description;
         $question->order = $request->order;
@@ -24,6 +23,8 @@ class StoreQuestionController extends Controller
         $question->category_id = $request->category_id;
         $question->subcategory_id = $request->subcategory_id;
         $question->save();
+
+
 
         if ($request->options) {
             foreach ($request->options as $option) {

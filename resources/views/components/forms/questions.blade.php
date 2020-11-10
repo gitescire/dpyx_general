@@ -32,18 +32,12 @@
                                         x-model="newOption.punctuation">
                                     <div class="input-group-append ml-1">
                                         <button class="btn btn-info btn-shadow rounded-0" type="button"
-                                            x-on:click="addOption()" x-ref="addButton" :disabled="newOption.description == '' || newOption.punctuation == '' || optionExists()">
+                                            x-on:click="addOption()" x-ref="addButton" :disabled="newOption.description == '' || newOption.punctuation == ''">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
 
                                 </div>
-
-                                <template x-if="optionExists()">
-                                <div class="alert alert-info">
-                                    El valor introducido ya existe en las opciones
-                                </div>
-                                </template>
 
 
                                 {{-- <label for="" class="text-uppercase text-muted">Valor</label>
@@ -63,14 +57,14 @@
                                 <template x-for="option in options">
                                     {{-- <span x-text="option.id"></span> --}}
                                     <div class="input-group mb-3">
-                                        <input type="hidden" :name="`options[${option.punctuation}][id]`"
+                                        <input type="hidden" :name="`options[${option.position}][id]`"
                                             x-model="option.id" required>
                                         <div class="input-group-prepend">
-                                            <input type="text" :name="`options[${option.punctuation}][description]`"
+                                            <input type="text" :name="`options[${option.position}][description]`"
                                                 class="form-control" x-model="option.description" required>
                                         </div>
                                         <input type="text" class="form-control ml-1"
-                                            :name="`options[${option.punctuation}][punctuation]`"
+                                            :name="`options[${option.position}][punctuation]`"
                                             x-model="option.punctuation">
                                         <template x-if="!option.id">
                                             <div class="input-group-append ml-1">
@@ -200,12 +194,12 @@
             punctuation: ''
         },
 
-        optionExists(){
-            if(this.options.find(option => option.punctuation == this.newOption.punctuation)){
-                return true
-            }
-            return false
-        },
+        // optionExists(){
+        //     if(this.options.find(option => option.punctuation == this.newOption.punctuation)){
+        //         return true
+        //     }
+        //     return false
+        // },
 
         isStorable(){
             if(this.options.length == 0){
@@ -233,6 +227,8 @@
             }
 
             this.sortOptions()
+            this.enumerateOptions()
+            console.log(this.options)
         },
 
         deleteOption(optionToTrash){
@@ -245,7 +241,7 @@
             }
 
             this.sortOptions()
-
+            this.enumerateOptions()
         },
 
         sortOptions(){
@@ -254,9 +250,15 @@
             }).reverse()
         },
 
-        mounted(){
+        enumerateOptions(){
+            this.options.forEach((option, index) => {
+                option.position = index
+            });
+        },
 
-        }
+        mounted() {
+            
+        },
 
     }
 }

@@ -1944,6 +1944,9 @@
 
     @stack('modals')
     @stack('scripts')
+
+    {{-- To avoid sweet alert after shown --}}
+    {{ Session::forget('alert') }} 
 </body>
 
 </html>
