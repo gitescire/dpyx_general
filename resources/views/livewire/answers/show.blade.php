@@ -7,9 +7,9 @@
     @endsection
 
     @if ($errors->first())
-        <div class="alert alert-danger">
-                {{$errors->first()}}
-        </div>
+    <div class="alert alert-danger">
+        {{$errors->first()}}
+    </div>
     @endif
 
     <form action="{{route('observations.store')}}" method="POST" enctype="multipart/form-data">
@@ -37,7 +37,8 @@
                                 <td>{{$answer->choice->question->description}}</td>
                                 <td>{{$answer->choice->question->max_punctuation}}</td>
                                 <td>
-                                    <input type="text" class="form-control" value="{{$answer->choice->description}}" readonly>
+                                    <input type="text" class="form-control" value="{{$answer->choice->description}}"
+                                        readonly>
                                     @if ($answer->punctuation > 0)
                                     <textarea class="form-control" readonly rows="5">{{$answer->description}}</textarea>
                                     @endif
@@ -65,12 +66,15 @@
                             @foreach ($answer->observation->files_paths as $file)
                             <div class="col-12 col-lg-4">
                                 {{-- <form action=> --}}
-                                    {{-- @csrf --}}
-                                    <small><a href="{{route('observations.files.download',[$answer->observation,$file['file_name']])}}">{{$file['file_name']}}</a></small>
-                                    <img src="https://img.icons8.com/cotton/2x/file.png" :alt="file" class="img-thumbnail mb-3">
-                                    <a href="{{route('observations.files.download',[$answer->observation,$file['file_name']])}}" class="btn btn-primary btn-shadow rounded-0 mr-auto">
-                                        <i class="fas fa-download"></i>
-                                    </a>
+                                {{-- @csrf --}}
+                                <small><a
+                                        href="{{route('observations.files.download',[$answer->observation,$file['file_name']])}}">{{$file['file_name']}}</a></small>
+                                <img src="https://img.icons8.com/cotton/2x/file.png" :alt="file"
+                                    class="img-thumbnail mb-3">
+                                <a href="{{route('observations.files.download',[$answer->observation,$file['file_name']])}}"
+                                    class="btn btn-primary btn-shadow rounded-0 mr-auto">
+                                    <i class="fas fa-download"></i>
+                                </a>
                                 {{-- </form> --}}
                             </div>
                             @endforeach
@@ -97,6 +101,9 @@
 
             @can('edit evaluations')
             <div class="col-12 mb-3 d-flex justify-content-end">
+                <a href="{{ URL::previous() }}" class="btn btn-outline-danger btn-shadow rounded-0 mr-3">
+                    <i class="fas fa-window-close"></i> Cancelar
+                </a>
                 <button class="btn btn-success btn-wide btn-shadow rounded-0">
                     <i class="fas fa-save"></i> Guardar
                 </button>

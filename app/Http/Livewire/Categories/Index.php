@@ -27,7 +27,7 @@ class Index extends Component
             ->orWhere('short_name','like','%'.$this->search.'%')
             ->paginate(10);
         }else{
-            $this->categories = Category::get();
+            $this->categories = Category::paginate(10);
         }
     }
 

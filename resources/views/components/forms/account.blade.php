@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-12 mb-3">
                         <label for="" class="text-uppercase text-muted">
-                            Teléfono
+                            Teléfono <small>(opcional)</small>
                         </label>
                         <input name="phone" type="number" value="{{$user->phone}}" class="form-control"
                             {{$edit ? '' : 'disabled'}}>
@@ -64,15 +64,15 @@
                                                 <label for="" class="text-uppercase text-muted">
                                                     Nueva contraseña
                                                 </label>
-                                                <input type="password" class="form-control" name="new_password" id="newPassword"
-                                                    required x-on:keyup="validatePassword()">
+                                                <input type="password" class="form-control" name="new_password"
+                                                    id="newPassword" required x-on:keyup="validatePassword()">
                                             </div>
                                             <div class="col-12 mb-3">
                                                 <label for="" class="text-uppercase text-muted">
                                                     Repetir contraseña
                                                 </label>
-                                                <input type="password" class="form-control" name="new_password_repeated" id="confirmPassword"
-                                                    required x-on:keyup="validatePassword()">
+                                                <input type="password" class="form-control" name="new_password_repeated"
+                                                    id="confirmPassword" required x-on:keyup="validatePassword()">
                                             </div>
                                         </div>
                                     </template>
@@ -86,9 +86,14 @@
             </div>
         </div>
         @if ($edit)
-        <button class="btn btn-success btn-wide btn-shadow rounded-0 float-right">
-            <i class="fas fa-save"></i> Guardar
-        </button>
+        <div class="d-flex justify-content-end">
+            <a href="{{route('users.account')}}" class="btn btn-outline-danger btn-shadow rounded-0 mr-3">
+                <i class="fas fa-window-close"></i> Cancelar
+            </a>
+            <button class="btn btn-success btn-wide btn-shadow rounded-0 float-right">
+                <i class="fas fa-save"></i> Guardar
+            </button>
+        </div>
         @endif
     </form>
 

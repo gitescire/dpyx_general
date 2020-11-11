@@ -32,7 +32,8 @@
                                         x-model="newOption.punctuation">
                                     <div class="input-group-append ml-1">
                                         <button class="btn btn-info btn-shadow rounded-0" type="button"
-                                            x-on:click="addOption()" x-ref="addButton" :disabled="newOption.description == '' || newOption.punctuation == ''">
+                                            x-on:click="addOption()" x-ref="addButton"
+                                            :disabled="newOption.description == '' || newOption.punctuation == ''">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
@@ -49,9 +50,9 @@
                                 <hr>
 
                                 <template x-if="options.length == 0">
-                                        <div class="alert alert-info">
-                                            Debes añadir por lo menos una opción de respuesta
-                                        </div>
+                                    <div class="alert alert-info">
+                                        Debes añadir por lo menos una opción de respuesta
+                                    </div>
                                 </template>
 
                                 <template x-for="option in options">
@@ -65,7 +66,7 @@
                                         </div>
                                         <input type="text" class="form-control ml-1"
                                             :name="`options[${option.position}][punctuation]`"
-                                            x-model="option.punctuation">
+                                            x-model="option.punctuation" required>
                                         <template x-if="!option.id">
                                             <div class="input-group-append ml-1">
                                                 <button type="button" class="btn btn-danger btn-shadow rounded-0"
@@ -94,7 +95,7 @@
                             Categoría
                         </label>
                         <select name="category_id" class="form-control" required>
-                            <option value="">seleccionar</option>
+                            <option value="" hidden>seleccionar</option>
                             @foreach ($categories as $category)
                             <option value="{{$category->id}}"
                                 {{$question && $question->category->id == $category->id ? 'selected' : ''}}>
@@ -108,7 +109,7 @@
                             Subcategoría
                         </label>
                         <select name="subcategory_id" class="form-control" required>
-                            <option value="">seleccionar</option>
+                            <option value="" hidden>seleccionar</option>
                             @foreach ($subcategories as $subcategory)
                             <option value="{{$subcategory->id}}"
                                 {{$question && $question->subcategory->id == $subcategory->id ? 'selected' : ''}}>
@@ -135,8 +136,8 @@
                                 <label for="" class="m-0 text-muted text-uppercase">
                                     ¿La pregunta es complementaria?
                                 </label>
-                                <input class="float-right" type="checkbox" {{$question && $question->is_optional ? 'checked' : ''}}
-                                    name="is_optional">
+                                <input class="float-right" type="checkbox"
+                                    {{$question && $question->is_optional ? 'checked' : ''}} name="is_optional">
                             </li>
                             @endif
                             <li class="list-group-item">
@@ -156,7 +157,7 @@
                 {{--  --}}
                 <div class="col-12 mb-3">
                     <label for="" class="text-muted text-uppercase">
-                        Texto en marca de agua
+                        Texto en marca de agua <small>(opcional)</small>
                     </label>
                     <textarea name="description_label" cols="30" rows="2"
                         class="form-control">{{$question ? $question->description_label : ''}}</textarea>
@@ -164,7 +165,7 @@
                 {{--  --}}
                 <div class="col-12 mb-3">
                     <label for="" class="text-muted text-uppercase">
-                        Texto de ayuda
+                        Texto de ayuda <small>(opcional)</small>
                     </label>
                     <textarea name="help_text" cols="30" rows="2"
                         class="form-control">{{$question ? $question->help_text : ''}}</textarea>
@@ -172,6 +173,9 @@
             </div>
         </div>
         <div class="card-footer d-flex justify-content-end">
+            <a href="{{route('questions.index')}}" class="btn btn-outline-danger btn-shadow rounded-0 mr-3">
+                <i class="fas fa-window-close"></i> Cancelar
+            </a>
             <button class="btn btn-success btn-wide btn-shadow rounded-0" :disabled="!isStorable()">
                 <i class="fas fa-save"></i> Guardar
             </button>

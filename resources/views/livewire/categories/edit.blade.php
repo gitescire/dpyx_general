@@ -20,12 +20,15 @@
                             </div>
                             <div class="col-12">
                                 <label for="" class="text-muted text-uppercase">Nombre corto</label>
-                                <input type="text" name="short_name" value="{{$category->short_name}}" class="form-control"
-                                    required>
+                                <input type="text" name="short_name" value="{{$category->short_name}}"
+                                    class="form-control" required>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
+                        <a href="{{route('categories.index')}}" class="btn btn-outline-danger btn-shadow rounded-0 mr-3">
+                            <i class="fas fa-window-close"></i> Cancelar
+                        </a>
                         <button class="btn btn-success btn-wide btn-shadow rounded-0">
                             <i class="fas fa-save"></i> Guardar
                         </button>

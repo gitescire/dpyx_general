@@ -11,7 +11,7 @@
         </a>
     </div>
 
-    <div class="table-responsive shadow bg-white">
+    <div class="table-responsive shadow mb-3 bg-white">
         <table class="table m-0">
             <thead>
                 <tr>
@@ -26,13 +26,21 @@
                     <td>{{$subcategory->id}}</td>
                     <td>{{$subcategory->name}}</td>
                     <td>
-                        {{-- <form action="{{route('subcategories.destroy',[$subcategory])}}" method="POST" class="d-inline">
+                        @if ($subcategory->questions->count())
+                        <button type="button" class="btn btn-danger btn-shadow rounded-0" data-toggle="modal"
+                            data-target="#deleteSubcategory{{$subcategory->id}}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <x-modals.subcategories.delete :subcategory="$subcategory" />
+                        @else
+                        <form action="{{route('subcategories.destroy',[$subcategory])}}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger btn-shadow rounded-0">
                                 <i class="fas fa-trash"></i>
                             </button>
-                        </form> --}}
+                        </form>
+                        @endif
                         <a href="{{route('subcategories.edit',[$subcategory])}}"
                             class="btn btn-warning btn-shadow rounded-0">
                             <i class="fas fa-edit"></i>
@@ -42,6 +50,10 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+
+    <div class="">
+        {{$subcategories->links()}}
     </div>
 
 </div>

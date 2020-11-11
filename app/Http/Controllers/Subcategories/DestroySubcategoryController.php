@@ -9,8 +9,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class DestroySubcategoryController extends Controller
 {
-    public function __invoke(Subcategory $subcategory)
+    public function __invoke(Request $request, Subcategory $subcategory)
     {
+        $subcategory->questions()->update([
+            'subcategory_id' => $request->newSubcategory
+        ]);
+
         $subcategory->delete();
 
         Alert::success('¡Subcategoría eliminada!');

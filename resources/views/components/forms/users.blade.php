@@ -37,7 +37,7 @@
                     <label for="" class="text-muted text-uppercase">Roles</label>
                     <select name="role" x-ref="roles" x-on:change="checkIfIsUser($refs.roles)" class="form-control"
                         required>
-                        <option value="">seleccionar</option>
+                        <option value="" hidden>seleccionar</option>
                         @foreach ($roles as $role)
                         <option value="{{$role->id}}" {{$user && $user->hasRole($role->id) ? 'selected' : ''}}>
                             {{$role->name}}</option>
@@ -114,6 +114,9 @@
             </div>
         </div>
         <div class="card-footer d-flex justify-content-end">
+            <a href="{{route('users.index')}}" class="btn btn-outline-danger btn-shadow rounded-0 mr-3">
+                <i class="fas fa-window-close"></i> Cancelar
+            </a>
             <button class="btn btn-success btn-wide rounded-0 btn-shadow">
                 <i class="fas fa-save"></i> Guardar
             </button>

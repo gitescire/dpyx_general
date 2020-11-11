@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="table-responsive shadow">
+    <div class="table-responsive shadow mb-3">
         <table class="table table-bordered m-0 bg-white">
             <thead>
                 <tr>
@@ -57,4 +57,9 @@
             </tbody>
         </table>
     </div>
+
+    <div class="">
+        {{$categories->links()}}
+    </div>
+
 </div>

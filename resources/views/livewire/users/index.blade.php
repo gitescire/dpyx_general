@@ -19,7 +19,7 @@
     </div>
 
     <div class="table-responsive shadow mb-3 bg-white">
-        <table class="table table-bordered m-0">
+        <table id="table" class="table table-bordered m-0">
             <thead>
                 <tr>
                     <th>#</th>
@@ -78,5 +78,12 @@
         {{$users->links()}}
     </div>
 
+    {{-- <script>
+    
+    var table = document.getElementById('table');
+    console.log(table)
+    table.scrollLeft;
+
+    </script> --}}
 
 </div>

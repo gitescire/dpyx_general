@@ -61,7 +61,7 @@
                                         </div>
                                         <div class="divider"></div>
                                         <h6 class="mb-0">
-                                            <a href="javascript:void(0);" class="text-primary">
+                                            <a href="{{route('login')}}" class="text-primary">
                                                 Iniciar sesión con una cuenta existente
                                             </a>
                                         </h6>
