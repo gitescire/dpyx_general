@@ -1946,7 +1946,7 @@
     @stack('scripts')
 
     {{-- To avoid sweet alert after shown --}}
-    {{ Session::forget('alert') }} 
+    {{-- {{ Session::forget('alert') }}  --}}
 </body>
 
 </html>

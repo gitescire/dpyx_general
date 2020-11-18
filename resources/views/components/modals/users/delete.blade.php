@@ -47,7 +47,7 @@
                                         El usuario tiene <b>{{$evaluations->count()}}</b> evaluaciones a su cargo que deben cambiar de responsable.
                                         <br>
                                         <select name="newEvaluatorId" id="" class="form-control">
-                                            <option value="">seleccionar</option>
+                                            <option value="" hidden>seleccionar</option>
                                             @foreach ($evaluators as $evaluator)
                                                 <option value="{{$evaluator->id}}">{{$evaluator->name}}</option>
                                             @endforeach

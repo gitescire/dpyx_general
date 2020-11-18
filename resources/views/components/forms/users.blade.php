@@ -57,7 +57,7 @@
                     <div class="col-12 mb-3">
                         <label for="" class="text-muted text-uppercase">Evaluador</label>
                         <select name="evaluator_id" id="" class="form-control" required>
-                            <option value="">seleccionar</option>
+                            <option value="" hidden>seleccionar</option>
                             @foreach ($evaluators as $evaluator)
                             <option value="{{$evaluator->id}}"
                                 {{$user && $user->hasRole('usuario') && $user->repositories()->first()->evaluation->evaluator->id == $evaluator->id ? 'selected' : '' }}>

@@ -189,7 +189,7 @@
                                 <select class="form-control" x-ref="{{$question->id}}" wire:loading.attr="disabled"
                                     wire:target="storeAnswer" {{$evaluation->is_answerable && $question->answer->is_updateable ? '' : 'readonly disabled'}}
                                     x-on:change="$wire.storeAnswer({{$question->id}}, $refs[{{$question->id}}].options[$refs[{{$question->id}}].selectedIndex].value )">
-                                    <option value="" {{$question->answer->choice ? '' : 'selected'}}>seleccionar
+                                    <option value="" {{$question->answer->choice ? '' : 'selected'}} hidden>seleccionar
                                     </option>
                                     @foreach ($question->choices as $choice)
                                     <option value="{{$choice->id}}"

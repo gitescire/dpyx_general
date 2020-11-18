@@ -29,7 +29,7 @@
                         <div class="col-12">
                             <label for="" class="text-uppercase text-muted">Reasignar categoría</label>
                             <select name="newCategory" class="form-control" required>
-                                <option value="">seleccionar</option>
+                                <option value="" hidden>seleccionar</option>
                                 @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach

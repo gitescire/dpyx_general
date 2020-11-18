@@ -29,7 +29,7 @@
                             <div class="col-12">
                                 <label for="" class="text-uppercase text-muted">Reasignar subcategoría</label>
                                 <select name="newSubcategory" class="form-control" required>
-                                    <option value="">seleccionar</option>
+                                    <option value="" hidden>seleccionar</option>
                                     @foreach ($subcategories as $subcategory)
                                     <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
                                     @endforeach
