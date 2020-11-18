@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Repository extends Model
 {
-    use SoftDeletes;
     use HasFactory;
 
     protected $table = "repositories";
