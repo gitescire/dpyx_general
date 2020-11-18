@@ -9,7 +9,7 @@
     <title>Iniciar sesión</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-    <meta name="description" content="dPyx - CONCYTEC">
+    <meta name="description" content="dPyx">
 
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
@@ -85,7 +85,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="text-center text-white opacity-8 mt-3">dPyx - CONCYTEC</div>
+                        <div class="text-center text-white opacity-8 mt-3">dPyx - {{getenv('APP_NAME')}}</div>
                     </div>
                 </div>
             </div>
