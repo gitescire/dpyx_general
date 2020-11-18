@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Answer;
+use App\Synchronizers\AnswerSynchronizer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +24,13 @@ Route::get('/', function () {
     }
     return redirect()->route('login');
 })->name('welcome');
+
+Route::get('synchronize', function(){
+    foreach(Answer::get() as $answer){
+        (new AnswerSynchronizer($answer))->execute();
+    }
+    return "synchronized";
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

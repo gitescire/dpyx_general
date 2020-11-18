@@ -30,20 +30,25 @@ class Index extends Component
 
         if ($this->search) {
             $this->users = $this->users
-                ->orWhere('name', 'like', '%' . $this->search . '%')
-                ->orWhere('email', 'like', '%' . $this->search . '%')
-                ->orWhere('phone', 'like', '%' . $this->search . '%')
-                ->orWhereHas('roles', function ($query) {
-                    return $query->where('name', 'like', '%'.$this->search.'%');
-                });
+            ->where(function($query){
+                    $query->where('name', 'like', '%' . $this->search . '%')
+                        ->orWhere('email', 'like', '%' . $this->search . '%')
+                        ->orWhere('phone', 'like', '%' . $this->search . '%')
+                        ->orWhereHas('roles', function ($query) {
+                            return $query->where('name', 'like', '%'.$this->search.'%');
+                        });
+            });
         }
 
         if (Auth::user()->is_admin) {
-            $this->users = $this->users->paginate(10);
+            $this->users = $this->users;
         } else {
             $repositoryResponsiblesIds = Evaluation::where('evaluator_id', Auth::user()->id)->get()->pluck('repository.responsible.id')->flatten()->unique();
-            $this->users = $this->users->whereIn('id', $repositoryResponsiblesIds)->paginate(10);
+            $this->users = $this->users->whereIn('id', $repositoryResponsiblesIds);
         }
+
+        $this->users = $this->users->paginate(10);
+        
     }
 
     public function updatingSearch()

@@ -14,6 +14,7 @@ class Answer extends Model
         'question_id',
         'evaluation_id',
         'description',
+        'is_updateable',
     ];
 
     /**

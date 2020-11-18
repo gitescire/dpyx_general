@@ -146,8 +146,10 @@
 
             </div>
         </div>
+        @if ($showComplementaryQuestions && $subcategory->questions->where('is_optional',1)->count() || $subcategory->questions->where('is_optional',0)->count())
         <div class="col-12">
             <div class="table-responsive bg-white shadow">
+
                 <table class="table table-bordered m-0">
                     <thead>
                         <tr>
@@ -160,8 +162,9 @@
                     </thead>
                     <tbody>
                         @foreach ($subcategory->questions as $question)
-                        @if ( ($showComplementaryQuestions && $question->is_optional) || !$question->is_optional)
-                        <tr wire:key="{{ $loop->index }}">
+                        @if ( ($showComplementaryQuestions && $question->is_optional == 1) || $question->is_optional ==
+                        0)
+                        <tr>
                             <td>
                                 {{$question->description}}
                                 @if ($question->help_text)
@@ -176,7 +179,7 @@
                                 <span class="text-info">{{$question->description_label}}</span>
                                 <textarea rows="2" class="form-control border-info" required
                                     wire:change="updateDescription({{$question->answer}}, $event.target.value)"
-                                    {{$question->is_answerable ? '' : 'disabled readonly'}}>{{$question->answer->description}}</textarea>
+                                    {{$evaluation->is_answerable && $question->answer->is_updateable ? '' : 'disabled readonly'}}>{{$question->answer->description}}</textarea>
                                 @endif
                             </td>
                             <td>
@@ -184,7 +187,7 @@
                             </td>
                             <td>
                                 <select class="form-control" x-ref="{{$question->id}}" wire:loading.attr="disabled"
-                                    wire:target="storeAnswer" {{$question->is_answerable ? '' : 'readonly disabled'}}
+                                    wire:target="storeAnswer" {{$evaluation->is_answerable && $question->answer->is_updateable ? '' : 'readonly disabled'}}
                                     x-on:change="$wire.storeAnswer({{$question->id}}, $refs[{{$question->id}}].options[$refs[{{$question->id}}].selectedIndex].value )">
                                     <option value="" {{$question->answer->choice ? '' : 'selected'}}>seleccionar
                                     </option>
@@ -231,6 +234,17 @@
                 </table>
             </div>
         </div>
+        @else
+        <div class="col-12">
+            <div class="card shadow border-0 mb-3">
+                <div class="card-body">
+                    <div class="alert alert-info w-100">
+                        No hay ningúna pregunta para mostrar.
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
     @endif
     @endforeach

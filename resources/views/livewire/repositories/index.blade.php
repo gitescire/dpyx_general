@@ -46,8 +46,12 @@
                     </td>
                     <td>
                         <a href="{{route('evaluations.categories.questions.index',[$repository->evaluation, $firstCategory])}}"
-                            class="btn btn-primary btn-shadow rounded-0 {{$repository->evaluation->is_viewable ? '' : 'disabled'}}">
+                            class="btn btn-{{$repository->evaluation->is_reviewed && $repository->is_aproved ? 'secondary' : 'primary'}} btn-shadow rounded-0 {{$repository->evaluation->is_viewable ? '' : 'disabled'}}">
+                            @if ($repository->evaluation->is_reviewed && $repository->is_aproved)
+                            <i class="fas fa-eye"></i>
+                            @else
                             <i class="fas fa-edit"></i>
+                            @endif
                         </a>
                     </td>
                 </tr>

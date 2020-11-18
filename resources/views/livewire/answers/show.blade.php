@@ -79,6 +79,10 @@
                             </div>
                             @endforeach
                         </div>
+                        @else
+                        <div class="alert alert-info">
+                            No hay ningún archivo subido.
+                        </div>
                         @endif
                     </div>
                 </div>

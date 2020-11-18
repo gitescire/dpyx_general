@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Answer;
 use App\Models\Evaluation;
 use App\Models\Question;
+use App\Synchronizers\AnswerSynchronizer;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -44,10 +45,12 @@ class StoreQuestionController extends Controller
     protected function appendQuestionToAllEvaluations(Question $question)
     {
         foreach (Evaluation::get() as $evalution) {
-            Answer::create([
+            $answer = Answer::create([
                 'evaluation_id' => $evalution->id,
-                'question_id' => $question->id
+                'question_id' => $question->id,
             ]);
+            (new AnswerSynchronizer($answer))->execute();
         }
+
     }
 }

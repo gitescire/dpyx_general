@@ -41,16 +41,16 @@ class Index extends Component
 
         // Delete answer if not choice
         // if ($choice == null) {
-            // Answer::where('question_id', $question->id)->where('evaluation_id', $this->evaluation->id)->delete();
+        // Answer::where('question_id', $question->id)->where('evaluation_id', $this->evaluation->id)->delete();
         // } else {
-            $answer = Answer::updateOrCreate([
-                'evaluation_id' => $this->evaluation->id,
-                'question_id' => $question->id,
-            ], [
-                'choice_id' => $choice ? $choice->id : null,
-                'question_id' => $question->id,
-                'evaluation_id' => $this->evaluation->id,
-            ]);
+        $answer = Answer::updateOrCreate([
+            'evaluation_id' => $this->evaluation->id,
+            'question_id' => $question->id,
+        ], [
+            'choice_id' => $choice ? $choice->id : null,
+            'question_id' => $question->id,
+            'evaluation_id' => $this->evaluation->id,
+        ]);
         // }
 
 
@@ -89,20 +89,40 @@ class Index extends Component
                 $answer = Answer::where('evaluation_id', $this->evaluation->id)->where('question_id', $question->id)->with('choice', 'observation')->first();
                 $question->answer = $answer;
 
+
+                // if($question->id == 67){
+                //     dd($question->answer);
+                // }
+
+
                 if ($question->answer) {
                     $question->answer->route = route('answers.show', [$question->answer]);
                 }
 
-                $question->is_answerable = $this->evaluation->is_answerable;
+                // $question->is_answerable = $this->evaluation->is_answerable;
                 $question->status = $question->answer ? 'contestada' : 'pendiente';
 
-                if ($this->evaluation->is_answerable && $this->evaluation->repository->has_observations && $question->answer && $question->answer->observation) {
-                    $question->is_answerable = true;
-                }
+                // if ($this->evaluation->is_answerable) {
+                //     if ($this->evaluation->repository->has_observations) {
+                //         if ($question->answer && $question->answer->choice) {
+                //             if ($question->answer->observation) {
+                //                 $question->is_answerable = true;
+                //             }else{
+                //                 $question->is_answerable = false;
+                //             }
+                //         }else{
+                //             $question->is_answerable = true;
+                //         }
+                //     }
+                // }
 
-                if ($this->evaluation->is_answerable && $this->evaluation->repository->has_observations && $question->answer && !$question->answer->observation) {
-                    $question->is_answerable = false;
-                }
+                // if ($this->evaluation->is_answerable && $this->evaluation->repository->has_observations && $question->answer && $question->answer->observation) {
+                //     $question->is_answerable = true;
+                // }
+
+                // if ($this->evaluation->is_answerable && $this->evaluation->repository->has_observations && $question->answer && !$question->answer->observation) {
+                //     $question->is_answerable = false;
+                // }
 
                 return $question
                     ->append('max_punctuation');
@@ -126,7 +146,7 @@ class Index extends Component
         $this->categories->each(function ($category) {
             // dd($answer->count());
             $questions = $category->questions()->required()->get();
-            $answers = $this->evaluation->answers()->has('choice')->whereIn('question_id',$questions->pluck('id'))->get();
+            $answers = $this->evaluation->answers()->has('choice')->whereIn('question_id', $questions->pluck('id'))->get();
 
             $category->is_answered = $answers->count() == $questions->count();
         });

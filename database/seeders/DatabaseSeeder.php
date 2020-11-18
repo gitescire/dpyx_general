@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesAndPermissionsSeeder::class);
         $this->call(UsersSeeder::class);
 
-        $users = User::factory()
-            ->count(20)->create();
+        // $users = User::factory()
+        //     ->count(20)->create();
 
-        foreach ($users as $user) {
-            $user->assignRole(Role::get()->random()->id);
-        }
+        // foreach ($users as $user) {
+        //     $user->assignRole(Role::get()->random()->id);
+        // }
     }
 }

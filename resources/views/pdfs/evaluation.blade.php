@@ -126,6 +126,7 @@
 
         <table width="110%" class="table table-striped table-sm">
             @foreach ($subcategories as $subcategory)
+            {{-- @if ($subcategory->questions->pluck('answers')->flatten()->count()) --}}
             <thead>
                 <tr>
                     <td width="70%" align="left"><b>{{$subcategory->name}}</b></td>
@@ -134,18 +135,19 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($subcategory->questions()->where('category_id',$category->id)->get() as $question)
+                @foreach ($subcategory->questions->where('category_id',$category->id)->all() as $question)
                 <tr>
                     <td>{{$question->description}}</td>
                     <td>
-                        {{$question->answers()->where('evaluation_id',$repository->evaluation->id)->first()->choice ? $question->answers->first()->choice->description : ''}}
+                        {{$question->answers->first() && $question->answers->first()->choice ? $question->answers->first()->choice->description : 'N/A'}}
                     </td>
                         <td>
-                            {{$question->answers->first()->choice && $question->answers()->where('evaluation_id',$repository->evaluation->id)->first()->observation ? $question->answers->first()->observation->description : ''}}
+                            {{$question->answers->first() && $question->answers->first()->observation ? $question->answers->first()->observation->description : ''}}
                     </td>
                 </tr>
                 @endforeach
             </tbody>
+            {{-- @endif --}}
             @endforeach
         </table>
 

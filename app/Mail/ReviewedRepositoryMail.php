@@ -30,8 +30,8 @@ class ReviewedRepositoryMail extends Mailable
         $this->comments = $comments;
 
         $evaluation = $repository->evaluation;
-        $categories = Category::get();
-        $subcategories = Subcategory::with(['questions.answers' => function ($query) use ($evaluation) {
+        $categories = Category::has('questions')->get();
+        $subcategories = Subcategory::has('questions')->with(['questions.answers' => function ($query) use ($evaluation) {
             $query->where('evaluation_id', $evaluation->id);
         }])->get();
 

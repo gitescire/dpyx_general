@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Evaluations;
 use App\Events\EvaluationFinishedEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Evaluation;
+use App\Synchronizers\AnswerSynchronizer;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -26,7 +27,12 @@ class SendEvaluationController extends Controller
         $evaluation->repository->status = 'en progreso';
         $evaluation->repository->save();
 
+        foreach ($evaluation->answers as $answer) {
+            (new AnswerSynchronizer($answer))->execute();
+        }
+
+
         Alert::success('¡La evaluación ha sido enviada para su revisión!');
-        return redirect()->back();
+        return redirect()->route('repositories.index');
     }
 }

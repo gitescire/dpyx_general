@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Repositories;
 use App\Http\Controllers\Controller;
 use App\Mail\ReviewedRepositoryMail;
 use App\Models\Repository;
+use App\Synchronizers\AnswerSynchronizer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -18,6 +19,10 @@ class SendRepositoryController extends Controller
         $repository->save();
 
         $this->handleEvaluationStatus($repository);
+
+        foreach ($repository->evaluation->answers as $answer) {
+            (new AnswerSynchronizer($answer))->execute();
+        }
 
         Mail::to($repository->responsible->email)->send(new ReviewedRepositoryMail($repository, $request->comments));
 

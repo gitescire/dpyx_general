@@ -48,16 +48,6 @@
                     <td>
                         @can('delete users')
                         <x-modals.users.delete :user="$user" />
-
-                        {{-- <form action="{{route('users.destroy',[$user])}}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger rounded-0 btn-shadow">
-                            <span data-toggle="tooltip" title="Eliminar" wire:ignore.self>
-                                <i class="fas fa-trash"></i>
-                            </span>
-                        </button>
-                        </form> --}}
                         @endcan
                         @can('edit users')
                         <a href="{{route('users.edit',[$user])}}" class="btn btn-warning rounded-0 btn-shadow">
