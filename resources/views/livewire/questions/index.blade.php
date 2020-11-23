@@ -9,6 +9,7 @@
         @foreach ($categories as $category)
         @foreach ($category->subcategories as $subcategory)
         @if ($subcategory->total_punctuation != 100)
+        @if ($subcategory->total_questions > 0)
         <div class="col-md-6 col-xl-4">
             <div class="card mb-3 widget-content border-0 shadow">
                 <div class="widget-content-outer">
@@ -50,13 +51,14 @@
     </div>
 </div>
 @endif
+@endif
 @endforeach
 @endforeach
 </div>
 
 <div class="row d-flext justify-content-between mb-3">
     <div class="col-12 col-lg-4">
-        <x-input-search/>
+        <x-input-search />
     </div>
     <div class="col-12 col-lg-3">
         <a href="{{route('questions.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0 float-right">
@@ -65,7 +67,7 @@
     </div>
 </div>
 
-<x-tables.questions :questions="$questions" :sortBy="$sortBy" :sortDirection="$sortDirection"/>
+<x-tables.questions :questions="$questions" :sortBy="$sortBy" :sortDirection="$sortDirection" />
 {{$questions->links()}}
 
 </div>

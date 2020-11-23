@@ -27,6 +27,7 @@ class Index extends Component
             $category->subcategories = Subcategory::get();
             $category->subcategories->each(function ($subcategory) use ($category) {
                 $subcategory->total_punctuation = Question::where('category_id', $category->id)->where('subcategory_id', $subcategory->id)->get()->pluck('max_punctuation')->flatten()->sum();
+                $subcategory->total_questions = Question::where('category_id', $category->id)->where('subcategory_id', $subcategory->id)->get()->count();
             });
         });
         $this->setQuestions();
