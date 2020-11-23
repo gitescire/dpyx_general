@@ -38,6 +38,7 @@ class UpdateQuestionController extends Controller
             ]);
         }
 
+        $question->description = $request->description;
         $question->help_text = $request->help_text;
         $question->is_optional = $request->is_optional ? 1 : 0;
         $question->has_description_field = $request->has_description_field ? 1 : 0;
