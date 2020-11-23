@@ -48,7 +48,7 @@
                                     class="badge badge-dot badge-dot-xl badge-info"> </i></span>
                             <div class="vertical-timeline-element-content bounce-in">
                                 <h4 class="timeline-title text-info">
-                                    Envía tu evaliación
+                                    Envía tu evaluación
                                 </h4>
                                 <p>
                                     Cuando has finalizado las preguntas, <b>si hay alguna convocatoria activa en el
