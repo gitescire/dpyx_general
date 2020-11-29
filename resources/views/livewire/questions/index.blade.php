@@ -1,7 +1,7 @@
 <div class="mb-4">
 
     @section('header')
-    <x-page-title title="Lista de usuarios"
+    <x-page-title title="Lista de preguntas"
         description="Este módulo permite listar las preguntas que aparecerán en las evaluaciones."></x-page-title>
     @endsection
 

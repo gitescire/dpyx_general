@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Evaluations;
 
 use App\Events\EvaluationFinishedEvent;
 use App\Http\Controllers\Controller;
+use App\Models\AnswerHistory;
 use App\Models\Evaluation;
+use App\Models\EvaluationHistory;
 use App\Synchronizers\AnswerSynchronizer;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -24,11 +26,25 @@ class SendEvaluationController extends Controller
         $evaluation->status = "en revisión";
         $evaluation->save();
 
+        $evaluationHistory = new EvaluationHistory;
+        $evaluationHistory->repository_id = $evaluation->repository->id;
+        $evaluationHistory->evaluator_id = $evaluation->evaluator->id;
+        $evaluationHistory->status = $evaluation->status;
+        $evaluationHistory->save();
+
         $evaluation->repository->status = 'en progreso';
         $evaluation->repository->save();
 
         foreach ($evaluation->answers as $answer) {
             (new AnswerSynchronizer($answer))->execute();
+
+            $answerHistory = new AnswerHistory;
+            $answerHistory->choice_id = $answer->choice_id;
+            $answerHistory->question_id = $answer->question_id;
+            $answerHistory->evaluation_history_id = $evaluationHistory->id;
+            $answerHistory->description = $answer->description;
+            $answerHistory->save();
+
         }
 
 

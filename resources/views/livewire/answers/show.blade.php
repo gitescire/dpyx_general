@@ -37,7 +37,8 @@
                                 <td>{{$answer->question->description}}</td>
                                 <td>{{$answer->question->max_punctuation}}</td>
                                 <td>
-                                    <input type="text" class="form-control" value="{{$answer->choice ? $answer->choice->description : 'Sin respuesta'}}"
+                                    <input type="text" class="form-control"
+                                        value="{{$answer->choice ? $answer->choice->description : 'Sin respuesta'}}"
                                         readonly>
                                     @if ($answer->punctuation > 0)
                                     <textarea class="form-control" readonly rows="5">{{$answer->description}}</textarea>
