@@ -5,6 +5,12 @@
         description="Este modulo permite listar los repositorios pertenecientes a los usuarios."></x-page-title>
     @endsection
 
+    <div class="mb-3">
+        <a href="{{route('repositories.statistics.all')}}" class="btn btn-info btn-shadow rounded-0">
+            <i class="fas fa-chart-pie"></i>
+        </a>
+    </div>
+
     <div class="table-responsive shadow bg-white">
         <table class="table table-bordered m-0">
             <thead>

@@ -48,9 +48,8 @@ class Repository extends Model
 
     public function getQualificationAttribute()
     {
-        if (!$this->evaluation->answers->count()) {
-            return 0;
-        }
+        // if (!$this->evaluation->answers->count()) return 0;
+        if( $this->evaluation->answers->pluck('choice.question.max_punctuation')->flatten()->sum() == 0 ) return 0;
 
         return round($this->evaluation->answers->pluck('choice.punctuation')->flatten()->sum() / $this->evaluation->answers->pluck('choice.question.max_punctuation')->flatten()->sum() * 100, 2);
     }

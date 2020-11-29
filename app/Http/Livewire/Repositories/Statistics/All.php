@@ -8,24 +8,25 @@ use App\Models\Repository;
 use App\Models\Subcategory;
 use Livewire\Component;
 
-class Show extends Component
+class All extends Component
 {
-    public $repository;
-    public $answers;
-    public $categories;
+    public $repositories;
     public $subcategories;
+    public $categories;
 
-    public function mount(Repository $repository)
+    public function mount()
     {
-        $this->repository = $repository->append('qualification');
-        $this->answers = $repository->evaluation->answers;
         $this->categories = Category::has('questions')->with('questions')->get();
+        $this->repositories = Repository::get();
         $this->subcategories = Subcategory::get();
 
+        foreach ($this->repositories as  $repository) {
+            $repository->append('qualification');
+        }
 
         foreach ($this->categories as $category) {
             foreach ($category->questions as $question) {
-                $question->answer = Answer::where('question_id', $question->id)->where('evaluation_id', $repository->evaluation->id)->with('choice')->first();
+                $question->answers = Answer::where('question_id', $question->id)->with('choice')->get();
                 $question->append('max_punctuation');
             }
         }
@@ -33,6 +34,6 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.repositories.statistics.show');
+        return view('livewire.repositories.statistics.all');
     }
 }

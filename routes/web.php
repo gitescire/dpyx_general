@@ -95,6 +95,7 @@ Route::prefix('announcements')->middleware('auth')->group(function () {
 
 Route::prefix('repositories')->middleware('auth')->group(function () {
     Route::get('/', \App\Http\Livewire\Repositories\Index::class)->name('repositories.index');
+    Route::get('/statistics', \App\Http\Livewire\Repositories\Statistics\All::class)->name('repositories.statistics.all');
     Route::get('{repository}/statistics', \App\Http\Livewire\Repositories\Statistics\Show::class)->name('repositories.statistics.show');
     Route::post('{repository}/send', \App\Http\Controllers\Repositories\SendRepositoryController::class)->middleware('can:edit evaluations')->name('repositories.send');
 });
