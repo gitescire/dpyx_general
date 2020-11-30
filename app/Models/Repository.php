@@ -33,6 +33,11 @@ class Repository extends Model
         return $this->hasOne('App\Models\Evaluation');
     }
 
+    public function evaluationsHistory()
+    {
+        return $this->hasMany('App\Models\EvaluationHistory');
+    }
+
     /**
      * ========
      * ATTRIBUTES

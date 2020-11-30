@@ -146,7 +146,8 @@
 
             </div>
         </div>
-        @if ($showComplementaryQuestions && $subcategory->questions->where('is_optional',1)->count() || $subcategory->questions->where('is_optional',0)->count())
+        @if ($showComplementaryQuestions && $subcategory->questions->where('is_optional',1)->count() ||
+        $subcategory->questions->where('is_optional',0)->count())
         <div class="col-12">
             <div class="table-responsive bg-white shadow">
 
@@ -158,6 +159,7 @@
                             <th class="text-uppercase">Respuestas</th>
                             <th class="text-uppercase">Status</th>
                             <th class="text-uppercase">Observaciones</th>
+                            <th class="text-uppercase">Historial</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -187,7 +189,8 @@
                             </td>
                             <td>
                                 <select class="form-control" x-ref="{{$question->id}}" wire:loading.attr="disabled"
-                                    wire:target="storeAnswer" {{$evaluation->is_answerable && $question->answer->is_updateable ? '' : 'readonly disabled'}}
+                                    wire:target="storeAnswer"
+                                    {{$evaluation->is_answerable && $question->answer->is_updateable ? '' : 'readonly disabled'}}
                                     x-on:change="$wire.storeAnswer({{$question->id}}, $refs[{{$question->id}}].options[$refs[{{$question->id}}].selectedIndex].value )">
                                     <option value="" {{$question->answer->choice ? '' : 'selected'}} hidden>seleccionar
                                     </option>
@@ -226,6 +229,13 @@
                                     <i class="fas fa-eye"></i>
                                 </a>
                                 @endif
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-info btn-shadow rounded-0" data-toggle="modal"
+                                    data-target="#showAnswerHistory{{$question->answer->id}}">
+                                    <i class="fas fa-history"></i>
+                                </button>
+                                <x-modals.answers.history :answer="$question->answer" />
                             </td>
                         </tr>
                         @endif

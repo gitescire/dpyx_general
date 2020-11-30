@@ -17,7 +17,13 @@ class EvaluationHistory extends Model
         'status',
     ];
 
-    public function answersHistory(){
+    public function answersHistory()
+    {
         return $this->hasMany('App\Models\AnswerHistory');
+    }
+
+    public function evaluator()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 }

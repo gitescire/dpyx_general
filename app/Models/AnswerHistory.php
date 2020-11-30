@@ -22,4 +22,12 @@ class AnswerHistory extends Model
     {
         return $this->hasOne('App\Models\ObservationHistory');
     }
+
+    public function choice(){
+        return $this->belongsTo('App\Models\Choice');
+    }
+
+    public function observation(){
+        return $this->hasOne('App\Models\ObservationHistory');
+    }
 }

@@ -24,6 +24,7 @@
                     @endif
                     <th class="text-uppercase">Gráfica de resultados</th>
                     <th class="text-uppercase">Cuestionario</th>
+                    <th class="text-uppercase">Historial</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,6 +56,13 @@
                             class="btn btn-{{$repository->evaluation->is_reviewed && $repository->is_aproved ? 'secondary' : 'primary'}} btn-shadow rounded-0 {{$repository->evaluation->is_viewable ? '' : 'disabled'}}">
                             <i class="fas fa-scroll"></i>
                         </a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-info btn-shadow rounded-0" data-toggle="modal"
+                            data-target="#showEvaluationHistory{{$repository->evaluation->id}}">
+                            <i class="fas fa-history"></i>
+                        </button>
+                        <x-modals.evaluations.history :evaluation="$repository->evaluation" />
                     </td>
                 </tr>
                 @endforeach
