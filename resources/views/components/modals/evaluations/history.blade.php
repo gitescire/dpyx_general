@@ -37,7 +37,7 @@
                                             {{$evaluation->updated_at}}
                                         </td>
                                         <td>
-                                            {{$evaluation->evaluator->name}}
+                                            {{$evaluation->evaluator ? $evaluation->evaluator->name : 'N/A'}}
                                         </td>
                                         <td>
                                             {{$evaluation->status}}
