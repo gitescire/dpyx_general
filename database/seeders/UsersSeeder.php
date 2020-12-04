@@ -84,7 +84,8 @@ class UsersSeeder extends Seeder
         Question::get()->each(function ($question) use ($evaluation) {
             Answer::create([
                 'evaluation_id' => $evaluation->id,
-                'question_id' => $question->id
+                'question_id' => $question->id,
+                'is_updateable' => 1,
             ]);
         });
 
