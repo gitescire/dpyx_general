@@ -21,7 +21,7 @@ class CreateAnswersHistoryTable extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
 
-            $table->foreign('evaluation_history_id')->references('id')->on('evaluations')->onDelete('cascade');
+            $table->foreign('evaluation_history_id')->references('id')->on('evaluations_history')->onDelete('cascade');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->foreign('choice_id')->references('id')->on('choices')->onDelete('cascade');
         });
