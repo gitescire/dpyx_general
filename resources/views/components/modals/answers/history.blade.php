@@ -37,7 +37,7 @@
                                         <td>{{$answer->choice ? $answer->choice->description : 'N/A'}}</td>
                                         <td>{{$answer->observation ? $answer->observation->description : 'N/A'}}</td>
                                     </tr>
-                                    @foreach ($repository->evaluationsHistory as $evaluationHistory)
+                                    @foreach ($repository->evaluationsHistory()->orderBy('id','desc')->get() as $evaluationHistory)
                                     <tr>
                                         <td>
                                             {{$evaluationHistory->answersHistory()->where('question_id',$answer->question_id)->first()->created_at}}

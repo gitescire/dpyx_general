@@ -43,7 +43,7 @@
                                             {{$evaluation->status}}
                                         </td>
                                     </tr>
-                                    @foreach ($evaluation->repository->evaluationsHistory as $evaluationHistory)
+                                    @foreach ($evaluation->repository->evaluationsHistory()->orderBy('id','desc')->get() as $evaluationHistory)
                                     <tr>
                                         <td>
                                             {{$evaluationHistory->created_at}}
