@@ -1,5 +1,5 @@
 @component('mail::message')
-# El repositorio {{$repository->name}} tiene el status {{$repository->status}}
+# El repositorio {{$repository->name}} tiene el status: {{$repository->status}}.
 
 {{$comments}}
 

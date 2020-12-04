@@ -26,11 +26,17 @@ class SendEvaluationController extends Controller
         $evaluation->status = "en revisión";
         $evaluation->save();
 
-        $evaluationHistory = new EvaluationHistory;
-        $evaluationHistory->repository_id = $evaluation->repository->id;
-        $evaluationHistory->evaluator_id = $evaluation->evaluator->id;
-        $evaluationHistory->status = $evaluation->status;
-        $evaluationHistory->save();
+        $evaluationHistory = EvaluationHistory::create([
+            'repository_id' => $evaluation->repository->id,
+            'evaluator_id' => $evaluation->evaluator->id,
+            'status' => $evaluation->status
+        ]);
+
+        // $evaluationHistory = new EvaluationHistory;
+        // $evaluationHistory->repository_id = $evaluation->repository->id;
+        // $evaluationHistory->evaluator_id = $evaluation->evaluator->id;
+        // $evaluationHistory->status = $evaluation->status;
+        // $evaluationHistory->save();
 
         $evaluation->repository->status = 'en progreso';
         $evaluation->repository->save();
