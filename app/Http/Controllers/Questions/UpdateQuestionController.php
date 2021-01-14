@@ -19,6 +19,7 @@ class UpdateQuestionController extends Controller
     public function __invoke(Request $request, Question $question)
     {
         $choicesToUpdate = collect($request->options)->where('id', '!=', null);
+
         foreach ($choicesToUpdate as $choiceToUpdate) {
             Choice::where('id', $choiceToUpdate['id'])->update([
                 'punctuation' => $choiceToUpdate['punctuation'],

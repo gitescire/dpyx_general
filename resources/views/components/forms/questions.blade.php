@@ -58,14 +58,14 @@
                                 <template x-for="option in options">
                                     {{-- <span x-text="option.id"></span> --}}
                                     <div class="input-group mb-3">
-                                        <input type="hidden" :name="`options[${option.position}][id]`"
+                                        <input type="hidden" :name=`options[${option.position}][id]`
                                             x-model="option.id" required>
                                         <div class="input-group-prepend">
-                                            <input type="text" :name="`options[${option.position}][description]`"
+                                            <input type="text" :name=`options[${option.position}][description]`
                                                 class="form-control" x-model="option.description" required>
                                         </div>
                                         <input type="text" class="form-control ml-1"
-                                            :name="`options[${option.position}][punctuation]`"
+                                            :name=`options[${option.position}][punctuation]`
                                             x-model="option.punctuation" required>
                                         <template x-if="!option.id">
                                             <div class="input-group-append ml-1">
@@ -261,7 +261,7 @@
         },
 
         mounted() {
-            
+            this.enumerateOptions()
         },
 
     }

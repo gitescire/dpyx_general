@@ -175,6 +175,8 @@
                     // ctx.width = document.getElementById('repositoryQualificationContainer').offsetWidth
                     // ctx.height = document.getElementById('repositoryQualificationContainer').offsetHeight
 
+                    console.log(this.repository.qualification)
+
                     var myChart = new Chart(ctx, {
                         type: 'doughnut',
                         data: {

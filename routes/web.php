@@ -106,3 +106,9 @@ Route::prefix('evaluations')->middleware('auth')->group(function () {
     Route::post('{evaluation}/categories/{category}/questions', \App\Http\Controllers\Evaluations\Categories\Questions\StoreQuestionController::class)->name('evaluations.categories.questions.store');
     Route::post('{evaluation}/send', \App\Http\Controllers\Evaluations\SendEvaluationController::class)->name('evaluations.send');
 });
+
+Route::prefix('reports')->middleware('auth')->group(function(){
+    Route::get('/',\App\Http\Controllers\Reports\DownloadReportController::class)->name('reports.download');
+});
+
+Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
