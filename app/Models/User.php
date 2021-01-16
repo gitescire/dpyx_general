@@ -108,17 +108,6 @@ class User extends Authenticatable
         return '';
     }
 
-    public function getIsActiveAttribute(){
-        if(!$this->last_login_at) return false;
-
-        $to = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
-        $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $this->last_login_at);
-        $diffInMonths = $to->diffInMonths($from);
-        if($diffInMonths >= 1) return false;
-
-        return true;
-    }
-
     /**
      * =======
      * BOOLEANS
@@ -139,4 +128,16 @@ class User extends Authenticatable
     {
         return $this->hasRole('admin');
     }
+
+    public function getIsActiveAttribute(){
+        if(!$this->last_login_at) return false;
+
+        $to = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
+        $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $this->last_login_at);
+        $diffInMonths = $to->diffInMonths($from);
+        if($diffInMonths >= 1) return false;
+
+        return true;
+    }
 }
+
