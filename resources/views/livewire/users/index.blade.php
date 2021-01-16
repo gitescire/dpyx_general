@@ -30,6 +30,7 @@
                     @canany(['delete users','edit users'])
                     <th class="text-uppercase">Acciones</th>
                     @endcanany
+                    <th class="text-uppercase">Último acceso</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,6 +59,7 @@
                         @endcan
                     </td>
                     @endcanany
+                    <td class="{{$user->is_active ? 'text-success' : 'text-danger'}}">{{$user->last_login_at ?? 'Nunca'}}</td>
                 </tr>
                 @endforeach
             </tbody>
