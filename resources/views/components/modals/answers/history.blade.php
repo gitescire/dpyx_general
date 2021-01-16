@@ -38,17 +38,19 @@
                                         <td>{{$answer->observation ? $answer->observation->description : 'N/A'}}</td>
                                     </tr>
                                     @foreach ($repository->evaluationsHistory()->orderBy('id','desc')->get() as $evaluationHistory)
-                                    <tr>
-                                        <td>
-                                            {{$evaluationHistory->answersHistory()->where('question_id',$answer->question_id)->first()->created_at}}
-                                        </td>
-                                        <td>
-                                            {{$evaluationHistory->answersHistory()->where('question_id',$answer->question_id)->first()->choice ? $evaluationHistory->answersHistory()->where('question_id',$answer->question_id)->first()->choice->description : 'N/A'}}
-                                        </td>
-                                        <td>
-                                                {{$evaluationHistory->answersHistory()->where('question_id',$answer->question_id)->first()->observation ? $evaluationHistory->answersHistory()->where('question_id',$answer->question_id)->first()->observation->description : 'N/A'}}
-                                        </td>
-                                    </tr>
+                                        @if($evaluationHistory->answersHistory()->where('question_id',$answer->question_id)->first())
+                                        <tr>
+                                            <td>
+                                                {{$evaluationHistory->answersHistory()->where('question_id',$answer->question_id)->first()->created_at}}
+                                            </td>
+                                            <td>
+                                                {{$evaluationHistory->answersHistory()->where('question_id',$answer->question_id)->first()->choice ? $evaluationHistory->answersHistory()->where('question_id',$answer->question_id)->first()->choice->description : 'N/A'}}
+                                            </td>
+                                            <td>
+                                                    {{$evaluationHistory->answersHistory()->where('question_id',$answer->question_id)->first()->observation ? $evaluationHistory->answersHistory()->where('question_id',$answer->question_id)->first()->observation->description : 'N/A'}}
+                                            </td>
+                                        </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>
