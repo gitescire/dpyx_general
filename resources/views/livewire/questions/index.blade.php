@@ -56,14 +56,17 @@
 @endforeach
 </div>
 
-<div class="row d-flext justify-content-between mb-3">
-    <div class="col-12 col-lg-4">
+<div class="row d-flex justify-content-between mb-3">
+    <div class="col-12 col-md-6">
         <x-input-search />
     </div>
-    <div class="col-12 col-lg-3">
-        <a href="{{route('questions.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0 float-right">
-            <i class="fas fa-plus"></i> Agregar
-        </a>
+    <div class="col-12 col-md-6 d-flex justify-content-end">
+            <a href="{{route('questions.create')}}" class="btn btn-success btn-wide btn-shadow rounded-0 float-right mr-2">
+                <i class="fas fa-plus"></i> Agregar
+            </a>
+            <a href="{{route('questions.export')}}" class="btn btn-primary btn-wide btn-shadow rounded-0 float-right">
+                <i class="fas fa-download"></i> Descargar
+            </a>
     </div>
 </div>
 

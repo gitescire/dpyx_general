@@ -70,6 +70,7 @@ Route::prefix('questions')->middleware('auth')->group(function () {
     Route::get('/', \App\Http\Livewire\Questions\Index::class)->middleware('can:index questions')->name('questions.index');
     Route::get('create', \App\Http\Livewire\Questions\Create::class)->middleware('can:create questions')->name('questions.create');
     Route::get('{question}/edit', \App\Http\Livewire\Questions\Edit::class)->middleware('can:edit questions')->name('questions.edit');
+    Route::get('export', \App\Http\Controllers\Questions\ExportQuestionController::class)->middleware('can:index questions')->name('questions.export');
     Route::post('/', \App\Http\Controllers\Questions\StoreQuestionController::class)->middleware('can:create questions')->name('questions.store');
     Route::put('{question}', \App\Http\Controllers\Questions\UpdateQuestionController::class)->middleware('can:edit questions')->name('questions.update');
     Route::delete('{question}', \App\Http\Controllers\Questions\DestroyQuestionController::class)->middleware('can:delete questions')->name('questions.destroy');
