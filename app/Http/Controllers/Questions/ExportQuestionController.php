@@ -11,6 +11,6 @@ class ExportQuestionController extends Controller
 {
     public function __invoke()
     {
-        return Excel::download(new QuestionsExport, 'reporte.xlsx');
+        return Excel::download(new QuestionsExport, 'preguntas.xlsx');
     }
 }
