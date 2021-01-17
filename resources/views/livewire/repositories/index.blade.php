@@ -30,6 +30,7 @@
                     <th class="text-uppercase">Gráfica de resultados</th>
                     <th class="text-uppercase">Cuestionario</th>
                     <th class="text-uppercase">Historial</th>
+                    <th class="text-uppercase">PDF</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,6 +69,12 @@
                             <i class="fas fa-history"></i>
                         </button>
                         <x-modals.evaluations.history :evaluation="$repository->evaluation" />
+                    </td>
+                    <td>
+                        <a href="{{route('evaluations.pdf',[$repository->evaluation])}}"
+                            class="btn btn-secondary btn-shadow rounded-0">
+                            <i class="fas fa-file-pdf"></i>
+                        </a>
                     </td>
                 </tr>
                 @endforeach

@@ -104,6 +104,7 @@ Route::prefix('repositories')->middleware('auth')->group(function () {
 Route::prefix('evaluations')->middleware('auth')->group(function () {
     Route::get('{evaluation}/categories/{category}/questions', \App\Http\Livewire\Evaluations\Categories\Questions\Index::class)->name('evaluations.categories.questions.index')->middleware('evaluations.categories.questions.index');
     Route::get('{evaluation}/user/{user}/assign', \App\Http\Livewire\Evaluations\Assign::class)->middleware('can:edit evaluations')->name('evaluations.assign');
+    Route::get('{evaluation}/pdf', \App\Http\Controllers\Evaluations\ExportEvaluationController::class)->name('evaluations.pdf');
     Route::post('{evaluation}/categories/{category}/questions', \App\Http\Controllers\Evaluations\Categories\Questions\StoreQuestionController::class)->name('evaluations.categories.questions.store');
     Route::post('{evaluation}/send', \App\Http\Controllers\Evaluations\SendEvaluationController::class)->name('evaluations.send');
 });
