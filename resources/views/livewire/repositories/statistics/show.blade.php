@@ -157,7 +157,14 @@
                             },
                             options: {
                                 rotation: 1 * Math.PI,
-                                circumference: 1 * Math.PI
+                                circumference: 1 * Math.PI,
+                                tooltips: {
+                                    callbacks: {
+                                        label: (tooltipItem, data) => {
+                                            return tooltipItem.index == 0 ? category.short_name+ ":" + category.percentage + "%" : ""
+                                        }
+                                    },
+                            },
                             }
                         });
                     });
@@ -180,9 +187,8 @@
                     var myChart = new Chart(ctx, {
                         type: 'doughnut',
                         data: {
-                            labels: ['Calificación del repositorio'],
+                            labels: ['Calificación del repositorio','nada'],
                             datasets: [{
-                                label: '# of Votes',
                                 data: [parseFloat(this.repository.qualification) + 100, 100 - parseFloat(this.repository.qualification)],
                                 backgroundColor: [
                                     color,
@@ -197,7 +203,17 @@
                         },
                         options: {
                             rotation: 1 * Math.PI,
-                            circumference: 1 * Math.PI
+                            circumference: 1 * Math.PI,
+                            tooltips: {
+                                callbacks: {
+                                    label: (tooltipItem, data) => {
+                                        console.log(tooltipItem)
+                                        console.log(data)
+                                        console.log()
+                                        return tooltipItem.index == 0 ? "Calificación:" + this.repository.qualification + "%" : ""
+                                    }
+                                },
+                            },
                         }
                     });
 
@@ -268,10 +284,27 @@
                         datasets
                         },
                         options: {
+                            tooltips: {
+                                callbacks: {
+                                    label: (tooltipItem, data) => {
+
+                                        subcategoryXName = _.find(subcategories, function(subcategory){
+                                            return subcategory.id == subcategoryIdOnXAxis
+                                        }).name
+
+                                        subcategoryYName = _.find(subcategories, function(subcategory){
+                                            return subcategory.id == subcategoryIdOnYAxis
+                                        }).name
+
+                                        return subcategoryXName + ": " + tooltipItem.xLabel + "%" + ", " + subcategoryYName + ": " + tooltipItem.yLabel + "%"
+                                    }
+                                },
+                            },
                         title: {
                             display: true,
                             text: 'Análisis de riesgos y fortalezas del RI'
-                        }, scales: {
+                        }, 
+                        scales: {
                             yAxes: [{ 
                             scaleLabel: {
                                 display: true,
