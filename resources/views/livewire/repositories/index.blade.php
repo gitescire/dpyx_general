@@ -39,12 +39,20 @@
                     <td>{{$repository->name}}</td>
                     <td>
                         <span class="badge badge-{{$repository->status_color}}">
-                            {{$repository->status}}
+                            @if ($repository->evaluation->in_review)
+                                En evaluación
+                            @else
+                                {{$repository->status}}
+                            @endif
                         </span>
                     </td>
                     <td>
                         <span class="badge badge-{{$repository->evaluation->status_color}}">
+                        @if ($repository->is_aproved || $repository->is_rejected)
+                            Concluido
+                        @else
                             {{$repository->evaluation->status}}
+                        @endif
                         </span>
                     </td>
                     <td>{{$repository->responsible->name}}</td>

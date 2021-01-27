@@ -101,7 +101,7 @@
     1. Presentaci&oacute;n<br /><br />
     El presente informe tiene por objetivo remitirle el resultado de la autoevaluación que se
     realizó al repositorio de su institución.<br /><br />
-    Dicha evaluación fue hecha el {{\Carbon\Carbon::parse($repository->updated_at)->format('d-m-Y')}}; en la URL:<br />
+    Los criterios fueron evaluados por {{getenv('APP_NAME')}} el {{\Carbon\Carbon::parse($repository->updated_at)->format('d-m-Y')}}; en la URL:<br />
     <a
         href="{{getenv('APP_URL')}}">{{getenv('APP_URL')}}</a><br /><br /><br />
     2. áreas consideradas<br /><br />
@@ -110,7 +110,7 @@
     @foreach (\App\Models\Category::has('questions')->get() as $category)
         - {{$category->name}}<br>
     @endforeach
-    
+    <br>
     3. Resultados de la autoevaluación<br /><br />
 
     A continuaci&oacute;n se presenta los criterios evaluados del repositorio institucional:<br /><br />
