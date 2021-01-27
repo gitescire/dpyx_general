@@ -21,6 +21,6 @@ class ExportEvaluationController extends Controller
             $query->where('evaluation_id', $evaluation->id);
         }])->get();
 
-        return PDF::loadView('pdfs.evaluation', compact('repository', 'categories', 'subcategories'))->download('mi.pdf');
+        return PDF::loadView('pdfs.evaluation', compact('repository', 'categories', 'subcategories'))->download('evaluacion-' . $evaluation->repository->name . '-concytec-' . date('Y') . '.pdf');
     }
 }

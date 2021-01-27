@@ -76,45 +76,43 @@
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <div class="header">
-    <img width="80%"
-        src="data:image/png;base64,' . {{ base64_encode( file_get_contents( url('images/banner_peru.png') ) ) }} " /><br />
+    <img width="100%"
+        src="data:image/png;base64,' . {{ base64_encode( file_get_contents( url('images/banner.jpeg') ) ) }} " /><br />
 </div>
 
 <footer>
     Calle Chinchón No. 867 – San Isidro<br />
-    Teléfono (511) 399 0030<br />
+    Correo: alicia@concytec.gob.pe<br />
 </footer>
 
 <body>
     <div align="center" style="margin-top: 12em; position: absolute">
         <img src="{{asset('images/alicia_logo.jpg')}}" /> <br />
         <br />REPOSITORIO NACIONAL DIGITAL<br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />EVALUACI&Oacute;N PRELIMINAR DEL REPOSITORIO {{strtoupper($repository->name)}}
+        <br /><br /><br /><br /><br />AUTOEVALUACI&Oacute;N DEL REPOSITORIO {{strtoupper($repository->name)}}
         <br />
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         LIMA<br /><br />
-        ABRIL 2020<br /><br /><br /><br /><br /><br />
+        {{date('Y')}}<br /><br /><br /><br /><br /><br />
     </div>
     <div class="page_break" syu></div>
     {{-- <div style="margin-top: 10em; text-align:justify;"> --}}
     <br><br>
     1. Presentaci&oacute;n<br /><br />
-    El presente informe tiene por objetivo remitirle el resultado de la evaluaci&oacute;n preliminar que se
-    realiz&oacute; al repositorio de su instituci&oacute;n.<br /><br />
-    Cabe mencionar que para la evaluaci&oacute;n completa esperaremos que se cumpla el tiempo de 6 meses de
-    adaptaci&oacute;n posteriores a la promulgaci&oacute;n de las nuevas Directrices de ALICIA, que esperamos se
-    concrete a la brevedad una vez que se supere algunas demoras administrativas.<br /><br />
-    Dicha evaluaci&oacute;n fue hecha el 29/1/2020; en la URL:<br />
+    El presente informe tiene por objetivo remitirle el resultado de la autoevaluación que se
+    realizó al repositorio de su institución.<br /><br />
+    Dicha evaluación fue hecha el {{\Carbon\Carbon::parse($repository->updated_at)->format('d-m-Y')}}; en la URL:<br />
     <a
-        href="http://www.repositorioacademico.usmp.edu.pe/">http://www.repositorioacademico.usmp.edu.pe/</a><br /><br /><br />
-    2. &Aacute;reas consideradas<br /><br />
-    Las &aacute;reas consideradas en esta evaluaci&oacute;n preliminar han sido las siguientes:<br />
-    Disponibilidad, Difusi&oacute;n, Pol&iacute;ticas, Estad&iacute;sticas de acceso y Directorios
-    Internacionales.<br /><br />
-    En la evaluaci&oacute;n general mencionado en el primer punto se proceder&aacute; a evaluar todos los criterios
-    que est&eacute;n mencionados en las nuevas Directrices de Alicia, pasado los 6 meses de
-    adaptaci&oacute;n.<br /><br /><br />
-    3. Resultado de la evaluaci&oacute;n preliminar<br /><br />
+        href="{{getenv('APP_URL')}}">{{getenv('APP_URL')}}</a><br /><br /><br />
+    2. áreas consideradas<br /><br />
+    Las áreas consideradas en esta evaluación preliminar han sido las siguientes:<br />
+    
+    @foreach (\App\Models\Category::has('questions')->get() as $category)
+        - {{$category->name}}<br>
+    @endforeach
+    
+    3. Resultados de la autoevaluación<br /><br />
+
     A continuaci&oacute;n se presenta los criterios evaluados del repositorio institucional:<br /><br />
 
 
@@ -155,8 +153,8 @@
     @endforeach
 
     <br /><br />
-    3.5. DIRECTORIOS INTERNACIONALES<br />
     {{-- El repositorio ha sido registrado en los siguientes directorios:<br /> --}}
+    Para cualquier duda o aclaración enviar correo a: alicia@concytec.gob.pe <br>
     {{-- <br /><br /> --}}
     {{-- <table width="100%">' . '$tabla_dir' . '</table> --}}
     {{-- <br /> --}}

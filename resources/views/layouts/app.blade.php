@@ -359,7 +359,7 @@
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/avatars/3.jpg'}}"
+                                                                                                    <img src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/avatars/default.jpg'}}"
                             alt=""></div>
                     </div>
                     <div class="avatar-icon-wrapper avatar-icon-sm">
@@ -599,7 +599,7 @@
                     <div class="btn-group">
                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
                             <img width="42" class="rounded"
-                                src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/avatars/3.jpg'}}"
+                                src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/avatars/default.jpg'}}"
                                 alt="" style="display: inline-block;">
                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                         </a>
@@ -615,7 +615,7 @@
                                             <div class="widget-content-wrapper">
                                                 <div class="widget-content-left mr-3">
                                                     <img width="42" class="rounded-circle"
-                                                        src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/avatars/3.jpg'}}"
+                                                        src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/avatars/default.jpg'}}"
                                                         alt="">
                                                 </div>
                                                 <div class="widget-content-left">
@@ -881,7 +881,7 @@
     </div>
     <div class="avatar-icon-wrapper avatar-icon-sm">
         <div class="avatar-icon">
-            <img src="{{asset('images/avatars/3.jpg')}}" alt="">
+            <img src="{{asset('images/avatars/default.jpg')}}" alt="">
         </div>
     </div>
     <div class="avatar-icon-wrapper avatar-icon-sm">
@@ -1831,7 +1831,7 @@
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/avatars/3.jpg')}}" alt=""></div>
+                                                            src="{{asset('images/avatars/default.jpg')}}" alt=""></div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
