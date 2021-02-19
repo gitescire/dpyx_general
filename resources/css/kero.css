@@ -38328,7 +38328,7 @@ button.toast-close-button {
 }
 
 .slick-loading .slick-list {
-    background: #fff slick-image-url(/images/ajax-loader.gif) center center no-repeat
+    background: #fff slick-image-url(/images/default/ajax-loader.gif) center center no-repeat
 }
 
 .slick-prev,
