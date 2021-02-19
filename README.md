@@ -21,6 +21,8 @@ https://git-codecommit.us-east-1.amazonaws.com/v1/repos/dpyx-concytec-laravel
 
 7. You should have created a file in lang/es/<APP_NAME> and another file in lang/es.<APP_NAME>.json that will show a customized message depending the APP NAME.
 
+8. You should copy folder public/images/default.example/ to public/images/default/ to set up defult images into system
+
 ### Permissions in linux file
 
 1. Assign the project ownership to the web server user:
@@ -29,22 +31,22 @@ https://git-codecommit.us-east-1.amazonaws.com/v1/repos/dpyx-concytec-laravel
 2. Assign our user to the web server user group:
 `sudo usermod -a -G www-data elusuario`
 
-3. Update the necessary permissions to files and directories
-`sudo find /path/to/your/laravel/root/directory -type f -exec chmod 644 {} \;`  
-`sudo find /path/to/your/laravel/root/directory -type d -exec chmod 755 {} \;`
-
 ## Set to production
 
-1. When the steps shown before were executed, you need to run the migrations to create the database and tables:
+1. You need to generate a random key to prevent some attacks
+
+`php artisan key:generate`
+
+2. When the steps shown before were executed, you need to run the migrations to create the database and tables:
 
 `php artisan migrate:fresh`
 
-2. Then you need to set the basic information (seed) to run the app:
+3. Then you need to set the basic information (seed) to run the app:
 `php artisan db:seed`
 
-3. You need to create a storage link to make public the folder that users will save their files:
+4. You need to create a storage link to make public the folder that users will save their files:
 `php artisan storage:link`
 
-4. You must go to the path where you have your php.ini file, and change the next variables like are shown below:
+5. You must go to the path where you have your php.ini file, and change the next variables like are shown below:
 `upload_max_filesize = 20M`
 `post_max_size = 20M`

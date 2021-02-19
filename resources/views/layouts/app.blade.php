@@ -345,42 +345,42 @@
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="/images/avatars/1.jpg"
+                                                                                                    <img src="/images/default/avatars/1.jpg"
                                                                                                         alt=""></div>
                                                                                             </div>
                                                                                             <div
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="/images/avatars/2.jpg"
+                                                                                                    <img src="/images/default/avatars/2.jpg"
                                                                                                         alt=""></div>
                                                                                             </div>
                                                                                             <div
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/avatars/default.jpg'}}"
+                                                                                                    <img src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg'}}"
                             alt=""></div>
                     </div>
                     <div class="avatar-icon-wrapper avatar-icon-sm">
                         <div class="avatar-icon">
-                            <img src="/images/avatars/4.jpg" alt=""></div>
+                            <img src="/images/default/avatars/4.jpg" alt=""></div>
                     </div>
                     <div class="avatar-icon-wrapper avatar-icon-sm">
                         <div class="avatar-icon">
-                            <img src="/images/avatars/5.jpg" alt=""></div>
+                            <img src="/images/default/avatars/5.jpg" alt=""></div>
                     </div>
                     <div class="avatar-icon-wrapper avatar-icon-sm">
                         <div class="avatar-icon">
-                            <img src="/images/avatars/9.jpg" alt=""></div>
+                            <img src="/images/default/avatars/9.jpg" alt=""></div>
                     </div>
                     <div class="avatar-icon-wrapper avatar-icon-sm">
                         <div class="avatar-icon">
-                            <img src="/images/avatars/7.jpg" alt=""></div>
+                            <img src="/images/default/avatars/7.jpg" alt=""></div>
                     </div>
                     <div class="avatar-icon-wrapper avatar-icon-sm">
                         <div class="avatar-icon">
-                            <img src="/images/avatars/8.jpg" alt=""></div>
+                            <img src="/images/default/avatars/8.jpg" alt=""></div>
                     </div>
                     <div class="avatar-icon-wrapper avatar-icon-sm avatar-icon-add">
                         <div class="avatar-icon">
@@ -599,7 +599,7 @@
                     <div class="btn-group">
                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
                             <img width="42" class="rounded"
-                                src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/avatars/default.jpg'}}"
+                                src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg'}}"
                                 alt="" style="display: inline-block;">
                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                         </a>
@@ -615,7 +615,7 @@
                                             <div class="widget-content-wrapper">
                                                 <div class="widget-content-left mr-3">
                                                     <img width="42" class="rounded-circle"
-                                                        src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/avatars/default.jpg'}}"
+                                                        src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg'}}"
                                                         alt="">
                                                 </div>
                                                 <div class="widget-content-left">
@@ -870,43 +870,43 @@
                                                                                                     class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                     <div
                                                                                                         class="avatar-icon">
-                                                                                                        <img src="{{asset('images/avatars/1.jpg')}}"
+                                                                                                        <img src="{{asset('images/default/avatars/1.jpg')}}"
     alt="">
     </div>
     </div>
     <div class="avatar-icon-wrapper avatar-icon-sm">
         <div class="avatar-icon">
-            <img src="{{asset('images/avatars/2.jpg')}}" alt="">
+            <img src="{{asset('images/default/avatars/2.jpg')}}" alt="">
         </div>
     </div>
     <div class="avatar-icon-wrapper avatar-icon-sm">
         <div class="avatar-icon">
-            <img src="{{asset('images/avatars/default.jpg')}}" alt="">
+            <img src="{{asset('images/default/avatars/profile.jpg')}}" alt="">
         </div>
     </div>
     <div class="avatar-icon-wrapper avatar-icon-sm">
         <div class="avatar-icon">
-            <img src="{{asset('images/avatars/4.jpg')}}" alt="">
+            <img src="{{asset('images/default/avatars/4.jpg')}}" alt="">
         </div>
     </div>
     <div class="avatar-icon-wrapper avatar-icon-sm">
         <div class="avatar-icon">
-            <img src="{{asset('images/avatars/5.jpg')}}" alt="">
+            <img src="{{asset('images/default/avatars/5.jpg')}}" alt="">
         </div>
     </div>
     <div class="avatar-icon-wrapper avatar-icon-sm">
         <div class="avatar-icon">
-            <img src="{{asset('images/avatars/9.jpg')}}" alt="">
+            <img src="{{asset('images/default/avatars/9.jpg')}}" alt="">
         </div>
     </div>
     <div class="avatar-icon-wrapper avatar-icon-sm">
         <div class="avatar-icon">
-            <img src="{{asset('images/avatars/7.jpg')}}" alt="">
+            <img src="{{asset('images/default/avatars/7.jpg')}}" alt="">
         </div>
     </div>
     <div class="avatar-icon-wrapper avatar-icon-sm">
         <div class="avatar-icon">
-            <img src="{{asset('images/avatars/8.jpg')}}" alt="">
+            <img src="{{asset('images/default/avatars/8.jpg')}}" alt="">
         </div>
     </div>
     <div class="avatar-icon-wrapper avatar-icon-sm avatar-icon-add">
@@ -1734,7 +1734,7 @@
                                         </div>
                                         <div class="widget-content-left mr-3">
                                             <div class="widget-content-left"><img width="42" class="rounded"
-                                                    src="{{asset('images/avatars/1.jpg')}}" alt="" /></div>
+                                                    src="{{asset('images/default/avatars/1.jpg')}}" alt="" /></div>
                                         </div>
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Go grocery shopping</div>
@@ -1823,35 +1823,35 @@
                                             <div class="avatar-wrapper mt-2 avatar-wrapper-overlap">
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/avatars/1.jpg')}}" alt=""></div>
+                                                            src="{{asset('images/default/avatars/1.jpg')}}" alt=""></div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/avatars/2.jpg')}}" alt=""></div>
+                                                            src="{{asset('images/default/avatars/2.jpg')}}" alt=""></div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/avatars/default.jpg')}}" alt=""></div>
+                                                            src="{{asset('images/default/avatars/profile.jpg')}}" alt=""></div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/avatars/4.jpg')}}" alt=""></div>
+                                                            src="{{asset('images/default/avatars/4.jpg')}}" alt=""></div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/avatars/5.jpg')}}" alt=""></div>
+                                                            src="{{asset('images/default/avatars/5.jpg')}}" alt=""></div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/avatars/6.jpg')}}" alt=""></div>
+                                                            src="{{asset('images/default/avatars/6.jpg')}}" alt=""></div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/avatars/7.jpg')}}" alt=""></div>
+                                                            src="{{asset('images/default/avatars/7.jpg')}}" alt=""></div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/avatars/8.jpg')}}" alt=""></div>
+                                                            src="{{asset('images/default/avatars/8.jpg')}}" alt=""></div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm avatar-icon-add">
                                                     <div class="avatar-icon"><i>+</i></div>
