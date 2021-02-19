@@ -1,6 +1,6 @@
 <div class="row d-flex justify-content-center">
     <div class="col-12 col-lg-8">
-        <h2 class="text-uppercase text-center text-info mb-3">¿Cómo administrar dPyx? 🎮</h2>
+        <h2 class="text-uppercase text-center text-info mb-3">{{__('¿Cómo administrar dPyx?')}} 🎮</h2>
         <div class="main-card mb-3 card border-0 shadow">
             <div class="card-body">
                 <div
