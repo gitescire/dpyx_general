@@ -6,9 +6,12 @@ use App\Models\Category;
 use App\Models\Repository;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
+
     public $firstCategory;
     private $repositories;
 

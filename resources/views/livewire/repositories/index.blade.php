@@ -16,7 +16,7 @@
     </div>
     @endif
 
-    <div class="table-responsive shadow bg-white">
+    <div class="table-responsive shadow mb-3 bg-white">
         <table class="table table-bordered m-0">
             <thead>
                 <tr>
@@ -88,6 +88,10 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+
+    <div class="">
+        {{$repositories->links()}}
     </div>
 
 </div>
