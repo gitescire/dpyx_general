@@ -39,7 +39,7 @@
                     <div class="app-header__logo d-flex justify-content-between" x-data="navbar()" x-init="mounted()">
                         <a href="{{route('dashboard')}}" data-toggle="tooltip" data-placement="bottom"
                             title="dPyx Concytec" class="">
-                            <img src="{{url('images/logo.png')}}" width="120px" class="img-responsive" alt="">
+                            <img src="{{url('images/default/logo.png')}}" width="160px" class="img-responsive" alt="">
                         </a>
                         {{-- <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav"> --}}
                         <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav float-right"
@@ -116,6 +116,7 @@
                                         Más información
                                     </a>
                                 </li>
+                                <img src="{{url('images/default/dpyx.png')}}" width="60px" class="img-responsive float-right mt-2" alt="">
                             </ul>
                         </div>
                     </div>
@@ -598,7 +599,7 @@
                 <div class="widget-content-left">
                     <div class="btn-group">
                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                            <img width="42" class="rounded"
+                            <img width="80" class="rounded"
                                 src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg'}}"
                                 alt="" style="display: inline-block;">
                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
@@ -614,7 +615,7 @@
                                         <div class="widget-content p-0">
                                             <div class="widget-content-wrapper">
                                                 <div class="widget-content-left mr-3">
-                                                    <img width="42" class="rounded-circle"
+                                                    <img width="80" class="rounded-circle"
                                                         src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg'}}"
                                                         alt="">
                                                 </div>
