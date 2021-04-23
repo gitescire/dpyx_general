@@ -81,8 +81,8 @@
 </div>
 
 <footer>
-    Calle Chinchón No. 867 – San Isidro<br />
-    Correo: alicia@concytec.gob.pe<br />
+    {{env("INSTITUTE_ADDRESS", "Tu dirección")}}<br />
+    Correo: {{env("INSTITUTE_MAIL", "correo@ejemplo.com")}}<br />
 </footer>
 
 <body>
@@ -154,7 +154,7 @@
 
     <br /><br />
     {{-- El repositorio ha sido registrado en los siguientes directorios:<br /> --}}
-    Para cualquier duda o aclaración enviar correo a: alicia@concytec.gob.pe <br>
+    Para cualquier duda o aclaración enviar correo a: {{env("INSTITUTE_MAIL", "correo@ejemplo.com")}} <br>
     {{-- <br /><br /> --}}
     {{-- <table width="100%">' . '$tabla_dir' . '</table> --}}
     {{-- <br /> --}}
