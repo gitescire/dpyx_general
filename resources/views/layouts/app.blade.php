@@ -38,8 +38,8 @@
                 <div class="app-sidebar sidebar-text-dark" style="background: #e1e6ff !important;">
                     <div class="app-header__logo d-flex justify-content-between" x-data="navbar()" x-init="mounted()">
                         <a href="{{route('dashboard')}}" data-toggle="tooltip" data-placement="bottom"
-                            title="dPyx Concytec" class="">
-                            <img src="{{url('images/default/logo.png')}}" width="160px" class="img-responsive" alt="">
+                            title="dPyx {{env('APP_NAME','')}}" class="">
+                            <img src="{{url('images/default/logo.png?20210503')}}" width="160px" class="img-responsive" alt="">
                         </a>
                         {{-- <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav"> --}}
                         <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav float-right"
@@ -360,7 +360,7 @@
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg'}}"
+                                                                                                    <img src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg?20210503'}}"
                             alt=""></div>
                     </div>
                     <div class="avatar-icon-wrapper avatar-icon-sm">
@@ -600,7 +600,7 @@
                     <div class="btn-group">
                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
                             <img width="80" class="rounded"
-                                src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg'}}"
+                                src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg?20210503'}}"
                                 alt="" style="display: inline-block;">
                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                         </a>
@@ -616,7 +616,7 @@
                                             <div class="widget-content-wrapper">
                                                 <div class="widget-content-left mr-3">
                                                     <img width="80" class="rounded-circle"
-                                                        src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg'}}"
+                                                        src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg?20210503'}}"
                                                         alt="">
                                                 </div>
                                                 <div class="widget-content-left">
@@ -882,7 +882,7 @@
     </div>
     <div class="avatar-icon-wrapper avatar-icon-sm">
         <div class="avatar-icon">
-            <img src="{{asset('images/default/avatars/profile.jpg')}}" alt="">
+            <img src="{{asset('images/default/avatars/profile.jpg?20210503')}}" alt="">
         </div>
     </div>
     <div class="avatar-icon-wrapper avatar-icon-sm">
@@ -1832,7 +1832,7 @@
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/default/avatars/profile.jpg')}}" alt=""></div>
+                                                            src="{{asset('images/default/avatars/profile.jpg?20210503')}}" alt=""></div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
