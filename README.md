@@ -1,6 +1,7 @@
 # dPyx
 
 ## Installation & requirements
+
 1. You must install the next:  
 [laravel](https://laravel.com/docs/8.x/installation)
 [nodejs](https://nodejs.org/es/)
@@ -34,11 +35,9 @@ https://git-codecommit.us-east-1.amazonaws.com/v1/repos/dpyx-concytec-laravel
 ## Set to production
 
 1. You need to generate a random key to prevent some attacks
-
 `php artisan key:generate`
 
 2. When the steps shown before were executed, you need to run the migrations to create the database and tables:
-
 `php artisan migrate:fresh`
 
 3. Then you need to set the basic information (seed) to run the app:

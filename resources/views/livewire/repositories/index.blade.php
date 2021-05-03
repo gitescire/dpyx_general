@@ -21,7 +21,7 @@
             <thead>
                 <tr>
                     <th class="text-uppercase">Nombre</th>
-                    <th class="text-uppercase">Repositorio</th>
+                    <th class="text-uppercase">{{__("Repositorio")}}</th>
                     <th class="text-uppercase">Evaluación</th>
                     <th class="text-uppercase">Encargado</th>
                     @if (config('app.is_evaluable'))
