@@ -54,7 +54,7 @@
                                     dentro de tu evaluación aparecerá el botón
                                     <a href="javascript:void(0)" style="cursor: auto;"
                                         class="btn btn-success btn-sm btn-wide rounded-0">
-                                        <i class="fas fa-paper-plane"></i> ENVIAR A CONCYTEC
+                                        <i class="fas fa-paper-plane"></i> {{__("enviar cuestionario")}}
                                     </a>
                                     que te permitirá enviar tu cuestionario a uno de nuestros evaluadores para su
                                     revisión

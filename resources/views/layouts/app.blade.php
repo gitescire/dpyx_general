@@ -112,8 +112,13 @@
                                 </li>
                                 @endif
                                 <li class="text-center mt-5" style="border: 1px solid #c3c6d4 !important;">
-                                    <a href="https://www.dpyx.net" target="_blank">
+                                    <a href="https://dpyx.site/" target="_blank">
                                         Más información
+                                    </a>
+                                </li>
+                                <li class="text-center mt-1" style="border: 1px solid #c3c6d4 !important;">
+                                    <a href="https://dpyx.site/usuario/" target="_blank">
+                                        Manual de usuario
                                     </a>
                                 </li>
                                 <img src="{{url('images/default/dpyx.png')}}" width="60px" class="img-responsive float-right mt-2" alt="">
