@@ -112,15 +112,29 @@
                                 </li>
                                 @endif
                                 <li class="text-center mt-5" style="border: 1px solid #c3c6d4 !important;">
-                                    <a href="https://dpyx.site/" target="_blank">
-                                        Más información
+                                    <a href="https://dpyx.site/preguntas-frecuentes/" target="_blank">
+                                        Más información y FAQ
                                     </a>
                                 </li>
-                                <li class="text-center mt-1" style="border: 1px solid #c3c6d4 !important;">
-                                    <a href="https://dpyx.site/usuario/" target="_blank">
-                                        Manual de usuario
-                                    </a>
-                                </li>
+                                @if ( auth()->user()->is_admin )
+                                    <li class="text-center mt-1" style="border: 1px solid #c3c6d4 !important;">
+                                        <a href="https://dpyx.site/administrador/" target="_blank">
+                                            Manual de administrador
+                                        </a>
+                                    </li>
+                                @elseif(auth()->user()->is_evaluator)
+                                    <li class="text-center mt-1" style="border: 1px solid #c3c6d4 !important;">
+                                        <a href="https://dpyx.site/evaluador/" target="_blank">
+                                            Manual de evaluador
+                                        </a>
+                                    </li>
+                                @else
+                                    <li class="text-center mt-1" style="border: 1px solid #c3c6d4 !important;">
+                                        <a href="https://dpyx.site/usuario/" target="_blank">
+                                            Manual de usuario
+                                        </a>
+                                    </li>
+                                @endif
                                 <img src="{{url('images/default/dpyx.png')}}" width="60px" class="img-responsive float-right mt-2" alt="">
                             </ul>
                         </div>
