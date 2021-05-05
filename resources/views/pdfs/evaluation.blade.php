@@ -88,17 +88,17 @@
 <body>
     <div align="center" style="margin-top: 12em; position: absolute">
         <img src="{{asset('images/default/evaluation/1.jpg')}}" /> <br />
-        <br />REPOSITORIO NACIONAL DIGITAL<br /><br /><br /><br /><br /><br />
+        <br />{{__("texto 1")}}<br /><br /><br /><br /><br /><br />
         <br /><br /><br /><br /><br />AUTOEVALUACI&Oacute;N DEL REPOSITORIO {{strtoupper($repository->name)}}
         <br />
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        LIMA<br /><br />
+        {{__("texto 2")}}<br /><br />
         {{date('Y')}}<br /><br /><br /><br /><br /><br />
     </div>
     <div class="page_break" syu></div>
     {{-- <div style="margin-top: 10em; text-align:justify;"> --}}
     <br><br>
-    1. Presentaci&oacute;n<br /><br />
+    1. Presentación<br /><br />
     El presente informe tiene por objetivo remitirle el resultado de la autoevaluación que se
     realizó al repositorio de su institución.<br /><br />
     Los criterios fueron evaluados por {{getenv('APP_NAME')}} el {{\Carbon\Carbon::parse($repository->updated_at)->format('d-m-Y')}}; en la URL:<br />
