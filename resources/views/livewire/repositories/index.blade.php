@@ -24,11 +24,13 @@
                     <th class="text-uppercase">{{__("Repositorio")}}</th>
                     <th class="text-uppercase">Evaluación</th>
                     <th class="text-uppercase">Encargado</th>
-                    @if (config('app.is_evaluable'))
+                    @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables')) )
                     <th class="text-uppercase">Evaluador</th>
                     @endif
                     <th class="text-uppercase">Gráfica de resultados</th>
+                    {{-- @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables')) ) --}}
                     <th class="text-uppercase">Cuestionario</th>
+                    {{-- @endif --}}
                     <th class="text-uppercase">Historial</th>
                     <th class="text-uppercase">PDF</th>
                 </tr>
@@ -56,7 +58,7 @@
                         </span>
                     </td>
                     <td>{{$repository->responsible->name}}</td>
-                    @if (config('app.is_evaluable'))
+                    @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables')) )
                     <td>{{$repository->evaluation ? $repository->evaluation->evaluator->name : 'N/A'}}</td>
                     @endif
                     <td>
@@ -65,12 +67,14 @@
                             <i class="fas fa-chart-pie"></i>
                         </a>
                     </td>
+                    {{-- @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables')) ) --}}
                     <td>
                         <a href="{{route('evaluations.categories.questions.index',[$repository->evaluation, $firstCategory])}}"
                             class="btn btn-{{$repository->evaluation->is_reviewed && $repository->is_aproved ? 'secondary' : 'primary'}} btn-shadow rounded-0 {{$repository->evaluation->is_viewable ? '' : 'disabled'}}">
                             <i class="fas fa-scroll"></i>
                         </a>
                     </td>
+                    {{-- @endif --}}
                     <td>
                         <button type="button" class="btn btn-info btn-shadow rounded-0" data-toggle="modal"
                             data-target="#showEvaluationHistory{{$repository->evaluation->id}}">

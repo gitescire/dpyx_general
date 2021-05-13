@@ -23,9 +23,11 @@
                                         <th>
                                             Fecha
                                         </th>
+                                        @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables')) )
                                         <th>
                                             Evaluador
                                         </th>
+                                        @endif
                                         <th>
                                             Status
                                         </th>
@@ -36,9 +38,11 @@
                                         <td>
                                             {{$evaluation->updated_at}}
                                         </td>
+                                        @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables')) )
                                         <td>
                                             {{$evaluation->evaluator ? $evaluation->evaluator->name : 'N/A'}}
                                         </td>
+                                        @endif
                                         <td>
                                             {{$evaluation->status}}
                                         </td>
