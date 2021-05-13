@@ -1,6 +1,6 @@
 <div class="row d-flex justify-content-center">
     <div class="col-12 col-lg-8">
-        <h2 class="text-uppercase text-center text-info mb-3">¿Cómo evaluar los repositorios? 📝</h2>
+        <h2 class="text-uppercase text-center text-info mb-3">{{__("messages.views.instructions.evaluators.text3")}} 📝</h2>
         <div class="main-card mb-3 card border-0 shadow">
             <div class="card-body">
                 <div
@@ -10,19 +10,17 @@
                                     class="badge badge-dot badge-dot-xl badge-info"> </i></span>
                             <div class="vertical-timeline-element-content bounce-in">
                                 <h4 class="timeline-title text-info">
-                                    Revisa los repositorios
+                                    {{__("messages.views.instructions.evaluators.text2")}}
                                 </h4>
                                 <p>
                                     Entra en la sección
                                     <b>
                                         <i class="metismenu-icon fas fa-box-open">
-                                        </i> Repositorios</b>, en donde serán listados los repositorios que te
-                                    pertenecen. Con el botón
+                                        </i> {{__("containerNamePlural")}}</b>, {{__("messages.views.instructions.evaluators.text1")}}
                                     <a href="javascript:void(0)" class="btn btn-primary rounded-0 btn-sm" style="cursor: auto;">
                                         <i class="fas fa-edit"></i>
-                                    </a> podrás acceder a la información respondida de cada repositorio. 
+                                    </a> podrás acceder a la información respondida de cada {{__("containerName")}}. 
                                     Toma en cuenta que si el usuario aun no envía su información, el botón estará deshabilitado, y por lo tanto no podrás evaluarlo.
-                                    {{-- Lorem ipsum dolor sic amet, today at <a href="javascript:void(0);">12:00 PM</a> --}}
                                 </p>
                             </div>
                         </div>

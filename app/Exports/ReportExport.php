@@ -32,9 +32,9 @@ class ReportExport implements FromArray, withHeadings, WithStyles
         return [
             'USUARIOS ACTIVOS',
             'USUARIOS INACTIVOS',
-            'REPOSITORIOS APROBADOS',
-            'REPOSITORIOS PENDIENTES',
-            'REPOSITORIOS RECHAZADOS',
+            strtoupper( __("containerName") ).' APROBADAS',
+            strtoupper( __("containerName") ).' PENDIENTES',
+            strtoupper( __("containerName") ).' RECHAZADOS',
         ];
     }
 

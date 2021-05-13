@@ -100,7 +100,7 @@
                                 </li> --}}
                                 <li>
                                     <a href="{{route('repositories.index')}}">
-                                        <i class="metismenu-icon fas fa-box-open"></i> Repositorios
+                                        <i class="metismenu-icon fas fa-box-open"></i> {{__("containerNamePlural")}}
                                     </a>
                                 </li>
                                 @if ( config('app.is_evaluable') )

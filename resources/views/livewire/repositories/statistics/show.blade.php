@@ -1,7 +1,7 @@
 <div class="mb-4" x-data="data()" x-init="mounted()">
 
     @section('header')
-    <x-page-title title="Estadisticas de repositorio"
+    <x-page-title title="{{__('messages.views.livewire.repositories.statistics.show.text1')}}"
         description="Este módulo permite ver la evaluación final del repositorio con base en las respuestas del usuario.">
     </x-page-title>
     @endsection
@@ -187,7 +187,7 @@
                     var myChart = new Chart(ctx, {
                         type: 'doughnut',
                         data: {
-                            labels: ['Calificación del repositorio','nada'],
+                            labels: ['Calificación general','nada'],
                             datasets: [{
                                 data: [parseFloat(this.repository.qualification) + 100, 100 - parseFloat(this.repository.qualification)],
                                 backgroundColor: [

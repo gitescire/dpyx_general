@@ -1,7 +1,7 @@
 <div class="mb-4" x-data="data()" x-init="mounted()">
 
     @section('header')
-    <x-page-title title="Estadisticas de repositorio"
+    <x-page-title title="Estadisticas de {{__('containerNamePlural')}}"
         description="Este módulo permite ver la evaluación final del repositorio con base en las respuestas del usuario.">
     </x-page-title>
     @endsection

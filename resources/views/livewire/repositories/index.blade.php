@@ -1,8 +1,8 @@
 <div class="mb-4">
 
     @section('header')
-    <x-page-title title="Lista de repositorios"
-        description="Este modulo permite listar los repositorios pertenecientes a los usuarios."></x-page-title>
+    <x-page-title title="Lista de {{__('containerNamePlural')}}"
+        description="{{__('messages.views.livewire.repositories.index.text1')}}"></x-page-title>
     @endsection
 
     @if(auth()->user()->is_evaluator || auth()->user()->is_admin)
@@ -21,7 +21,7 @@
             <thead>
                 <tr>
                     <th class="text-uppercase">Nombre</th>
-                    <th class="text-uppercase">{{__("Repositorio")}}</th>
+                    <th class="text-uppercase">{{__("containerName")}}</th>
                     <th class="text-uppercase">Evaluación</th>
                     <th class="text-uppercase">Encargado</th>
                     @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables')) )

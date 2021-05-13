@@ -80,10 +80,7 @@ return [
     |
     */
 
-    // for example es.concyec => lang/es/concytec
-    // 'locale' => 'es.concytec',
     'locale' => 'es',
-    // 'locale' => 'es.concytec' ,
 
     /*
     |--------------------------------------------------------------------------
