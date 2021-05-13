@@ -19,5 +19,8 @@
 
     "messages.views.livewire.repositories.index.text1": "Este módulo permite listar las revistas pertenecientes a los usuarios.",
 
-    "messages.views.livewire.repositories.statistics.show.text1": "Estadisticas de la revista"
+    "messages.views.livewire.repositories.statistics.show.text1": "Estadisticas de la revista",
+
+    "messages.views.pdfs.evaluation.text1": " ",
+    "messages.views.pdfs.evaluation.text2": " "
 }

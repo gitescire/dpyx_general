@@ -88,11 +88,11 @@
 <body>
     <div align="center" style="margin-top: 12em; position: absolute">
         <img src="{{asset('images/default/evaluation/1.jpg?202105131')}}" /> <br />
-        <br />{{__("texto 1")}}<br /><br /><br /><br /><br /><br />
+        <br />{{__("messages.views.pdfs.evaluation.text1")}}<br /><br /><br /><br /><br /><br />
         <br /><br /><br /><br /><br />AUTOEVALUACIÓN DE {{strtoupper($repository->name)}}
         <br />
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        {{__("texto 2")}}<br /><br />
+        {{__("messages.views.pdfs.evaluation.text2")}}<br /><br />
         {{date('Y')}}<br /><br /><br /><br /><br /><br />
     </div>
     <div class="page_break" syu></div>
