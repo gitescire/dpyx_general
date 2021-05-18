@@ -37,8 +37,11 @@ class ReviewedRepositoryMail extends Mailable
 
         $this->evaluationPDF = PDF::loadView('pdfs.evaluation', compact('repository', 'categories', 'subcategories'));
         $this->evaluationPDF->setPaper('Letter');
-        $this->certificationPDF = PDF::loadView('pdfs.certification', compact('repository'));
-        $this->certificationPDF->setPaper('Letter', 'landscape');
+
+        if ( config('dpyx.has_certification') ) {
+            $this->certificationPDF = PDF::loadView('pdfs.certification', compact('repository'));
+            $this->certificationPDF->setPaper('Letter', 'landscape');
+        }
     }
 
     /**
@@ -54,7 +57,7 @@ class ReviewedRepositoryMail extends Mailable
                 'mime' => 'application/pdf',
             ]);
 
-        if ($this->repository->is_aproved) {
+        if ($this->repository->is_aproved && config('dpyx.has_certification')) {
             $message->attachData($this->certificationPDF->output(), 'certificacion.pdf', [
                 'mime' => 'application/pdf',
             ]);

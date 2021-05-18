@@ -49,3 +49,9 @@ https://git-codecommit.us-east-1.amazonaws.com/v1/repos/dpyx-concytec-laravel
 5. You must go to the path where you have your php.ini file, and change the next variables like are shown below:
 `upload_max_filesize = 20M`
 `post_max_size = 20M`
+
+## Setting up some files
+
+1. You must copy /public/images/default.example in /public/images/default, then update the picures that you want inside the copied folder.
+
+2. You must copy /resources/lang/es.json.example in /resources/lang/es.json, then update the message that you want inside the copied folder.
