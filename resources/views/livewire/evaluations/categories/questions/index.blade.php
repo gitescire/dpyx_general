@@ -2,7 +2,7 @@
 
     @section('header')
     <x-page-title title="Contestar cuestionario"
-        description="Este módulo permite responder las preguntas para evaluar el repositorio."></x-page-title>
+        description="Este módulo permite responder las preguntas para evaluar {{__('messages.views.livewire.evaluations.categories.questions.index.text1')}}."></x-page-title>
     @endsection
 
     @if ( config('app.is_evaluable') )

@@ -52,7 +52,7 @@
                                         Entra en la sección
                                     <b>
                                         <i class="metismenu-icon fas fa-users"></i> Usuarios
-                                    </b>, crea, edita y elimina los usuarios que desees. Estos pueden ser de 3 tipos: administradores, evaluadores y usuario (repositorio).
+                                    </b>, crea, edita y elimina los usuarios que desees. Estos pueden ser de 3 tipos: administradores, evaluadores y usuario ({{__("containerName")}}).
                                 </p>
                             </div>
                         </div>
@@ -79,13 +79,13 @@
                                     class="badge badge-dot badge-dot-xl badge-info"> </i></span>
                             <div class="vertical-timeline-element-content bounce-in">
                                 <h4 class="timeline-title text-info">
-                                    Administra los respositorios
+                                    Administra {{__('messages.views.instructions.admins.text1')}}
                                 </h4>
                                 <p>
                                         Entra en la sección
                                     <b>
-                                        <i class="metismenu-icon fas fa-box-open"></i> Repositorios
-                                    </b> para ver la lista de repositorios registrados que son evaluados por {{getenv('APP_NAME')}}, así como sus resultados de la evaluación.
+                                        <i class="metismenu-icon fas fa-box-open"></i> {{__("containerNamePlural")}}
+                                    </b> para ver la lista de {{__("containerNamePlural")}} registrados que son evaluados por {{getenv('APP_NAME')}}, así como sus resultados de la evaluación.
                                 </p>
                             </div>
                         </div>

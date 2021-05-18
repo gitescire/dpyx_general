@@ -35,7 +35,7 @@ class SendRepositoryController extends Controller
 
         Mail::to($repository->responsible->email)->send(new ReviewedRepositoryMail($repository, $request->comments));
 
-        Alert::success('¡El repositorio ha sido enviado exitosamente!');
+        Alert::success( __("messages.Controllers.Repositories.SendRepositoryController.AlertSuccess") );
         return redirect()->route('dashboard');
     }
 

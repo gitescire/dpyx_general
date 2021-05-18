@@ -13,12 +13,11 @@
                                     {{__("Entra a tu evaluación")}}
                                 </h4>
                                 <p>
-                                    {!!__("Entra en la sección <b><i class='metismenu-icon fas fa-box-open'></i> Repositorios</b>")!!}
+                                    Entra en la sección <b><i class='metismenu-icon fas fa-box-open'></i> {{__("containerNamePlural")}}</b>
                                     {{__("y da click en el boton")}} <a
                                         class="btn btn-sm btn-primary rounded-0 text-white" style="cursor: auto;"
                                         href="javascript:void(0)"> <i class="fas fa-edit"></i></a>
-                                    {{__("del repositorio que desees")}}.
-                                    {{-- Lorem ipsum dolor sic amet, today at <a href="javascript:void(0);">12:00 PM</a> --}}
+                                    {{__("messages.views.instructions.users.text1")}}
                                 </p>
                             </div>
                         </div>
@@ -50,7 +49,7 @@
                                 </h4>
                                 <p>
                                     Cuando has finalizado las preguntas, <b>si hay alguna convocatoria activa en el
-                                        momento</b>, podrás enviar tus respuestas a CONCYTEC.
+                                        momento</b>, podrás enviar tus respuestas a {{getenv('APP_NAME')}}.
                                     dentro de tu evaluación aparecerá el botón
                                     <a href="javascript:void(0)" style="cursor: auto;"
                                         class="btn btn-success btn-sm btn-wide rounded-0">
@@ -74,15 +73,15 @@
                                     Recibe una respuesta por parte de {{ getenv('APP_NAME') }}
                                 </h4>
                                 <p>
-                                    Una vez que el evaluador que se te ha asignado ha revisado su repositorio,
+                                    Una vez que el evaluador que se te ha asignado ha revisado su {{__("containerName")}},
                                     entonces se
                                     le enviará una notificación al correo que nos proporcionó.
                                     Existen 3 posibles respuestas: <br>
-                                    1) El repositorio fue <span class="text-success"><b>aceptado</b></span> <br>
-                                    2) El repositorio tiene <span class="text-warning"><b>observaciones</b></span> y
+                                    1) {!!__("messages.views.instructions.users.text2")!!}</span> <br>
+                                    2) {{__("messages.views.instructions.users.text3")}} tiene <span class="text-warning"><b>observaciones</b></span> y
                                     debe
                                     vover responder las preguntas que tienen observaciones <br>
-                                    3) El repositorio fue <span class="text-danger"><b>rechazado</b></span> <br>
+                                    3) {{__("messages.views.instructions.users.text3")}} fue <span class="text-danger"><b>rechazada</b></span> <br>
                                 </p>
                             </div>
                         </div>
@@ -97,15 +96,6 @@
                                 </h4>
                                 <p>
                                     {{ __("Toda la información que has registrado será mostrada en una gráfica. En el menú ") }}
-                                    {{-- Una vez que el evaluador que se te ha asignado ha revisado su repositorio,
-                                    entonces se
-                                    le enviará una notificación al correo que nos proporcionó.
-                                    Existen 3 posibles respuestas: <br>
-                                    1) El repositorio fue <span class="text-success"><b>aceptado</b></span> <br>
-                                    2) El repositorio tiene <span class="text-warning"><b>observaciones</b></span> y
-                                    debe
-                                    vover responder las preguntas que tienen observaciones <br>
-                                    3) El repositorio fue <span class="text-danger"><b>rechazado</b></span> <br> --}}
                                 </p>
                             </div>
                         </div>

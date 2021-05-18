@@ -77,7 +77,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <div class="header">
     <img width="100%"
-        src="data:image/png;base64,' . {{ base64_encode( file_get_contents( url('images/default/evaluation/banner.jpeg') ) ) }} " /><br />
+        src="data:image/png;base64,' . {{ base64_encode( file_get_contents( url('images/default/evaluation/banner.jpeg?202105131') ) ) }} " /><br />
 </div>
 
 <footer>
@@ -87,12 +87,12 @@
 
 <body>
     <div align="center" style="margin-top: 12em; position: absolute">
-        <img src="{{asset('images/default/evaluation/1.jpg')}}" /> <br />
-        <br />{{__("texto 1")}}<br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />AUTOEVALUACI&Oacute;N DEL REPOSITORIO {{strtoupper($repository->name)}}
+        <img src="{{asset('images/default/evaluation/1.jpg?202105131')}}" /> <br />
+        <br />{{__("messages.views.pdfs.evaluation.text1")}}<br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br />AUTOEVALUACIÓN DE {{strtoupper($repository->name)}}
         <br />
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        {{__("texto 2")}}<br /><br />
+        {{__("messages.views.pdfs.evaluation.text2")}}<br /><br />
         {{date('Y')}}<br /><br /><br /><br /><br /><br />
     </div>
     <div class="page_break" syu></div>

@@ -16,16 +16,6 @@ class StoreQuestionController extends Controller
 {
     public function __invoke(Request $request, Evaluation $evaluation, Category $category)
     {
-
-        
-
-        // $nextCategory = Category::where('id', '>', $category->id)->first() ?? $category;
-        // if ($nextCategory == $category && $evaluation->is_answered) {
-        //     Alert::success('¡Has finalizado la evaluación!','Ya puedes enviarla a concytec para su revisión');
-        // } else {
-        //     Alert::success('¡Preguntas guardadas, continúa contestando!');
-        // }
-
         return redirect()->route('evaluations.categories.questions.index', [$evaluation, $nextCategory]);
     }
 }
