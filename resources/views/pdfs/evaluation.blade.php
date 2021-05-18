@@ -122,24 +122,24 @@
             {{$category->name}}
         </h4>
 
-        <table width="110%" class="table table-striped table-sm">
+        <table width="110%" class="table table-striped table-sm" style="table-layout: fixed">
             @foreach ($subcategories as $subcategory)
             {{-- @if ($subcategory->questions->pluck('answers')->flatten()->count()) --}}
             <thead>
                 <tr>
-                    <td width="70%" align="left"><b>{{$subcategory->name}}</b></td>
-                    <td width="10%" align="center"><b>Resultado</b></td>
-                    <td width="30%" align="left"><b>Observaciones</b></td>
+                    <td width="42%" align="left"><b>{{$subcategory->name}}</b></td>
+                    <td width="16%" align="center"><b>Resultado</b></td>
+                    <td width="42%" align="left"><b>Observaciones</b></td>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($subcategory->questions->where('category_id',$category->id)->all() as $question)
                 <tr>
-                    <td>{{$question->description}}</td>
-                    <td>
+                    <td style="word-wrap: break-word">{{$question->description}}</td>
+                    <td style="word-wrap: break-word">
                         {{$question->answers->first() && $question->answers->first()->choice ? $question->answers->first()->choice->description : 'N/A'}}
                     </td>
-                        <td>
+                        <td style="word-wrap: break-word">
                             {{$question->answers->first() && $question->answers->first()->observation ? $question->answers->first()->observation->description : ''}}
                     </td>
                 </tr>
