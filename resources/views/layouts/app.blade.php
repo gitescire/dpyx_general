@@ -24,27 +24,27 @@
 
     {{-- Styles --}}
     <link rel="stylesheet" href="{{ asset('css/app.css?20210529') }}">
-    <link rel="stylesheet" href="{{asset('css/kero.css?20210529')}}">
+    <link rel="stylesheet" href="{{ asset('css/kero.css?20210529') }}">
 
     @livewireStyles
 
 </head>
 
 <body>
-    <div class="app-container app-theme-gray app-sidebar-full {{ Cookie::get('expandNavbar') == 'false' ? 'header-mobile-open' : ''}}"
+    <div class="app-container app-theme-gray app-sidebar-full {{ Cookie::get('expandNavbar') == 'false' ? 'header-mobile-open' : '' }}"
         id="app-container">
         <div class="app-main">
             <div class="app-sidebar-wrapper">
                 <div class="app-sidebar sidebar-text-dark" style="background: #e1e6ff !important;">
                     <div class="app-header__logo d-flex justify-content-between" x-data="navbar()" x-init="mounted()">
-                        <a href="{{route('dashboard')}}" data-toggle="tooltip" data-placement="bottom"
-                            title="dPyx {{env('APP_NAME','')}}" class="">
-                            <img src="{{url('images/default/logo.png?20210529')}}" width="160px" class="img-responsive" alt="">
+                        <a href="{{ route('dashboard') }}" data-toggle="tooltip" data-placement="bottom"
+                            title="dPyx {{ env('APP_NAME', '') }}" class="">
+                            <img src="{{ url('images/default/logo.png?20210529') }}" width="160px"
+                                class="img-responsive" alt="">
                         </a>
                         {{-- <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav"> --}}
                         <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav float-right"
-                            {{-- class="hamburger hamburger--elastic mobile-toggle-nav is-active float-right" --}}
-                            id="navbarButton" x-on:click="changeState()">
+                            {{-- class="hamburger hamburger--elastic mobile-toggle-nav is-active float-right" --}} id="navbarButton" x-on:click="changeState()">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
                             </span>
@@ -61,36 +61,36 @@
                                     </a>
                                 </li> --}}
                                 @can('index categories')
-                                <li>
-                                    <a href="{{route('categories.index')}}">
-                                        <i class="metismenu-icon fas fa-layer-group">
-                                        </i>Categorías
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="{{ route('categories.index') }}">
+                                            <i class="metismenu-icon fas fa-layer-group">
+                                            </i>Categorías
+                                        </a>
+                                    </li>
                                 @endcan
                                 @can('index subcategories')
-                                <li>
-                                    <a href="{{route('subcategories.index')}}">
-                                        <i class="metismenu-icon fas fa-cubes">
-                                        </i>Subcategorías
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="{{ route('subcategories.index') }}">
+                                            <i class="metismenu-icon fas fa-cubes">
+                                            </i>Subcategorías
+                                        </a>
+                                    </li>
                                 @endcan
                                 @can('index users')
-                                <li>
-                                    <a href="{{route('users.index')}}">
-                                        <i class="metismenu-icon fas fa-users">
-                                        </i>Usuarios
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="{{ route('users.index') }}">
+                                            <i class="metismenu-icon fas fa-users">
+                                            </i>Usuarios
+                                        </a>
+                                    </li>
                                 @endcan
                                 @can('index questions')
-                                <li>
-                                    <a href="{{route('questions.index')}}">
-                                        <i class="metismenu-icon fas fa-question-circle">
-                                        </i>Preguntas
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="{{ route('questions.index') }}">
+                                            <i class="metismenu-icon fas fa-question-circle">
+                                            </i>Preguntas
+                                        </a>
+                                    </li>
                                 @endcan
                                 {{-- <li>
                                     <a href="widgets-profile-boxes.html">
@@ -99,24 +99,25 @@
                                     </a>
                                 </li> --}}
                                 <li>
-                                    <a href="{{route('repositories.index')}}">
-                                        <i class="metismenu-icon fas fa-box-open"></i> {{__("containerNamePlural")}}
+                                    <a href="{{ route('repositories.index') }}">
+                                        <i class="metismenu-icon fas fa-box-open"></i>
+                                        {{ __('containerNamePlural') }}
                                     </a>
                                 </li>
-                                @if ( config('app.is_evaluable') )
-                                <li>
-                                    <a href="{{route('announcements.index')}}">
-                                        <i class="metismenu-icon fas fa-calendar-check">
-                                        </i>Convocatorias
-                                    </a>
-                                </li>
+                                @if (config('app.is_evaluable'))
+                                    <li>
+                                        <a href="{{ route('announcements.index') }}">
+                                            <i class="metismenu-icon fas fa-calendar-check">
+                                            </i>Convocatorias
+                                        </a>
+                                    </li>
                                 @endif
                                 <li class="text-center mt-5" style="border: 1px solid #c3c6d4 !important;">
                                     <a href="https://dpyx.site/preguntas-frecuentes/" target="_blank">
                                         Más información y FAQ
                                     </a>
                                 </li>
-                                @if ( auth()->user()->is_admin )
+                                @if (auth()->user()->is_admin)
                                     <li class="text-center mt-1" style="border: 1px solid #c3c6d4 !important;">
                                         <a href="https://dpyx.site/administrador/" target="_blank">
                                             Manual de administrador
@@ -135,7 +136,8 @@
                                         </a>
                                     </li>
                                 @endif
-                                <img src="{{url('images/default/dpyx.png')}}" width="60px" class="img-responsive float-right mt-2" alt="">
+                                <img src="{{ url('images/default/dpyx.png') }}" width="60px"
+                                    class="img-responsive float-right mt-2" alt="">
                             </ul>
                         </div>
                     </div>
@@ -146,7 +148,7 @@
                 <div class="app-main__inner container">
                     <div class="header-mobile-wrapper" style="background-color: #e1e6ff;">
                         <div class="app-header__logo">
-                            <img src="{{url('images/logo.png')}}" width="120px" class="img-responsive" alt="">
+                            <img src="{{ url('images/logo.png') }}" width="120px" class="img-responsive" alt="">
                             {{-- <a href="#" data-toggle="tooltip" data-placement="bottom" title="KeroUI Admin Template"
                                 class="logo-src"></a> --}}
                             <button type="button" class="hamburger hamburger--elastic mobile-toggle-sidebar-nav">
@@ -612,102 +614,105 @@
     </div>
     </div>
     </div> --}}
-    <div class="header-btn-lg pr-0">
-        <div class="widget-content p-0">
-            <div class="widget-content-wrapper">
-                <div class="widget-content-left">
-                    <div class="btn-group">
-                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                            <img width="80" class="rounded"
-                                src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg?20210529'}}"
-                                alt="" style="display: inline-block;">
-                            <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                        </a>
-                        <div tabindex="-1" role="menu" aria-hidden="true"
-                            class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
-                            <div class="dropdown-menu-header">
-                                <div class="dropdown-menu-header-inner bg-info">
-                                    <div class="menu-header-image opacity-2"
-                                        style="background-image: url('/images/dropdown-header/city1.jpg');">
-                                    </div>
-                                    <div class="menu-header-content text-left">
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-3">
-                                                    <img width="80" class="rounded-circle"
-                                                        src="{{auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg?20210529'}}"
-                                                        alt="">
-                                                </div>
-                                                <div class="widget-content-left">
-                                                    <div class="widget-heading">
-                                                        {{ auth()->user()->name }}
-                                                    </div>
-                                                    {{-- <div class="widget-subheading opacity-8">
+                            <div class="header-btn-lg pr-0">
+                                <div class="widget-content p-0">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="btn-group">
+                                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                    class="p-0 btn">
+                                                    <img width="80" class="rounded"
+                                                        src="{{ auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg?20210529' }}"
+                                                        alt="" style="display: inline-block;">
+                                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                                </a>
+                                                <div tabindex="-1" role="menu" aria-hidden="true"
+                                                    class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
+                                                    <div class="dropdown-menu-header">
+                                                        <div class="dropdown-menu-header-inner bg-info">
+                                                            <div class="menu-header-image opacity-2"
+                                                                style="background-image: url('/images/dropdown-header/city1.jpg');">
+                                                            </div>
+                                                            <div class="menu-header-content text-left">
+                                                                <div class="widget-content p-0">
+                                                                    <div class="widget-content-wrapper">
+                                                                        <div class="widget-content-left mr-3">
+                                                                            <img width="80" class="rounded-circle"
+                                                                                src="{{ auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg?20210529' }}"
+                                                                                alt="">
+                                                                        </div>
+                                                                        <div class="widget-content-left">
+                                                                            <div class="widget-heading">
+                                                                                {{ auth()->user()->name }}
+                                                                            </div>
+                                                                            {{-- <div class="widget-subheading opacity-8">
                                                                                 A short profile description
                                                                             </div> --}}
-                                                </div>
-                                                <div class="widget-content-right mr-2">
-                                                    <form method="POST" action="{{ route('logout') }}">
-                                                        @csrf
-                                                        <button
-                                                            class="btn-pill btn-shadow btn-shine btn btn-focus">Cerrar
-                                                            sesión
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="scroll-area-xs" style="height: 150px;">
-                                <div class="scrollbar-container ps">
-                                    <ul class="nav flex-column">
-                                        {{-- <li class="nav-item-header nav-item">
+                                                                        </div>
+                                                                        <div class="widget-content-right mr-2">
+                                                                            <form method="POST"
+                                                                                action="{{ route('logout') }}">
+                                                                                @csrf
+                                                                                <button
+                                                                                    class="btn-pill btn-shadow btn-shine btn btn-focus">Cerrar
+                                                                                    sesión
+                                                                                </button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="scroll-area-xs" style="height: 150px;">
+                                                        <div class="scrollbar-container ps">
+                                                            <ul class="nav flex-column">
+                                                                {{-- <li class="nav-item-header nav-item">
                                             Correo
                                         </li> --}}
-                                        <li class="nav-item">
-                                            <a href="javascript:void(0);" class="nav-link float"><span
-                                                    class="text-muted">
-                                                    <i class="fas fa-envelope"></i>
-                                                    {{auth()->user()->email}}
-                                                </span>
-                                                {{-- <div
+                                                                <li class="nav-item">
+                                                                    <a href="javascript:void(0);"
+                                                                        class="nav-link float"><span class="text-muted">
+                                                                            <i class="fas fa-envelope"></i>
+                                                                            {{ auth()->user()->email }}
+                                                                        </span>
+                                                                        {{-- <div
                                                                             class="ml-auto badge badge-pill badge-info">
                                                                             8
                                                                         </div> --}}
-                                            </a>
-                                        </li>
-                                        {{-- <li class="nav-item">
+                                                                    </a>
+                                                                </li>
+                                                                {{-- <li class="nav-item">
                                                                     <a href="javascript:void(0);"
                                                                         class="nav-link">Recover Password
                                                                     </a>
                                                                 </li> --}}
-                                        <li class="nav-item-header nav-item">Mi cuenta
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{route('users.account',[auth()->user()])}}" class="nav-link">
-                                                <i class="fas fa-tools mr-1"></i>
-                                                Configuración
-                                                {{-- <div class="ml-auto badge badge-success">New
+                                                                <li class="nav-item-header nav-item">Mi cuenta
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a href="{{ route('users.account', [auth()->user()]) }}"
+                                                                        class="nav-link">
+                                                                        <i class="fas fa-tools mr-1"></i>
+                                                                        Configuración
+                                                                        {{-- <div class="ml-auto badge badge-success">New
                                                                         </div> --}}
-                                            </a>
-                                        </li>
-                                        {{-- <li class="nav-item">
+                                                                    </a>
+                                                                </li>
+                                                                {{-- <li class="nav-item">
                                                                     <a href="javascript:void(0);"
                                                                         class="nav-link">Mensajes
                                                                         <div class="ml-auto badge badge-warning">512
                                                                         </div>
                                                                     </a>
                                                                 </li> --}}
-                                        {{-- <li class="nav-item">
+                                                                {{-- <li class="nav-item">
                                                                     <a href="javascript:void(0);" class="nav-link">Logs
                                                                     </a>
                                                                 </li> --}}
-                                    </ul>
-                                </div>
-                            </div>
-                            {{-- <ul class="nav flex-column">
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    {{-- <ul class="nav flex-column">
                                                         <li class="nav-item-divider mb-0 nav-item"></li>
                                                     </ul>
                                                     <div class="grid-menu grid-menu-2col">
@@ -739,51 +744,53 @@
                                                             </button>
                                                         </li>
                                                     </ul> --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-header-overlay d-none animated fadeIn"></div>
+                    </div>
+                    <div class="app-inner-layout app-inner-layout-page">
+                        <div class="app-inner-layout__wrapper">
+                            <div class="app-inner-layout__sidebar">
+                                <div class="app-layout__sidebar-inner dropdown-menu-rounded">
+                                    <div class="nav flex-column">
+                                        <div class="nav-item-header text-primary nav-item">
+                                            Dashboards Examples
+                                        </div>
+                                        <a class="dropdown-item active" href="analytics-dashboard.html">Analytics</a>
+                                        <a class="dropdown-item" href="management-dashboard.html">Management</a>
+                                        <a class="dropdown-item" href="advertisement-dashboard.html">Advertisement</a>
+                                        <a class="dropdown-item" href="index.html">Helpdesk</a>
+                                        <a class="dropdown-item" href="monitoring-dashboard.html">Monitoring</a>
+                                        <a class="dropdown-item" href="crypto-dashboard.html">Cryptocurrency</a>
+                                        <a class="dropdown-item" href="pm-dashboard.html">Project Management</a>
+                                        <a class="dropdown-item" href="product-dashboard.html">Product</a>
+                                        <a class="dropdown-item" href="statistics-dashboard.html">Statistics</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="app-inner-layout__content container">
+                                <div class="tab-content">
+                                    <div class="container">
+                                        {{ $slot }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="app-header-overlay d-none animated fadeIn"></div>
-    </div>
-    <div class="app-inner-layout app-inner-layout-page">
-        <div class="app-inner-layout__wrapper">
-            <div class="app-inner-layout__sidebar">
-                <div class="app-layout__sidebar-inner dropdown-menu-rounded">
-                    <div class="nav flex-column">
-                        <div class="nav-item-header text-primary nav-item">
-                            Dashboards Examples
-                        </div>
-                        <a class="dropdown-item active" href="analytics-dashboard.html">Analytics</a>
-                        <a class="dropdown-item" href="management-dashboard.html">Management</a>
-                        <a class="dropdown-item" href="advertisement-dashboard.html">Advertisement</a>
-                        <a class="dropdown-item" href="index.html">Helpdesk</a>
-                        <a class="dropdown-item" href="monitoring-dashboard.html">Monitoring</a>
-                        <a class="dropdown-item" href="crypto-dashboard.html">Cryptocurrency</a>
-                        <a class="dropdown-item" href="pm-dashboard.html">Project Management</a>
-                        <a class="dropdown-item" href="product-dashboard.html">Product</a>
-                        <a class="dropdown-item" href="statistics-dashboard.html">Statistics</a>
-                    </div>
-                </div>
-            </div>
-            <div class="app-inner-layout__content container">
-                <div class="tab-content">
-                    <div class="container">
-                        {{ $slot }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    {{-- <div class="app-wrapper-footer">
+                <div class="app-wrapper-footer">
                     <div class="app-footer">
                         <div class="">
                             <div class="app-footer__inner">
                                 <div class="app-footer-left">
-                                    <div class="footer-dots">
+                                    <img src="{{ asset('images/default/footer-left.png') }}" width="100px">
+
+                                    {{-- <div class="footer-dots">
                                         <div class="dropdown">
                                             <a aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"
                                                 class="dot-btn-wrapper">
@@ -890,390 +897,501 @@
                                                                                                     class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                     <div
                                                                                                         class="avatar-icon">
-                                                                                                        <img src="{{asset('images/default/avatars/1.jpg')}}"
-    alt="">
-    </div>
-    </div>
-    <div class="avatar-icon-wrapper avatar-icon-sm">
-        <div class="avatar-icon">
-            <img src="{{asset('images/default/avatars/2.jpg')}}" alt="">
-        </div>
-    </div>
-    <div class="avatar-icon-wrapper avatar-icon-sm">
-        <div class="avatar-icon">
-            <img src="{{asset('images/default/avatars/profile.jpg?20210526')}}" alt="">
-        </div>
-    </div>
-    <div class="avatar-icon-wrapper avatar-icon-sm">
-        <div class="avatar-icon">
-            <img src="{{asset('images/default/avatars/4.jpg')}}" alt="">
-        </div>
-    </div>
-    <div class="avatar-icon-wrapper avatar-icon-sm">
-        <div class="avatar-icon">
-            <img src="{{asset('images/default/avatars/5.jpg')}}" alt="">
-        </div>
-    </div>
-    <div class="avatar-icon-wrapper avatar-icon-sm">
-        <div class="avatar-icon">
-            <img src="{{asset('images/default/avatars/9.jpg')}}" alt="">
-        </div>
-    </div>
-    <div class="avatar-icon-wrapper avatar-icon-sm">
-        <div class="avatar-icon">
-            <img src="{{asset('images/default/avatars/7.jpg')}}" alt="">
-        </div>
-    </div>
-    <div class="avatar-icon-wrapper avatar-icon-sm">
-        <div class="avatar-icon">
-            <img src="{{asset('images/default/avatars/8.jpg')}}" alt="">
-        </div>
-    </div>
-    <div class="avatar-icon-wrapper avatar-icon-sm avatar-icon-add">
-        <div class="avatar-icon">
-            <i>+</i></div>
-    </div>
-    </div>
-    </h4>
-    <span class="vertical-timeline-element-date"></span>
-    </div>
-    </div>
-    </div>
-    <div class="vertical-timeline-item dot-info vertical-timeline-element">
-        <div><span class="vertical-timeline-element-icon bounce-in"></span>
-            <div class="vertical-timeline-element-content bounce-in">
-                <h4 class="timeline-title">This
-                    dot has an info state</h4>
-                <span class="vertical-timeline-element-date"></span>
-            </div>
-        </div>
-    </div>
-    <div class="vertical-timeline-item dot-danger vertical-timeline-element">
-        <div><span class="vertical-timeline-element-icon bounce-in"></span>
-            <div class="vertical-timeline-element-content bounce-in">
-                <h4 class="timeline-title">All
-                    Hands Meeting</h4><span class="vertical-timeline-element-date"></span>
-            </div>
-        </div>
-    </div>
-    <div class="vertical-timeline-item dot-warning vertical-timeline-element">
-        <div><span class="vertical-timeline-element-icon bounce-in"></span>
-            <div class="vertical-timeline-element-content bounce-in">
-                <p>Yet another one, at <span class="text-success">15:00
-                        PM</span></p><span class="vertical-timeline-element-date"></span>
-            </div>
-        </div>
-    </div>
-    <div class="vertical-timeline-item dot-success vertical-timeline-element">
-        <div><span class="vertical-timeline-element-icon bounce-in"></span>
-            <div class="vertical-timeline-element-content bounce-in">
-                <h4 class="timeline-title">Build
-                    the production release
-                    <span class="badge badge-danger ml-2">NEW</span>
-                </h4>
-                <span class="vertical-timeline-element-date"></span>
-            </div>
-        </div>
-    </div>
-    <div class="vertical-timeline-item dot-dark vertical-timeline-element">
-        <div><span class="vertical-timeline-element-icon bounce-in"></span>
-            <div class="vertical-timeline-element-content bounce-in">
-                <h4 class="timeline-title">This
-                    dot has a dark state</h4>
-                <span class="vertical-timeline-element-date"></span>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="tab-pane" id="tab-events-header1" role="tabpanel">
-        <div class="scroll-area-sm">
-            <div class="scrollbar-container">
-                <div class="p-3">
-                    <div
-                        class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                        <div class="vertical-timeline-item vertical-timeline-element">
-                            <div><span class="vertical-timeline-element-icon bounce-in"><i
-                                        class="badge badge-dot badge-dot-xl badge-success">
-                                    </i></span>
-                                <div class="vertical-timeline-element-content bounce-in">
-                                    <h4 class="timeline-title">All Hands
-                                        Meeting</h4>
-                                    <p>Lorem ipsum dolor sic amet, today
-                                        at <a href="javascript:void(0);">12:00
-                                            PM</a></p><span class="vertical-timeline-element-date"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vertical-timeline-item vertical-timeline-element">
-                            <div><span class="vertical-timeline-element-icon bounce-in"><i
-                                        class="badge badge-dot badge-dot-xl badge-warning">
-                                    </i></span>
-                                <div class="vertical-timeline-element-content bounce-in">
-                                    <p>Another meeting today, at <b class="text-danger">12:00
-                                            PM</b></p>
-                                    <p>Yet another one, at <span class="text-success">15:00
-                                            PM</span></p><span class="vertical-timeline-element-date"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vertical-timeline-item vertical-timeline-element">
-                            <div><span class="vertical-timeline-element-icon bounce-in"><i
-                                        class="badge badge-dot badge-dot-xl badge-danger">
-                                    </i></span>
-                                <div class="vertical-timeline-element-content bounce-in">
-                                    <h4 class="timeline-title">Build the
-                                        production release</h4>
-                                    <p>Lorem ipsum dolor sit
-                                        amit,consectetur eiusmdd tempor
-                                        incididunt ut labore et dolore
-                                        magna elit enim at minim veniam
-                                        quis nostrud</p><span class="vertical-timeline-element-date"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vertical-timeline-item vertical-timeline-element">
-                            <div><span class="vertical-timeline-element-icon bounce-in"><i
-                                        class="badge badge-dot badge-dot-xl badge-primary">
-                                    </i></span>
-                                <div class="vertical-timeline-element-content bounce-in">
-                                    <h4 class="timeline-title text-success">
-                                        Something not important</h4>
-                                    <p>Lorem ipsum dolor sit
-                                        amit,consectetur elit enim at
-                                        minim veniam quis nostrud</p>
-                                    <span class="vertical-timeline-element-date"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vertical-timeline-item vertical-timeline-element">
-                            <div><span class="vertical-timeline-element-icon bounce-in"><i
-                                        class="badge badge-dot badge-dot-xl badge-success">
-                                    </i></span>
-                                <div class="vertical-timeline-element-content bounce-in">
-                                    <h4 class="timeline-title">All Hands
-                                        Meeting</h4>
-                                    <p>Lorem ipsum dolor sic amet, today
-                                        at <a href="javascript:void(0);">12:00
-                                            PM</a></p><span class="vertical-timeline-element-date"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vertical-timeline-item vertical-timeline-element">
-                            <div><span class="vertical-timeline-element-icon bounce-in"><i
-                                        class="badge badge-dot badge-dot-xl badge-warning">
-                                    </i></span>
-                                <div class="vertical-timeline-element-content bounce-in">
-                                    <p>Another meeting today, at <b class="text-danger">12:00
-                                            PM</b></p>
-                                    <p>Yet another one, at <span class="text-success">15:00
-                                            PM</span></p><span class="vertical-timeline-element-date"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vertical-timeline-item vertical-timeline-element">
-                            <div><span class="vertical-timeline-element-icon bounce-in"><i
-                                        class="badge badge-dot badge-dot-xl badge-danger">
-                                    </i></span>
-                                <div class="vertical-timeline-element-content bounce-in">
-                                    <h4 class="timeline-title">Build the
-                                        production release</h4>
-                                    <p>Lorem ipsum dolor sit
-                                        amit,consectetur eiusmdd tempor
-                                        incididunt ut labore et dolore
-                                        magna elit enim at minim veniam
-                                        quis nostrud</p><span class="vertical-timeline-element-date"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vertical-timeline-item vertical-timeline-element">
-                            <div><span class="vertical-timeline-element-icon bounce-in"><i
-                                        class="badge badge-dot badge-dot-xl badge-primary">
-                                    </i></span>
-                                <div class="vertical-timeline-element-content bounce-in">
-                                    <h4 class="timeline-title text-success">
-                                        Something not important</h4>
-                                    <p>Lorem ipsum dolor sit
-                                        amit,consectetur elit enim at
-                                        minim veniam quis nostrud</p>
-                                    <span class="vertical-timeline-element-date"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="tab-pane" id="tab-errors-header1" role="tabpanel">
-        <div class="scroll-area-sm">
-            <div class="scrollbar-container">
-                <div class="no-results pt-3 pb-0">
-                    <div class="swal2-icon swal2-success swal2-animate-success-icon">
-                        <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);">
-                        </div>
-                        <span class="swal2-success-line-tip"></span>
-                        <span class="swal2-success-line-long"></span>
-                        <div class="swal2-success-ring"></div>
-                        <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);">
-                        </div>
-                        <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);">
-                        </div>
-                    </div>
-                    <div class="results-subtitle">All caught up!</div>
-                    <div class="results-title">There are no system
-                        errors!</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <ul class="nav flex-column">
-        <li class="nav-item-divider nav-item"></li>
-        <li class="nav-item-btn text-center nav-item">
-            <button class="btn-shadow btn-wide btn-pill btn btn-focus btn-sm">View
-                Latest Changes</button>
-        </li>
-    </ul>
-    </div>
-    </div>
-    <div class="dots-separator"></div>
-    <div class="dropdown">
-        <a class="dot-btn-wrapper dd-chart-btn-2" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">
-            <i class="dot-btn-icon typcn typcn-chart-bar-outline text-danger"></i>
-            <div class="badge badge-dot badge-abs badge-dot-sm badge-warning">
-                Warning</div>
-        </a>
-        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu-xl rm-pointers dropdown-menu">
-            <div class="dropdown-menu-header">
-                <div class="dropdown-menu-header-inner bg-premium-dark">
-                    <div class="menu-header-image"
-                        style="background-image: url('/images/dropdown-header/abstract4.jpg');">
-                    </div>
-                    <div class="menu-header-content text-white">
-                        <h5 class="menu-header-title">Users Online
-                        </h5>
-                        <h6 class="menu-header-subtitle">Recent Account Activity
-                            Overview
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="widget-chart">
-                <div class="widget-chart-content">
-                    <div class="icon-wrapper rounded-circle">
-                        <div class="icon-wrapper-bg opacity-9 bg-focus">
-                        </div>
-                        <i class="lnr-users text-white">
-                        </i>
-                    </div>
-                    <div class="widget-numbers">
-                        <span>344k</span>
-                    </div>
-                    <div class="widget-subheading pt-2">
-                        Profile views since last login
-                    </div>
-                    <div class="widget-description text-danger">
-                        <span class="pr-1">
-                            <span>176%</span>
-                        </span>
-                        <i class="fa fa-arrow-left"></i>
-                    </div>
-                </div>
-                <div class="widget-chart-wrapper">
-                    <div id="dashboard-sparkline-carousel-4-pop"></div>
-                </div>
-            </div>
-            <ul class="nav flex-column">
-                <li class="nav-item-divider mt-0 nav-item">
-                </li>
-                <li class="nav-item-btn text-center nav-item">
-                    <button class="btn-shine btn-wide btn-pill btn btn-warning btn-sm">
-                        <i class="fa fa-cog fa-spin mr-2">
-                        </i>
-                        View Details
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </div>
+                                                                                                        <img src="{{ asset('images/default/avatars/1.jpg') }}"
+                                                                                                            alt="">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="avatar-icon-wrapper avatar-icon-sm">
+                                                                                                    <div
+                                                                                                        class="avatar-icon">
+                                                                                                        <img src="{{ asset('images/default/avatars/2.jpg') }}"
+                                                                                                            alt="">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="avatar-icon-wrapper avatar-icon-sm">
+                                                                                                    <div
+                                                                                                        class="avatar-icon">
+                                                                                                        <img src="{{ asset('images/default/avatars/profile.jpg?20210526') }}"
+                                                                                                            alt="">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="avatar-icon-wrapper avatar-icon-sm">
+                                                                                                    <div
+                                                                                                        class="avatar-icon">
+                                                                                                        <img src="{{ asset('images/default/avatars/4.jpg') }}"
+                                                                                                            alt="">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="avatar-icon-wrapper avatar-icon-sm">
+                                                                                                    <div
+                                                                                                        class="avatar-icon">
+                                                                                                        <img src="{{ asset('images/default/avatars/5.jpg') }}"
+                                                                                                            alt="">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="avatar-icon-wrapper avatar-icon-sm">
+                                                                                                    <div
+                                                                                                        class="avatar-icon">
+                                                                                                        <img src="{{ asset('images/default/avatars/9.jpg') }}"
+                                                                                                            alt="">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="avatar-icon-wrapper avatar-icon-sm">
+                                                                                                    <div
+                                                                                                        class="avatar-icon">
+                                                                                                        <img src="{{ asset('images/default/avatars/7.jpg') }}"
+                                                                                                            alt="">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="avatar-icon-wrapper avatar-icon-sm">
+                                                                                                    <div
+                                                                                                        class="avatar-icon">
+                                                                                                        <img src="{{ asset('images/default/avatars/8.jpg') }}"
+                                                                                                            alt="">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="avatar-icon-wrapper avatar-icon-sm avatar-icon-add">
+                                                                                                    <div
+                                                                                                        class="avatar-icon">
+                                                                                                        <i>+</i>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </h4>
+                                                                                        <span
+                                                                                            class="vertical-timeline-element-date"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div
+                                                                                class="vertical-timeline-item dot-info vertical-timeline-element">
+                                                                                <div><span
+                                                                                        class="vertical-timeline-element-icon bounce-in"></span>
+                                                                                    <div
+                                                                                        class="vertical-timeline-element-content bounce-in">
+                                                                                        <h4 class="timeline-title">This
+                                                                                            dot has an info state</h4>
+                                                                                        <span
+                                                                                            class="vertical-timeline-element-date"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div
+                                                                                class="vertical-timeline-item dot-danger vertical-timeline-element">
+                                                                                <div><span
+                                                                                        class="vertical-timeline-element-icon bounce-in"></span>
+                                                                                    <div
+                                                                                        class="vertical-timeline-element-content bounce-in">
+                                                                                        <h4 class="timeline-title">All
+                                                                                            Hands Meeting</h4><span
+                                                                                            class="vertical-timeline-element-date"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div
+                                                                                class="vertical-timeline-item dot-warning vertical-timeline-element">
+                                                                                <div><span
+                                                                                        class="vertical-timeline-element-icon bounce-in"></span>
+                                                                                    <div
+                                                                                        class="vertical-timeline-element-content bounce-in">
+                                                                                        <p>Yet another one, at <span
+                                                                                                class="text-success">15:00
+                                                                                                PM</span></p><span
+                                                                                            class="vertical-timeline-element-date"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div
+                                                                                class="vertical-timeline-item dot-success vertical-timeline-element">
+                                                                                <div><span
+                                                                                        class="vertical-timeline-element-icon bounce-in"></span>
+                                                                                    <div
+                                                                                        class="vertical-timeline-element-content bounce-in">
+                                                                                        <h4 class="timeline-title">Build
+                                                                                            the production release
+                                                                                            <span
+                                                                                                class="badge badge-danger ml-2">NEW</span>
+                                                                                        </h4>
+                                                                                        <span
+                                                                                            class="vertical-timeline-element-date"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div
+                                                                                class="vertical-timeline-item dot-dark vertical-timeline-element">
+                                                                                <div><span
+                                                                                        class="vertical-timeline-element-icon bounce-in"></span>
+                                                                                    <div
+                                                                                        class="vertical-timeline-element-content bounce-in">
+                                                                                        <h4 class="timeline-title">This
+                                                                                            dot has a dark state</h4>
+                                                                                        <span
+                                                                                            class="vertical-timeline-element-date"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="tab-events-header1" role="tabpanel">
+                                                        <div class="scroll-area-sm">
+                                                            <div class="scrollbar-container">
+                                                                <div class="p-3">
+                                                                    <div
+                                                                        class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                                                        <div
+                                                                            class="vertical-timeline-item vertical-timeline-element">
+                                                                            <div><span
+                                                                                    class="vertical-timeline-element-icon bounce-in"><i
+                                                                                        class="badge badge-dot badge-dot-xl badge-success">
+                                                                                    </i></span>
+                                                                                <div
+                                                                                    class="vertical-timeline-element-content bounce-in">
+                                                                                    <h4 class="timeline-title">All Hands
+                                                                                        Meeting</h4>
+                                                                                    <p>Lorem ipsum dolor sic amet, today
+                                                                                        at <a
+                                                                                            href="javascript:void(0);">12:00
+                                                                                            PM</a></p><span
+                                                                                        class="vertical-timeline-element-date"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="vertical-timeline-item vertical-timeline-element">
+                                                                            <div><span
+                                                                                    class="vertical-timeline-element-icon bounce-in"><i
+                                                                                        class="badge badge-dot badge-dot-xl badge-warning">
+                                                                                    </i></span>
+                                                                                <div
+                                                                                    class="vertical-timeline-element-content bounce-in">
+                                                                                    <p>Another meeting today, at <b
+                                                                                            class="text-danger">12:00
+                                                                                            PM</b></p>
+                                                                                    <p>Yet another one, at <span
+                                                                                            class="text-success">15:00
+                                                                                            PM</span></p><span
+                                                                                        class="vertical-timeline-element-date"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="vertical-timeline-item vertical-timeline-element">
+                                                                            <div><span
+                                                                                    class="vertical-timeline-element-icon bounce-in"><i
+                                                                                        class="badge badge-dot badge-dot-xl badge-danger">
+                                                                                    </i></span>
+                                                                                <div
+                                                                                    class="vertical-timeline-element-content bounce-in">
+                                                                                    <h4 class="timeline-title">Build the
+                                                                                        production release</h4>
+                                                                                    <p>Lorem ipsum dolor sit
+                                                                                        amit,consectetur eiusmdd tempor
+                                                                                        incididunt ut labore et dolore
+                                                                                        magna elit enim at minim veniam
+                                                                                        quis nostrud</p><span
+                                                                                        class="vertical-timeline-element-date"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="vertical-timeline-item vertical-timeline-element">
+                                                                            <div><span
+                                                                                    class="vertical-timeline-element-icon bounce-in"><i
+                                                                                        class="badge badge-dot badge-dot-xl badge-primary">
+                                                                                    </i></span>
+                                                                                <div
+                                                                                    class="vertical-timeline-element-content bounce-in">
+                                                                                    <h4
+                                                                                        class="timeline-title text-success">
+                                                                                        Something not important</h4>
+                                                                                    <p>Lorem ipsum dolor sit
+                                                                                        amit,consectetur elit enim at
+                                                                                        minim veniam quis nostrud</p>
+                                                                                    <span
+                                                                                        class="vertical-timeline-element-date"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="vertical-timeline-item vertical-timeline-element">
+                                                                            <div><span
+                                                                                    class="vertical-timeline-element-icon bounce-in"><i
+                                                                                        class="badge badge-dot badge-dot-xl badge-success">
+                                                                                    </i></span>
+                                                                                <div
+                                                                                    class="vertical-timeline-element-content bounce-in">
+                                                                                    <h4 class="timeline-title">All Hands
+                                                                                        Meeting</h4>
+                                                                                    <p>Lorem ipsum dolor sic amet, today
+                                                                                        at <a
+                                                                                            href="javascript:void(0);">12:00
+                                                                                            PM</a></p><span
+                                                                                        class="vertical-timeline-element-date"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="vertical-timeline-item vertical-timeline-element">
+                                                                            <div><span
+                                                                                    class="vertical-timeline-element-icon bounce-in"><i
+                                                                                        class="badge badge-dot badge-dot-xl badge-warning">
+                                                                                    </i></span>
+                                                                                <div
+                                                                                    class="vertical-timeline-element-content bounce-in">
+                                                                                    <p>Another meeting today, at <b
+                                                                                            class="text-danger">12:00
+                                                                                            PM</b></p>
+                                                                                    <p>Yet another one, at <span
+                                                                                            class="text-success">15:00
+                                                                                            PM</span></p><span
+                                                                                        class="vertical-timeline-element-date"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="vertical-timeline-item vertical-timeline-element">
+                                                                            <div><span
+                                                                                    class="vertical-timeline-element-icon bounce-in"><i
+                                                                                        class="badge badge-dot badge-dot-xl badge-danger">
+                                                                                    </i></span>
+                                                                                <div
+                                                                                    class="vertical-timeline-element-content bounce-in">
+                                                                                    <h4 class="timeline-title">Build the
+                                                                                        production release</h4>
+                                                                                    <p>Lorem ipsum dolor sit
+                                                                                        amit,consectetur eiusmdd tempor
+                                                                                        incididunt ut labore et dolore
+                                                                                        magna elit enim at minim veniam
+                                                                                        quis nostrud</p><span
+                                                                                        class="vertical-timeline-element-date"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="vertical-timeline-item vertical-timeline-element">
+                                                                            <div><span
+                                                                                    class="vertical-timeline-element-icon bounce-in"><i
+                                                                                        class="badge badge-dot badge-dot-xl badge-primary">
+                                                                                    </i></span>
+                                                                                <div
+                                                                                    class="vertical-timeline-element-content bounce-in">
+                                                                                    <h4
+                                                                                        class="timeline-title text-success">
+                                                                                        Something not important</h4>
+                                                                                    <p>Lorem ipsum dolor sit
+                                                                                        amit,consectetur elit enim at
+                                                                                        minim veniam quis nostrud</p>
+                                                                                    <span
+                                                                                        class="vertical-timeline-element-date"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="tab-errors-header1" role="tabpanel">
+                                                        <div class="scroll-area-sm">
+                                                            <div class="scrollbar-container">
+                                                                <div class="no-results pt-3 pb-0">
+                                                                    <div
+                                                                        class="swal2-icon swal2-success swal2-animate-success-icon">
+                                                                        <div class="swal2-success-circular-line-left"
+                                                                            style="background-color: rgb(255, 255, 255);">
+                                                                        </div>
+                                                                        <span class="swal2-success-line-tip"></span>
+                                                                        <span class="swal2-success-line-long"></span>
+                                                                        <div class="swal2-success-ring"></div>
+                                                                        <div class="swal2-success-fix"
+                                                                            style="background-color: rgb(255, 255, 255);">
+                                                                        </div>
+                                                                        <div class="swal2-success-circular-line-right"
+                                                                            style="background-color: rgb(255, 255, 255);">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="results-subtitle">All caught up!</div>
+                                                                    <div class="results-title">There are no system
+                                                                        errors!</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item-divider nav-item"></li>
+                                                    <li class="nav-item-btn text-center nav-item">
+                                                        <button
+                                                            class="btn-shadow btn-wide btn-pill btn btn-focus btn-sm">View
+                                                            Latest Changes</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="dots-separator"></div>
+                                        <div class="dropdown">
+                                            <a class="dot-btn-wrapper dd-chart-btn-2" aria-haspopup="true"
+                                                data-toggle="dropdown" aria-expanded="false">
+                                                <i class="dot-btn-icon typcn typcn-chart-bar-outline text-danger"></i>
+                                                <div class="badge badge-dot badge-abs badge-dot-sm badge-warning">
+                                                    Warning</div>
+                                            </a>
+                                            <div tabindex="-1" role="menu" aria-hidden="true"
+                                                class="dropdown-menu-xl rm-pointers dropdown-menu">
+                                                <div class="dropdown-menu-header">
+                                                    <div class="dropdown-menu-header-inner bg-premium-dark">
+                                                        <div class="menu-header-image"
+                                                            style="background-image: url('/images/dropdown-header/abstract4.jpg');">
+                                                        </div>
+                                                        <div class="menu-header-content text-white">
+                                                            <h5 class="menu-header-title">Users Online
+                                                            </h5>
+                                                            <h6 class="menu-header-subtitle">Recent Account Activity
+                                                                Overview
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="widget-chart">
+                                                    <div class="widget-chart-content">
+                                                        <div class="icon-wrapper rounded-circle">
+                                                            <div class="icon-wrapper-bg opacity-9 bg-focus">
+                                                            </div>
+                                                            <i class="lnr-users text-white">
+                                                            </i>
+                                                        </div>
+                                                        <div class="widget-numbers">
+                                                            <span>344k</span>
+                                                        </div>
+                                                        <div class="widget-subheading pt-2">
+                                                            Profile views since last login
+                                                        </div>
+                                                        <div class="widget-description text-danger">
+                                                            <span class="pr-1">
+                                                                <span>176%</span>
+                                                            </span>
+                                                            <i class="fa fa-arrow-left"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-chart-wrapper">
+                                                        <div id="dashboard-sparkline-carousel-4-pop"></div>
+                                                    </div>
+                                                </div>
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item-divider mt-0 nav-item">
+                                                    </li>
+                                                    <li class="nav-item-btn text-center nav-item">
+                                                        <button
+                                                            class="btn-shine btn-wide btn-pill btn btn-warning btn-sm">
+                                                            <i class="fa fa-cog fa-spin mr-2">
+                                                            </i>
+                                                            View Details
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
 
-    </div>
-    </div>
-    <div class="app-footer-right">
-        <ul class="header-megamenu nav">
-            <li class="nav-item">
-                <a data-placement="top" rel="popover-focus" data-offset="300" data-toggle="popover-custom"
-                    class="nav-link">
-                    Footer Menu
-                    <div class="badge badge-success ml-0 ml-1">
-                        <small>Old</small>
-                    </div>
-                    <i class="fa fa-angle-up ml-2 opacity-8"></i>
-                </a>
-                <div class="rm-max-width rm-pointers">
-                    <div class="d-none popover-custom-content">
-                        <div class="dropdown-mega-menu dropdown-mega-menu-sm">
-                            <div class="grid-menu grid-menu-2col">
-                                <div class="no-gutters row">
-                                    <div class="col-sm-6 col-xl-6">
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item-header nav-item">Overview
-                                            </li>
-                                            <li class="nav-item"><a href="javascript:void(0);" class="nav-link"><i
-                                                        class="nav-link-icon lnr-inbox">
-                                                    </i><span>Contacts</span></a></li>
-                                            <li class="nav-item"><a href="javascript:void(0);" class="nav-link"><i
-                                                        class="nav-link-icon lnr-book">
-                                                    </i><span>Incidents</span>
-                                                    <div class="ml-auto badge badge-pill badge-danger">
-                                                        5</div>
-                                                </a></li>
-                                            <li class="nav-item"><a href="javascript:void(0);" class="nav-link"><i
-                                                        class="nav-link-icon lnr-picture">
-                                                    </i><span>Companies</span></a></li>
-                                            <li class="nav-item"><a disabled="" href="javascript:void(0);"
-                                                    class="nav-link disabled"><i class="nav-link-icon lnr-file-empty">
-                                                    </i><span>Dashboards</span></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-6 col-xl-6">
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item-header nav-item">Sales &amp;
-                                                Marketing</li>
-                                            <li class="nav-item"><a href="javascript:void(0);"
-                                                    class="nav-link">Queues</a></li>
-                                            <li class="nav-item"><a href="javascript:void(0);" class="nav-link">Resource
-                                                    Groups</a>
-                                            </li>
-                                            <li class="nav-item"><a href="javascript:void(0);" class="nav-link">Goal
-                                                    Metrics
-                                                    <div class="ml-auto badge badge-warning">
-                                                        3</div>
-                                                </a></li>
-                                            <li class="nav-item"><a href="javascript:void(0);"
-                                                    class="nav-link">Campaigns</a></li>
-                                        </ul>
-                                    </div>
+                                    </div> --}}
+                                </div>
+                                <div class="app-footer-right">
+                                    {{-- <ul class="header-megamenu nav">
+                                        <li class="nav-item">
+                                            <a data-placement="top" rel="popover-focus" data-offset="300"
+                                                data-toggle="popover-custom" class="nav-link">
+                                                Footer Menu
+                                                <div class="badge badge-success ml-0 ml-1">
+                                                    <small>Old</small>
+                                                </div>
+                                                <i class="fa fa-angle-up ml-2 opacity-8"></i>
+                                            </a>
+                                            <div class="rm-max-width rm-pointers">
+                                                <div class="d-none popover-custom-content">
+                                                    <div class="dropdown-mega-menu dropdown-mega-menu-sm">
+                                                        <div class="grid-menu grid-menu-2col">
+                                                            <div class="no-gutters row">
+                                                                <div class="col-sm-6 col-xl-6">
+                                                                    <ul class="nav flex-column">
+                                                                        <li class="nav-item-header nav-item">Overview
+                                                                        </li>
+                                                                        <li class="nav-item"><a
+                                                                                href="javascript:void(0);"
+                                                                                class="nav-link"><i
+                                                                                    class="nav-link-icon lnr-inbox">
+                                                                                </i><span>Contacts</span></a></li>
+                                                                        <li class="nav-item"><a
+                                                                                href="javascript:void(0);"
+                                                                                class="nav-link"><i
+                                                                                    class="nav-link-icon lnr-book">
+                                                                                </i><span>Incidents</span>
+                                                                                <div
+                                                                                    class="ml-auto badge badge-pill badge-danger">
+                                                                                    5</div>
+                                                                            </a></li>
+                                                                        <li class="nav-item"><a
+                                                                                href="javascript:void(0);"
+                                                                                class="nav-link"><i
+                                                                                    class="nav-link-icon lnr-picture">
+                                                                                </i><span>Companies</span></a></li>
+                                                                        <li class="nav-item"><a disabled=""
+                                                                                href="javascript:void(0);"
+                                                                                class="nav-link disabled"><i
+                                                                                    class="nav-link-icon lnr-file-empty">
+                                                                                </i><span>Dashboards</span></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-sm-6 col-xl-6">
+                                                                    <ul class="nav flex-column">
+                                                                        <li class="nav-item-header nav-item">Sales &amp;
+                                                                            Marketing</li>
+                                                                        <li class="nav-item"><a
+                                                                                href="javascript:void(0);"
+                                                                                class="nav-link">Queues</a></li>
+                                                                        <li class="nav-item"><a
+                                                                                href="javascript:void(0);"
+                                                                                class="nav-link">Resource
+                                                                                Groups</a>
+                                                                        </li>
+                                                                        <li class="nav-item"><a
+                                                                                href="javascript:void(0);"
+                                                                                class="nav-link">Goal
+                                                                                Metrics
+                                                                                <div
+                                                                                    class="ml-auto badge badge-warning">
+                                                                                    3</div>
+                                                                            </a></li>
+                                                                        <li class="nav-item"><a
+                                                                                href="javascript:void(0);"
+                                                                                class="nav-link">Campaigns</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </li>
-        </ul>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div> --}}
-    </div>
-    </div>
-    {{-- <div class="ui-theme-settings">
+            </div>
+        </div>
+        {{-- <div class="ui-theme-settings">
             <button type="button" id="TooltipDemo" class="btn-open-options btn btn-outline-2x btn-outline-focus">
                 <i class="fa fa-sync-alt icon-anim-pulse fa-2x"></i>
             </button>
@@ -1653,7 +1771,8 @@
                                                 <input type="checkbox" id="exampleCustomCheckbox1266"
                                                     class="custom-control-input">
                                                 <label class="custom-control-label"
-                                                    for="exampleCustomCheckbox1266">&nbsp;</label></div>
+                                                    for="exampleCustomCheckbox1266">&nbsp;</label>
+                                            </div>
                                         </div>
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Wash the car
@@ -1681,7 +1800,8 @@
                                                 <input type="checkbox" id="exampleCustomCheckbox1666"
                                                     class="custom-control-input">
                                                 <label class="custom-control-label"
-                                                    for="exampleCustomCheckbox1666">&nbsp;</label></div>
+                                                    for="exampleCustomCheckbox1666">&nbsp;</label>
+                                            </div>
                                         </div>
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Task with hover dropdown menu</div>
@@ -1723,7 +1843,8 @@
                                                 <input type="checkbox" id="exampleCustomCheckbox4777"
                                                     class="custom-control-input">
                                                 <label class="custom-control-label"
-                                                    for="exampleCustomCheckbox4777">&nbsp;</label></div>
+                                                    for="exampleCustomCheckbox4777">&nbsp;</label>
+                                            </div>
                                         </div>
                                         <div class="widget-content-left flex2">
                                             <div class="widget-heading">Badge on the right task</div>
@@ -1750,11 +1871,12 @@
                                                 <input type="checkbox" id="exampleCustomCheckbox2444"
                                                     class="custom-control-input">
                                                 <label class="custom-control-label"
-                                                    for="exampleCustomCheckbox2444">&nbsp;</label></div>
+                                                    for="exampleCustomCheckbox2444">&nbsp;</label>
+                                            </div>
                                         </div>
                                         <div class="widget-content-left mr-3">
                                             <div class="widget-content-left"><img width="42" class="rounded"
-                                                    src="{{asset('images/default/avatars/1.jpg')}}" alt="" /></div>
+                                                    src="{{ asset('images/default/avatars/1.jpg') }}" alt="" /></div>
                                         </div>
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Go grocery shopping</div>
@@ -1780,7 +1902,8 @@
                                                 <input type="checkbox" id="exampleCustomCheckbox3222"
                                                     class="custom-control-input">
                                                 <label class="custom-control-label"
-                                                    for="exampleCustomCheckbox3222">&nbsp;</label></div>
+                                                    for="exampleCustomCheckbox3222">&nbsp;</label>
+                                            </div>
                                         </div>
                                         <div class="widget-content-left flex2">
                                             <div class="widget-heading">Development Task</div>
@@ -1843,35 +1966,43 @@
                                             <div class="avatar-wrapper mt-2 avatar-wrapper-overlap">
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/default/avatars/1.jpg')}}" alt=""></div>
+                                                            src="{{ asset('images/default/avatars/1.jpg') }}" alt="">
+                                                    </div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/default/avatars/2.jpg')}}" alt=""></div>
+                                                            src="{{ asset('images/default/avatars/2.jpg') }}" alt="">
+                                                    </div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/default/avatars/profile.jpg?20210529')}}" alt=""></div>
+                                                            src="{{ asset('images/default/avatars/profile.jpg?20210529') }}"
+                                                            alt=""></div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/default/avatars/4.jpg')}}" alt=""></div>
+                                                            src="{{ asset('images/default/avatars/4.jpg') }}" alt="">
+                                                    </div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/default/avatars/5.jpg')}}" alt=""></div>
+                                                            src="{{ asset('images/default/avatars/5.jpg') }}" alt="">
+                                                    </div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/default/avatars/6.jpg')}}" alt=""></div>
+                                                            src="{{ asset('images/default/avatars/6.jpg') }}" alt="">
+                                                    </div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/default/avatars/7.jpg')}}" alt=""></div>
+                                                            src="{{ asset('images/default/avatars/7.jpg') }}" alt="">
+                                                    </div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{asset('images/default/avatars/8.jpg')}}" alt=""></div>
+                                                            src="{{ asset('images/default/avatars/8.jpg') }}" alt="">
+                                                    </div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm avatar-icon-add">
                                                     <div class="avatar-icon"><i>+</i></div>
@@ -1909,55 +2040,55 @@
 
 
     @livewireScripts
-    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
     <script>
-        function navbar(){
-                return {
-                    errors: @json($errors->all()),
-                    expandNavbar: JSON.parse(localStorage.getItem('expandNavbar')) ? true : false,
-                    appContainer: document.getElementById('app-container'),
-                    navbarButton: document.getElementById('navbarButton'),
-    
-                    /**
-                    *
-                    *
-                    *
-                    */
+        function navbar() {
+            return {
+                errors: @json($errors->all()),
+                expandNavbar: JSON.parse(localStorage.getItem('expandNavbar')) ? true : false,
+                appContainer: document.getElementById('app-container'),
+                navbarButton: document.getElementById('navbarButton'),
 
-                    mounted() {
-                        document.cookie = `expandNavbar=${this.expandNavbar}`;
-                        
-                        if(this.errors.length > 0){
-                            this.showErrors();
-                        }
-                    },
-    
-                    /**
-                    *
-                    *
-                    *
-                    */
+                /**
+                 *
+                 *
+                 *
+                 */
 
-                    changeState(){
-                        this.expandNavbar = !this.expandNavbar;
-                        localStorage.setItem('expandNavbar', this.expandNavbar);
-                        document.cookie = `expandNavbar=${this.expandNavbar}`;
-                    },
+                mounted() {
+                    document.cookie = `expandNavbar=${this.expandNavbar}`;
+
+                    if (this.errors.length > 0) {
+                        this.showErrors();
+                    }
+                },
+
+                /**
+                 *
+                 *
+                 *
+                 */
+
+                changeState() {
+                    this.expandNavbar = !this.expandNavbar;
+                    localStorage.setItem('expandNavbar', this.expandNavbar);
+                    document.cookie = `expandNavbar=${this.expandNavbar}`;
+                },
 
 
-                    showErrors(){
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: this.errors[0],
-                            // footer: '<a href>Why do I have this issue?</a>'
-                        })
-                    },
+                showErrors() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: this.errors[0],
+                        // footer: '<a href>Why do I have this issue?</a>'
+                    })
+                },
 
-                }
             }
-            
+        }
+
     </script>
 
     @include('sweetalert::alert')
@@ -1966,7 +2097,7 @@
     @stack('scripts')
 
     {{-- To avoid sweet alert after shown --}}
-    {{-- {{ Session::forget('alert') }}  --}}
+    {{-- {{ Session::forget('alert') }} --}}
 </body>
 
 </html>
