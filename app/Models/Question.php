@@ -75,6 +75,7 @@ class Question extends Model
 
     public function getMaxPunctuationAttribute()
     {
-        return $this->choices()->orderBy('punctuation', 'desc')->first()->punctuation;
+        $choice = $this->choices()->orderBy('punctuation', 'desc')->first();
+        return $choice ? $choice->punctuation : 0;
     }
 }

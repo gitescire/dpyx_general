@@ -5,7 +5,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 mb-3">
-                        <img src="{{$user->profile_photo_path ? asset('storage/'.$user->profile_photo_path) : asset('images/default/avatars/profile.jpg?20210305')}}"
+                        <img src="{{$user->profile_photo_path ? asset('storage/'.$user->profile_photo_path) : asset('images/default/avatars/profile.jpg?20210529')}}"
                             class="mb-3 p-1 border">
                         @if ($edit)
                         <label for="" class="text-uppercase text-muted">

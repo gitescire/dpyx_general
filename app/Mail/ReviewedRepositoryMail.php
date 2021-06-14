@@ -24,7 +24,7 @@ class ReviewedRepositoryMail extends Mailable
      *
      * @return void
      */
-    public function __construct(Repository $repository, string $comments)
+    public function __construct(Repository $repository, $comments = "")
     {
         $this->repository = $repository;
         $this->comments = $comments;
