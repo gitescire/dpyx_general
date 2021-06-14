@@ -17,6 +17,13 @@
     {{-- Styles --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{asset('css/kero.css')}}">
+
+    <style>
+        .bg-plum-plate{
+            background: {{config('dpyx.auth_background_color')}} !important;
+        }
+        body{}
+    </style>
 </head>
 
 <body>

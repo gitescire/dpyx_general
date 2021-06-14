@@ -17,6 +17,13 @@
     {{-- Styles --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{asset('css/kero.css')}}">
+
+    <style>
+        .bg-plum-plate{
+            background: {{config('dpyx.auth_background_color')}} !important;
+        }
+        body{}
+    </style>
 </head>
 
 <body>
@@ -24,9 +31,15 @@
         <div class="app-container">
             <div class="h-100 bg-plum-plate bg-animation">
                 <div class="d-flex h-100 justify-content-center align-items-center">
-                    <div class="mx-auto app-login-box col-md-8">
+                    <div class="mx-auto app-login-box col-md-12">
                         {{-- <div class="app-logo-inverse mx-auto mb-3"></div> --}}
                         <div class="modal-dialog w-100 mx-auto">
+                            {{-- <img src="{{url('images/logo.png')}}" width="120px" class="img-fluid" alt=""> --}}
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-center">	
+                                    <img src="{{ url('images/default/login-top.png?20210529') }}" width="160px" class="img-responsive" alt="">
+                                </div>
+                            </div>
                             <div class="modal-content">
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf

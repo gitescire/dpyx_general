@@ -26,6 +26,20 @@
     <link rel="stylesheet" href="{{ asset('css/app.css?20210529') }}">
     <link rel="stylesheet" href="{{ asset('css/kero.css?20210529') }}">
 
+    <style>
+        .app-sidebar{
+            background: {{config('dpyx.menu_color')}} !important;
+        }
+        .bg-info{
+            background: {{config('dpyx.dropdown_menu_header_background_color')}} !important;
+        }
+        .d-border-top{
+            border-top: 5px solid {{config('dpyx.border_top_color')}};
+        }
+        
+        body{}
+    </style>
+
     @livewireStyles
 
 </head>
@@ -35,7 +49,7 @@
         id="app-container">
         <div class="app-main">
             <div class="app-sidebar-wrapper">
-                <div class="app-sidebar sidebar-text-dark" style="background: #e1e6ff !important;">
+                <div class="app-sidebar sidebar-text-dark">
                     <div class="app-header__logo d-flex justify-content-between" x-data="navbar()" x-init="mounted()">
                         <a href="{{ route('dashboard') }}" data-toggle="tooltip" data-placement="bottom"
                             title="dPyx {{ env('APP_NAME', '') }}" class="">
@@ -1307,6 +1321,7 @@
                                     </div> --}}
                                 </div>
                                 <div class="app-footer-right">
+                                    <span class="text-muted">Consultoría Tecnologías y Gestión del Conocimiento S.A. de C.V.</span>
                                     {{-- <ul class="header-megamenu nav">
                                         <li class="nav-item">
                                             <a data-placement="top" rel="popover-focus" data-offset="300"

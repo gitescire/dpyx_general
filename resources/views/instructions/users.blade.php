@@ -2,7 +2,7 @@
     <div class="col-12 col-lg-8">
         <h2 class="text-uppercase text-center text-info mb-3">{{__("¿Cómo realizar tu evaluación?")}} 📓</h2>
         <div class="main-card mb-3 card border-0 shadow">
-            <div class="card-body">
+            <div class="card-body d-border-top">
                 <div
                     class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
                     <div class="vertical-timeline-item vertical-timeline-element">

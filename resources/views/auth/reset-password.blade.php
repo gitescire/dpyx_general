@@ -16,7 +16,16 @@
 
     {{-- Styles --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{asset('css/kero.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/kero.css') }}">
+
+    <style>
+        .bg-plum-plate {
+            background: {{ config('dpyx.auth_background_color') }} !important;
+        }
+
+        body {}
+
+    </style>
 </head>
 
 <body>
@@ -36,15 +45,15 @@
                                                 <x-jet-validation-errors class="mb-4" />
 
                                                 <div class="d-flex justify-content-center">
-                                                    <img src="{{url('images/logo.png')}}" width="120px"
+                                                    <img src="{{ url('images/logo.png') }}" width="120px"
                                                         class="img-fluid" alt="">
                                                 </div>
                                                 <div>Modifica tu contraseña,</div>
                                                 <span>Completa y envía el formulario.</span>
                                                 @if (session('status'))
-                                                <div class="mb-4 font-medium text-sm text-green-600">
-                                                    {{ session('status') }}
-                                                </div>
+                                                    <div class="mb-4 font-medium text-sm text-green-600">
+                                                        {{ session('status') }}
+                                                    </div>
                                                 @endif
                                             </h4>
                                         </div>
@@ -54,7 +63,7 @@
                                                 <label for="" class="text-uppercase text-muted">Correo</label>
                                                 <div class="position-relative form-group">
                                                     <input name="email" id="exampleEmail" type="email"
-                                                        value="{{old('email', $request->email)}}" class="form-control"
+                                                        value="{{ old('email', $request->email) }}" class="form-control"
                                                         readonly required autofocus>
                                                 </div>
                                             </div>
@@ -84,7 +93,7 @@
 
                             </div>
                         </div>
-                        <div class="text-center text-white opacity-8 mt-3">dPyx - {{getenv('APP_NAME')}}</div>
+                        <div class="text-center text-white opacity-8 mt-3">dPyx - {{ getenv('APP_NAME') }}</div>
                     </div>
                 </div>
             </div>
