@@ -22,6 +22,7 @@
                     <th class="text-uppercase">Fecha inicial</th>
                     <th class="text-uppercase">Fecha final</th>
                     <th class="text-uppercase">Status</th>
+                    <th class="text-uppercase">motivo</th>
                     @canany(['edit announcements','delete announcements'])
                     <th class="text-uppercase">Acciones</th>
                     @endcanany
@@ -38,6 +39,7 @@
                             {{$announcement->status}}
                         </span>
                     </td>
+                    <td>{{$announcement->motive ?? 'N/A'}}</td>
                     @canany(['edit announcements','delete announcements'])
                     <td>
                         @can('delete announcements')

@@ -14,6 +14,7 @@ class StoreAnnouncementController extends Controller
         $announcement = new Announcement;
         $announcement->initial_date = $request->initial_date;
         $announcement->final_date = $request->final_date;
+        $announcement->motive = $request->motive;
         $announcement->save();
 
         Alert::success('¡Convocatoria creada!');
