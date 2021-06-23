@@ -75,6 +75,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Repository', 'responsible_id');
     }
 
+    public function evaluations()
+    {
+        return $this->belongsToMany('App\Models\Evaluation', 'evaluation_evaluator');
+    }
+
     /**
      * ============
      * SCOPE METHODS
@@ -101,10 +106,11 @@ class User extends Authenticatable
      * ========
      */
 
-    public function getRoleColorAttribute(){
-        if($this->is_evaluator) return 'warning';
-        if($this->is_admin) return 'danger';
-        if($this->hasRole('usuario')) return 'info';
+    public function getRoleColorAttribute()
+    {
+        if ($this->is_evaluator) return 'warning';
+        if ($this->is_admin) return 'danger';
+        if ($this->hasRole('usuario')) return 'info';
         return '';
     }
 
@@ -129,15 +135,15 @@ class User extends Authenticatable
         return $this->hasRole('admin');
     }
 
-    public function getIsActiveAttribute(){
-        if(!$this->last_login_at) return false;
+    public function getIsActiveAttribute()
+    {
+        if (!$this->last_login_at) return false;
 
         $to = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', date('Y-m-d H:i:s'));
         $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $this->last_login_at);
         $diffInMonths = $to->diffInMonths($from);
-        if($diffInMonths >= 1) return false;
+        if ($diffInMonths >= 1) return false;
 
         return true;
     }
 }
-

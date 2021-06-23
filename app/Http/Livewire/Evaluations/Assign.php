@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Evaluations;
 use App\Models\Category;
 use App\Models\Evaluation;
 use App\Models\User;
+use App\Services\EvaluationService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -14,11 +15,13 @@ class Assign extends Component
     public function mount(Evaluation $evaluation, User $user)
     {
 
+        $evaluationService = (new EvaluationService)($evaluation);
+
         if(Auth::user()->id != $user->id){
             abort(403);
         }
 
-        if ($evaluation->evaluator_id) {
+        if ($evaluationService->hasEvaluators()) {
             \RealRashid\SweetAlert\Facades\Alert::error('¡La evaluación solicitada ya cuenta con un evaluador!');
             return redirect()->route('welcome');
         }
@@ -28,15 +31,15 @@ class Assign extends Component
             return redirect()->route('welcome');
         }
 
-        $evaluation->evaluator_id = $user->id;
-        $evaluation->save();
+        $evaluationService->updateCurrentEvaluator($user);
 
         if(!Auth::check()){
             \RealRashid\SweetAlert\Facades\Alert::success('¡Inicia sesión para poder evaluar al usuario!');
             return redirect()->route('welcome');
         }
         
-        if(Auth::check() && $evaluation->evaluator_id != Auth::user()->id){
+        if(Auth::check() && $evaluationService->isEvaluatorOfThisEvaluation(Auth::user()) ){
+        // if(Auth::check() && $evaluation->evaluator_id != Auth::user()->id){
             \RealRashid\SweetAlert\Facades\Alert::success('¡Inicia sesión con el usuario evaluador para poder revisar la evaluación!');
             return redirect()->route('welcome');
         }

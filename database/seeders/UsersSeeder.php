@@ -7,6 +7,7 @@ use App\Models\Evaluation;
 use App\Models\Question;
 use App\Models\Repository;
 use App\Models\User;
+use App\Services\EvaluationService;
 use Illuminate\Database\Seeder;
 
 class UsersSeeder extends Seeder
@@ -40,8 +41,8 @@ class UsersSeeder extends Seeder
             'email' => 'nlopez@escire.mx',
             'password' => bcrypt('1Aprender3948.')
         ])->assignRole('admin');
-        
-        if(config('app.is_evaluable')){
+
+        if (config('app.is_evaluable')) {
             $userEvaluator = User::create([
                 'name' => 'Nydia Evaluador',
                 'phone' => null,
@@ -59,17 +60,21 @@ class UsersSeeder extends Seeder
 
         $repository = Repository::create([
             'responsible_id' => $user->id,
-            'name' =>'escire',
+            'name' => 'escire',
             'status' => 'en progreso',
         ]);
 
-        if(config('app.is_evaluable')){
+        if (config('app.is_evaluable')) {
             $evaluation = Evaluation::create([
                 'repository_id' => $repository->id,
-                'evaluator_id' => $userEvaluator->id,
+                // 'evaluator_id' => $userEvaluator->id,
                 'status' => 'en progreso',
             ]);
-        }else{
+
+            (new EvaluationService)($evaluation)
+                ->updateCurrentEvaluator($userEvaluator)
+                ->addNewEvaluatorIfNotExist($userEvaluator);
+        } else {
             $evaluation = Evaluation::create([
                 'repository_id' => $repository->id,
                 'status' => 'en progreso',
@@ -94,7 +99,7 @@ class UsersSeeder extends Seeder
          * USERS FOR CONCYTEC
          * ===============
          */
-        
+
         // ADMINISTRADOR
         // usuario: concytec
         // contraseña: G6&6$usTop*T
@@ -113,7 +118,7 @@ class UsersSeeder extends Seeder
             'password' => bcrypt('G6&6$usTop*T')
         ])->assignRole('admin');
 
-        if(config('app.is_evaluable')){
+        if (config('app.is_evaluable')) {
             $userEvaluator = User::create([
                 'name' => 'evaluador',
                 'phone' => null,
@@ -131,17 +136,20 @@ class UsersSeeder extends Seeder
 
         $repository = Repository::create([
             'responsible_id' => $user->id,
-            'name' =>'repositorio',
+            'name' => 'repositorio',
             'status' => 'en progreso',
         ]);
 
-        if(config('app.is_evaluable')){
+        if (config('app.is_evaluable')) {
             $evaluation = Evaluation::create([
                 'repository_id' => $repository->id,
-                'evaluator_id' => $userEvaluator->id,
+                // 'evaluator_id' => $userEvaluator->id,
                 'status' => 'en progreso',
             ]);
-        }else{
+            (new EvaluationService)($evaluation)
+                ->updateCurrentEvaluator($userEvaluator)
+                ->addNewEvaluatorIfNotExist($userEvaluator);
+        } else {
             $evaluation = Evaluation::create([
                 'repository_id' => $repository->id,
                 'status' => 'en progreso',
@@ -158,6 +166,5 @@ class UsersSeeder extends Seeder
                 'question_id' => $question->id
             ]);
         });
-
     }
 }

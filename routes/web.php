@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Answer;
+use App\Models\Evaluation;
 use App\Synchronizers\AnswerSynchronizer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,9 +26,19 @@ Route::get('/', function () {
     return redirect()->route('login');
 })->name('welcome');
 
-Route::get('synchronize', function(){
-    foreach(Answer::get() as $answer){
+Route::get('synchronize/answers', function () {
+    foreach (Answer::get() as $answer) {
         (new AnswerSynchronizer($answer))->execute();
+    }
+    return "synchronized";
+});
+
+Route::get('synchronize/evaluators', function () {
+    foreach (Evaluation::get() as $evaluation) {
+        if ($evaluation->evaluator_id) {
+            $evaluation->evaluators()->attach($evaluation->evaluator_id);
+            $evaluation->update(["evaluator_id" => null]);
+        }
     }
     return "synchronized";
 });
@@ -109,8 +120,8 @@ Route::prefix('evaluations')->middleware('auth')->group(function () {
     Route::post('{evaluation}/send', \App\Http\Controllers\Evaluations\SendEvaluationController::class)->name('evaluations.send');
 });
 
-Route::prefix('reports')->middleware('auth')->group(function(){
-    Route::get('/',\App\Http\Controllers\Reports\DownloadReportController::class)->name('reports.download');
+Route::prefix('reports')->middleware('auth')->group(function () {
+    Route::get('/', \App\Http\Controllers\Reports\DownloadReportController::class)->name('reports.download');
 });
 
 Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');

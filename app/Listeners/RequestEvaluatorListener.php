@@ -33,7 +33,10 @@ class RequestEvaluatorListener
         //     $evaluator->notify(new EvaluationFinishedNotification($event->evaluation));
         // }
 
-        $evaluator = $event->evaluation->evaluator;
-        $evaluator->notify(new EvaluationFinishedNotification($event->evaluation));
+        $evaluators = $event->evaluation->evaluators;
+
+        foreach ($evaluators as $evaluator) {
+            $evaluator->notify(new EvaluationFinishedNotification($event->evaluation));
+        }
     }
 }

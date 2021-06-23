@@ -14,7 +14,7 @@
             </form>
             <button class="btn btn-success btn-wide shadow rounded-0" {{$announcement ? '' : 'disabled'}}
                 x-ref="buttonSendToConcytec" x-on:click="showWarning()">
-                <i class="fas fa-paper-plane"></i> {{__("enviar cuestionario")}}
+                <i class="fas fa-paper-plane"></i> {{__(" cuestionario")}}
             </button>
         </div>
     </div>

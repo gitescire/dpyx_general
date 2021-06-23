@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Evaluation;
 use App\Models\Repository;
 use App\Models\User;
+use App\Services\EvaluationService;
+use App\Services\EvaluatorService;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -19,13 +21,22 @@ class DestroyUserController extends Controller
      */
     public function __invoke(Request $request, User $user)
     {
-        if($request->newEvaluatorId){
-            Evaluation::where('evaluator_id',$user->id)->update([
-                'evaluator_id' => $request->newEvaluatorId
-            ]);
+        $newEvaluator = User::find($request->newEvaluatorId);
+
+        // dd($newEvaluator);
+
+        if ($newEvaluator) {
+
+            foreach ((new EvaluatorService)($user)->getAllEvaluations() as $evaluation) {
+                // dd($evaluation->evaluators);
+
+                (new EvaluationService)($evaluation)
+                    ->addNewEvaluatorIfNotExist($newEvaluator);
+
+            }
         }
-        
-        Repository::where('responsible_id',$user->id)->delete();
+
+        Repository::where('responsible_id', $user->id)->delete();
         $user->email = null;
         $user->save();
         $user->delete();

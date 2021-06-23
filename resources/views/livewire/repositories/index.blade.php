@@ -66,7 +66,11 @@
                         </td>
                         <td>{{ $repository->responsible->name }}</td>
                         @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables')))
-                            <td>{{ $repository->evaluation ? $repository->evaluation->evaluator->name : 'N/A' }}</td>
+                            <td>
+                                @foreach ($repository->evaluation->evaluators as $evaluator)
+                                    <input type="text" class="form-control mt-1" readonly value="{{ $evaluator->name }}">
+                                @endforeach
+                            </td>
                         @endif
                         <td>
                             <a href="{{ route('repositories.statistics.show', [$repository]) }}"

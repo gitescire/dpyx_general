@@ -11,6 +11,7 @@ use App\Models\ObservationHistory;
 use App\Models\Repository;
 use App\Synchronizers\AnswerSynchronizer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -43,7 +44,7 @@ class SendRepositoryController extends Controller
     {
         $evaluationHistory = EvaluationHistory::create([
             'repository_id' => $evaluation->repository_id,
-            'evaluator_id' => $evaluation->evaluator_id,
+            'evaluator_id' => Auth::user()->id,
             'status' => $evaluation->status
         ]);
 

@@ -23,23 +23,20 @@ class SendEvaluationController extends Controller
     {
         event(new EvaluationFinishedEvent($evaluation));
 
+        
         $evaluation->status = "en revisión";
         $evaluation->save();
 
+
         $evaluationHistory = EvaluationHistory::create([
             'repository_id' => $evaluation->repository->id,
-            'evaluator_id' => $evaluation->evaluator->id,
             'status' => $evaluation->status
         ]);
 
-        // $evaluationHistory = new EvaluationHistory;
-        // $evaluationHistory->repository_id = $evaluation->repository->id;
-        // $evaluationHistory->evaluator_id = $evaluation->evaluator->id;
-        // $evaluationHistory->status = $evaluation->status;
-        // $evaluationHistory->save();
 
         $evaluation->repository->status = 'en progreso';
         $evaluation->repository->save();
+
 
         foreach ($evaluation->answers as $answer) {
             (new AnswerSynchronizer($answer))->execute();
@@ -50,10 +47,9 @@ class SendEvaluationController extends Controller
             $answerHistory->evaluation_history_id = $evaluationHistory->id;
             $answerHistory->description = $answer->description;
             $answerHistory->save();
-
         }
 
-
+        
         Alert::success('¡La evaluación ha sido enviada para su revisión!');
         return redirect()->route('repositories.index');
     }
