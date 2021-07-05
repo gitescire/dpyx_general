@@ -23916,7 +23916,7 @@ process.umask = function() { return 0; };
 
   var confirm = function confirm(instance, innerParams, value) {
     if (innerParams.showLoaderOnConfirm) {
-      showLoading(); // TODO: make showLoading an *instance* method
+      showLoading();
     }
 
     if (innerParams.preConfirm) {

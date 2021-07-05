@@ -11,13 +11,21 @@
         <div class="col-12 col-lg-4">
             <x-input-search />
         </div>
-        <div class="col-12 col-lg-4 text-right">
+        <div class="col-12 col-lg-8 text-right">
             @if (auth()->user()->is_evaluator || auth()->user()->is_admin)
                 <span class="text-info ml-2">
                     AGLOMERADO GENERAL
                 </span>
-                <a href="{{ route('repositories.statistics.all') }}" class="btn btn-info btn-shadow rounded-0">
+                <a href="{{ route('repositories.statistics.all') }}" class="btn btn-info btn-shadow rounded-0 mr-2">
                     <i class="fas fa-chart-pie"></i>
+                </a>
+
+                <span class="text-secondary ml-2">
+                    CONFIGURACIÓN CONSTANCIA
+                </span>
+                <a href="{{ route('constancies.edit') }}" class="btn btn-secondary btn-shadow rounded-0">
+
+                    <i class="fas fa-certificate"></i>
                 </a>
             @endif
         </div>

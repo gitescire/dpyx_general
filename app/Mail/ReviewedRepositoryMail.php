@@ -57,11 +57,11 @@ class ReviewedRepositoryMail extends Mailable
                 'mime' => 'application/pdf',
             ]);
 
-        if ($this->repository->is_aproved && config('dpyx.has_certification')) {
-            $message->attachData($this->certificationPDF->output(), 'certificacion.pdf', [
-                'mime' => 'application/pdf',
-            ]);
-        }
+        // if ($this->repository->is_aproved && config('dpyx.has_certification')) {
+        //     $message->attachData($this->certificationPDF->output(), 'certificacion.pdf', [
+        //         'mime' => 'application/pdf',
+        //     ]);
+        // }
 
         return $message;
     }

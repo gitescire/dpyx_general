@@ -94,6 +94,7 @@ Route::prefix('answers')->middleware('auth')->group(function () {
 Route::prefix('observations')->middleware('auth')->group(function () {
     Route::post('store', \App\Http\Controllers\Observations\StoreObservationController::class)->middleware('can:create observations')->name('observations.store');
     Route::get('{observation}/files/{file}/download', \App\Http\Controllers\Observations\Files\DownloadFileController::class)->name('observations.files.download');
+    Route::delete('{observation}/store', \App\Http\Controllers\Observations\DeleteObservationController::class)->middleware('can:create observations')->name('observations.delete');
 });
 
 Route::prefix('announcements')->middleware('auth')->group(function () {
@@ -122,6 +123,11 @@ Route::prefix('evaluations')->middleware('auth')->group(function () {
 
 Route::prefix('reports')->middleware('auth')->group(function () {
     Route::get('/', \App\Http\Controllers\Reports\DownloadReportController::class)->name('reports.download');
+});
+
+Route::prefix('constancies')->middleware('auth')->group(function () {
+    Route::get('edit', \App\Http\Livewire\Constancies\Edit::class)->name('constancies.edit');
+    Route::get('show', \App\Http\Controllers\Constancies\ShowConstancyController::class)->name('constancies.pdf');
 });
 
 Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
