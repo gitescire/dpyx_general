@@ -12,6 +12,8 @@ class Question extends Model
     protected $appends = ['max_punctuation'];
 
     protected $fillable = [
+
+        'description',
         'category_id',
         'subcategory_id',
         'help_text',
@@ -19,6 +21,7 @@ class Question extends Model
         'is_optional',
         'has_description_field',
         'description_label',
+
     ];
 
     /**
@@ -28,7 +31,7 @@ class Question extends Model
      */
 
     /**
-     * 
+     *
      *
      */
     public function category()

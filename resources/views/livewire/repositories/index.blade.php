@@ -7,20 +7,28 @@
 
 
 
-    <div class="row d-flext justify-content-between mb-3">
+    <div class="mb-3 row d-flext justify-content-between">
         <div class="col-12 col-lg-4">
             <x-input-search />
+
         </div>
-        <div class="col-12 col-lg-8 text-right">
+
+         <div class="text-left custom-control custom-switch col-8 col-lg-4" >
+            <input wire:model="withoutprogress" type="checkbox" class="custom-control-input" id="swprogres">
+            <label class="custom-control-label" for="swprogres">Filtrar sin progreso</label>
+          </div>
+
+
+        <div class="text-right col-8 col-lg-4">
             @if (auth()->user()->is_evaluator || auth()->user()->is_admin)
-                <span class="text-info ml-2">
+                <span class="ml-2 text-info">
                     AGLOMERADO GENERAL
                 </span>
-                <a href="{{ route('repositories.statistics.all') }}" class="btn btn-info btn-shadow rounded-0 mr-2">
+                <a href="{{ route('repositories.statistics.all') }}" class="mb-2 btn btn-info btn-shadow rounded-0">
                     <i class="fas fa-chart-pie"></i>
                 </a>
 
-                <span class="text-secondary ml-2">
+                <span class="ml-3 text-secondary">
                     CONFIGURACIÓN CONSTANCIA
                 </span>
                 <a href="{{ route('constancies.edit') }}" class="btn btn-secondary btn-shadow rounded-0">
@@ -31,8 +39,8 @@
         </div>
     </div>
 
-    <div class="table-responsive shadow mb-3 bg-white">
-        <table class="table table-bordered m-0">
+    <div class="mb-3 bg-white shadow table-responsive">
+        <table class="table m-0 table-bordered">
             <thead>
                 <tr>
                     <th class="text-uppercase">Nombre</th>
@@ -76,7 +84,7 @@
                         @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables')))
                             <td>
                                 @foreach ($repository->evaluation->evaluators as $evaluator)
-                                    <input type="text" class="form-control mt-1" readonly value="{{ $evaluator->name }}">
+                                    <input type="text" class="mt-1 form-control" readonly value="{{ $evaluator->name }}">
                                 @endforeach
                             </td>
                         @endif

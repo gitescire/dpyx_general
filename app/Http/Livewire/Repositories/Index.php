@@ -8,13 +8,16 @@ use App\Models\Repository;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
+//use Illuminate\Support\Facades\DB;
 
 class Index extends Component
 {
     use WithPagination;
 
     public $firstCategory;
+    public $withoutprogress = false;
     private $repositories;
+    private $allrepos;
 
     public $search = "";
 
@@ -34,7 +37,18 @@ class Index extends Component
 
     protected function handleRepositories()
     {
-        $this->repositories = Repository::orderBy('id', 'desc');
+        if(!$this->withoutprogress){
+            $this->repositories = Repository::orderBy('id', 'desc');
+
+        }
+        else{
+
+             $this->repositories= Repository::select('repositories.*', 'evaluations.status')
+                                        ->join('evaluations', 'repositories.id', '=', 'evaluations.id')
+                                        ->where('evaluations.status','=', 'en progreso')
+                                        ->where('repositories.status','=','en progreso')->orderBy('id', 'desc');
+
+        }
 
         if ($this->search) {
             $this->repositories = $this->repositories->where(function ($query) {
@@ -51,7 +65,9 @@ class Index extends Component
         }
 
         if (Auth::user()->is_admin) {
+
             $this->repositories = $this->repositories->paginate(10);
+
         } else if (Auth::user()->is_evaluator) {
 
             $this->repositories = $this->repositories->whereHas('evaluation', function ($query) {

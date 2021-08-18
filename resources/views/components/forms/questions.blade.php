@@ -2,11 +2,11 @@
     <form action="{{$question ?  route('questions.update',[$question]) : route('questions.store')}}" method="POST">
         @csrf
         @if ($question) @method('PUT') @endif
-        <div class="card shadow border-0">
+        <div class="border-0 shadow card">
             <div class="card-body">
                 <div class="row">
                     {{--  --}}
-                    <div class="col-12 mb-3">
+                    <div class="mb-3 col-12">
                         <label for="" class="text-muted text-uppercase">
                             Pregunta
                         </label>
@@ -14,75 +14,90 @@
                             class="form-control">{{$question ? $question->description : ''}}</textarea>
                     </div>
                     {{--  --}}
-                    <div class="col-12 mb-3">
+                    <div class="mb-3 col-12">
                         <label for="" class="text-muted text-uppercase">
                             Opciones
                         </label>
+
                         <div class="card">
                             <div class="card-body">
-
-                                <div class="input-group mb-3">
+                                <div class="mb-3 input-group">
                                     <div class="input-group-prepend">
                                         {{-- <label for="" class="text-uppercase text-muted">Texto</label><br> --}}
                                         <input type="text" placeholder="texto" class="form-control"
                                             x-model="newOption.description">
                                     </div>
                                     {{-- <label for="" class="text-uppercase text-muted">Valor</label><br> --}}
-                                    <input type="number" placeholder="valor" class="form-control ml-1"
+                                    <input type="number" placeholder="valor" class="ml-1 form-control"
                                         x-model="newOption.punctuation">
-                                    <div class="input-group-append ml-1">
+                                    <div class="ml-1 input-group-append">
                                         <button class="btn btn-info btn-shadow rounded-0" type="button"
                                             x-on:click="addOption()" x-ref="addButton"
                                             :disabled="newOption.description == '' || newOption.punctuation == ''">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
-
                                 </div>
 
+                                <input type="hidden" name="optionsToDelete" :value="optionsToDelete" required>
 
                                 {{-- <label for="" class="text-uppercase text-muted">Valor</label>
                                 <input type="number" class="form-control" x-model="newOption.punctuation">
-                                <button class="btn btn-info btn-shadow rounded-0 mt-3" type="button"
+                                <button class="mt-3 btn btn-info btn-shadow rounded-0" type="button"
                                     x-on:click="addOption()" x-ref="addButton">
                                     <i class="fas fa-plus"></i>
                                 </button> --}}
                                 <hr>
-
                                 <template x-if="options.length == 0">
                                     <div class="alert alert-info">
                                         Debes añadir por lo menos una opción de respuesta
                                     </div>
                                 </template>
 
-                                <template x-for="option in options">
+                                <template x-for="(option, id) in options" :key="id">
                                     {{-- <span x-text="option.id"></span> --}}
-                                    <div class="input-group mb-3">
+                                    <div class="mb-3 input-group">
                                         <input type="hidden" :name=`options[${option.position}][id]`
-                                            x-model="option.id" required>
+                                        x-model="option.id" required>
+
                                         <div class="input-group-prepend">
                                             <input type="text" :name=`options[${option.position}][description]`
                                                 class="form-control" x-model="option.description" required>
                                         </div>
-                                        <input type="text" class="form-control ml-1"
+                                        <input type="text" class="ml-1 form-control"
                                             :name=`options[${option.position}][punctuation]`
                                             x-model="option.punctuation" required>
+
                                         <template x-if="!option.id">
-                                            <div class="input-group-append ml-1">
+                                            <div class="ml-1 input-group-append">
                                                 <button type="button" class="btn btn-danger btn-shadow rounded-0"
                                                     x-on:click="deleteOption(option)">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
                                         </template>
+
+                                        <template x-if="option.id">
+                                            <div class="ml-1 input-group-append">
+                                                       <button type="button" class="btn btn-warning btn-shadow rounded-0"
+                                                       x-on:click="deleteSavedOption(option)">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+
+                                            </div>
+                                        </template>
+
+
+
                                     </div>
                                 </template>
+
 
                             </div>
                         </div>
                     </div>
                     {{--  --}}
-                    <div class="col-12 mb-3">
+                    <div class="mb-3 col-12">
                         <label for="" class="text-muted text-uppercase">
                             Órden
                         </label>
@@ -90,7 +105,7 @@
                             class="form-control" required>
                     </div>
                     {{--  --}}
-                    <div class="col-12 mb-3">
+                    <div class="mb-3 col-12">
                         <label for="" class="text-muted text-uppercase">
                             Categoría
                         </label>
@@ -104,7 +119,7 @@
                         </select>
                     </div>
                     {{--  --}}
-                    <div class="col-12 mb-3">
+                    <div class="mb-3 col-12">
                         <label for="" class="text-muted text-uppercase">
                             Subcategoría
                         </label>
@@ -119,7 +134,7 @@
                         </select>
                     </div>
                     {{--  --}}
-                    {{-- <div class="col-12 mb-3">
+                    {{-- <div class="mb-3 col-12">
                         <label for="" class="text-muted text-uppercase">
                             Puntuación máxima
                         </label>
@@ -127,7 +142,7 @@
                     name="max_punctuation" min="0" class="form-control">
                 </div> --}}
                 {{--  --}}
-                <div class="col-12 mb-3">
+                <div class="mb-3 col-12">
 
                     <div class="card">
                         <ul class="list-group list-group-flush">
@@ -155,7 +170,7 @@
                 </div>
 
                 {{--  --}}
-                <div class="col-12 mb-3">
+                <div class="mb-3 col-12">
                     <label for="" class="text-muted text-uppercase">
                         Texto en marca de agua <small>(opcional)</small>
                     </label>
@@ -163,7 +178,7 @@
                         class="form-control">{{$question ? $question->description_label : ''}}</textarea>
                 </div>
                 {{--  --}}
-                <div class="col-12 mb-3">
+                <div class="mb-3 col-12">
                     <label for="" class="text-muted text-uppercase">
                         Texto de ayuda <small>(opcional)</small>
                     </label>
@@ -173,7 +188,7 @@
             </div>
         </div>
         <div class="card-footer d-flex justify-content-end">
-            <a href="{{route('questions.index')}}" class="btn btn-outline-danger btn-shadow rounded-0 mr-3">
+            <a href="{{route('questions.index')}}" class="mr-3 btn btn-outline-danger btn-shadow rounded-0">
                 <i class="fas fa-window-close"></i> Cancelar
             </a>
             <button class="btn btn-success btn-wide btn-shadow rounded-0" :disabled="!isStorable()">
@@ -185,18 +200,23 @@
 
 <script>
     function data(){
+
     return {
 
         question: @json($question),
         options: @json($choices),
         categories: @json($categories),
         subcategories: @json($subcategories),
-        allQuestions: @json($allQuestions),
+        //allQuestions: @json($allQuestions),
+
+        optionsToDelete:[],
 
         newOption: {
             description: '',
             punctuation: ''
         },
+
+
 
         // optionExists(){
         //     if(this.options.find(option => option.punctuation == this.newOption.punctuation)){
@@ -209,14 +229,12 @@
             if(this.options.length == 0){
                 return false;
             }
-            
+
             return true;
         },
 
-
-
         addOption(){
-            
+
             this.options.push({
                 id: '',
                 description: this.newOption.description,
@@ -233,6 +251,13 @@
             this.sortOptions()
             this.enumerateOptions()
             console.log(this.options)
+        },
+
+        deleteSavedOption(optionMarked){
+
+                this.optionsToDelete.push(optionMarked.id)
+                this.deleteOption(optionMarked)
+
         },
 
         deleteOption(optionToTrash){
@@ -261,6 +286,7 @@
         },
 
         mounted() {
+            this.sortOptions()
             this.enumerateOptions()
         },
 

@@ -26,7 +26,7 @@ class UpdateQuestionController extends Controller
                 'description' => $choiceToUpdate['description'],
             ]);
         }
-
+                            //hasmany(choice)
         $question->choices()->whereNotIn('id', $choicesToUpdate->pluck('id')->flatten())->delete();
 
         $newChoices = collect($request->options)->where('id', '=', null);
@@ -46,7 +46,11 @@ class UpdateQuestionController extends Controller
         $question->description_label = $request->description_label;
         $question->category_id = $request->category_id;
         $question->subcategory_id = $request->subcategory_id;
+        $question->order = $request->order;
         $question->save();
+
+        $borrar = $request->optionsToDelete;
+        Choice::where('id',explode(',', $borrar))->delete();
 
         Alert::success('¡Pregunta actualizada!');
         return redirect()->route('questions.index');
