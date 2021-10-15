@@ -66,7 +66,7 @@
                                     deberás
                                     presionar el botón
                                     <button class="btn btn-success btn-wide btn-sm rounded-0" style="cursor: auto;">
-                                        <i class="fas fa-paper-plane"></i> Enviar
+                                        <i class="fas fa-paper-plane"></i> Enviar cuestionario
                                     </button>
                                 </p>
                             </div>

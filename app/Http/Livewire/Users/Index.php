@@ -3,8 +3,7 @@
 namespace App\Http\Livewire\Users;
 
 use App\Models\User;
-use App\Services\EvaluationService;
-use App\Services\EvaluatorService;
+use App\Models\Evaluation;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -44,13 +43,13 @@ class Index extends Component
         if (Auth::user()->is_admin) {
             $this->users = $this->users;
         } else {
-            // $repositoryResponsiblesIds = Evaluation::where('evaluator_id', Auth::user()->id)->get()->pluck('repository.responsible.id')->flatten()->unique();
-            $repositoryResponsiblesIds = (new EvaluatorService)(Auth::user())->getAllEvaluations()->pluck('repository.responsible.id')->flatten()->unique();
+             $repositoryResponsiblesIds = Evaluation::where('evaluator_id', Auth::user()->id)->get()->pluck('repository.responsible.id')->flatten()->unique();
+           // $repositoryResponsiblesIds = (new EvaluatorService)(Auth::user())->getAllEvaluations()->pluck('repository.responsible.id')->flatten()->unique();
             $this->users = $this->users->whereIn('id', $repositoryResponsiblesIds);
         }
 
         $this->users = $this->users->paginate(10);
-        
+
     }
 
     public function updatingSearch()

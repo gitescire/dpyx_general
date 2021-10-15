@@ -7,7 +7,6 @@ use App\Http\Requests\StoreUserRequest;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\User;
-use App\Services\EvaluationService;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -38,13 +37,8 @@ class StoreUserController extends Controller
             ]);
             $evaluation = $repository->evaluation()->create([
                 'repository_id' => $repository->id,
+                'evaluator_id' => $request->evaluator_id,
             ]);
-
-            $evaluationService = (new EvaluationService)($evaluation);
-            foreach ($request->evaluators_id as $evaluator_id) {
-                $evaluationService->addNewEvaluatorIfNotExist(User::find($evaluator_id));
-            }
-
 
             // Create empty answers for each question
             Question::get()->each(function ($question) use ($evaluation) {

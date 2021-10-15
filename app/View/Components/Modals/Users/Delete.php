@@ -25,7 +25,7 @@ class Delete extends Component
         $this->user = $user;
         $this->evaluators = User::evaluators()->get();
         $this->repositories = Repository::where('responsible_id', $user->id)->get();
-        $this->evaluations = (new EvaluatorService)($user)->getAllEvaluations();
+        $this->evaluations = Evaluation::where('evaluator_id',$user->id)->get();
     }
 
     /**

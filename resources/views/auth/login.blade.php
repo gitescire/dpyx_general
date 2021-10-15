@@ -32,19 +32,19 @@
             <div class="h-100 bg-plum-plate bg-animation">
                 <div class="d-flex h-100 justify-content-center align-items-center">
                     <div class="mx-auto app-login-box col-md-12">
-                        {{-- <div class="app-logo-inverse mx-auto mb-3"></div> --}}
-                        <div class="modal-dialog w-100 mx-auto">
+                        {{-- <div class="mx-auto mb-3 app-logo-inverse"></div> --}}
+                        <div class="mx-auto modal-dialog w-100">
                             {{-- <img src="{{url('images/logo.png')}}" width="120px" class="img-fluid" alt=""> --}}
                             <div class="row">
-                                <div class="col-12 d-flex justify-content-center">	
-                                    <img src="{{ url('images/default/login-top.png?20210529') }}" width="160px" class="img-responsive" alt="">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <img src="{{ url('images/default/evaluation/1.png') }}" width="160px" class="img-responsive" alt="">
                                 </div>
                             </div>
                             <div class="modal-content">
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="modal-body">
-                                        <div class="h5 modal-title text-center">
+                                        <div class="text-center h5 modal-title">
                                             <h4 class="mt-2">
                                                     <x-jet-validation-errors class="mb-4" />
 
@@ -55,7 +55,7 @@
                                                 <div>Bienvenido de regreso,</div>
                                                 <span>Por favor inicia sesión con tu cuenta.</span>
                                                 @if (session('status'))
-                                                <div class="mb-4 font-medium text-sm text-green-600">
+                                                <div class="mb-4 text-sm font-medium text-green-600">
                                                     {{ session('status') }}
                                                 </div>
                                                 @endif
@@ -83,7 +83,7 @@
                                     <h6 class="mb-0">No account? <a href="javascript:void(0);" class="text-primary">Sign
                                             up now</a></h6> --}}
                                     </div>
-                                    <div class="modal-footer clearfix">
+                                    <div class="clearfix modal-footer" style="background-color:#009932">
                                         @if (Route::has('password.request'))
                                         <div class="float-left">
                                             <a href="{{ route('password.request') }}"
@@ -92,13 +92,15 @@
                                         </div>
                                         @endif
                                         <div class="float-right">
-                                            <button class="btn btn-primary btn-lg">Iniciar sesión</button>
+                                            <button class="btn btn-primary btn-lg" style="background-color:#005baa">Iniciar sesión</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
+                            <div class="mt-2 img2"><img src="{{ url('images/default/evaluation/banner.png') }}" width="1200px" class="img-fluid" alt=""></div>
+
                         </div>
-                        <div class="text-center text-white opacity-8 mt-3">dPyx - {{getenv('APP_NAME')}}</div>
+                        <div class="mt-3 text-center text-white opacity-8">dPyx - {{getenv('APP_NAME')}}</div>
                     </div>
                 </div>
             </div>

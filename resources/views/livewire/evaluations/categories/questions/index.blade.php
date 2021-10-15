@@ -14,7 +14,7 @@
             </form>
             <button class="btn btn-success btn-wide shadow rounded-0" {{$announcement ? '' : 'disabled'}}
                 x-ref="buttonSendToConcytec" x-on:click="showWarning()">
-                <i class="fas fa-paper-plane"></i> {{__(" cuestionario")}}
+                <i class="fas fa-paper-plane"></i> {{__("Enviar cuestionario")}}
             </button>
         </div>
     </div>
@@ -311,7 +311,7 @@
                 </div>
                 <div class="d-flex justify-content-end">
                     <button class="btn btn-success btn-wide btn-shadow rounded-0">
-                        <i class="fas fa-paper-plane"></i> Enviar
+                        <i class="fas fa-paper-plane"></i> Enviar cuestionario
                     </button>
                 </div>
             </form>

@@ -75,19 +75,11 @@
     }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<div class="header">
-    <img width="100%"
-        src="data:image/png;base64,' . {{ base64_encode( file_get_contents( url('images/default/evaluation/banner.jpeg?20210529') ) ) }} " /><br />
-</div>
 
-<footer>
-    {{env("INSTITUTE_ADDRESS", "Tu dirección")}}<br />
-    Correo: {{env("INSTITUTE_MAIL", "correo@ejemplo.com")}}<br />
-</footer>
 
 <body>
     <div align="center" style="margin-top: 12em; position: absolute">
-        <img src="{{asset('images/default/evaluation/1.jpg?20210529')}}" /> <br />
+        <img src="{{asset('images/default/evaluation/1.png')}}" /> <br />
         <br />{{__("messages.views.pdfs.evaluation.text1")}}<br /><br /><br /><br /><br /><br />
         <br /><br /><br /><br /><br />AUTOEVALUACIÓN DE {{strtoupper($repository->name)}}
         <br />
@@ -95,7 +87,16 @@
         {{__("messages.views.pdfs.evaluation.text2")}}<br /><br />
         {{date('Y')}}<br /><br /><br /><br /><br /><br />
     </div>
+	<footer>
+    	    {{env("INSTITUTE_ADDRESS", "Tu dirección")}}<br />
+            correo: {{env("INSTITUTE_MAIL", "correo@ejemplo.com")}}<br />
+        </footer>
     <div class="page_break" syu></div>
+    {{-- <div style="margin-top: 10em; text-align:justify;"> --}}
+        <div class="header">
+            <img width="100%"
+                src="data:image/png;base64,' . {{ base64_encode( file_get_contents( url('images/default/evaluation/banner.png') ) ) }} " /><br />
+        </div>
     {{-- <div style="margin-top: 10em; text-align:justify;"> --}}
     <br><br>
     1. Presentación<br /><br />
@@ -106,7 +107,7 @@
         href="{{getenv('APP_URL')}}">{{getenv('APP_URL')}}</a><br /><br /><br />
     2. áreas consideradas<br /><br />
     Las áreas consideradas en esta evaluación preliminar han sido las siguientes:<br />
-    
+
     @foreach (\App\Models\Category::has('questions')->get() as $category)
         - {{$category->name}}<br>
     @endforeach

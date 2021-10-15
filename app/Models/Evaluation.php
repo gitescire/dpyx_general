@@ -36,11 +36,11 @@ class Evaluation extends Model
     {
         return $this->belongsTo('App\Models\User', 'evaluator_id', 'id');
     }
-
+/*
     public function evaluators()
     {
         return $this->belongsToMany('App\Models\User', 'evaluation_evaluator', 'evaluation_id', 'user_id');
-    }
+    }*/
 
     /**
      * ========
@@ -124,14 +124,14 @@ class Evaluation extends Model
         }
 
 
-        // if (Auth::user()->id != $this->evaluator->id) {
-        //     return false;
-        // }
-
+         if (Auth::user()->id != $this->evaluator->id) {
+             return false;
+         }
+/*
         if(!$this->evaluators()->find(Auth::user()->id)){
             return false;
         }
-
+*/
         if (!$this->in_review) {
             return false;
         }

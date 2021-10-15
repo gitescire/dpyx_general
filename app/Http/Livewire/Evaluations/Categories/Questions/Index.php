@@ -99,7 +99,7 @@ class Index extends Component
                     $question->answer->route = route('answers.show', [$question->answer]);
                 }
 
-                // $question->is_answerable = $this->evaluation->is_answerable;
+          // $question->is_answerable = $this->evaluation->is_answerable;
                 $question->status = $question->answer ? 'contestada' : 'pendiente';
 
                 // if ($this->evaluation->is_answerable) {

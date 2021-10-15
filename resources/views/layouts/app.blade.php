@@ -36,7 +36,7 @@
         .d-border-top{
             border-top: 5px solid {{config('dpyx.border_top_color')}};
         }
-        
+
         body{}
     </style>
 
@@ -53,12 +53,12 @@
                     <div class="app-header__logo d-flex justify-content-between" x-data="navbar()" x-init="mounted()">
                         <a href="{{ route('dashboard') }}" data-toggle="tooltip" data-placement="bottom"
                             title="dPyx {{ env('APP_NAME', '') }}" class="">
-                            <img src="{{ url('images/default/logo.png?20210529') }}" width="160px"
+                            <img src="{{ url('images/default/logo.png') }}" width="200px"
                                 class="img-responsive" alt="">
                         </a>
                         {{-- <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav"> --}}
-                        <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav float-right"
-                            {{-- class="hamburger hamburger--elastic mobile-toggle-nav is-active float-right" --}} id="navbarButton" x-on:click="changeState()">
+                        <button type="button" class="float-right hamburger hamburger--elastic mobile-toggle-nav"
+                            {{-- class="float-right hamburger hamburger--elastic mobile-toggle-nav is-active" --}} id="navbarButton" x-on:click="changeState()">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
                             </span>
@@ -126,40 +126,40 @@
                                         </a>
                                     </li>
                                 @endif
-                                <li class="text-center mt-5" style="border: 1px solid #c3c6d4 !important;">
+                                <li class="mt-5 text-center" style="border: 1px solid #c3c6d4 !important;">
                                     <a href="https://dpyx.site/preguntas-frecuentes/" target="_blank">
                                         Más información y FAQ
                                     </a>
                                 </li>
                                 @if (auth()->user()->is_admin)
-                                    <li class="text-center mt-1" style="border: 1px solid #c3c6d4 !important;">
+                                    <li class="mt-1 text-center" style="border: 1px solid #c3c6d4 !important;">
                                         <a href="https://dpyx.site/administrador/" target="_blank">
                                             Manual de administrador
                                         </a>
                                     </li>
                                 @elseif(auth()->user()->is_evaluator)
-                                    <li class="text-center mt-1" style="border: 1px solid #c3c6d4 !important;">
+                                    <li class="mt-1 text-center" style="border: 1px solid #c3c6d4 !important;">
                                         <a href="https://dpyx.site/evaluador/" target="_blank">
                                             Manual de evaluador
                                         </a>
                                     </li>
                                 @else
-                                    <li class="text-center mt-1" style="border: 1px solid #c3c6d4 !important;">
+                                    <li class="mt-1 text-center" style="border: 1px solid #c3c6d4 !important;">
                                         <a href="https://dpyx.site/usuario/" target="_blank">
                                             Manual de usuario
                                         </a>
                                     </li>
                                 @endif
                                 <img src="{{ url('images/default/dpyx.png') }}" width="60px"
-                                    class="img-responsive float-right mt-2" alt="">
+                                    class="float-right mt-2 img-responsive" alt="">
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="app-sidebar-overlay d-none animated fadeIn"></div>
-            <div class="app-main__outer container">
-                <div class="app-main__inner container">
+            <div class="container app-main__outer">
+                <div class="container app-main__inner">
                     <div class="header-mobile-wrapper" style="background-color: #e1e6ff;">
                         <div class="app-header__logo">
                             <img src="{{ url('images/logo.png') }}" width="120px" class="img-responsive" alt="">
@@ -183,14 +183,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="app-header bg-white shadow-sm">
+                    <div class="bg-white shadow-sm app-header">
                         @yield('header')
                         <div class="app-header-right">
                             {{-- <div class="search-wrapper">
                                 <i class="search-icon-wrapper typcn typcn-zoom-outline"></i>
                                 <input type="text" placeholder="Search...">
                             </div> --}}
-                            {{-- <div class="header-btn-lg pr-0">
+                            {{-- <div class="pr-0 header-btn-lg">
                                 <div class="header-dots">
                                     <div class="dropdown">
                                         <button type="button" aria-haspopup="true" aria-expanded="false"
@@ -204,7 +204,7 @@
                                                     <div class="menu-header-image opacity-4"
                                                         style="background-image: url('/images/dropdown-header/city5.jpg');">
                                                     </div>
-                                                    <div class="menu-header-content text-white">
+                                                    <div class="text-white menu-header-content">
                                                         <h5 class="menu-header-title">Grid Dashboard</h5>
                                                         <h6 class="menu-header-subtitle">Easy grid navigation inside
                                                             dropdowns</h6>
@@ -217,7 +217,7 @@
                                                         <button
                                                             class="btn-icon-vertical btn-square btn-transition btn btn-outline-link">
                                                             <i
-                                                                class="pe-7s-world icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg mb-3"></i>
+                                                                class="mb-3 pe-7s-world icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg"></i>
                                                             Automation
                                                         </button>
                                                     </div>
@@ -225,7 +225,7 @@
                                                         <button
                                                             class="btn-icon-vertical btn-square btn-transition btn btn-outline-link">
                                                             <i
-                                                                class="pe-7s-piggy icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg mb-3">
+                                                                class="mb-3 pe-7s-piggy icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg">
                                                             </i>
                                                             Reports
                                                         </button>
@@ -234,7 +234,7 @@
                                                         <button
                                                             class="btn-icon-vertical btn-square btn-transition btn btn-outline-link">
                                                             <i
-                                                                class="pe-7s-config icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg mb-3">
+                                                                class="mb-3 pe-7s-config icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg">
                                                             </i>
                                                             Settings
                                                         </button>
@@ -243,7 +243,7 @@
                                                         <button
                                                             class="btn-icon-vertical btn-square btn-transition btn btn-outline-link">
                                                             <i
-                                                                class="pe-7s-browser icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg mb-3">
+                                                                class="mb-3 pe-7s-browser icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg">
                                                             </i>
                                                             Content
                                                         </button>
@@ -252,7 +252,7 @@
                                                         <button
                                                             class="btn-icon-vertical btn-square btn-transition btn btn-outline-link">
                                                             <i
-                                                                class="pe-7s-hourglass icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg mb-3">
+                                                                class="mb-3 pe-7s-hourglass icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg">
                                                             </i>
                                                             Activity
                                                         </button>
@@ -261,7 +261,7 @@
                                                         <button
                                                             class="btn-icon-vertical btn-square btn-transition btn btn-outline-link">
                                                             <i
-                                                                class="pe-7s-world icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg mb-3">
+                                                                class="mb-3 pe-7s-world icon-gradient bg-night-fade btn-icon-wrapper btn-icon-lg">
                                                             </i>
                                                             Contacts
                                                         </button>
@@ -270,7 +270,7 @@
                                             </div>
                                             <ul class="nav flex-column">
                                                 <li class="nav-item-divider nav-item"></li>
-                                                <li class="nav-item-btn text-center nav-item">
+                                                <li class="text-center nav-item-btn nav-item">
                                                     <button
                                                         class="btn-shadow btn btn-primary btn-sm">Follow-ups</button>
                                                 </li>
@@ -285,7 +285,7 @@
                                         </button>
                                         <div tabindex="-1" role="menu" aria-hidden="true"
                                             class="dropdown-menu-xl rm-pointers dropdown-menu dropdown-menu-right">
-                                            <div class="dropdown-menu-header mb-0">
+                                            <div class="mb-0 dropdown-menu-header">
                                                 <div class="dropdown-menu-header-inner bg-night-sky">
                                                     <div class="menu-header-image opacity-5"
                                                         style="background-image: url('/images/dropdown-header/city2.jpg');">
@@ -298,7 +298,7 @@
                                                 </div>
                                             </div>
                                             <ul
-                                                class="tabs-animated-shadow tabs-animated nav nav-justified tabs-shadow-bordered p-3">
+                                                class="p-3 tabs-animated-shadow tabs-animated nav nav-justified tabs-shadow-bordered">
                                                 <li class="nav-item">
                                                     <a role="tab" class="nav-link active" data-toggle="tab"
                                                         href="#tab-messages-header">
@@ -360,7 +360,7 @@
                                                                                     <h4 class="timeline-title">Build the
                                                                                         production release
                                                                                         <span
-                                                                                            class="badge badge-danger ml-2">NEW</span>
+                                                                                            class="ml-2 badge badge-danger">NEW</span>
                                                                                     </h4>
                                                                                     <span
                                                                                         class="vertical-timeline-element-date"></span>
@@ -376,7 +376,7 @@
                                                                                     <h4 class="timeline-title">Something
                                                                                         not important
                                                                                         <div
-                                                                                            class="avatar-wrapper mt-2 avatar-wrapper-overlap">
+                                                                                            class="mt-2 avatar-wrapper avatar-wrapper-overlap">
                                                                                             <div
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
@@ -457,7 +457,7 @@
             <div class="vertical-timeline-element-content bounce-in">
                 <h4 class="timeline-title">Build the
                     production release
-                    <span class="badge badge-danger ml-2">NEW</span>
+                    <span class="ml-2 badge badge-danger">NEW</span>
                 </h4>
                 <span class="vertical-timeline-element-date"></span>
             </div>
@@ -597,7 +597,7 @@
     <div class="tab-pane" id="tab-errors-header" role="tabpanel">
         <div class="scroll-area-sm">
             <div class="scrollbar-container">
-                <div class="no-results pt-3 pb-0">
+                <div class="pt-3 pb-0 no-results">
                     <div class="swal2-icon swal2-success swal2-animate-success-icon">
                         <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);">
                         </div>
@@ -619,7 +619,7 @@
     </div>
     <ul class="nav flex-column">
         <li class="nav-item-divider nav-item"></li>
-        <li class="nav-item-btn text-center nav-item">
+        <li class="text-center nav-item-btn nav-item">
             <button class="btn-shadow btn-wide btn-pill btn btn-focus btn-sm">View
                 Latest Changes</button>
         </li>
@@ -628,17 +628,17 @@
     </div>
     </div>
     </div> --}}
-                            <div class="header-btn-lg pr-0">
-                                <div class="widget-content p-0">
+                            <div class="pr-0 header-btn-lg">
+                                <div class="p-0 widget-content">
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left">
                                             <div class="btn-group">
                                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                                     class="p-0 btn">
                                                     <img width="80" class="rounded"
-                                                        src="{{ auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg?20210529' }}"
+                                                        src="{{ auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg' }}"
                                                         alt="" style="display: inline-block;">
-                                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                                    <i class="ml-2 fa fa-angle-down opacity-8"></i>
                                                 </a>
                                                 <div tabindex="-1" role="menu" aria-hidden="true"
                                                     class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
@@ -647,12 +647,12 @@
                                                             <div class="menu-header-image opacity-2"
                                                                 style="background-image: url('/images/dropdown-header/city1.jpg');">
                                                             </div>
-                                                            <div class="menu-header-content text-left">
-                                                                <div class="widget-content p-0">
+                                                            <div class="text-left menu-header-content">
+                                                                <div class="p-0 widget-content">
                                                                     <div class="widget-content-wrapper">
-                                                                        <div class="widget-content-left mr-3">
+                                                                        <div class="mr-3 widget-content-left">
                                                                             <img width="80" class="rounded-circle"
-                                                                                src="{{ auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg?20210529' }}"
+                                                                                src="{{ auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : '/images/default/avatars/profile.jpg' }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="widget-content-left">
@@ -663,7 +663,7 @@
                                                                                 A short profile description
                                                                             </div> --}}
                                                                         </div>
-                                                                        <div class="widget-content-right mr-2">
+                                                                        <div class="mr-2 widget-content-right">
                                                                             <form method="POST"
                                                                                 action="{{ route('logout') }}">
                                                                                 @csrf
@@ -706,7 +706,7 @@
                                                                 <li class="nav-item">
                                                                     <a href="{{ route('users.account', [auth()->user()]) }}"
                                                                         class="nav-link">
-                                                                        <i class="fas fa-tools mr-1"></i>
+                                                                        <i class="mr-1 fas fa-tools"></i>
                                                                         Configuración
                                                                         {{-- <div class="ml-auto badge badge-success">New
                                                                         </div> --}}
@@ -727,23 +727,23 @@
                                                         </div>
                                                     </div>
                                                     {{-- <ul class="nav flex-column">
-                                                        <li class="nav-item-divider mb-0 nav-item"></li>
+                                                        <li class="mb-0 nav-item-divider nav-item"></li>
                                                     </ul>
                                                     <div class="grid-menu grid-menu-2col">
                                                         <div class="no-gutters row">
                                                             <div class="col-sm-6">
                                                                 <button
-                                                                    class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-warning">
+                                                                    class="pt-2 pb-2 btn-icon-vertical btn-transition btn-transition-alt btn btn-outline-warning">
                                                                     <i
-                                                                        class="pe-7s-chat icon-gradient bg-amy-crisp btn-icon-wrapper mb-2"></i>
+                                                                        class="mb-2 pe-7s-chat icon-gradient bg-amy-crisp btn-icon-wrapper"></i>
                                                                     Message Inbox
                                                                 </button>
                                                             </div>
                                                             <div class="col-sm-6">
                                                                 <button
-                                                                    class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-danger">
+                                                                    class="pt-2 pb-2 btn-icon-vertical btn-transition btn-transition-alt btn btn-outline-danger">
                                                                     <i
-                                                                        class="pe-7s-ticket icon-gradient bg-love-kiss btn-icon-wrapper mb-2"></i>
+                                                                        class="mb-2 pe-7s-ticket icon-gradient bg-love-kiss btn-icon-wrapper"></i>
                                                                     <b>Support Tickets</b>
                                                                 </button>
                                                             </div>
@@ -752,7 +752,7 @@
                                                     <ul class="nav flex-column">
                                                         <li class="nav-item-divider nav-item">
                                                         </li>
-                                                        <li class="nav-item-btn text-center nav-item">
+                                                        <li class="text-center nav-item-btn nav-item">
                                                             <button class="btn-wide btn btn-primary btn-sm">
                                                                 Open Messages
                                                             </button>
@@ -787,7 +787,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="app-inner-layout__content container">
+                            <div class="container app-inner-layout__content">
                                 <div class="tab-content">
                                     <div class="container">
                                         {{ $slot }}
@@ -814,7 +814,7 @@
                                             </a>
                                             <div tabindex="-1" role="menu" aria-hidden="true"
                                                 class="dropdown-menu-xl rm-pointers dropdown-menu">
-                                                <div class="dropdown-menu-header mb-0">
+                                                <div class="mb-0 dropdown-menu-header">
                                                     <div class="dropdown-menu-header-inner bg-deep-blue">
                                                         <div class="menu-header-image opacity-1"
                                                             style="background-image: url('/images/dropdown-header/city3.jpg');">
@@ -827,7 +827,7 @@
                                                     </div>
                                                 </div>
                                                 <ul
-                                                    class="tabs-animated-shadow tabs-animated nav nav-justified tabs-shadow-bordered p-3">
+                                                    class="p-3 tabs-animated-shadow tabs-animated nav nav-justified tabs-shadow-bordered">
                                                     <li class="nav-item">
                                                         <a role="tab" class="nav-link active" data-toggle="tab"
                                                             href="#tab-messages-header1">
@@ -890,7 +890,7 @@
                                                                                         <h4 class="timeline-title">Build
                                                                                             the production release
                                                                                             <span
-                                                                                                class="badge badge-danger ml-2">NEW</span>
+                                                                                                class="ml-2 badge badge-danger">NEW</span>
                                                                                         </h4>
                                                                                         <span
                                                                                             class="vertical-timeline-element-date"></span>
@@ -906,7 +906,7 @@
                                                                                         <h4 class="timeline-title">
                                                                                             Something not important
                                                                                             <div
-                                                                                                class="avatar-wrapper mt-2 avatar-wrapper-overlap">
+                                                                                                class="mt-2 avatar-wrapper avatar-wrapper-overlap">
                                                                                                 <div
                                                                                                     class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                     <div
@@ -1032,7 +1032,7 @@
                                                                                         <h4 class="timeline-title">Build
                                                                                             the production release
                                                                                             <span
-                                                                                                class="badge badge-danger ml-2">NEW</span>
+                                                                                                class="ml-2 badge badge-danger">NEW</span>
                                                                                         </h4>
                                                                                         <span
                                                                                             class="vertical-timeline-element-date"></span>
@@ -1220,7 +1220,7 @@
                                                     <div class="tab-pane" id="tab-errors-header1" role="tabpanel">
                                                         <div class="scroll-area-sm">
                                                             <div class="scrollbar-container">
-                                                                <div class="no-results pt-3 pb-0">
+                                                                <div class="pt-3 pb-0 no-results">
                                                                     <div
                                                                         class="swal2-icon swal2-success swal2-animate-success-icon">
                                                                         <div class="swal2-success-circular-line-left"
@@ -1246,7 +1246,7 @@
                                                 </div>
                                                 <ul class="nav flex-column">
                                                     <li class="nav-item-divider nav-item"></li>
-                                                    <li class="nav-item-btn text-center nav-item">
+                                                    <li class="text-center nav-item-btn nav-item">
                                                         <button
                                                             class="btn-shadow btn-wide btn-pill btn btn-focus btn-sm">View
                                                             Latest Changes</button>
@@ -1269,7 +1269,7 @@
                                                         <div class="menu-header-image"
                                                             style="background-image: url('/images/dropdown-header/abstract4.jpg');">
                                                         </div>
-                                                        <div class="menu-header-content text-white">
+                                                        <div class="text-white menu-header-content">
                                                             <h5 class="menu-header-title">Users Online
                                                             </h5>
                                                             <h6 class="menu-header-subtitle">Recent Account Activity
@@ -1283,13 +1283,13 @@
                                                         <div class="icon-wrapper rounded-circle">
                                                             <div class="icon-wrapper-bg opacity-9 bg-focus">
                                                             </div>
-                                                            <i class="lnr-users text-white">
+                                                            <i class="text-white lnr-users">
                                                             </i>
                                                         </div>
                                                         <div class="widget-numbers">
                                                             <span>344k</span>
                                                         </div>
-                                                        <div class="widget-subheading pt-2">
+                                                        <div class="pt-2 widget-subheading">
                                                             Profile views since last login
                                                         </div>
                                                         <div class="widget-description text-danger">
@@ -1304,12 +1304,12 @@
                                                     </div>
                                                 </div>
                                                 <ul class="nav flex-column">
-                                                    <li class="nav-item-divider mt-0 nav-item">
+                                                    <li class="mt-0 nav-item-divider nav-item">
                                                     </li>
-                                                    <li class="nav-item-btn text-center nav-item">
+                                                    <li class="text-center nav-item-btn nav-item">
                                                         <button
                                                             class="btn-shine btn-wide btn-pill btn btn-warning btn-sm">
-                                                            <i class="fa fa-cog fa-spin mr-2">
+                                                            <i class="mr-2 fa fa-cog fa-spin">
                                                             </i>
                                                             View Details
                                                         </button>
@@ -1327,10 +1327,10 @@
                                             <a data-placement="top" rel="popover-focus" data-offset="300"
                                                 data-toggle="popover-custom" class="nav-link">
                                                 Footer Menu
-                                                <div class="badge badge-success ml-0 ml-1">
+                                                <div class="ml-0 ml-1 badge badge-success">
                                                     <small>Old</small>
                                                 </div>
-                                                <i class="fa fa-angle-up ml-2 opacity-8"></i>
+                                                <i class="ml-2 fa fa-angle-up opacity-8"></i>
                                             </a>
                                             <div class="rm-max-width rm-pointers">
                                                 <div class="d-none popover-custom-content">
@@ -1418,9 +1418,9 @@
                         <div class="p-3">
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <div class="widget-content p-0">
+                                    <div class="p-0 widget-content">
                                         <div class="widget-content-wrapper">
-                                            <div class="widget-content-left mr-3">
+                                            <div class="mr-3 widget-content-left">
                                                 <div class="switch has-switch switch-container-class"
                                                     data-class="app-sidebar-full">
                                                     <div class="switch-animate switch-off">
@@ -1439,9 +1439,9 @@
                                     </div>
                                 </li>
                                 <li class="list-group-item">
-                                    <div class="widget-content p-0">
+                                    <div class="p-0 widget-content">
                                         <div class="widget-content-wrapper">
-                                            <div class="widget-content-left mr-3">
+                                            <div class="mr-3 widget-content-left">
                                                 <div class="switch has-switch switch-container-class"
                                                     data-class="body-subnav-pills">
                                                     <div class="switch-animate switch-off">
@@ -1467,7 +1467,7 @@
                                 Sidebar Options
                             </div>
                             <button type="button"
-                                class="btn-pill btn-shadow btn-wide ml-auto btn btn-focus btn-sm switch-sidebar-cs-class"
+                                class="ml-auto btn-pill btn-shadow btn-wide btn btn-focus btn-sm switch-sidebar-cs-class"
                                 data-class="">
                                 Restore Default
                             </button>
@@ -1635,7 +1635,7 @@
                         <div class="col">
                             <div class="progress-box">
                                 <h4>Server Load 1</h4>
-                                <div class="circle-progress circle-progress-gradient-xl mx-auto">
+                                <div class="mx-auto circle-progress circle-progress-gradient-xl">
                                     <small></small>
                                 </div>
                             </div>
@@ -1643,7 +1643,7 @@
                         <div class="col">
                             <div class="progress-box">
                                 <h4>Server Load 2</h4>
-                                <div class="circle-progress circle-progress-success-xl mx-auto">
+                                <div class="mx-auto circle-progress circle-progress-success-xl">
                                     <small></small>
                                 </div>
                             </div>
@@ -1651,7 +1651,7 @@
                         <div class="col">
                             <div class="progress-box">
                                 <h4>Server Load 3</h4>
-                                <div class="circle-progress circle-progress-danger-xl mx-auto">
+                                <div class="mx-auto circle-progress circle-progress-danger-xl">
                                     <small></small>
                                 </div>
                             </div>
@@ -1663,46 +1663,46 @@
                         <div id="sparkline-carousel-3"></div>
                         <div class="row">
                             <div class="col">
-                                <div class="widget-chart p-0">
+                                <div class="p-0 widget-chart">
                                     <div class="widget-chart-content">
                                         <div class="widget-numbers text-warning fsize-3">43</div>
-                                        <div class="widget-subheading pt-1">Packages</div>
+                                        <div class="pt-1 widget-subheading">Packages</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="widget-chart p-0">
+                                <div class="p-0 widget-chart">
                                     <div class="widget-chart-content">
                                         <div class="widget-numbers text-danger fsize-3">65</div>
-                                        <div class="widget-subheading pt-1">Dropped</div>
+                                        <div class="pt-1 widget-subheading">Dropped</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="widget-chart p-0">
+                                <div class="p-0 widget-chart">
                                     <div class="widget-chart-content">
                                         <div class="widget-numbers text-success fsize-3">18</div>
-                                        <div class="widget-subheading pt-1">Invalid</div>
+                                        <div class="pt-1 widget-subheading">Invalid</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="divider"></div>
-                        <div class="text-center mt-2 d-block">
+                        <div class="mt-2 text-center d-block">
                             <button class="mr-2 border-0 btn-transition btn btn-outline-danger">Escalate Issue</button>
                             <button class="border-0 btn-transition btn btn-outline-success">Support Center</button>
                         </div>
                     </div>
                 </div>
                 <h3 class="drawer-heading">File Transfers</h3>
-                <div class="drawer-section p-0">
+                <div class="p-0 drawer-section">
                     <div class="files-box">
                         <ul class="list-group list-group-flush">
                             <li class="pt-2 pb-2 pr-2 list-group-item">
-                                <div class="widget-content p-0">
+                                <div class="p-0 widget-content">
                                     <div class="widget-content-wrapper">
                                         <div
-                                            class="widget-content-left opacity-6 fsize-2 mr-3 text-primary center-elem">
+                                            class="mr-3 widget-content-left opacity-6 fsize-2 text-primary center-elem">
                                             <i class="fa fa-file-alt"></i>
                                         </div>
                                         <div class="widget-content-left">
@@ -1717,10 +1717,10 @@
                                 </div>
                             </li>
                             <li class="pt-2 pb-2 pr-2 list-group-item">
-                                <div class="widget-content p-0">
+                                <div class="p-0 widget-content">
                                     <div class="widget-content-wrapper">
                                         <div
-                                            class="widget-content-left opacity-6 fsize-2 mr-3 text-warning center-elem">
+                                            class="mr-3 widget-content-left opacity-6 fsize-2 text-warning center-elem">
                                             <i class="fa fa-file-archive"></i>
                                         </div>
                                         <div class="widget-content-left">
@@ -1735,9 +1735,9 @@
                                 </div>
                             </li>
                             <li class="pt-2 pb-2 pr-2 list-group-item">
-                                <div class="widget-content p-0">
+                                <div class="p-0 widget-content">
                                     <div class="widget-content-wrapper">
-                                        <div class="widget-content-left opacity-6 fsize-2 mr-3 text-danger center-elem">
+                                        <div class="mr-3 widget-content-left opacity-6 fsize-2 text-danger center-elem">
                                             <i class="fa fa-file-pdf"></i>
                                         </div>
                                         <div class="widget-content-left">
@@ -1752,10 +1752,10 @@
                                 </div>
                             </li>
                             <li class="pt-2 pb-2 pr-2 list-group-item">
-                                <div class="widget-content p-0">
+                                <div class="p-0 widget-content">
                                     <div class="widget-content-wrapper">
                                         <div
-                                            class="widget-content-left opacity-6 fsize-2 mr-3 text-success center-elem">
+                                            class="mr-3 widget-content-left opacity-6 fsize-2 text-success center-elem">
                                             <i class="fa fa-file-excel"></i>
                                         </div>
                                         <div class="widget-content-left">
@@ -1774,14 +1774,14 @@
                     </div>
                 </div>
                 <h3 class="drawer-heading">Tasks in Progress</h3>
-                <div class="drawer-section p-0">
+                <div class="p-0 drawer-section">
                     <div class="todo-box">
                         <ul class="todo-list-wrapper list-group list-group-flush">
                             <li class="list-group-item">
                                 <div class="todo-indicator bg-warning"></div>
-                                <div class="widget-content p-0">
+                                <div class="p-0 widget-content">
                                     <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-2">
+                                        <div class="mr-2 widget-content-left">
                                             <div class="custom-checkbox custom-control">
                                                 <input type="checkbox" id="exampleCustomCheckbox1266"
                                                     class="custom-control-input">
@@ -1791,7 +1791,7 @@
                                         </div>
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Wash the car
-                                                <div class="badge badge-danger ml-2">Rejected</div>
+                                                <div class="ml-2 badge badge-danger">Rejected</div>
                                             </div>
                                             <div class="widget-subheading"><i>Written by Bob</i></div>
                                         </div>
@@ -1808,9 +1808,9 @@
                             </li>
                             <li class="list-group-item">
                                 <div class="todo-indicator bg-focus"></div>
-                                <div class="widget-content p-0">
+                                <div class="p-0 widget-content">
                                     <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-2">
+                                        <div class="mr-2 widget-content-left">
                                             <div class="custom-checkbox custom-control">
                                                 <input type="checkbox" id="exampleCustomCheckbox1666"
                                                     class="custom-control-input">
@@ -1822,7 +1822,7 @@
                                             <div class="widget-heading">Task with hover dropdown menu</div>
                                             <div class="widget-subheading">
                                                 <div>By Johnny
-                                                    <div class="badge badge-pill badge-info ml-2">NEW</div>
+                                                    <div class="ml-2 badge badge-pill badge-info">NEW</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1851,9 +1851,9 @@
                             </li>
                             <li class="list-group-item">
                                 <div class="todo-indicator bg-primary"></div>
-                                <div class="widget-content p-0">
+                                <div class="p-0 widget-content">
                                     <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-2">
+                                        <div class="mr-2 widget-content-left">
                                             <div class="custom-checkbox custom-control">
                                                 <input type="checkbox" id="exampleCustomCheckbox4777"
                                                     class="custom-control-input">
@@ -1871,7 +1871,7 @@
                                                 </i>
                                             </button>
                                         </div>
-                                        <div class="widget-content-right ml-3">
+                                        <div class="ml-3 widget-content-right">
                                             <div class="badge badge-pill badge-success">Latest Task</div>
                                         </div>
                                     </div>
@@ -1879,9 +1879,9 @@
                             </li>
                             <li class="list-group-item">
                                 <div class="todo-indicator bg-info"></div>
-                                <div class="widget-content p-0">
+                                <div class="p-0 widget-content">
                                     <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-2">
+                                        <div class="mr-2 widget-content-left">
                                             <div class="custom-checkbox custom-control">
                                                 <input type="checkbox" id="exampleCustomCheckbox2444"
                                                     class="custom-control-input">
@@ -1889,7 +1889,7 @@
                                                     for="exampleCustomCheckbox2444">&nbsp;</label>
                                             </div>
                                         </div>
-                                        <div class="widget-content-left mr-3">
+                                        <div class="mr-3 widget-content-left">
                                             <div class="widget-content-left"><img width="42" class="rounded"
                                                     src="{{ asset('images/default/avatars/1.jpg') }}" alt="" /></div>
                                         </div>
@@ -1910,9 +1910,9 @@
                             </li>
                             <li class="list-group-item">
                                 <div class="todo-indicator bg-success"></div>
-                                <div class="widget-content p-0">
+                                <div class="p-0 widget-content">
                                     <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-2">
+                                        <div class="mr-2 widget-content-left">
                                             <div class="custom-checkbox custom-control">
                                                 <input type="checkbox" id="exampleCustomCheckbox3222"
                                                     class="custom-control-input">
@@ -1925,7 +1925,7 @@
                                             <div class="widget-subheading">Finish React ToDo List App</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="badge badge-warning mr-2">69</div>
+                                            <div class="mr-2 badge badge-warning">69</div>
                                         </div>
                                         <div class="widget-content-right">
                                             <button class="border-0 btn-transition btn btn-outline-success">
@@ -1968,7 +1968,7 @@
                                 <div><span class="vertical-timeline-element-icon bounce-in"></span>
                                     <div class="vertical-timeline-element-content bounce-in">
                                         <h4 class="timeline-title">Build the production release
-                                            <div class="badge badge-danger ml-2">NEW</div>
+                                            <div class="ml-2 badge badge-danger">NEW</div>
                                         </h4>
                                         <span class="vertical-timeline-element-date"></span>
                                     </div>
@@ -1978,7 +1978,7 @@
                                 <div><span class="vertical-timeline-element-icon bounce-in"></span>
                                     <div class="vertical-timeline-element-content bounce-in">
                                         <h4 class="timeline-title">Something not important
-                                            <div class="avatar-wrapper mt-2 avatar-wrapper-overlap">
+                                            <div class="mt-2 avatar-wrapper avatar-wrapper-overlap">
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
                                                             src="{{ asset('images/default/avatars/1.jpg') }}" alt="">
@@ -1991,7 +1991,7 @@
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">
                                                     <div class="avatar-icon"><img
-                                                            src="{{ asset('images/default/avatars/profile.jpg?20210529') }}"
+                                                            src="{{ asset('images/default/avatars/profile.jpg') }}"
                                                             alt=""></div>
                                                 </div>
                                                 <div class="avatar-icon-wrapper avatar-icon-sm">

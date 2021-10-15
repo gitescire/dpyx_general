@@ -71,9 +71,9 @@ class UsersSeeder extends Seeder
                 'status' => 'en progreso',
             ]);
 
-            (new EvaluationService)($evaluation)
+          /*  (new EvaluationService)($evaluation)
                 ->updateCurrentEvaluator($userEvaluator)
-                ->addNewEvaluatorIfNotExist($userEvaluator);
+                ->addNewEvaluatorIfNotExist($userEvaluator);*/
         } else {
             $evaluation = Evaluation::create([
                 'repository_id' => $repository->id,
@@ -146,9 +146,9 @@ class UsersSeeder extends Seeder
                 // 'evaluator_id' => $userEvaluator->id,
                 'status' => 'en progreso',
             ]);
-            (new EvaluationService)($evaluation)
+          /*  (new EvaluationService)($evaluation)
                 ->updateCurrentEvaluator($userEvaluator)
-                ->addNewEvaluatorIfNotExist($userEvaluator);
+                ->addNewEvaluatorIfNotExist($userEvaluator);*/
         } else {
             $evaluation = Evaluation::create([
                 'repository_id' => $repository->id,

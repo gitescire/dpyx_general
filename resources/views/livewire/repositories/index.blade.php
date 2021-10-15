@@ -10,30 +10,25 @@
     <div class="mb-3 row d-flext justify-content-between">
         <div class="col-12 col-lg-4">
             <x-input-search />
-
         </div>
 
-         <div class="text-left custom-control custom-switch col-8 col-lg-4" >
-            <input wire:model="withoutprogress" type="checkbox" class="custom-control-input" id="swprogres">
-            <label class="custom-control-label" for="swprogres">Filtrar sin progreso</label>
-          </div>
+        <select wire:model='search_filter' class="col-4 col-lg-2 form-select form-select-sm" aria-label=".form-select-sm example">
+            <option selected >Sin filtro</option>
+            <option >Filtrar sin progreso</option>
+            <option >Filtrar en evaluacíon</option>
+            <option >Filtrar con observaciónes</option>
+            <option >Filtrar aprobado</option>
+            <option >Filtrar rechazado</option>
 
+          </select>
 
-        <div class="text-right col-8 col-lg-4">
+        <div class="text-right col-12 col-lg-4">
             @if (auth()->user()->is_evaluator || auth()->user()->is_admin)
                 <span class="ml-2 text-info">
                     AGLOMERADO GENERAL
                 </span>
-                <a href="{{ route('repositories.statistics.all') }}" class="mb-2 btn btn-info btn-shadow rounded-0">
+                <a href="{{ route('repositories.statistics.all') }}" class="btn btn-info btn-shadow rounded-0">
                     <i class="fas fa-chart-pie"></i>
-                </a>
-
-                <span class="ml-3 text-secondary">
-                    CONFIGURACIÓN CONSTANCIA
-                </span>
-                <a href="{{ route('constancies.edit') }}" class="btn btn-secondary btn-shadow rounded-0">
-
-                    <i class="fas fa-certificate"></i>
                 </a>
             @endif
         </div>
@@ -82,11 +77,7 @@
                         </td>
                         <td>{{ $repository->responsible->name }}</td>
                         @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables')))
-                            <td>
-                                @foreach ($repository->evaluation->evaluators as $evaluator)
-                                    <input type="text" class="mt-1 form-control" readonly value="{{ $evaluator->name }}">
-                                @endforeach
-                            </td>
+                            <td> @if($repository->evaluation && isset($repository->evaluation->evaluator->name)) {{$repository->evaluation->evaluator->name}} @else 'N/A' @endif</td>
                         @endif
                         <td>
                             <a href="{{ route('repositories.statistics.show', [$repository]) }}"

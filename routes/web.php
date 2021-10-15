@@ -32,7 +32,7 @@ Route::get('synchronize/answers', function () {
     }
     return "synchronized";
 });
-
+/*
 Route::get('synchronize/evaluators', function () {
     foreach (Evaluation::get() as $evaluation) {
         if ($evaluation->evaluator_id) {
@@ -41,7 +41,7 @@ Route::get('synchronize/evaluators', function () {
         }
     }
     return "synchronized";
-});
+});*/
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

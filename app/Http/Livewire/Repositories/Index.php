@@ -3,22 +3,18 @@
 namespace App\Http\Livewire\Repositories;
 
 use App\Models\Category;
-use App\Models\Evaluation;
 use App\Models\Repository;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
-//use Illuminate\Support\Facades\DB;
 
 class Index extends Component
 {
     use WithPagination;
 
     public $firstCategory;
-    public $withoutprogress = false;
     private $repositories;
-    private $allrepos;
-
+    public $search_filter = "Sin filtro";
     public $search = "";
 
     public function mount()
@@ -37,17 +33,32 @@ class Index extends Component
 
     protected function handleRepositories()
     {
-        if(!$this->withoutprogress){
-            $this->repositories = Repository::orderBy('id', 'desc');
+        switch ($this->search_filter){
 
-        }
-        else{
-
-             $this->repositories= Repository::select('repositories.*', 'evaluations.status')
-                                        ->join('evaluations', 'repositories.id', '=', 'evaluations.id')
-                                        ->where('evaluations.status','=', 'en progreso')
-                                        ->where('repositories.status','=','en progreso')->orderBy('id', 'desc');
-
+            case 'Sin filtro':
+                $this->repositories = Repository::orderBy('id', 'desc');
+                break;
+            case 'Filtrar sin progreso':
+                $this->repositories= Repository::where('repositories.status','=', 'en progreso')->orderBy('id', 'desc');
+                break;
+            case 'Filtrar en evaluacíon':
+                $this->repositories= Repository::select('repositories.*', 'evaluations.status')
+                     ->join('evaluations', 'repositories.id', '=', 'evaluations.id')
+                     ->where('evaluations.status','=', 'en revisión')
+                     ->orderBy('id', 'desc');
+                break;
+            case 'Filtrar con observaciónes':
+                $this->repositories= Repository::where('repositories.status','=', 'observaciones')
+                     ->orderBy('id', 'desc');
+                break;
+            case 'Filtrar aprobado':
+                $this->repositories= Repository::where('repositories.status', '=', 'aprobado')
+                ->orderBy('id', 'desc');
+                break;
+            case 'Filtrar rechazado':
+                $this->repositories= Repository::where('repositories.status', '=', 'rechazado')
+                     ->orderBy('id', 'desc');
+                break;
         }
 
         if ($this->search) {
@@ -57,7 +68,7 @@ class Index extends Component
                         return $query->where('name', 'like', '%' . $this->search . '%');
                     })
                     ->orWhereHas('evaluation', function ($query) {
-                        return $query->whereHas('evaluators', function ($query) {
+                        return $query->whereHas('history', function ($query) {
                             return $query->where('name', 'like', '%' . $this->search . '%');
                         });
                     });
@@ -72,7 +83,7 @@ class Index extends Component
 
             $this->repositories = $this->repositories->whereHas('evaluation', function ($query) {
                 // return $query->where('evaluator_id', Auth::user()->id);
-                return $query->whereHas('evaluators', function ($query) {
+                return $query->whereHas('evaluator', function ($query) {
                     return $query->where('users.id', Auth::user()->id);
                 });
             })->paginate(10);

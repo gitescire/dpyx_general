@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use App\Services\EvaluationService;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -34,8 +33,6 @@ class UpdateUserController extends Controller
         $user->phone = $request->phone;
         $user->save();
 
-        $newEvaluators = User::find($request->evaluators_id);
-
         $user->syncRoles($request->role);
 
         if ($user->hasRole('usuario') && $user->has_repositories) {
@@ -44,12 +41,10 @@ class UpdateUserController extends Controller
                 'responsible_id' => $user->id
             ]);
 
-            $evaluationService = (new EvaluationService)($user->repositories()->first()->evaluation);
 
-            foreach ($newEvaluators as $newEvaluator) {
-                $evaluationService
-                    ->addNewEvaluatorIfNotExist($newEvaluator);
-            }
+            $user->repositories()->first()->evaluation()->update([
+                'evaluator_id' => $request->evaluator_id
+            ]);
         }
 
         if ($user->hasRole('usuario') && !$user->has_repositories) {
@@ -58,17 +53,10 @@ class UpdateUserController extends Controller
                 'responsible_id' => $user->id
             ]);
 
-            $evaluation = $repository->evaluation()->create([
+            $repository->evaluation()->create([
                 'repository_id' => $repository->id,
+                'evaluator_id' => $request->evaluator_id
             ]);
-
-            $evaluationService = (new EvaluationService)($evaluation);
-
-            foreach ($newEvaluators as $newEvaluator) {
-                $evaluationService
-                    ->addNewEvaluatorIfNotExist($newEvaluator)
-                    ->updateCurrentEvaluator($newEvaluator);
-            }
         }
 
         Alert::success('¡Usuario modificado!');
