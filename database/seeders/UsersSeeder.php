@@ -67,7 +67,7 @@ class UsersSeeder extends Seeder
         if (config('app.is_evaluable')) {
             $evaluation = Evaluation::create([
                 'repository_id' => $repository->id,
-                // 'evaluator_id' => $userEvaluator->id,
+                 'evaluator_id' => $userEvaluator->id,
                 'status' => 'en progreso',
             ]);
 
@@ -143,7 +143,7 @@ class UsersSeeder extends Seeder
         if (config('app.is_evaluable')) {
             $evaluation = Evaluation::create([
                 'repository_id' => $repository->id,
-                // 'evaluator_id' => $userEvaluator->id,
+                 'evaluator_id' => $userEvaluator->id,
                 'status' => 'en progreso',
             ]);
           /*  (new EvaluationService)($evaluation)
