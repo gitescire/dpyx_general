@@ -166,7 +166,7 @@
                         0)
                         <tr>
                             <td>
-                                {{$question->description}}
+                                {!!$question->description!!}
                                 @if ($question->help_text)
                                 <span tabindex="0" data-toggle="popover" data-trigger="focus" title="Ayuda"
                                     data-content="{{$question->help_text}}">
