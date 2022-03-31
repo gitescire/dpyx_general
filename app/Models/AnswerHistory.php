@@ -30,4 +30,9 @@ class AnswerHistory extends Model
     public function observation(){
         return $this->hasOne('App\Models\ObservationHistory');
     }
+
+    public function question(){
+        return $this->belongsTo('App\Models\Question');
+    }
 }
+

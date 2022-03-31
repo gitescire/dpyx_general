@@ -210,7 +210,7 @@
                                         class="badge badge-pill {{$question->answer->choice ? 'badge-success' : 'badge-warning'}}">{{$question->answer->choice ? 'contestada' : 'pendiente'}}</span>
                                 </div>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{-- @can('edit evaluations') --}}
                                 @if ($evaluation->is_reviewable)
                                 @if ($question->answer)
@@ -228,7 +228,7 @@
                                 </a>
                                 @endif
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <button type="button" class="btn btn-info btn-shadow rounded-0" data-toggle="modal"
                                     data-target="#showAnswerHistory{{$question->answer->id}}">
                                     <i class="fas fa-history"></i>

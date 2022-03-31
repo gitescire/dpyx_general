@@ -91,12 +91,12 @@ class Evaluation extends Model
         if (Auth::user()->is_evaluator && $this->is_in_progress) {
             return false;
         }
-        if (Auth::user()->is_admin && $this->is_answered) {
-            return false;
-        }
-        if (Auth::user()->is_evaluator && $this->is_answered) {
-            return false;
-        }
+        // if (Auth::user()->is_admin && $this->is_answered) {
+        //     return false;
+        // }
+        // if (Auth::user()->is_evaluator && $this->is_answered) {
+        //     return false;
+        // }
         return true;
     }
 

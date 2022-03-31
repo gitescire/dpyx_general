@@ -79,28 +79,28 @@
                         @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables')))
                             <td> @if($repository->evaluation && isset($repository->evaluation->evaluator->name)) {{$repository->evaluation->evaluator->name}} @else 'N/A' @endif</td>
                         @endif
-                        <td>
+                        <td class="text-center">
                             <a href="{{ route('repositories.statistics.show', [$repository]) }}"
                                 class="btn btn-info btn-shadow rounded-0 {{ $repository->evaluation->answers->whereNotNull('choice_id')->count() ? '' : 'disabled' }}">
                                 <i class="fas fa-chart-pie"></i>
                             </a>
                         </td>
                         {{-- @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables'))) --}}
-                        <td>
+                        <td class="text-center">
                             <a href="{{ route('evaluations.categories.questions.index', [$repository->evaluation, $firstCategory]) }}"
                                 class="btn btn-{{ $repository->evaluation->is_reviewed && $repository->is_aproved ? 'secondary' : 'primary' }} btn-shadow rounded-0 {{ $repository->evaluation->is_viewable ? '' : 'disabled' }}">
                                 <i class="fas fa-scroll"></i>
                             </a>
                         </td>
                         {{-- @endif --}}
-                        <td>
+                        <td class="text-center">
                             <button type="button" class="btn btn-info btn-shadow rounded-0" data-toggle="modal"
                                 data-target="#showEvaluationHistory{{ $repository->evaluation->id }}">
                                 <i class="fas fa-history"></i>
                             </button>
                             <x-modals.evaluations.history :evaluation="$repository->evaluation" />
                         </td>
-                        <td>
+                        <td class="text-center">
                             <a href="{{ route('evaluations.pdf', [$repository->evaluation]) }}"
                                 class="btn btn-secondary btn-shadow rounded-0">
                                 <i class="fas fa-file-pdf"></i>

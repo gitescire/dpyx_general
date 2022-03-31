@@ -119,6 +119,8 @@ Route::prefix('evaluations')->middleware('auth')->group(function () {
     Route::get('{evaluation}/pdf', \App\Http\Controllers\Evaluations\ExportEvaluationController::class)->name('evaluations.pdf');
     Route::post('{evaluation}/categories/{category}/questions', \App\Http\Controllers\Evaluations\Categories\Questions\StoreQuestionController::class)->name('evaluations.categories.questions.store');
     Route::post('{evaluation}/send', \App\Http\Controllers\Evaluations\SendEvaluationController::class)->name('evaluations.send');
+    Route::delete('{evaluation}/observations/{observation}',App\Http\Controllers\Evaluations\Categories\Questions\DestroyQuestionObservationController::class)->name('evaluations.categories.questions.observations.destroy');
+    Route::post('{evaluation}/observations/{observation}',App\Http\Controllers\Evaluations\Categories\Questions\RestoreQuestionObservationController::class)->name('evaluations.categories.questions.observations.restore');
 });
 
 Route::prefix('reports')->middleware('auth')->group(function () {

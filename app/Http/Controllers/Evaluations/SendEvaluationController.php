@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Evaluations;
 
 use App\Events\EvaluationFinishedEvent;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\AnswerHistory;
 use App\Models\Evaluation;
 use App\Models\EvaluationHistory;
@@ -23,33 +24,37 @@ class SendEvaluationController extends Controller
     {
         event(new EvaluationFinishedEvent($evaluation));
 
-        
+
+        $isEvaluatorRole = Auth::user()->hasRole('evaluador');
         $evaluation->status = "en revisión";
         $evaluation->save();
 
-
-        $evaluationHistory = EvaluationHistory::create([
-            'repository_id' => $evaluation->repository->id,
-            'status' => $evaluation->status
-        ]);
+        if($isEvaluatorRole){
+            $evaluationHistory = EvaluationHistory::create([
+                'repository_id' => $evaluation->repository->id,
+                'status' => $evaluation->status
+            ]);
+        }
 
 
         $evaluation->repository->status = 'en progreso';
         $evaluation->repository->save();
 
 
-        foreach ($evaluation->answers as $answer) {
-            (new AnswerSynchronizer($answer))->execute();
+        if($isEvaluatorRole){
+            foreach ($evaluation->answers as $answer) {
+                (new AnswerSynchronizer($answer))->execute();
 
-            $answerHistory = new AnswerHistory;
-            $answerHistory->choice_id = $answer->choice_id;
-            $answerHistory->question_id = $answer->question_id;
-            $answerHistory->evaluation_history_id = $evaluationHistory->id;
-            $answerHistory->description = $answer->description;
-            $answerHistory->save();
+                $answerHistory = new AnswerHistory;
+                $answerHistory->choice_id = $answer->choice_id;
+                $answerHistory->question_id = $answer->question_id;
+                $answerHistory->evaluation_history_id = $evaluationHistory->id;
+                $answerHistory->description = $answer->description;
+                $answerHistory->save();
+            }
         }
 
-        
+
         Alert::success('¡La evaluación ha sido enviada para su revisión!');
         return redirect()->route('repositories.index');
     }
