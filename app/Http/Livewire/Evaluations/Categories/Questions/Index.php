@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Evaluations\Categories\Questions;
 
 use App\Models\Announcement;
+use App\Models\AnnouncementRepository;
 use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Choice;
@@ -11,6 +12,7 @@ use App\Models\Question;
 use App\Models\Subcategory;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use PhpParser\Node\Expr\Cast\Bool_;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class Index extends Component
@@ -24,6 +26,8 @@ class Index extends Component
     public $announcement;
     public $nextCategory;
     public $showComplementaryQuestions = false;
+    public $extendedFinalDate;
+    public $isExtendedFinalDate;
 
     public function mount(Evaluation $evaluation, Category $category)
     {
@@ -32,6 +36,25 @@ class Index extends Component
         $this->repository = $this->evaluation->repository;
         $this->categoryChoosed = $category;
         $this->categories = Category::has('questions')->get();
+        $this->isExtendedFinalDate = $this->hasExtendedFinalDate();
+    }
+
+    private function hasExtendedFinalDate(): Bool
+    {
+        $isExtendedFinalDate = false;
+
+        $announcementRepositoryList = AnnouncementRepository::where('repository_id',$this->repository->id)->orderBy('extended_final_date','DESC');
+
+        if($announcementRepositoryList->count()>0){
+            $this->extendedFinalDate = $announcementRepositoryList->first()->extended_final_date;
+            if(strtotime($this->extendedFinalDate) > strtotime(date('Y-m-d H:i:s'))){
+                $isExtendedFinalDate = true;
+            }
+        }
+
+
+
+        return $isExtendedFinalDate;
     }
 
     public function storeAnswer($question, $choice = null)

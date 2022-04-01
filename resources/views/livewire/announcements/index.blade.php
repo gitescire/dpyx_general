@@ -41,7 +41,7 @@
                     </td>
                     <td>{{$announcement->motive ?? 'N/A'}}</td>
                     @canany(['edit announcements','delete announcements'])
-                    <td>
+                    <td class="text-center">
                         @can('delete announcements')
                         <form action="{{route('announcements.destroy',[$announcement])}}" method="POST"
                             class="d-inline">
@@ -57,6 +57,14 @@
                             class="btn btn-warning btn-shadow rounded-0">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
+                        <button type="button" class="btn btn-success btn-shadow rounded-0" data-toggle="modal" data-target="#modalSpecialDeadlineExtension">
+                            <i class="fas fa-calendar-plus"></i>
+                        </button>
+                        <x-modals.announcements.deadline-extension
+                            title="Extensión de recepción especial"
+                            :announcement="$announcement"
+                            :users="$users">
+                        </x-modals.announcements.deadline-extension>
                         @endcan
                     </td>
                     @endcanany
