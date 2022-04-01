@@ -12,9 +12,9 @@
             <form action="{{route('evaluations.send',[$evaluation])}}" method="POST" x-ref="formSendToConcytec">
                 @csrf
             </form>
-            <button class="btn btn-success btn-wide shadow rounded-0" {{$announcement ? '' : 'disabled'}}
+            <button class="btn btn-success btn-wide shadow rounded-0" {{$announcement || $isExtendedFinalDate ? '' : 'disabled'}}
                 x-ref="buttonSendToConcytec" x-on:click="showWarning()">
-                <i class="fas fa-paper-plane"></i> {{__("Enviar cuestionario")}}
+                <i class="fas fa-paper-plane"></i> {{__("Enviar cuestionario")}} {{ $isExtendedFinalDate ? '(Extensión hasta '.$extendedFinalDate.')' : '' }}
             </button>
         </div>
     </div>

@@ -43,12 +43,12 @@
 
                             @endphp
 
-                            @if(!$userHasDateExtension)
+                            @if(!$userHasDateExtension && $user->has_repositories)
                             <tr>
                                 <td>{{$user->id}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                <td>{{$user->repositories->first()->name}}</td>
+                                <td>{{$user->repositories ? $user->repositories->first()->name : '-'}}</td>
                                 <td>
                                     <form action="{{ route('announcementrepository.store', [$announcement,$user->repositories->first()]) }}" method="POST">
                                         @csrf
@@ -65,10 +65,6 @@
 
                         </tbody>
                     </table>
-                </div>
-
-                <div class="">
-                    {{$users->links()}}
                 </div>
 
                 <div class="row">

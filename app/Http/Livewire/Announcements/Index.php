@@ -45,6 +45,6 @@ class Index extends Component
             $this->users = $this->users->whereIn('id', $repositoryResponsiblesIds);
         }
 
-        $this->users = $this->users->paginate(10);
+        $this->users = $this->users->get();
     }
 }
