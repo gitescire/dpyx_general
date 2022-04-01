@@ -79,7 +79,7 @@
 
 <body>
     <div align="center" style="margin-top: 12em; position: absolute">
-        <img src="{{asset('images/default/evaluation/1.png')}}" /> <br />
+        <img src="{{asset('images/default/evaluation/1.jpg')}}" /> <br />
         <br />{{__("messages.views.pdfs.evaluation.text1")}}<br /><br /><br /><br /><br /><br />
         <br /><br /><br /><br /><br />AUTOEVALUACIÓN DE {{strtoupper($repository->name)}}
         <br />
