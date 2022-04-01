@@ -182,7 +182,7 @@
                                     {{$evaluation->is_answerable && $question->answer->is_updateable ? '' : 'disabled readonly'}}>{{$question->answer->description}}</textarea>
                                 @endif
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <span>{{$question->max_punctuation}}</span>
                             </td>
                             <td>
