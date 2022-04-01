@@ -104,6 +104,10 @@ Route::prefix('announcements')->middleware('auth')->group(function () {
     Route::post('/', \App\Http\Controllers\Announcements\StoreAnnouncementController::class)->middleware('can:create announcements')->name('announcements.store');
     Route::put('{announcement}', \App\Http\Controllers\Announcements\UpdateAnnouncementController::class)->middleware('can:edit announcements')->name('announcements.update');
     Route::delete('{announcement}', \App\Http\Controllers\Announcements\DestroyAnnouncementController::class)->middleware('can:delete announcements')->name('announcements.destroy');
+
+    Route::post('/announcement-repository/{announcement}/repository/{repository}',\App\Http\Controllers\Announcements\AnnouncementRepository\StoreAnnouncementRepositoryController::class)->name('announcementrepository.store');
+    Route::patch('/announcement-repository/{announcementRepositoryId}/edit',\App\Http\Controllers\Announcements\AnnouncementRepository\UpdateAnnouncementRepositoryController::class)->name('announcementrepository.update');
+    Route::delete('/announcement-repository/{announcementRepositoryId}/destroy',\App\Http\Controllers\Announcements\AnnouncementRepository\DestroyAnnouncementRepositoryController::class)->name('announcementrepository.destroy');
 });
 
 Route::prefix('repositories')->middleware('auth')->group(function () {
