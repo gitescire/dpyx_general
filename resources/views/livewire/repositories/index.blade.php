@@ -90,7 +90,7 @@
                     <td> @if($repository->evaluation && isset($repository->evaluation->evaluator->name)) {{$repository->evaluation->evaluator->name}} @else 'N/A' @endif</td>
                     @endif
                     <td class="text-center">
-                        @if($repository->is_aproved || !auth()->user()->is_user)
+                        @if($repository->is_aproved || $repository->is_aproved && !auth()->user()->is_user)
                         <a href="{{ route('repositories.statistics.show', [$repository]) }}" class="btn btn-info btn-shadow rounded-0 {{ $repository->evaluation->answers->whereNotNull('choice_id')->count() ? '' : 'disabled' }}" title="Ver gráfica de resultados">
                             <i class="fas fa-chart-pie"></i>
                         </a>
