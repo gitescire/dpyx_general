@@ -42,45 +42,26 @@
                                     <td>{{$answer->observation ? $answer->observation->description : 'N/A'}}</td>
                                     </tr> --}}
 
-                                    @php $observationsCounter = 0; @endphp
-
-
-                                    @foreach ($repository->evaluationsHistory()->orderBy('id','desc')->get() as $evaluationHistory)
-
-                                    @php
-                                    $answerHistoryObject = $evaluationHistory->answersHistory()->where('question_id',$answer->question_id)->first();
-                                    $evaluation = $repository->evaluation;
-                                    @endphp
-
-                                    @if($answerHistoryObject->observationHistory !== NULL)
-
-                                    @php
-                                    $userRoleValidation = auth()->user()->hasRole('usuario') && !$answerHistoryObject->observationHistory->is_deleted;
-                                    $otherRolesValidation = !auth()->user()->hasRole('usuario');
-                                    @endphp
-
-                                    @if($userRoleValidation || $otherRolesValidation)
-                                    @php $observationsCounter++; @endphp
+                                    @if(sizeof($evaluationsHistory) > 0)
+                                    @foreach ($evaluationsHistory as $evaluationHistory)
                                     <tr>
+                                        <td>{{$evaluationHistory->created_at}}</td>
                                         <td>
-                                            {{$answerHistoryObject->created_at}}
+                                            {{$evaluationHistory->choice ? $evaluationHistory->choice->description : 'N/A'}}
                                         </td>
                                         <td>
-                                            {{$answerHistoryObject->choice ? $answerHistoryObject->choice->description : 'N/A'}}
+                                            {{$evaluationHistory->observation ? $evaluationHistory->observation->description : 'N/A'}}
                                         </td>
-                                        <td class="text-justify">
-                                            {{$answerHistoryObject->observation ? $answerHistoryObject->observation->description : 'N/A'}}
-                                        </td>
-                                        @if($evaluation->status != 'revisado' && auth()->user()->hasRole('evaluador') && auth()->id() == $evaluation->evaluator_id)
-                                        <td class="text-center">
-                                            @if($answerHistoryObject->observationHistory && !$answerHistoryObject->observationHistory->is_deleted)
-                                            <form action="{{ route('evaluations.categories.questions.observations.destroy',[$evaluation, $answerHistoryObject->observationHistory->id]) }}" method="POST">
+                                        @if($repository->evaluation->status != 'revisado' && auth()->user()->hasRole('evaluador') && auth()->id() == $repository->evaluation->evaluator_id)
+                                        <td>
+                                            @if($evaluationHistory->observationHistory && !$evaluationHistory->observationHistory->is_deleted)
+                                            <form action="{{ route('evaluations.categories.questions.observations.destroy',[$repository->evaluation, $evaluationHistory->observationHistory->id]) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-shadow rounded-0"><i class="fas fa-trash"></i></button>
                                             </form>
-                                            @elseif($answerHistoryObject->observationHistory && $answerHistoryObject->observationHistory->is_deleted)
-                                            <form action="{{ route('evaluations.categories.questions.observations.restore',[$evaluation, $answerHistoryObject->observationHistory->id]) }}" method="POST">
+                                            @elseif($evaluationHistory->observationHistory && $evaluationHistory->observationHistory->is_deleted)
+                                            <form action="{{ route('evaluations.categories.questions.observations.restore',[$repository->evaluation, $evaluationHistory->observationHistory->id]) }}" method="POST">
                                                 @csrf
                                                 Observación eliminada (<button type="submit" class="btn text-success btn-link btn-shadow rounded-0">Restaurar <i class="fas fa-trash-restore"></i></button>)
                                             </form>
@@ -90,11 +71,52 @@
                                         </td>
                                         @endif
                                     </tr>
-                                    @endif
-
-                                    @endif
-
                                     @endforeach
+                                    @else
+
+                                    @if($repository->evaluation->status != 'revisado' && auth()->user()->hasRole('evaluador') && auth()->id() == $repository->evaluation->evaluator_id)
+                                    <tr>
+                                        <td colspan="4" class="text-center">No hay observaciones registradas</td>
+                                    </tr>
+                                    @else
+                                    <tr>
+                                        <td colspan="3" class="text-center">No hay observaciones registradas</td>
+                                    </tr>
+                                    @endif
+                                    @endif
+
+                                    {{--@if($evaluationHistory->answerHistoryData($answer->question_id) !== NULL && $evaluationHistory->answerHistoryObject($answer->question_id)->observationHistory !== NULL)
+                                    @if(auth()->user()->hasRole('usuario') && !$answerHistoryObject->observationHistory->is_deleted || !auth()->user()->hasRole('usuario'))
+                                    <tr>
+                                        <td>
+                                            {{$answerHistoryObject->created_at}}
+                                    </td>
+                                    <td>
+                                        {{$answerHistoryObject->choice ? $answerHistoryObject->choice->description : 'N/A'}}
+                                    </td>
+                                    <td class="text-justify">
+                                        {{$answerHistoryObject->observation ? $answerHistoryObject->observation->description : 'N/A'}}
+                                    </td>
+                                    @if($evaluation->status != 'revisado' && auth()->user()->hasRole('evaluador') && auth()->id() == $evaluation->evaluator_id)
+                                    <td class="text-center">
+                                        @if($answerHistoryObject->observationHistory && !$answerHistoryObject->observationHistory->is_deleted)
+                                        <form action="{{ route('evaluations.categories.questions.observations.destroy',[$evaluation, $answerHistoryObject->observationHistory->id]) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-shadow rounded-0"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                        @elseif($answerHistoryObject->observationHistory && $answerHistoryObject->observationHistory->is_deleted)
+                                        <form action="{{ route('evaluations.categories.questions.observations.restore',[$evaluation, $answerHistoryObject->observationHistory->id]) }}" method="POST">
+                                            @csrf
+                                            Observación eliminada (<button type="submit" class="btn text-success btn-link btn-shadow rounded-0">Restaurar <i class="fas fa-trash-restore"></i></button>)
+                                        </form>
+                                        @else
+                                        -
+                                        @endif
+                                    </td>
+                                    @endif
+                                    </tr>
+                                    @endif
 
                                     @if($observationsCounter == 0)
                                     @if($repository->evaluation->status != 'revisado' && auth()->user()->hasRole('evaluador') && auth()->id() == $repository->evaluation->evaluator_id)
@@ -103,6 +125,7 @@
                                     <tr><td colspan="3" class="text-center">No hay observaciones registradas</td></tr>
                                     @endif
                                     @endif
+                                    --}}
 
 
                                 </tbody>

@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 
 class History extends Component
 {
-    
+
     public $answer;
     public $repository;
 
@@ -30,6 +30,29 @@ class History extends Component
      */
     public function render()
     {
-        return view('components.modals.answers.history');
+        return view('components.modals.answers.history',[
+            'evaluationsHistory'=>$this->evaluationsHistoryList()
+        ]);
+    }
+
+
+    public function evaluationsHistoryList(){
+        $answersEvaluationsHistory = [];
+
+        foreach($this->repository->evaluationsHistory()->orderBy('id','desc')->get() as $evaluationHistoryItem){
+            $answerHistoryObject = $evaluationHistoryItem->answersHistory()->where('question_id',$this->answer->question_id)->first();
+
+
+            if($answerHistoryObject !== NULL && $answerHistoryObject->observationHistory !== NULL){
+                $userRoleValidation = auth()->user()->hasRole('usuario') && !$answerHistoryObject->observationHistory->is_deleted;
+                $otherRolesValidation = !auth()->user()->hasRole('usuario');
+
+                if($userRoleValidation || $otherRolesValidation){
+                    $answersEvaluationsHistory[] = $answerHistoryObject;
+                }
+            }
+        }
+
+        return $answersEvaluationsHistory;
     }
 }

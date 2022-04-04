@@ -79,7 +79,7 @@
 
 <body>
     <div align="center" style="margin-top: 12em; position: absolute">
-        <img src="{{asset('images/default/evaluation/1.jpg')}}" /> <br />
+        <img src="{{public_path('/images/default/evaluation/1.jpg')}}" /> <br />
         <br />{{__("messages.views.pdfs.evaluation.text1")}}<br /><br /><br /><br /><br /><br />
         <br /><br /><br /><br /><br />AUTOEVALUACIÓN DE {{strtoupper($repository->name)}}
         <br />
@@ -94,8 +94,8 @@
     <div class="page_break" syu></div>
     {{-- <div style="margin-top: 10em; text-align:justify;"> --}}
         <div class="header">
-            <img width="100%"
-                src="data:image/png;base64,' . {{ base64_encode( file_get_contents( url('images/default/evaluation/banner.png') ) ) }} " /><br />
+            <img width="100%" src="data:image/png;base64,' . {{ base64_encode( file_get_contents( public_path('images/default/evaluation/banner.png') ) ) }} " />
+            <br />
         </div>
     {{-- <div style="margin-top: 10em; text-align:justify;"> --}}
     <br><br>

@@ -6,7 +6,9 @@ use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Repository;
 use App\Models\Subcategory;
+use App\Models\AnswerHistory;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class Show extends Component
 {
@@ -33,6 +35,23 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.repositories.statistics.show');
+        return view('livewire.repositories.statistics.show',[
+            'question_statistics' => $this->answersHistoryStatistics()
+        ]);
+    }
+
+    public function answersHistoryStatistics(){
+        $answerHistoryList = AnswerHistory::has('observationHistory')
+        ->select("question_id",DB::Raw("COUNT('question_id') as repeated"))
+        ->groupBy('question_id')
+        ->orderBy('repeated','DESC')
+        ->whereHas('evaluationHistory',function($evaluationHistory){
+            $evaluationHistory->where('repository_id',$this->repository->id);
+        })
+        ->with(['question'=>function($question){
+            $question->with(['category','subcategory']);
+        }])->get();
+
+        return $answerHistoryList;
     }
 }

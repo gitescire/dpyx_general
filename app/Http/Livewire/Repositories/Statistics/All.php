@@ -3,10 +3,15 @@
 namespace App\Http\Livewire\Repositories\Statistics;
 
 use App\Models\Answer;
+use App\Models\AnswerHistory;
 use App\Models\Category;
+use App\Models\ObservationHistory;
 use App\Models\Repository;
 use App\Models\Subcategory;
 use Livewire\Component;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class All extends Component
 {
@@ -34,6 +39,34 @@ class All extends Component
 
     public function render()
     {
-        return view('livewire.repositories.statistics.all');
+        return view('livewire.repositories.statistics.all',[
+            'question_statistics' => $this->answersHistoryStatistics()
+        ]);
+    }
+
+    public function answersHistoryStatistics(){
+        $answerHistoryList = AnswerHistory::has('observationHistory')
+        ->select("question_id",DB::Raw("COUNT('question_id') as repeated"))
+        ->groupBy('question_id')
+        ->orderBy('repeated','DESC')
+        ->with(['question'=>function($question){
+            $question->with(['category','subcategory']);
+        }]);
+
+        switch(true){
+            case (Auth::user()->hasRole('evaluador')):
+                $answerHistoryList = $answerHistoryList
+                ->whereHas('evaluationHistory',function($evaluationHistory){
+                    $evaluationHistory->where('evaluator_id',Auth::user()->id);
+                })
+                ->get();
+                break;
+            case (Auth::user()->hasRole('admin')):
+                $answerHistoryList = $answerHistoryList
+                ->get();
+                break;
+        }
+
+        return $answerHistoryList;
     }
 }

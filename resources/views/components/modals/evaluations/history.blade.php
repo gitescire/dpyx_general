@@ -1,6 +1,6 @@
 <div class="modal fade" id="showEvaluationHistory{{$evaluation->id}}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalAriaLabelledby" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Historial de evaluaciones</h5>
@@ -31,20 +31,37 @@
                                         <th>
                                             Status
                                         </th>
+                                        <th>
+                                            Detalles
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>
-                                            {{$evaluation->updated_at}}
+                                            <strong>{{$evaluation->updated_at}}</strong>
                                         </td>
                                         @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables')) )
                                         <td>
-                                            {{$evaluation->evaluator ? $evaluation->evaluator->name : 'N/A'}}
+                                            <strong>{{$evaluation->evaluator ? $evaluation->evaluator->name : 'N/A'}}</strong>
                                         </td>
                                         @endif
                                         <td>
+                                            <strong>
+                                            @if ($evaluation->in_review)
+                                            En evaluación
+                                            @else
+                                            {{ ucfirst($evaluation->repository->status) }}
+                                            @endif,
+                                            @if(in_array($evaluation->repository->status,['aprobado','rechazado']))
+                                            concluido
+                                            @else
                                             {{$evaluation->status}}
+                                            @endif
+                                            </strong>
+                                        </td>
+                                        <td class="text-justify">
+                                            <strong>{{ $evaluation->repository->comments }}</strong>
                                         </td>
                                     </tr>
                                     @foreach ($evaluation->repository->evaluationsHistory()->orderBy('id','desc')->get() as $evaluationHistory)
@@ -58,7 +75,20 @@
                                         </td>
                                         @endif
                                         <td>
-                                            {{$evaluationHistory->status}}
+                                        @if($evaluationHistory->status == 'en revisión')
+                                        En evaluación
+                                        @else
+                                        {{ ucfirst($evaluationHistory->repository_status) }}
+                                        @endif,
+
+                                        @if(in_array($evaluationHistory->repository_status,['aprobado','rechazado']))
+                                        concluido
+                                        @else
+                                        {{$evaluationHistory->status}}
+                                        @endif
+                                        </td>
+                                        <td class="text-justify">
+                                        {{$evaluationHistory->comments}}
                                         </td>
                                     </tr>
                                     @endforeach

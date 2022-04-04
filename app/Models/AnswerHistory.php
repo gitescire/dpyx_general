@@ -34,5 +34,9 @@ class AnswerHistory extends Model
     public function question(){
         return $this->belongsTo('App\Models\Question');
     }
+
+    public function evaluationHistory(){
+        return $this->hasOne('App\Models\EvaluationHistory','id','evaluation_history_id');
+    }
 }
 

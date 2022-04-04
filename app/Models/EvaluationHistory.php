@@ -15,6 +15,8 @@ class EvaluationHistory extends Model
         'repository_id',
         'evaluator_id',
         'status',
+        'comments',
+        'repository_status'
     ];
 
     public function answersHistory()
@@ -25,5 +27,10 @@ class EvaluationHistory extends Model
     public function evaluator()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function repository()
+    {
+        return $this->belongsTo('App\Models\Repository');
     }
 }

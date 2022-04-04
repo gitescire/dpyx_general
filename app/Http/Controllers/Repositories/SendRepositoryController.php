@@ -19,15 +19,15 @@ class SendRepositoryController extends Controller
 {
     public function __invoke(Repository $repository, Request $request)
     {
-
         $repository->status = $request->status;
+        $repository->comments = $request->comments;
         $repository->save();
 
-        if($repository->has_observations){
-            $this->generateHistory($repository->evaluation);
-        }
+        // if($repository->has_observations){
+        // }
+        $this->generateHistory($repository->evaluation,$request);
 
-        $this->handleEvaluationStatus($repository);
+        $this->handleEvaluationStatus($repository,$request);
 
         foreach ($repository->evaluation->answers as $answer) {
             (new AnswerSynchronizer($answer))->execute();
@@ -37,15 +37,17 @@ class SendRepositoryController extends Controller
         Mail::to($repository->responsible->email)->send(new ReviewedRepositoryMail($repository, $request->comments));
 
         Alert::success( __("messages.Controllers.Repositories.SendRepositoryController.AlertSuccess") );
-        return redirect()->route('dashboard');
+        return redirect()->route('repositories.index');
     }
 
-    private function generateHistory(Evaluation $evaluation)
+    private function generateHistory(Evaluation $evaluation, Request $request)
     {
         $evaluationHistory = EvaluationHistory::create([
             'repository_id' => $evaluation->repository_id,
             'evaluator_id' => Auth::user()->id,
-            'status' => $evaluation->status
+            'status' => ($request->status == 'observaciones' ? 'contestada' : (in_array($request->status,['aprobado','rechazado']) ? 'revisado' : 'en revisión')),
+            'comments' => $request->comments,
+            'repository_status' => $request->status
         ]);
 
 
@@ -67,12 +69,12 @@ class SendRepositoryController extends Controller
         }
     }
 
-    private function handleEvaluationStatus($repository)
+    private function handleEvaluationStatus($repository,$request)
     {
         if ($repository->has_observations) {
             $repository->evaluation->status = 'contestada';
         } else {
-            $repository->evaluation->status = 'revisado';
+            $repository->evaluation->status = (in_array($request->status,['aprobado','rechazado']) ? 'revisado' : 'en revisión');
         }
         $repository->evaluation->save();
     }

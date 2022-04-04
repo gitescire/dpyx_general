@@ -1,8 +1,7 @@
 <div class="mb-4" x-data="data()" x-init="mounted()">
 
     @section('header')
-    <x-page-title title="{{__('messages.views.livewire.repositories.statistics.show.text1')}}"
-        description="Este módulo permite ver la evaluación final del repositorio con base en las respuestas del usuario.">
+    <x-page-title title="{{__('messages.views.livewire.repositories.statistics.show.text1')}}" description="Este módulo permite ver la evaluación final del repositorio con base en las respuestas del usuario.">
     </x-page-title>
     @endsection
 
@@ -13,8 +12,7 @@
                     <div class="row d-flex justify-content-center mb-3">
                         <div class="col-4">
                             <label for="" class="text-uppercase text-muted">Eje Y</label>
-                            <select name="" id="" class="form-control" x-model="subcategoryIdOnYAxis"
-                                x-on:change="setBubbleChart()">
+                            <select name="" id="" class="form-control" x-model="subcategoryIdOnYAxis" x-on:change="setBubbleChart()">
                                 @foreach ($subcategories as $subcategory)
                                 <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
                                 @endforeach
@@ -25,8 +23,7 @@
                         </div>
                         <div class="col-4">
                             <label for="" class="text-uppercase text-muted">Eje X</label>
-                            <select name="" id="" class="form-control" x-model="subcategoryIdOnXAxis"
-                                x-on:change="setBubbleChart()">
+                            <select name="" id="" class="form-control" x-model="subcategoryIdOnXAxis" x-on:change="setBubbleChart()">
                                 @foreach ($subcategories as $subcategory)
                                 <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
                                 @endforeach
@@ -93,8 +90,42 @@
         @endforeach
     </div>
 
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow border-0">
+                <div class="card-header d-flex justify-content-center text-dark">
+                    <h5>Preguntas con más observaciones</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3-bg-white shadow table-responsive">
+                        <table class="table m-0 table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Categoría</th>
+                                    <th>Subcategoría</th>
+                                    <th>Pregunta</th>
+                                    <th>Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($question_statistics as $question)
+                                <tr>
+                                    <td>{{$question->question->category()->first()->name}}</td>
+                                    <td>{{$question->question->subcategory()->first()->name}}</td>
+                                    <td class="text-justify">{{$question->question->description}}</td>
+                                    <td class="text-center">{{$question->repeated}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function data(){
+        function data() {
             return {
 
                 repository: @json($repository),
@@ -111,13 +142,13 @@
                     this.categories.forEach(category => {
 
                         // Set real punctuation to the category
-                        punctuations = _.map(category.questions, function(question){
+                        punctuations = _.map(category.questions, function(question) {
                             return question.answer.choice ? parseFloat(question.answer.choice.punctuation) : 0
                         })
                         category.punctuation = _.sum(punctuations)
 
                         // Set max punctuation to the category
-                        max_punctuations = _.map(category.questions, function(question){
+                        max_punctuations = _.map(category.questions, function(question) {
                             return parseFloat(question.max_punctuation)
                         })
                         category.max_punctuation = _.sum(max_punctuations)
@@ -127,11 +158,11 @@
                         percentageSpan = document.querySelector(`span[percentage-id="${category.id}"]`);
                         percentageSpan.innerText = `${category.percentage.toFixed(2)}%`
 
-                        if(category.percentage <= 0){
+                        if (category.percentage <= 0) {
                             color = '#ff6384'
-                        }else if(category.percentage > 0 && category.percentage <= 50){
+                        } else if (category.percentage > 0 && category.percentage <= 50) {
                             color = '#f7b924'
-                        }else{
+                        } else {
                             color = '#3ac47d'
                         }
 
@@ -161,19 +192,19 @@
                                 tooltips: {
                                     callbacks: {
                                         label: (tooltipItem, data) => {
-                                            return tooltipItem.index == 0 ? category.short_name+ ":" + category.percentage + "%" : ""
+                                            return tooltipItem.index == 0 ? category.short_name + ":" + category.percentage + "%" : ""
                                         }
                                     },
-                            },
+                                },
                             }
                         });
                     });
 
-                    if(this.repository.qualification <= 0){
+                    if (this.repository.qualification <= 0) {
                         color = '#ff6384'
-                    }else if(this.repository.qualification > 0 && this.repository.qualification <= 50){
+                    } else if (this.repository.qualification > 0 && this.repository.qualification <= 50) {
                         color = '#f7b924'
-                    }else{
+                    } else {
                         color = '#3ac47d'
                     }
 
@@ -187,7 +218,7 @@
                     var myChart = new Chart(ctx, {
                         type: 'doughnut',
                         data: {
-                            labels: ['Calificación general','nada'],
+                            labels: ['Calificación general', 'nada'],
                             datasets: [{
                                 data: [parseFloat(this.repository.qualification) + 100, 100 - parseFloat(this.repository.qualification)],
                                 backgroundColor: [
@@ -220,12 +251,12 @@
                     this.setBubbleChart()
 
                     // LINEAR CHART FOR ALL TACOMETERS
-                    
-                   
+
+
 
                 },
 
-                setBubbleChart(){
+                setBubbleChart() {
 
                     document.getElementById('bubble-chart-container').innerHTML = `<canvas id="bubble-chart"><canvas>`;
 
@@ -237,25 +268,25 @@
                     subcategoryIdOnYAxis = this.subcategoryIdOnYAxis
                     subcategories = this.subcategories
 
-                    datasets = _.map(this.categories, function(category){
-                        
-                        questions = _.filter(category.questions, function(question){
-                            return question.subcategory_id == this.subcategoryIdOnXAxis
-                        }) 
+                    datasets = _.map(this.categories, function(category) {
 
-                        punctuations = _.map( questions, function(question){
+                        questions = _.filter(category.questions, function(question) {
+                            return question.subcategory_id == this.subcategoryIdOnXAxis
+                        })
+
+                        punctuations = _.map(questions, function(question) {
                             return question.answer.choice ? parseFloat(question.answer.choice.punctuation) : 0
-                        } )
+                        })
 
                         accesibilityPunctuation = _.sum(punctuations)
 
-                        questions = _.filter(category.questions, function(question){
+                        questions = _.filter(category.questions, function(question) {
                             return question.subcategory_id == subcategoryIdOnYAxis
-                        }) 
+                        })
 
-                        punctuations = _.map( questions, function(question){
+                        punctuations = _.map(questions, function(question) {
                             return question.answer.choice ? parseFloat(question.answer.choice.punctuation) : 0
-                        } )
+                        })
 
                         preservationPunctuation = _.sum(punctuations)
 
@@ -280,19 +311,19 @@
                         // maintainAspectRatio: false,
                         type: 'bubble',
                         data: {
-                        labels: "Africa",
-                        datasets
+                            labels: "Africa",
+                            datasets
                         },
                         options: {
                             tooltips: {
                                 callbacks: {
                                     label: (tooltipItem, data) => {
 
-                                        subcategoryXName = _.find(subcategories, function(subcategory){
+                                        subcategoryXName = _.find(subcategories, function(subcategory) {
                                             return subcategory.id == subcategoryIdOnXAxis
                                         }).name
 
-                                        subcategoryYName = _.find(subcategories, function(subcategory){
+                                        subcategoryYName = _.find(subcategories, function(subcategory) {
                                             return subcategory.id == subcategoryIdOnYAxis
                                         }).name
 
@@ -300,57 +331,56 @@
                                     }
                                 },
                             },
-                        title: {
-                            display: true,
-                            text: 'Análisis de riesgos y fortalezas del RI'
-                        }, 
-                        scales: {
-                            yAxes: [{ 
-                            scaleLabel: {
+                            title: {
                                 display: true,
-                                labelString: _.find(subcategories, function(subcategory){
-                                    return subcategory.id == subcategoryIdOnYAxis
-                                }).name,
-                                max: 110
+                                text: 'Análisis de riesgos y fortalezas del RI'
                             },
-                            ticks: {
-                                    beginAtZero: true,
-                                    // steps: 10,
-                                    // stepValue: 5,
-                                    max: 110
-                                },
-                                gridLines: {
-                                    zeroLineWidth: 1,
-                                    zeroLineColor: '#424234'
-                                },
-                            }],
-                            xAxes: [{ 
-                            scaleLabel: {
-                                display: true,
-                                labelString: _.find(subcategories, function(subcategory){
-                                    return subcategory.id == subcategoryIdOnXAxis
-                                }).name,
-                            },
-                            ticks: {
-                                    beginAtZero: true,
-                                    // steps: 10,
-                                    // stepValue: 5,
-                                    max: 110
-                                },
-                                gridLines: {
-                                    zeroLineWidth: 1,
-                                    zeroLineColor: '#424234'
-                                },
-                            }]
-                        }
+                            scales: {
+                                yAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: _.find(subcategories, function(subcategory) {
+                                            return subcategory.id == subcategoryIdOnYAxis
+                                        }).name,
+                                        max: 110
+                                    },
+                                    ticks: {
+                                        beginAtZero: true,
+                                        // steps: 10,
+                                        // stepValue: 5,
+                                        max: 110
+                                    },
+                                    gridLines: {
+                                        zeroLineWidth: 1,
+                                        zeroLineColor: '#424234'
+                                    },
+                                }],
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: _.find(subcategories, function(subcategory) {
+                                            return subcategory.id == subcategoryIdOnXAxis
+                                        }).name,
+                                    },
+                                    ticks: {
+                                        beginAtZero: true,
+                                        // steps: 10,
+                                        // stepValue: 5,
+                                        max: 110
+                                    },
+                                    gridLines: {
+                                        zeroLineWidth: 1,
+                                        zeroLineColor: '#424234'
+                                    },
+                                }]
+                            }
                         }
                     });
                 }
 
-                
+
             }
         }
-
     </script>
 
 </div>

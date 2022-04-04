@@ -15,6 +15,7 @@ class Repository extends Model
         "responsible_id",
         "name",
         "status",
+        "comments"
     ];
 
     /**
@@ -46,6 +47,7 @@ class Repository extends Model
 
     public function getStatusColorAttribute(){
         if($this->is_in_progress) return 'info';
+        if($this->evaluation->in_review) return 'info';
         if($this->is_aproved) return 'success';
         if($this->is_rejected) return 'danger';
         if($this->has_observations) return 'warning';

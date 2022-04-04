@@ -115,7 +115,7 @@
                                 <li>
                                     <a href="{{ route('repositories.index') }}">
                                         <i class="metismenu-icon fas fa-box-open"></i>
-                                        {{ __('containerNamePlural') }}
+                                        {{ ucfirst(__('containerNamePlural')) }}
                                     </a>
                                 </li>
                                 @if (config('app.is_evaluable'))

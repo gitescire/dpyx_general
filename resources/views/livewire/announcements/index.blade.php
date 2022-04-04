@@ -57,7 +57,7 @@
                             class="btn btn-warning btn-shadow rounded-0">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
-                        <button type="button" class="btn btn-success btn-shadow rounded-0" data-toggle="modal" data-target="#modalSpecialDeadlineExtension">
+                        <button type="button" class="btn btn-success btn-shadow rounded-0" data-toggle="modal" data-target="#modalSpecialDeadlineExtension" title="Personalizar fechas por repositorio">
                             <i class="fas fa-calendar-plus"></i>
                         </button>
                         <x-modals.announcements.deadline-extension

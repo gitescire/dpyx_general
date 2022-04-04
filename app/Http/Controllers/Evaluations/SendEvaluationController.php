@@ -24,35 +24,47 @@ class SendEvaluationController extends Controller
     {
         event(new EvaluationFinishedEvent($evaluation));
 
-
-        $isEvaluatorRole = Auth::user()->hasRole('evaluador');
+        // $isEvaluatorRole = Auth::user()->hasRole('evaluador') || Auth::user()->hasRole('admin');
         $evaluation->status = "en revisión";
         $evaluation->save();
 
-        if($isEvaluatorRole){
-            $evaluationHistory = EvaluationHistory::create([
-                'repository_id' => $evaluation->repository->id,
-                'status' => $evaluation->status
-            ]);
-        }
-
-
+        $evaluationHistory = EvaluationHistory::create([
+            'evaluator_id' => $evaluation->evaluator_id,
+            'repository_id' => $evaluation->repository->id,
+            'status' => 'en revisión',
+            'comments' => 'Repositorio enviado por el responsable',
+            'repository_status' => 'en progreso'
+        ]);
         $evaluation->repository->status = 'en progreso';
+        $evaluation->repository->comments = 'Repositorio enviado por el responsable';
         $evaluation->repository->save();
+        // if($isEvaluatorRole){
+        // }
+        // else{
+        //     $evaluationHistory = EvaluationHistory::create([
+        //         'repository_id' => $evaluation->repository->id,
+        //         'evaluator_id' => $evaluation->evaluator_id,
+        //         'status' => 'contestada',
+        //         'comments' => 'Repositorio enviado por el responsable',
+        //         'repository_status' => 'en progreso'
+        //     ]);
+        //     $evaluation->repository->status = 'en progreso';
+        //     $evaluation->repository->comments = 'Repositorio enviado por el responsable';
+        //     $evaluation->repository->save();
+        // }
 
+        foreach ($evaluation->answers as $answer) {
+            (new AnswerSynchronizer($answer))->execute();
 
-        if($isEvaluatorRole){
-            foreach ($evaluation->answers as $answer) {
-                (new AnswerSynchronizer($answer))->execute();
-
-                $answerHistory = new AnswerHistory;
-                $answerHistory->choice_id = $answer->choice_id;
-                $answerHistory->question_id = $answer->question_id;
-                $answerHistory->evaluation_history_id = $evaluationHistory->id;
-                $answerHistory->description = $answer->description;
-                $answerHistory->save();
-            }
+            $answerHistory = new AnswerHistory;
+            $answerHistory->choice_id = $answer->choice_id;
+            $answerHistory->question_id = $answer->question_id;
+            $answerHistory->evaluation_history_id = $evaluationHistory->id;
+            $answerHistory->description = $answer->description;
+            $answerHistory->save();
         }
+        // if($isEvaluatorRole){
+        // }
 
 
         Alert::success('¡La evaluación ha sido enviada para su revisión!');

@@ -14,7 +14,7 @@
         <div class="input-group col-12 col-lg-4">
             <select wire:model='search_filter' class="custom-select" aria-label=".form-select-sm example">
                 <option selected>Sin filtro</option>
-                <option>Filtrar sin progreso</option>
+                <option>Filtrar en progreso</option>
                 <option>Filtrar en evaluacíon</option>
                 <option>Filtrar con observaciónes</option>
                 <option>Filtrar aprobado</option>
@@ -90,17 +90,17 @@
                     <td> @if($repository->evaluation && isset($repository->evaluation->evaluator->name)) {{$repository->evaluation->evaluator->name}} @else 'N/A' @endif</td>
                     @endif
                     <td class="text-center">
-                        @if($repository->is_aproved || in_array($repository->status,['rechazado','observaciones']))
-                        <a href="{{ route('repositories.statistics.show', [$repository]) }}" class="btn btn-info btn-shadow rounded-0 {{ $repository->evaluation->answers->whereNotNull('choice_id')->count() ? '' : 'disabled' }}">
+                        @if($repository->is_aproved || !auth()->user()->is_user)
+                        <a href="{{ route('repositories.statistics.show', [$repository]) }}" class="btn btn-info btn-shadow rounded-0 {{ $repository->evaluation->answers->whereNotNull('choice_id')->count() ? '' : 'disabled' }}" title="Ver gráfica de resultados">
                             <i class="fas fa-chart-pie"></i>
                         </a>
                         @else
-                        -
+                        No hay evaluación
                         @endif
                     </td>
                     {{-- @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables'))) --}}
                     <td class="text-center">
-                        <a href="{{ route('evaluations.categories.questions.index', [$repository->evaluation, $firstCategory]) }}" class="btn btn-{{ $repository->evaluation->is_reviewed && $repository->is_aproved ? 'secondary' : 'primary' }} btn-shadow rounded-0 {{ $repository->evaluation->is_viewable ? '' : 'disabled' }}">
+                        <a href="{{ route('evaluations.categories.questions.index', [$repository->evaluation, $firstCategory]) }}" class="btn btn-{{ $repository->evaluation->is_reviewed && $repository->is_aproved ? 'secondary' : 'primary' }} btn-shadow rounded-0 {{ $repository->evaluation->is_viewable ? '' : 'disabled' }}" title="Ír a evaluación">
                             <i class="fas fa-scroll"></i>
                         </a>
                     </td>

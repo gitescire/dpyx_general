@@ -38,7 +38,7 @@ class Index extends Component
             case 'Sin filtro':
                 $this->repositories = Repository::orderBy('id', 'desc');
                 break;
-            case 'Filtrar sin progreso':
+            case 'Filtrar en progreso':
                 $this->repositories= Repository::where('repositories.status','=', 'en progreso')->orderBy('id', 'desc');
                 break;
             case 'Filtrar en evaluacíon':
@@ -68,7 +68,7 @@ class Index extends Component
                         return $query->where('name', 'like', '%' . $this->search . '%');
                     })
                     ->orWhereHas('evaluation', function ($query) {
-                        return $query->whereHas('history', function ($query) {
+                        return $query->whereHas('repository', function ($query) {
                             return $query->where('name', 'like', '%' . $this->search . '%');
                         });
                     });
