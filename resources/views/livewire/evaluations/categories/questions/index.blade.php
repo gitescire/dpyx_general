@@ -6,8 +6,7 @@
     @endsection
 
     <x-backbutton>
-        @slot('message','Lista de repositorios')
-        @slot('repository_name',$repository->name)
+        @slot('message','Lista de repositorios / '.$repository->name)
         @slot('redirect',route('repositories.index'))
     </x-backbutton>
 
