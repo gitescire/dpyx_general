@@ -20,6 +20,6 @@ class DeleteObservationController extends Controller
         $observation->delete();
 
         Alert::success('¡Observación eliminada!');
-        return redirect()->back();
+        return redirect()->route('evaluations.categories.questions.index', [$observation->answer->evaluation, $observation->answer->question->category]);
     }
 }

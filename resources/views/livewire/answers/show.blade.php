@@ -141,7 +141,7 @@
 
             @can('edit evaluations')
                 <div class="col-12 mb-3 d-flex justify-content-end">
-                    <a href="{{ URL::previous() }}" class="btn btn-outline-danger btn-shadow rounded-0 mr-3">
+                    <a href="{{ route('evaluations.categories.questions.index', [$answer->evaluation, $answer->question->category]) }}" class="btn btn-outline-danger btn-shadow rounded-0 mr-3">
                         <i class="fas fa-window-close"></i> Cancelar
                     </a>
                     <button class="btn btn-success btn-wide btn-shadow rounded-0">
