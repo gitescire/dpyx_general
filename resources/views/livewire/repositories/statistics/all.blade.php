@@ -133,9 +133,9 @@
         function data() {
             return {
 
-                // repositories: @json($repositories),
-                // categories: @json($categories),
-                // subcategories: @json($subcategories),
+                repositories: @json($repositories),
+                categories: @json($categories),
+                subcategories: @json($subcategories),
                 subcategoryIdOnXAxis: null,
                 subcategoryIdOnYAxis: null,
 

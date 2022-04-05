@@ -39,6 +39,7 @@ class All extends Component
 
     public function render()
     {
+        set_time_limit(0);
         return view('livewire.repositories.statistics.all',[
             'question_statistics' => $this->answersHistoryStatistics(),
             'categories' => $this->categories,
