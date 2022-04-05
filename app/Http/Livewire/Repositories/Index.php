@@ -78,21 +78,18 @@ class Index extends Component
             });
         }
 
-        $this->frequency_data = $this->repositories->count();
-
         if(Auth::user()->is_admin) {
-
+            $this->frequency_data = $this->repositories->count();
             $this->repositories = $this->repositories->paginate(10);
 
         } else if (Auth::user()->is_evaluator) {
-
-            $this->repositories = $this->repositories->whereHas('evaluation', function ($query) {
-                // return $query->where('evaluator_id', Auth::user()->id);
-                return $query->whereHas('evaluator', function ($query) {
-                    return $query->where('users.id', Auth::user()->id);
-                });
-            })->paginate(10);
+            $repositoriesList = $this->repositories->whereHas('evaluation', function ($query) {
+                return $query->whereHas('evaluator', function ($query) { return $query->where('users.id', Auth::user()->id);});
+            });
+            $this->frequency_data = $repositoriesList->count();
+            $this->repositories = $repositoriesList->paginate(10);
         } else {
+            $this->frequency_data = Auth::user()->repositories()->count();
             $this->repositories = Auth::user()->repositories()->paginate(10);
         }
     }

@@ -6,6 +6,7 @@
 
 
 
+    @if(auth()->user()->is_evaluator || auth()->user()->is_admin)
     <div class="mb-3 row d-flext justify-content-between">
         <div class="col-12 col-lg-4">
             <x-input-search />
@@ -43,6 +44,7 @@
             @endif
         </div>
     </div>
+    @endif
 
     <div class="mb-3 bg-white shadow table-responsive">
         <table class="table m-0 table-bordered">

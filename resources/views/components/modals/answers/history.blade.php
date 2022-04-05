@@ -40,6 +40,7 @@
                                         <td class="text-dark"><strong>{{$answer->updated_at}}</strong></td>
                                         <td class="text-dark"><strong>{{$answer->choice ? $answer->choice->description : 'N/A'}}</strong></td>
                                         <td class="text-justify"><strong>{{$answer->observation ? $answer->observation->description : 'N/A'}}</strong></td>
+                                        <td class="text-center">No aplica</td>
                                     </tr>
 
                                     @if($answersObservationsHistory)
@@ -49,19 +50,19 @@
                                         <td>
                                             {{$answerObservationsHistory->answerHistory()->first()->choice_id ? $answerObservationsHistory->answerHistory()->first()->choice->description : 'N/A'}}
                                         </td>
-                                        <td class="text-justify">
+                                        <td class="text-{{$answerObservationsHistory ? 'justify':'center'}}">
                                             {{$answerObservationsHistory ? $answerObservationsHistory->description : 'N/A'}}
                                         </td>
                                         @if($repository->evaluation->status != 'revisado' && auth()->user()->hasRole('evaluador') && auth()->id() == $repository->evaluation->evaluator_id)
                                         <td>
                                             @if($answerObservationsHistory && !$answerObservationsHistory->is_deleted)
-                                            <form action="{{ route('evaluations.categories.questions.observations.destroy',[$repository->evaluation, $evaluationHistory->observationHistory->id]) }}" method="POST">
+                                            <form action="{{ route('evaluations.categories.questions.observations.destroy',[$repository->evaluation, $answerObservationsHistory->id]) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-shadow rounded-0"><i class="fas fa-trash"></i></button>
                                             </form>
                                             @elseif($answerObservationsHistory && $answerObservationsHistory->is_deleted)
-                                            <form action="{{ route('evaluations.categories.questions.observations.restore',[$repository->evaluation, $evaluationHistory->observationHistory->id]) }}" method="POST">
+                                            <form action="{{ route('evaluations.categories.questions.observations.restore',[$repository->evaluation, $answerObservationsHistory->id]) }}" method="POST">
                                                 @csrf
                                                 Observación eliminada (<button type="submit" class="btn text-success btn-link btn-shadow rounded-0">Restaurar <i class="fas fa-trash-restore"></i></button>)
                                             </form>
