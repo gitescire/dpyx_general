@@ -15,7 +15,7 @@ class StoreObservationController extends Controller
 {
     public function __invoke(StoreObservationRequest $request)
     {
-        $oldComment = Observation::where('answer_id',$request->answer_id)->first()->description;
+        $oldComment = Observation::where('answer_id',$request->answer_id)->first();
         $newComment = $request->description;
 
         $observation = Observation::updateOrCreate([
@@ -28,7 +28,7 @@ class StoreObservationController extends Controller
         if(!$observation->wasRecentlyCreated && $observation->wasChanged()){
             ObservationHistory::create([
                 'answer_history_id' => $request->answer_id,
-                'description' => "El mensaje '".$oldComment."' fue actualizado a '".$newComment."'",
+                'description' => "El mensaje '".$oldComment->description."' fue actualizado a '".$newComment."'",
                 'files_path' => NULL
             ]);
         }
