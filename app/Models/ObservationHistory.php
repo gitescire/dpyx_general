@@ -21,4 +21,8 @@ class ObservationHistory extends Model
     protected $casts = [
         'files_paths' => JsonCast::class,
     ];
+
+    public function answerHistory(){
+        return $this->hasOne('App\Models\AnswerHistory','id','answer_history_id');
+    }
 }

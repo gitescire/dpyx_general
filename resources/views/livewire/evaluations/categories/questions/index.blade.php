@@ -2,8 +2,13 @@
 
     @section('header')
     <x-page-title title="Contestar cuestionario"
-        description="Este módulo permite responder las preguntas para evaluar {{__('messages.views.livewire.evaluations.categories.questions.index.text1')}}."></x-page-title>
+        description="Este módulo permite responder las preguntas para evaluar {{__('messages.views.livewire.evaluations.categories.questions.index.text1')}} {{$repository->name}}."></x-page-title>
     @endsection
+
+    <x-backbutton>
+        @slot('message','Lista de repositorios')
+        @slot('redirect',route('repositories.index'))
+    </x-backbutton>
 
     @if ( config('app.is_evaluable') )
     @if (Auth::user()->hasRole('usuario') && ( $evaluation->is_answered || !config('app.answers_are_necessary') ) )

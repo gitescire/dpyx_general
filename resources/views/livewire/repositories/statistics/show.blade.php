@@ -5,6 +5,11 @@
     </x-page-title>
     @endsection
 
+    <x-backbutton>
+        @slot('message','Lista de repositorios')
+        @slot('redirect',route('repositories.index'))
+    </x-backbutton>
+
     <div class="row">
         <div class="col-12 col-lg-12 mb-3">
             <div class="card shadow border-0">
@@ -104,7 +109,7 @@
                                     <th>Categoría</th>
                                     <th>Subcategoría</th>
                                     <th>Pregunta</th>
-                                    <th>Observaciones</th>
+                                    <th>Frecuencia</th>
                                 </tr>
                             </thead>
                             <tbody>

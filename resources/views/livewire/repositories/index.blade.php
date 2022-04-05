@@ -21,7 +21,7 @@
                 <option>Filtrar rechazado</option>
             </select>
             <div class="input-group-append">
-                <span class="input-group-text">{{sizeof($repositories)}} registros</span>
+                <span class="input-group-text">{{$frequency_data}} registros</span>
                 @if(auth()->user()->is_admin)
                 <span class="input-group-text">
                     <a href="{{ route('repositories.xlsx', [$search_filter,$search]) }}" target="_BLANK" class="btn_link">

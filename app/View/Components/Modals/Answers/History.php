@@ -3,7 +3,7 @@
 namespace App\View\Components\Modals\Answers;
 
 use App\Models\Answer;
-use App\Models\EvaluationHistory;
+use App\Models\ObservationHistory;
 use Illuminate\View\Component;
 
 class History extends Component
@@ -31,28 +31,21 @@ class History extends Component
     public function render()
     {
         return view('components.modals.answers.history',[
-            'evaluationsHistory'=>$this->evaluationsHistoryList()
+            'answersObservationsHistory'=>$this->answersObservationsHistory()
         ]);
     }
 
 
-    public function evaluationsHistoryList(){
-        $answersEvaluationsHistory = [];
-
-        foreach($this->repository->evaluationsHistory()->orderBy('id','desc')->get() as $evaluationHistoryItem){
-            $answerHistoryObject = $evaluationHistoryItem->answersHistory()->where('question_id',$this->answer->question_id)->first();
-
-
-            if($answerHistoryObject !== NULL && $answerHistoryObject->observationHistory !== NULL){
-                $userRoleValidation = auth()->user()->hasRole('usuario') && !$answerHistoryObject->observationHistory->is_deleted;
-                $otherRolesValidation = !auth()->user()->hasRole('usuario');
-
-                if($userRoleValidation || $otherRolesValidation){
-                    $answersEvaluationsHistory[] = $answerHistoryObject;
-                }
+    public function answersObservationsHistory(){
+        $answersObservationsHistory = ObservationHistory::whereHas(
+            'answerHistory'
+            ,function($answerHistory){
+                $answerHistory->where('question_id',$this->answer->question_id);
             }
-        }
+        )
+        ->with('answerHistory')
+        ->orderBy('id','desc')->get();
 
-        return $answersEvaluationsHistory;
+        return $answersObservationsHistory;
     }
 }

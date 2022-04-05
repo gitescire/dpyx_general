@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Observations;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreObservationRequest;
 use App\Models\Observation;
+use App\Models\ObservationHistory;
 use App\Services\ObservationService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -14,18 +15,28 @@ class StoreObservationController extends Controller
 {
     public function __invoke(StoreObservationRequest $request)
     {
-        // 
+        $oldComment = Observation::where('answer_id',$request->answer_id)->first()->description;
+        $newComment = $request->description;
+
         $observation = Observation::updateOrCreate([
             'answer_id' => $request->answer_id
         ], [
             'answer_id' => $request->answer_id,
-            'description' => $request->description ?? ''
+            'description' => $newComment ?? ''
         ]);
 
-        // 
+        if(!$observation->wasRecentlyCreated && $observation->wasChanged()){
+            ObservationHistory::create([
+                'answer_history_id' => $request->answer_id,
+                'description' => "El mensaje '".$oldComment."' fue actualizado a '".$newComment."'",
+                'files_path' => NULL
+            ]);
+        }
+
+        //
         (new ObservationService)($observation)->removeFiles($request->filesToDelete);
-        
-        // 
+
+        //
         if ($request->hasFile('files')) {
             // TODO store files with their original and time name instied of only time
             (new ObservationService)($observation)->storeFiles($request->file('files'));

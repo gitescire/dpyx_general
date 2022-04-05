@@ -5,6 +5,11 @@
     </x-page-title>
     @endsection
 
+    <x-backbutton>
+        @slot('message','Inicio')
+        @slot('redirect',route('dashboard'))
+    </x-backbutton>
+
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-lg-6">
             <div class="row">

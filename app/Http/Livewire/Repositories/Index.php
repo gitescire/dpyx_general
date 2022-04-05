@@ -16,6 +16,7 @@ class Index extends Component
     private $repositories;
     public $search_filter = "Sin filtro";
     public $search = "";
+    public $frequency_data = 0;
 
     public function mount()
     {
@@ -27,7 +28,8 @@ class Index extends Component
 
         $this->handleRepositories();
         return view('livewire.repositories.index', [
-            'repositories' => $this->repositories
+            'repositories' => $this->repositories,
+            'frequencuyData' => $this->frequency_data
         ]);
     }
 
@@ -61,6 +63,7 @@ class Index extends Component
                 break;
         }
 
+
         if ($this->search) {
             $this->repositories = $this->repositories->where(function ($query) {
                 $query->where('name', 'like', '%' . $this->search . '%')
@@ -75,7 +78,9 @@ class Index extends Component
             });
         }
 
-        if (Auth::user()->is_admin) {
+        $this->frequency_data = $this->repositories->count();
+
+        if(Auth::user()->is_admin) {
 
             $this->repositories = $this->repositories->paginate(10);
 

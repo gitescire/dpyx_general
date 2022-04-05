@@ -49,10 +49,10 @@
                                         <td>
                                             <strong>
                                             @if ($evaluation->in_review)
-                                            En evaluación
+                                            En evaluación,
                                             @else
-                                            {{ ucfirst($evaluation->repository->status) }}
-                                            @endif,
+                                            {{ ucfirst($evaluation->repository->status) }},
+                                            @endif
                                             @if(in_array($evaluation->repository->status,['aprobado','rechazado']))
                                             concluido
                                             @else
@@ -76,19 +76,18 @@
                                         @endif
                                         <td>
                                         @if($evaluationHistory->status == 'en revisión')
-                                        En evaluación
+                                        En evaluación,
                                         @else
-                                        {{ ucfirst($evaluationHistory->repository_status) }}
-                                        @endif,
-
+                                        {{ ucfirst($evaluationHistory->repository_status) }},
+                                        @endif
                                         @if(in_array($evaluationHistory->repository_status,['aprobado','rechazado']))
                                         concluido
                                         @else
                                         {{$evaluationHistory->status}}
                                         @endif
                                         </td>
-                                        <td class="text-justify">
-                                        {{$evaluationHistory->comments}}
+                                        <td class="text-{{$evaluationHistory->comments != NULL ? 'justify' : 'center'}}">
+                                        {{$evaluationHistory->comments != NULL ? $evaluationHistory->comments : '-'}}
                                         </td>
                                     </tr>
                                     @endforeach

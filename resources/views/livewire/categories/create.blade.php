@@ -5,6 +5,11 @@
         description="Este módulo permite generar nuevas categorías para las evaluaciones."></x-page-title>
     @endsection
 
+    <x-backbutton>
+        @slot('message','Lista de categorías')
+        @slot('redirect',route('categories.index'))
+    </x-backbutton>
+
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-lg-4">
             <form action="{{route('categories.store')}}" method="POST">
