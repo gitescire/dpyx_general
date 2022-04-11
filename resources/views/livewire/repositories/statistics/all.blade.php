@@ -98,8 +98,13 @@
     <div class="row">
         <div class="col-12">
             <div class="card shadow border-0">
-                <div class="card-header d-flex justify-content-center text-dark">
-                    <h5>Preguntas con más observaciones</h5>
+                <div class="card-header text-dark">
+                    <div class="w-100">
+                        <a href="{{ route('statistics.xlsx') }}" target="_BLANK" class="btn btn-secondary btn-shadow rounded-0 float-right">
+                        Generar Excel <i class="fas fa-file-excel"></i>
+                        </a>
+                        <h5 class="float-left">Preguntas con más observaciones</h5>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="mb-3-bg-white shadow table-responsive">
