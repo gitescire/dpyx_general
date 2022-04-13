@@ -43,14 +43,10 @@
                     @canany(['edit announcements','delete announcements'])
                     <td class="text-center">
                         @can('delete announcements')
-                        <form action="{{route('announcements.destroy',[$announcement])}}" method="POST"
-                            class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger btn-shadow rounded-0">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
+                        <button type="button" class="btn btn-danger btn-shadow rounded-0" data-toggle="modal" data-target="#deleteAnnouncement{{$announcement->id}}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <x-modals.announcements.delete :announcement="$announcement" />
                         @endcan
                         @can('edit announcements')
                         <a href="{{route('announcements.edit',[$announcement])}}"

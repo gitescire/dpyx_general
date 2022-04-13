@@ -82,6 +82,11 @@
                 </div>
 
                 @else
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <small>* Al eliminar algún repositorio, este regresará a la lista de repositorios disponibles para crear extensiones de fecha final personalizadas</small>
+                    </div>
+                </div>
                 <div class="table-responsive shadow mb-3 bg-white">
                     <table id="table" class="table table-bordered m-0">
                         <thead>
