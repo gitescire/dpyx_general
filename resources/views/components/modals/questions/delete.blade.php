@@ -1,4 +1,4 @@
-<div class="modal fade" id="deleteQuestion{{$questionChoosed->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalAriaLabelledby" aria-hidden="true">
+<div class="modal fade" id="deleteQuestion{{$question->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalAriaLabelledby" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,7 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('questions.destroy',[$questionChoosed]) }}" method="POST" class="d-inline">
+            <form action="{{route('questions.destroy',[$question])}}" method="POST" class="d-inline">
                 @csrf
                 @method('DELETE')
                 <div class="modal-body">
@@ -15,7 +15,7 @@
                         <div class="col-12 mb-3">
                             <div class="alert alert-light fade show" role="alert">
                                 <i>
-                                    ¿Realmente desea eliminar la pregunta "<strong>{{$questionChoosed->description}}</strong>"?
+                                    ¿Realmente desea eliminar la pregunta <strong>{{$question->description}}</strong>?
                                 </i>
                             </div>
                             <hr>

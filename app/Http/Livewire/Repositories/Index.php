@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Repositories;
 
 use App\Models\Category;
 use App\Models\Repository;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -12,11 +13,13 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $firstCategory;
     private $repositories;
-    public $search_filter = "Sin filtro";
+    public $firstCategory;
     public $search = "";
+    public $search_filter = "Sin filtro";
+    public $evaluator_filter = 0;
     public $frequency_data = 0;
+    public $evaluators_list;
 
     public function mount()
     {
@@ -25,7 +28,7 @@ class Index extends Component
 
     public function render()
     {
-
+        $this->evaluators_list = User::role('evaluador')->get();
         $this->handleRepositories();
         return view('livewire.repositories.index', [
             'repositories' => $this->repositories,
@@ -61,6 +64,12 @@ class Index extends Component
                 $this->repositories= Repository::where('repositories.status', '=', 'rechazado')
                      ->orderBy('id', 'desc');
                 break;
+        }
+
+        if($this->evaluator_filter > 0){
+            $this->repositories = $this->repositories->whereHas('evaluation', function ($query) {
+                return $query->whereHas('evaluator', function ($query) { return $query->where('users.id', $this->evaluator_filter);});
+            });
         }
 
 

@@ -53,7 +53,7 @@
                     <div class="app-header__logo d-flex justify-content-between" x-data="navbar()" x-init="mounted()">
                         <a href="{{ route('dashboard') }}" data-toggle="tooltip" data-placement="bottom"
                             title="dPyx {{ env('APP_NAME', '') }}" class="">
-                            <img src="{{ url('images/default/logo.png') }}" width="200px"
+                            <img src="{{ url('images/logo.png') }}" width="200px"
                                 class="img-responsive" alt="">
                         </a>
                         {{-- <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav"> --}}

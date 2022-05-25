@@ -114,7 +114,7 @@ Route::prefix('repositories')->middleware('auth')->group(function () {
     Route::get('/', \App\Http\Livewire\Repositories\Index::class)->name('repositories.index');
     Route::get('/statistics', \App\Http\Livewire\Repositories\Statistics\All::class)->name('repositories.statistics.all');
     Route::get('/statistics/question_statistics/xlsx', \App\Http\Controllers\Reports\DownloadQuestionsFrequencyReportController::class)->name('statistics.xlsx');
-    Route::get('/xlsx/{search_filter}/{search?}',\App\Http\Controllers\Reports\DownloadRepositoriesReportController::class)->name('repositories.xlsx');
+    Route::get('/xlsx/{search_filter}/{evaluator_filter}/{search?}',\App\Http\Controllers\Reports\DownloadRepositoriesReportController::class)->name('repositories.xlsx');
     Route::get('{repository}/statistics', \App\Http\Livewire\Repositories\Statistics\Show::class)->name('repositories.statistics.show');
     Route::post('{repository}/send', \App\Http\Controllers\Repositories\SendRepositoryController::class)->middleware('can:edit evaluations')->name('repositories.send');
 });

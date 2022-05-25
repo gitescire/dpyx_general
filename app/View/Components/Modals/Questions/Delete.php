@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 class Delete extends Component
 {
 
-    public $questionChoosed;
+    public $question;
     /**
      * Create a new component instance.
      *
@@ -16,7 +16,7 @@ class Delete extends Component
      */
     public function __construct(Question $question)
     {
-        $this->questionChoosed = $question;
+        $this->question = $question;
     }
 
     /**

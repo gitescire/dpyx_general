@@ -14,22 +14,21 @@
 
         <div class="input-group col-12 col-lg-4">
             <select wire:model='search_filter' class="custom-select" aria-label=".form-select-sm example">
-                <option selected>Sin filtro</option>
-                <option>Filtrar en progreso</option>
-                <option>Filtrar en evaluacíon</option>
-                <option>Filtrar con observaciónes</option>
-                <option>Filtrar aprobado</option>
-                <option>Filtrar rechazado</option>
+                <option value="Sin filtro" selected>Sin filtro</option>
+                <option value="Filtrar en progreso">Filtrar en progreso</option>
+                <option value="Filtrar en evaluación">Filtrar en evaluación</option>
+                <option value="Filtrar con observaciones">Filtrar con observaciones</option>
+                <option value="Filtrar aprobado">Filtrar aprobado</option>
+                <option value="Filtrar rechazado">Filtrar rechazado</option>
             </select>
             <div class="input-group-append">
                 <span class="input-group-text">{{$frequency_data}} registros</span>
-                @if(auth()->user()->is_admin)
+
                 <span class="input-group-text">
-                    <a href="{{ route('repositories.xlsx', [$search_filter,$search]) }}" target="_BLANK" class="btn_link">
+                    <a href="{{ route('repositories.xlsx', [$search_filter,$evaluator_filter,$search]) }}" target="_BLANK" class="btn_link">
                         <i class="fas fa-file-excel"></i>
                     </a>
                 </span>
-                @endif
             </div>
         </div>
 
@@ -55,7 +54,19 @@
                     <th class="text-uppercase">Evaluación</th>
                     <th class="text-uppercase">Encargado</th>
                     @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables')))
-                    <th class="text-uppercase">Evaluador</th>
+                    <th class="text-uppercase">
+                        @if(auth()->user()->is_admin)
+                        Evaluador <br>
+                        <select wire:model='evaluator_filter' class="custom-select">
+                            <option value="0" selected>Sin filtro</option>
+                            @foreach($evaluators_list as $evaluator)
+                            <option value="{{$evaluator->id}}" selected>{{$evaluator->name}}</option>
+                            @endforeach
+                        </select>
+                        @else
+                        Evaluador
+                        @endif
+                    </th>
                     @endif
                     <th class="text-uppercase">Gráfica de resultados</th>
                     {{-- @if (config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables'))) --}}

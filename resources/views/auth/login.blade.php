@@ -29,29 +29,22 @@
 <body>
     <div class="app-container app-theme-white body-tabs-shadow">
         <div class="app-container">
-            <div class="h-100 bg-plum-plate bg-animation">
+            <div class="h-100">
                 <div class="d-flex h-100 justify-content-center align-items-center">
                     <div class="mx-auto app-login-box col-md-12">
-
                         <div class="mx-auto modal-dialog w-100">
-                            {{-- <img src="{{url('images/logo.png')}}" width="120px" class="img-fluid" alt=""> --}}
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-center">
-                       {{-- <img src="{{ url('images/default/evaluation/1.png') }}" width="160px" class="img-responsive" alt=""> --}}
+                                    <img src="{{url('images/logo.png')}}" width="80%" class="img-fluid align-items-center" alt="">
                                 </div>
                             </div>
                             <div class="modal-content">
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
-                                    <div class="modal-body">
+                                    <div class="modal-body" style="background-color:#065779;color:#ffffff;">
                                         <div class="text-center h5 modal-title">
                                             <h4 class="mt-2">
                                                     <x-jet-validation-errors class="mb-4" />
-
-                                                <div class="d-flex justify-content-center">
-                                                    <img src="{{url('images/logo.png')}}" width="120px"
-                                                        class="img-fluid" alt="">
-                                                </div>
                                                 <div>Bienvenido de regreso,</div>
                                                 <span>Por favor inicia sesión con tu cuenta.</span>
                                                 @if (session('status'))
@@ -83,7 +76,7 @@
                                     <h6 class="mb-0">No account? <a href="javascript:void(0);" class="text-primary">Sign
                                             up now</a></h6> --}}
                                     </div>
-                                    <div class="clearfix modal-footer" >
+                                    <div class="clearfix modal-footer" style="background-color:#5cbdd2;">
                                         @if (Route::has('password.request'))
                                         <div class="float-left">
                                             <a href="{{ route('password.request') }}"
@@ -92,7 +85,7 @@
                                         </div>
                                         @endif
                                         <div class="float-right">
-                                            <button class="btn btn-primary btn-lg" >Iniciar sesión</button>
+                                            <button class="btn btn-lg" style="background-color:#b9bb2d;">Iniciar sesión</button>
                                         </div>
                                     </div>
                                 </form>

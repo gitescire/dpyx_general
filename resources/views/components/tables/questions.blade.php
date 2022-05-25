@@ -77,14 +77,14 @@
                 <td>{{$question->category->name}}</td>
                 <td>{{$question->subcategory->name}}</td>
                 <td class="d-flex justify-content-between">
-                    <!-- <form action="{{route('questions.destroy',[$question])}}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                    </form> -->
-                    <button type="button" class="btn btn-danger btn-shadow rounded-0"  data-toggle="modal" data-target="#deleteQuestion{{$question->id}}">
+                <button
+                    type="button" 
+                    class="btn btn-danger btn-shadow rounded-0"
+                    data-target="#deleteQuestion{{$question->id}}"
+                    data-toggle="modal">
                         <i class="fas fa-trash"></i>
                     </button>
-                    <x-modals.questions.delete :question="$question" />
+                    <x-modals.questions.delete :question="$question"></x-modals.questions.delete>
                     <a href="{{route('questions.edit',[$question])}}" class="btn btn-warning btn-shadow rounded-0 ml-1">
                         <i class="fas fa-pencil-alt"></i>
                     </a>

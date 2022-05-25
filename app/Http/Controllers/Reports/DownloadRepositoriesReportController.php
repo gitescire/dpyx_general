@@ -13,13 +13,14 @@ class DownloadRepositoriesReportController extends Controller
 {
     protected $search;
     protected $search_filter;
+    protected $evaluator_filter;
     protected $array_repositories;
 
-    public function __invoke(Request $request,String $search_filter, String $search = null){
+    public function __invoke(Request $request,String $search_filter, Int $evaluator_filter = 0, String $search = null){
         $this->search = $search;
         $this->search_filter = $search_filter;
+        $this->evaluator_filter = $evaluator_filter;
         $this->array_repositories = $this->getRepositories();
-        error_log(json_encode($this->array_repositories));
         return Excel::download(new RepositoriesExport($this->array_repositories), 'listaRevistas.xlsx');
     }
 
@@ -56,20 +57,20 @@ class DownloadRepositoriesReportController extends Controller
             case 'Filtrar rechazado':
                 $repositories= Repository::where('repositories.status', '=', 'rechazado')
                      ->orderBy('id', 'desc');
-
                 break;
+        }
+
+        if($this->evaluator_filter > 0){
+            $repositories = $repositories->whereHas('evaluation', function ($query) {
+                return $query->whereHas('evaluator', function ($query) { return $query->where('users.id', $this->evaluator_filter);});
+            });
         }
 
         if ($this->search) {
             $repositories = $repositories->where(function ($query) {
                 $query->where('name', 'like', '%' . $this->search . '%')
-                    ->orWhereHas('responsible', function ($query) {
-                        return $query->where('name', 'like', '%' . $this->search . '%');
-                    })
-                    ->orWhereHas('evaluation', function ($query) {
-                        return $query->whereHas('history', function ($query) {
-                            return $query->where('name', 'like', '%' . $this->search . '%');
-                        });
+                    ->orWhereHas('responsible', function ($query2) {
+                        $query2->where('name', 'like', '%' . $this->search . '%');
                     });
             });
         }
