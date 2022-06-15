@@ -77,7 +77,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($repositories as $repository)
+                @forelse ($repositories as $repository)
                 <tr>
                     <td>{{ $repository->name }}</td>
                     <td>
@@ -130,7 +130,13 @@
                         </a>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td class="text-center" colspan="{{(config('app.is_evaluable') && (auth()->user()->is_evaluator || auth()->user()->is_admin || config('dpyx.evaluators_shownables'))) ? 9 : 8 }}">
+                        No hay datos para mostrar
+                    </td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

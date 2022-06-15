@@ -60,36 +60,44 @@ class DownloadRepositoriesReportController extends Controller
                 break;
         }
 
-        if($this->evaluator_filter > 0){
-            $repositories = $repositories->whereHas('evaluation', function ($query) {
-                return $query->whereHas('evaluator', function ($query) { return $query->where('users.id', $this->evaluator_filter);});
-            });
-        }
-
-        if ($this->search) {
-            $repositories = $repositories->where(function ($query) {
-                $query->where('name', 'like', '%' . $this->search . '%')
-                    ->orWhereHas('responsible', function ($query2) {
-                        $query2->where('name', 'like', '%' . $this->search . '%');
-                    });
-            });
-        }
-
-        if (Auth::user()->is_admin) {
-            $repositories = $repositories;
-
-        } else if (Auth::user()->is_evaluator) {
-            $repositories = $repositories->whereHas('evaluation', function ($query) {
-                // return $query->where('evaluator_id', Auth::user()->id);
-                return $query->whereHas('evaluator', function ($query) {
-                    return $query->where('users.id', Auth::user()->id);
+        if($repositories){
+            if($this->evaluator_filter > 0){
+                $repositories = $repositories->whereHas('evaluation', function ($query) {
+                    return $query->whereHas('evaluator', function ($query) { return $query->where('users.id', $this->evaluator_filter);});
                 });
-            });
-        } else {
-            $repositories = Auth::user()->repositories();
+            }
+    
+            if ($this->search) {
+                $repositories = $repositories->where(function ($query) {
+                    $query->where('name', 'like', '%' . $this->search . '%')
+                        ->orWhereHas('responsible', function ($query2) {
+                            $query2->where('name', 'like', '%' . $this->search . '%');
+                        });
+                });
+            }
+    
+            if (Auth::user()->is_admin) {
+                $repositories = $repositories;
+    
+            } else if (Auth::user()->is_evaluator) {
+                $repositories = $repositories->whereHas('evaluation', function ($query) {
+                    // return $query->where('evaluator_id', Auth::user()->id);
+                    return $query->whereHas('evaluator', function ($query) {
+                        return $query->where('users.id', Auth::user()->id);
+                    });
+                });
+            } else {
+                $repositories = Auth::user()->repositories();
+            }
+    
+            $repositories = $repositories ? $repositories->get() : [];
+        }
+        else{
+            $repositories = [];
         }
 
-        foreach($repositories->get() as $repository){
+
+        foreach($repositories as $repository){
             $array_repositories[] = [
                 strtoupper($repository->name),
                 strtoupper($repository->evaluation->in_review ? 'En evaluación' : $repository->status),

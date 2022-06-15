@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Repositories;
 use App\Models\Category;
 use App\Models\Repository;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -39,7 +40,6 @@ class Index extends Component
     protected function handleRepositories()
     {
         switch ($this->search_filter){
-
             case 'Sin filtro':
                 $this->repositories = Repository::orderBy('id', 'desc');
                 break;
@@ -66,40 +66,47 @@ class Index extends Component
                 break;
         }
 
-        if($this->evaluator_filter > 0){
-            $this->repositories = $this->repositories->whereHas('evaluation', function ($query) {
-                return $query->whereHas('evaluator', function ($query) { return $query->where('users.id', $this->evaluator_filter);});
-            });
-        }
-
-
-        if ($this->search) {
-            $this->repositories = $this->repositories->where(function ($query) {
-                $query->where('name', 'like', '%' . $this->search . '%')
-                    ->orWhereHas('responsible', function ($query) {
-                        return $query->where('name', 'like', '%' . $this->search . '%');
-                    })
-                    ->orWhereHas('evaluation', function ($query) {
-                        return $query->whereHas('repository', function ($query) {
+        if($this->repositories){
+            if($this->evaluator_filter > 0){
+                $this->repositories = $this->repositories->whereHas('evaluation', function ($query) {
+                    return $query->whereHas('evaluator', function ($query) { return $query->where('users.id', $this->evaluator_filter);});
+                });
+            }
+    
+    
+            if ($this->search) {
+                $this->repositories = $this->repositories->where(function ($query) {
+                    $query->where('name', 'like', '%' . $this->search . '%')
+                        ->orWhereHas('responsible', function ($query) {
                             return $query->where('name', 'like', '%' . $this->search . '%');
+                        })
+                        ->orWhereHas('evaluation', function ($query) {
+                            return $query->whereHas('repository', function ($query) {
+                                return $query->where('name', 'like', '%' . $this->search . '%');
+                            });
                         });
-                    });
-            });
+                });
+            }
+    
+    
+            if(Auth::user()->is_admin) {
+                $this->frequency_data = $this->repositories ? $this->repositories->count() : 0;
+                $this->repositories = $this->repositories ? $this->repositories->paginate(10) : collect([])->paginate(10);
+    
+            } else if (Auth::user()->is_evaluator) {
+                $repositoriesList = $this->repositories->whereHas('evaluation', function ($query) {
+                    return $query->whereHas('evaluator', function ($query) { return $query->where('users.id', Auth::user()->id);});
+                });
+                $this->frequency_data = $this->repositories ? $this->repositories->count() : 0;
+                $this->repositories = $this->repositories ? $this->repositories->paginate(10) : collect([])->paginate(10);
+            } else {
+                $this->frequency_data = Auth::user()->repositories() ? Auth::user()->repositories()->count() : 0;
+                $this->repositories = Auth::user()->repositories() ? Auth::user()->repositories()->paginate(10) : collect([])->paginate(10);
+            }
         }
-
-        if(Auth::user()->is_admin) {
-            $this->frequency_data = $this->repositories->count();
-            $this->repositories = $this->repositories->paginate(10);
-
-        } else if (Auth::user()->is_evaluator) {
-            $repositoriesList = $this->repositories->whereHas('evaluation', function ($query) {
-                return $query->whereHas('evaluator', function ($query) { return $query->where('users.id', Auth::user()->id);});
-            });
-            $this->frequency_data = $repositoriesList->count();
-            $this->repositories = $repositoriesList->paginate(10);
-        } else {
-            $this->frequency_data = Auth::user()->repositories()->count();
-            $this->repositories = Auth::user()->repositories()->paginate(10);
+        else{
+            $this->frequency_data = 0;
+                $this->repositories = collect([])->paginate(10);
         }
     }
 }

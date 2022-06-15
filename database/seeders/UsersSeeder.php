@@ -134,6 +134,27 @@ class UsersSeeder extends Seeder
             'password' => bcrypt('blp!utuPhu1A')
         ])->assignRole('usuario');
 
+        $user = User::create([
+            'name' => 'Epsom Admin',
+            'phone' => null,
+            'email' => 'epsegura@admin.com',
+            'password' => bcrypt('3nNsqNSY')
+        ])->assignRole('admin');
+
+        $user = User::create([
+            'name' => 'Epsom Evaluador',
+            'phone' => null,
+            'email' => 'epsegura@evaluador.com',
+            'password' => bcrypt('3nNsqNSY')
+        ])->assignRole('evaluador');
+
+        $user = User::create([
+            'name' => 'Epsom Usuario',
+            'phone' => null,
+            'email' => 'epsegura@usuario.com',
+            'password' => bcrypt('3nNsqNSY')
+        ])->assignRole('usuario');
+
         $repository = Repository::create([
             'responsible_id' => $user->id,
             'name' => 'repositorio',
@@ -144,7 +165,7 @@ class UsersSeeder extends Seeder
             $evaluation = Evaluation::create([
                 'repository_id' => $repository->id,
                  'evaluator_id' => $userEvaluator->id,
-                'status' => 'en progreso',
+                'status' => 'en progreso'
             ]);
           /*  (new EvaluationService)($evaluation)
                 ->updateCurrentEvaluator($userEvaluator)
