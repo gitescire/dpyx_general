@@ -94,7 +94,7 @@
     <div class="page_break" syu></div>
     {{-- <div style="margin-top: 10em; text-align:justify;"> --}}
         <div class="header">
-            <img width="100%" src="data:image/png;base64,' . {{ base64_encode( file_get_contents( public_path('images/default/evaluation/banner.png') ) ) }} " />
+            <img width="100%" src="data:image/png;base64,' . {{ base64_encode( file_get_contents( public_path('images/default/evaluation/banner.jpeg') ) ) }} " />
             <br />
         </div>
     {{-- <div style="margin-top: 10em; text-align:justify;"> --}}
