@@ -44,7 +44,7 @@ class DownloadRepositoriesReportController extends Controller
                      ->orderBy('id', 'desc');
 
                 break;
-            case 'Filtrar con observaciónes':
+            case 'Filtrar con observaciones':
                 $repositories= Repository::where('repositories.status','=', 'observaciones')
                      ->orderBy('id', 'desc');
 

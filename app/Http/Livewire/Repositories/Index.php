@@ -52,7 +52,7 @@ class Index extends Component
                      ->where('evaluations.status','=', 'en revisión')
                      ->orderBy('id', 'desc');
                 break;
-            case 'Filtrar con observaciónes':
+            case 'Filtrar con observaciones':
                 $this->repositories= Repository::where('repositories.status','=', 'observaciones')
                      ->orderBy('id', 'desc');
                 break;
