@@ -20,7 +20,25 @@
 
     <style>
         .bg-plum-plate{
-            background: {{config('dpyx.auth_background_color')}} !important;
+            background-image: linear-gradient(1deg,#ececed 0%,#fff 100%) !important;
+            /*background: {{config('dpyx.auth_background_color')}} !important;*/
+        }
+        .btn-primary {
+            color: #fff;
+            background-color: #005b2d;
+            border-color: #005b2d;
+        }
+        .btn-primary:hover {
+            color: white;
+            background-color: #b69a3e;
+            border-color: #b69a3e;
+        }
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #005b2d;
+            outline: 0;
+            box-shadow: 0 0 0 .2rem #005b2d\);
         }
         body{}
     </style>
